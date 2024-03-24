@@ -3,14 +3,16 @@ import { ref } from 'vue'
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import { useToast } from 'primevue/usetoast'
+import { useRouter } from 'vue-router'
 
 const toast = useToast()
+const router = useRouter()
 const username = ref('')
 const password = ref('')
 
 const login = () => {
   if (username.value === 'admin' && password.value === 'admin') {
-    toast.add({ severity: 'success', summary: 'Success', detail: 'Login successful', life: 3000 })
+    router.push({ path: '/properties' })
   } else {
     toast.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials', life: 3000 })
   }
