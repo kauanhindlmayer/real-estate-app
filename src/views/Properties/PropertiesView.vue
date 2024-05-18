@@ -24,7 +24,7 @@ const fetchProperties = async () => {
 }
 
 const goToPropertyCreate = () => {
-  router.push({ path: '/properties/new' })
+  router.push({ path: '/properties/create' })
 }
 
 onBeforeMount(async () => {
