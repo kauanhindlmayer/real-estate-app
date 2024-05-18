@@ -38,10 +38,6 @@ const saveProperty = async () => {
   }
 }
 
-const goBack = () => {
-  router.go(-1)
-}
-
 const getLocationByZipCode = async () => {
   loadingStore.startLoading()
   try {
@@ -57,14 +53,7 @@ const getLocationByZipCode = async () => {
 
 <template>
   <div class="container">
-    <Button
-      @click="goBack"
-      icon="pi pi-arrow-left"
-      severity="secondary"
-      rounded
-      class="go-back-button"
-    />
-    <h1 class="title">New Property</h1>
+    <h1 class="pageTitle">New Property</h1>
     <div class="form-container">
       <div class="p-fluid">
         <div class="p-field">
@@ -136,12 +125,6 @@ const getLocationByZipCode = async () => {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.go-back-button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
 }
 
 .form-container {

@@ -5,6 +5,37 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      component: () => import('@/layouts/BaseLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: () => import('../views/HomeView.vue')
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('../views/AboutView.vue')
+        },
+        {
+          path: '/contact',
+          name: 'contact',
+          component: () => import('../views/ContactView.vue')
+        },
+        {
+          path: '/properties',
+          name: 'properties',
+          component: () => import('../views/Properties/PropertiesView.vue')
+        },
+        {
+          path: '/properties/create',
+          name: 'property-create',
+          component: () => import('../views/Properties/partials/PropertyForm.vue')
+        }
+      ]
+    },
+    {
+      path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue')
     },
@@ -14,14 +45,9 @@ const router = createRouter({
       component: () => import('../views/RegisterView.vue')
     },
     {
-      path: '/properties',
-      name: 'properties',
-      component: () => import('../views/Properties/PropertiesView.vue')
-    },
-    {
-      path: '/properties/new',
-      name: 'new-property',
-      component: () => import('../views/Properties/partials/PropertyForm.vue')
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/NotFoundView.vue')
     }
   ]
 })

@@ -23,7 +23,7 @@ const fetchProperties = async () => {
   }
 }
 
-const redirectToNewPropertyPage = () => {
+const goToPropertyCreate = () => {
   router.push({ path: '/properties/new' })
 }
 
@@ -35,8 +35,11 @@ onBeforeMount(async () => {
 <template>
   <div class="container">
     <div class="container__heading">
-      <h1>Properties</h1>
-      <Button @click="redirectToNewPropertyPage">New Property</Button>
+      <div>
+        <h1>Properties</h1>
+        <p>{{ properties.length }} properties</p>
+      </div>
+      <Button @click="goToPropertyCreate">New Property</Button>
     </div>
     <div class="property-cards-container">
       <div v-for="property in properties" :key="property.id">
@@ -47,9 +50,6 @@ onBeforeMount(async () => {
 </template>
 
 <style scoped>
-.container {
-  padding: 20px;
-}
 .container__heading {
   display: flex;
   justify-content: space-between;
