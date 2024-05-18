@@ -11,7 +11,12 @@ const router = createRouter({
     {
       path: '/properties',
       name: 'properties',
-      component: () => import('../views/PropertiesView.vue')
+      component: () => import('../views/Properties/PropertiesView.vue')
+    },
+    {
+      path: '/properties/new',
+      name: 'new-property',
+      component: () => import('../views/Properties/partials/PropertyForm.vue')
     }
   ]
 })

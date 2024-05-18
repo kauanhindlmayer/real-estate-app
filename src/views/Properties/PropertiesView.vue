@@ -1,23 +1,30 @@
 <script lang="ts" setup>
 import { onBeforeMount, ref } from 'vue'
 import Property from '@/types/models/Property'
-import PropertyCard from '@/components/PropertyCard.vue'
+import PropertyCard from '@/views/Properties/partials/PropertyCard.vue'
 import PropertyGateway from '@/gateways/PropertyGateway'
+import Button from 'primevue/button'
 import { useLoadingStore } from '@/stores/LoadingStore'
+import { useRouter } from 'vue-router'
 
 const loadingStore = useLoadingStore()
+const router = useRouter()
 
 const properties = ref<Property[]>([])
 
 const fetchProperties = async () => {
   loadingStore.startLoading()
   try {
-    properties.value = await PropertyGateway.fetchProperties()
+    properties.value = await PropertyGateway.getAll()
   } catch (error) {
     console.error(error)
   } finally {
     loadingStore.stopLoading()
   }
+}
+
+const redirectToNewPropertyPage = () => {
+  router.push({ path: '/properties/new' })
 }
 
 onBeforeMount(async () => {
@@ -27,7 +34,10 @@ onBeforeMount(async () => {
 
 <template>
   <div class="container">
-    <h1>Properties</h1>
+    <div class="container__heading">
+      <h1>Properties</h1>
+      <Button @click="redirectToNewPropertyPage">New Property</Button>
+    </div>
     <div class="property-cards-container">
       <div v-for="property in properties" :key="property.id">
         <PropertyCard :property="property" />
@@ -39,6 +49,12 @@ onBeforeMount(async () => {
 <style scoped>
 .container {
   padding: 20px;
+}
+.container__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .property-cards-container {
   display: grid;
