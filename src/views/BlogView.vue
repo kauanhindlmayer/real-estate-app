@@ -2,7 +2,7 @@
 
 <template>
   <div class="container">
-    <h1>Contact</h1>
-    <p>This is the contact page.</p>
+    <h1>Blog</h1>
+    <p>This is the blog page.</p>
   </div>
 </template>
