@@ -8,6 +8,6 @@ export default class Property {
     public size: number,
     public imageUrl: string,
     public location: Location,
-    public id?: number
+    public id?: string
   ) {}
 }

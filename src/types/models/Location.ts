@@ -5,6 +5,6 @@ export default class Location {
     public state: string,
     public country: string,
     public zipCode: string,
-    public id?: number
+    public id?: string
   ) {}
 }
