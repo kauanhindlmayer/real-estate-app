@@ -2,7 +2,7 @@
 import type PropertyGateway from '@/gateways/PropertyGateway'
 import { inject, onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useLoadingStore } from '@/stores/LoadingStore'
+import { useLoadingStore } from '@/stores/loadingStore'
 import Property from '@/types/models/Property'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 

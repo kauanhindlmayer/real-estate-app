@@ -6,7 +6,7 @@ import PropertyGateway from '@/gateways/PropertyGateway'
 import LocationGateway from '@/gateways/LocationGateway'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
-import { useLoadingStore } from '@/stores/LoadingStore'
+import { useLoadingStore } from '@/stores/loadingStore'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
 const locationGateway = inject('locationGateway') as LocationGateway
