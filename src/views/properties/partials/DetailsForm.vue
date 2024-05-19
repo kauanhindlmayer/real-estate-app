@@ -4,9 +4,9 @@ import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import { ref } from 'vue'
-import { useToast } from 'primevue/usetoast'
+import useBaseToast from '@/composables/useBaseToast'
 
-const toast = useToast()
+const toast = useBaseToast()
 
 const property = defineModel<Property>({ default: () => new Property() })
 
@@ -26,7 +26,7 @@ const emit = defineEmits(['next'])
 
 function next() {
   if (!validateFields()) {
-    toast.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields' })
+    toast.error({ message: 'Please fill in all required fields' })
     return
   }
   emit('next')

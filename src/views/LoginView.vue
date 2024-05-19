@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
-import { useToast } from 'primevue/usetoast'
 import { useRouter } from 'vue-router'
+import useBaseToast from '@/composables/useBaseToast'
 
-const toast = useToast()
+const toast = useBaseToast()
 const router = useRouter()
 
 const username = ref('')
@@ -15,7 +15,7 @@ function login() {
   if (username.value === 'admin' && password.value === 'admin') {
     router.push({ path: '/properties' })
   } else {
-    toast.add({ severity: 'error', summary: 'Error', detail: 'Invalid credentials', life: 3000 })
+    toast.error({ message: 'Invalid credentials' })
   }
 }
 </script>
@@ -32,12 +32,10 @@ function login() {
         <div class="login-body">
           <div class="p-fluid">
             <div class="p-field">
-              <label for="username">Username</label>
-              <AppInputText id="username" v-model="username" />
+              <AppInputText label="Username" v-model="username" />
             </div>
             <div class="p-field">
-              <label for="password">Password</label>
-              <AppInputText id="password" v-model="password" />
+              <AppInputText label="Password" v-model="password" />
             </div>
           </div>
         </div>
@@ -69,5 +67,8 @@ function login() {
 }
 .login-footer {
   margin-top: 1rem;
+}
+.p-field {
+  margin-bottom: 10px;
 }
 </style>

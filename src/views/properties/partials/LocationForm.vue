@@ -7,12 +7,12 @@ import LocationGateway from '@/gateways/LocationGateway'
 import Property from '@/types/models/Property'
 import type PropertyGateway from '@/gateways/PropertyGateway'
 import { useRouter } from 'vue-router'
-import { useToast } from 'primevue/usetoast'
+import useBaseToast from '@/composables/useBaseToast'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
 const locationGateway = inject('locationGateway') as LocationGateway
 
-const toast = useToast()
+const toast = useBaseToast()
 const router = useRouter()
 const loadingStore = useLoadingStore()
 
@@ -23,9 +23,9 @@ async function getLocationByZipCode() {
   try {
     const { zipCode } = property.value.location
     property.value.location = await locationGateway.getByZipCode(zipCode)
-    toast.add({ severity: 'success', summary: 'Success', detail: 'Location found' })
+    toast.success({ message: 'Location found' })
   } catch {
-    toast.add({ severity: 'error', summary: 'Error', detail: 'Location not found' })
+    toast.error({ message: 'Location not found' })
   } finally {
     loadingStore.stopLoading()
   }
@@ -33,16 +33,16 @@ async function getLocationByZipCode() {
 
 async function saveProperty() {
   if (!validateFields()) {
-    toast.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields' })
+    toast.error({ message: 'Please fill in all required fields' })
     return
   }
   loadingStore.startLoading()
   try {
     await propertyGateway.save(property.value)
-    toast.add({ severity: 'success', summary: 'Success', detail: 'Property saved' })
+    toast.success({ message: 'Property saved' })
     router.push({ path: '/properties' })
   } catch {
-    toast.add({ severity: 'error', summary: 'Error', detail: 'Property not saved' })
+    toast.error({ message: 'Error saving property' })
   } finally {
     loadingStore.stopLoading()
   }
