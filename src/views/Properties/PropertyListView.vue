@@ -2,7 +2,7 @@
 import { computed, inject, onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Property from '@/types/models/Property'
-import PropertyCard from '@/views/Properties/partials/PropertyCard.vue'
+import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import PropertyGateway from '@/gateways/PropertyGateway'
 import { useLoadingStore } from '@/stores/LoadingStore'
 import AppButton from '@/components/wrappers/AppButton.vue'

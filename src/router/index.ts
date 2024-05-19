@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import PropertiesRoutes from './properties'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,16 +23,7 @@ const router = createRouter({
           name: 'blog',
           component: () => import('../views/BlogView.vue')
         },
-        {
-          path: '/properties',
-          name: 'properties',
-          component: () => import('../views/Properties/PropertiesView.vue')
-        },
-        {
-          path: '/properties/create',
-          name: 'property-create',
-          component: () => import('../views/Properties/partials/PropertyForm.vue')
-        }
+        ...PropertiesRoutes
       ]
     },
     {

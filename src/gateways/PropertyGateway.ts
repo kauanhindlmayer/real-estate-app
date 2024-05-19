@@ -16,7 +16,8 @@ export default class PropertyGateway implements IPropertyGateway {
   }
 
   async getById(id: string): Promise<Property> {
-    return await this.httpClient.get(`property/oneById/${id}`)
+    const urlParams = new URLSearchParams({ id })
+    return await this.httpClient.get(`property/oneById?${urlParams}`)
   }
 
   async save(property: Property): Promise<void> {
