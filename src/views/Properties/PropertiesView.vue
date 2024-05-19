@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { inject, onBeforeMount, ref } from 'vue'
+import { computed, inject, onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Property from '@/types/models/Property'
 import PropertyCard from '@/views/Properties/partials/PropertyCard.vue'
@@ -13,6 +13,12 @@ const loadingStore = useLoadingStore()
 const router = useRouter()
 
 const properties = ref<Property[]>([])
+
+const amountOfProperties = computed(() => {
+  const amount = properties.value.length
+  if (amount === 0) return 'No properties'
+  return `${amount} ${amount === 1 ? 'property' : 'properties'}`
+})
 
 async function fetchProperties() {
   loadingStore.startLoading()
@@ -39,7 +45,7 @@ onBeforeMount(async () => {
     <div class="container__heading">
       <div>
         <h1>Properties</h1>
-        <p>{{ properties.length }} properties</p>
+        <p>{{ amountOfProperties }}</p>
       </div>
       <AppButton label="New Property" @click="redirectToPropertyCreate" />
     </div>
