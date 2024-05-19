@@ -33,7 +33,7 @@ function redirectTo(path: string) {
         <AppInputIcon>
           <i class="pi pi-search" />
         </AppInputIcon>
-        <AppInputText placeholder="Search" />
+        <AppInputText label="Search" no-label />
       </AppIconField>
     </template>
   </AppToolbar>

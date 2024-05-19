@@ -3,12 +3,32 @@ import Property from '@/types/models/Property'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
+import { ref } from 'vue'
+import { useToast } from 'primevue/usetoast'
+
+const toast = useToast()
 
 const property = defineModel<Property>({ default: () => new Property() })
+
+const titleRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const descriptionRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const priceRef = ref<InstanceType<typeof AppInputNumber> | null>(null)
+const sizeRef = ref<InstanceType<typeof AppInputNumber> | null>(null)
+const imageUrlRef = ref<InstanceType<typeof AppInputText> | null>(null)
+
+function validateFields() {
+  const fieldsToValidate = [titleRef, descriptionRef, priceRef, sizeRef, imageUrlRef]
+  const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
+  return validationResults.every((valid) => valid)
+}
 
 const emit = defineEmits(['next'])
 
 function next() {
+  if (!validateFields()) {
+    toast.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields' })
+    return
+  }
   emit('next')
 }
 </script>
@@ -16,35 +36,42 @@ function next() {
 <template>
   <div class="p-fluid">
     <div class="p-field">
-      <label for="title">Title</label>
-      <AppInputText v-model="property.title" placeholder="Title" id="title" />
+      <AppInputText ref="titleRef" v-model="property.title" label="Title" required />
     </div>
 
     <div class="p-field">
-      <label for="description">Description</label>
-      <AppInputText v-model="property.description" placeholder="Description" id="description" />
-    </div>
-
-    <div class="p-field">
-      <label for="price">Price</label>
-      <AppInputNumber
-        v-model="property.price"
-        mode="currency"
-        currency="USD"
-        locale="en-US"
-        placeholder="Price"
-        id="price"
+      <AppInputText
+        ref="descriptionRef"
+        v-model="property.description"
+        label="Description"
+        required
       />
     </div>
 
     <div class="p-field">
-      <label for="size">Size (m²)</label>
-      <AppInputNumber v-model="property.size" placeholder="Size (m²)" id="size" suffix="m²" />
+      <AppInputNumber
+        ref="priceRef"
+        v-model="property.price"
+        mode="currency"
+        currency="USD"
+        locale="en-US"
+        label="Price"
+        required
+      />
     </div>
 
     <div class="p-field">
-      <label for="imageUrl">Image URL</label>
-      <AppInputText v-model="property.imageUrl" placeholder="Image URL" id="imageUrl" />
+      <AppInputNumber
+        ref="sizeRef"
+        v-model="property.size"
+        label="Size (m²)"
+        suffix="m²"
+        required
+      />
+    </div>
+
+    <div class="p-field">
+      <AppInputText ref="imageUrlRef" v-model="property.imageUrl" label="Image URL" required />
     </div>
 
     <footer>

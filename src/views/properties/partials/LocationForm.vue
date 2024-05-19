@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import { useLoadingStore } from '@/stores/loadingStore'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
@@ -32,6 +32,10 @@ async function getLocationByZipCode() {
 }
 
 async function saveProperty() {
+  if (!validateFields()) {
+    toast.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields' })
+    return
+  }
   loadingStore.startLoading()
   try {
     await propertyGateway.save(property.value)
@@ -44,6 +48,17 @@ async function saveProperty() {
   }
 }
 
+const zipCodeRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const addressRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const cityRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const stateRef = ref<InstanceType<typeof AppInputText> | null>(null)
+
+function validateFields() {
+  const fieldsToValidate = [zipCodeRef, addressRef, cityRef, stateRef]
+  const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
+  return validationResults.every((valid) => valid)
+}
+
 const emit = defineEmits(['previous'])
 
 function previous() {
@@ -54,33 +69,29 @@ function previous() {
 <template>
   <div class="p-fluid">
     <div class="p-field">
-      <label for="zipCode">Zip Code</label>
       <AppInputText
+        ref="zipCodeRef"
         v-model="property.location.zipCode"
-        placeholder="Zip Code"
-        id="zipCode"
+        label="Zip Code"
+        required
         @change="getLocationByZipCode"
       />
     </div>
 
     <div class="p-field">
-      <label for="address">Address</label>
-      <AppInputText v-model="property.location.address" placeholder="Address" id="address" />
+      <AppInputText ref="addressRef" v-model="property.location.address" label="Address" required />
     </div>
 
     <div class="p-field">
-      <label for="city">City</label>
-      <AppInputText v-model="property.location.city" placeholder="City" id="city" />
+      <AppInputText ref="cityRef" v-model="property.location.city" label="City" required />
     </div>
 
     <div class="p-field">
-      <label for="state">State</label>
-      <AppInputText v-model="property.location.state" placeholder="State" id="state" />
+      <AppInputText ref="stateRef" v-model="property.location.state" label="State" required />
     </div>
 
     <div class="p-field">
-      <label for="country">Country</label>
-      <AppInputText v-model="property.location.country" placeholder="Country" id="country" />
+      <AppInputText ref="countryRef" v-model="property.location.country" label="Country" required />
     </div>
 
     <footer>
