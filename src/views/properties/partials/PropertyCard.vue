@@ -1,23 +1,31 @@
 <template>
-  <div class="property-card">
-    <div class="property-card__header">
-      <h3>{{ property.title }}</h3>
-    </div>
-    <div class="property-card__image">
-      <img :src="property.imageUrl" alt="Property Image" />
-    </div>
-    <div class="property-card__body">
+  <AppCard>
+    <template #header>
+      <img
+        :src="property.imageUrl || 'https://via.placeholder.com/300'"
+        alt="Property Image"
+        class="property-image"
+      />
+    </template>
+
+    <template #title>
+      {{ property.title }}
+    </template>
+
+    <template #content>
       <p>{{ property.description }}</p>
-      <p>Price: ${{ property.price }}</p>
-      <p>Area: {{ property.size }}m²</p>
-    </div>
-    <div class="property-card__footer" v-if="!props.hideFooter">
-      <AppButton label="View" @click="redirectToPropertyDetails" />
-    </div>
-  </div>
+      <p><strong>Price:</strong> ${{ property.price }}</p>
+      <p><strong>Area:</strong> {{ property.size }}m²</p>
+    </template>
+
+    <template #footer>
+      <AppButton v-if="!props.hideFooter" label="View" @click="redirectToPropertyDetails" />
+    </template>
+  </AppCard>
 </template>
 
 <script lang="ts" setup>
+import AppCard from '@/components/wrappers/AppCard.vue'
 import Property from '@/types/models/Property'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import { useRouter } from 'vue-router'
@@ -43,27 +51,10 @@ function redirectToPropertyDetails() {
 </script>
 
 <style scoped>
-.property-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-.property-card__header {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-.property-card__image img {
+.property-image {
   width: 100%;
-  height: auto;
-}
-.property-card__body {
-  padding: 10px;
-}
-.property-card__footer {
-  padding: 10px;
-  display: flex;
-  justify-content: flex-end;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
 }
 </style>

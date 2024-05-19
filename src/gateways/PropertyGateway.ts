@@ -1,5 +1,6 @@
 import type IHttpClient from './httpClient'
 import type Property from '@/types/models/Property'
+import propertiesData from '@/data/properties.json'
 
 interface IPropertyGateway {
   getAll(): Promise<Property[]>
@@ -12,7 +13,8 @@ export default class PropertyGateway implements IPropertyGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
   async getAll(): Promise<Property[]> {
-    return await this.httpClient.get('property/all')
+    const properties = await this.httpClient.get('property/all')
+    return [...propertiesData, ...properties]
   }
 
   async getById(id: string): Promise<Property> {
