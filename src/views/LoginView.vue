@@ -1,54 +1,64 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
-import AppButton from '@/components/wrappers/AppButton.vue'
+import { inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import AppInputText from '@/components/wrappers/AppInputText.vue'
+import AppInputPassword from '@/components/wrappers/AppInputPassword.vue'
+import AppButton from '@/components/wrappers/AppButton.vue'
 import useBaseToast from '@/composables/useBaseToast'
+import type UserGateway from '@/gateways/UserGateway'
+import { useLoadingStore } from '@/stores/loadingStore'
+
+const userGateway = inject('userGateway') as UserGateway
 
 const toast = useBaseToast()
 const router = useRouter()
+const loadingStore = useLoadingStore()
 
 const username = ref('')
 const password = ref('')
 
 function login() {
-  if (username.value === 'admin' && password.value === 'admin') {
-    router.push({ path: '/properties' })
-  } else {
+  loadingStore.startLoading()
+  try {
+    userGateway.login(username.value, password.value)
+    router.push({ path: '/login' })
+  } catch {
     toast.error({ message: 'Invalid credentials' })
+  } finally {
+    loadingStore.stopLoading()
   }
 }
 </script>
 
 <template>
-  <div class="login-wrapper">
+  <div class="container">
     <div class="left-panel" />
 
     <div class="right-panel">
-      <div class="login-container">
-        <div class="login-header">
-          <h1>Login</h1>
-        </div>
-        <div class="login-body">
-          <div class="p-fluid">
-            <div class="p-field">
-              <AppInputText label="Username" v-model="username" />
-            </div>
-            <div class="p-field">
-              <AppInputText label="Password" v-model="password" />
-            </div>
+      <div>
+        <h1>Login</h1>
+        <div class="p-fluid">
+          <div class="p-field">
+            <AppInputText label="Username" v-model="username" />
+          </div>
+          <div class="p-field">
+            <AppInputPassword toggle-mask v-model="password" />
           </div>
         </div>
-        <div class="login-footer">
+        <footer class="mt-1">
           <AppButton label="Login" @click="login" />
-        </div>
+          <p>
+            Don't have an account?
+            <router-link to="/register" class="register-link">Register</router-link>
+          </p>
+        </footer>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.login-wrapper {
+.container {
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -65,10 +75,10 @@ function login() {
   width: 50vw;
   height: 100vh;
 }
-.login-footer {
-  margin-top: 1rem;
-}
 .p-field {
   margin-bottom: 10px;
+}
+.register-link {
+  color: #3b82f6;
 }
 </style>
