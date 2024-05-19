@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { inject, onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import Property from '@/types/models/Property'
-import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
-import PropertyGateway from '@/gateways/PropertyGateway'
-import { useLoadingStore } from '@/stores/loadingStore'
 import AppButton from '@/components/wrappers/AppButton.vue'
+import Property from '@/types/models/Property'
+import PropertyGateway from '@/gateways/PropertyGateway'
+import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
+import { useLoadingStore } from '@/stores/loadingStore'
 import pluralize from '@/utils/pluralize'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
@@ -36,24 +36,20 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="container">
-    <div class="container__heading">
-      <div>
-        <h1>Properties</h1>
-        <p>{{ pluralize(properties.length, 'property', 'properties') }}</p>
-      </div>
-      <AppButton label="New Property" @click="redirectToPropertyCreate" />
+  <header>
+    <div>
+      <h1>Properties</h1>
+      <p>{{ pluralize(properties.length, 'property', 'properties') }}</p>
     </div>
-    <div class="property-cards-container">
-      <div v-for="property in properties" :key="property.id">
-        <PropertyCard :property />
-      </div>
-    </div>
-  </div>
+    <AppButton label="New Property" @click="redirectToPropertyCreate" />
+  </header>
+  <main class="property-cards-container">
+    <PropertyCard v-for="property in properties" :key="property.id" :property />
+  </main>
 </template>
 
 <style scoped>
-.container__heading {
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;

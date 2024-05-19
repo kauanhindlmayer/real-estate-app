@@ -11,7 +11,7 @@
       <p>Price: ${{ property.price }}</p>
       <p>Area: {{ property.size }}m²</p>
     </div>
-    <div class="property-card__footer" v-if="!hideFooter">
+    <div class="property-card__footer" v-if="!props.hideFooter">
       <AppButton label="View" @click="redirectToPropertyDetails" />
     </div>
   </div>
@@ -21,7 +21,7 @@
 import Property from '@/types/models/Property'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import { useRouter } from 'vue-router'
-import { withDefaults, defineProps } from 'vue'
+import { withDefaults, defineProps, computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -33,12 +33,12 @@ const props = withDefaults(
   }
 )
 
-const { property, hideFooter } = props
-
 const router = useRouter()
 
+const property = computed(() => props.property)
+
 function redirectToPropertyDetails() {
-  router.push({ path: `/properties/${property.id}` })
+  router.push({ path: `/properties/${property.value.id}` })
 }
 </script>
 
