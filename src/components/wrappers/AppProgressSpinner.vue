@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import ProgressSpinner from 'primevue/progressspinner'
 import { computed } from 'vue'
 import { useLoadingStore } from '@/stores/LoadingStore'
-import ProgressSpinner from 'primevue/progressspinner'
 
 const loadingStore = useLoadingStore()
 

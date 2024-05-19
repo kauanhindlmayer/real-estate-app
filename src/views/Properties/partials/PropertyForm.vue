@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import InputText from 'primevue/inputtext'
-import Button from 'primevue/button'
 import Property from '@/types/models/Property'
 import PropertyGateway from '@/gateways/PropertyGateway'
 import LocationGateway from '@/gateways/LocationGateway'
+import AppInputText from '@/components/wrappers/AppInputText.vue'
+import AppButton from '@/components/wrappers/AppButton.vue'
 import { useLoadingStore } from '@/stores/LoadingStore'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
@@ -48,33 +48,33 @@ const getLocationByZipCode = async () => {
       <div class="p-fluid">
         <div class="p-field">
           <label for="title">Title</label>
-          <InputText v-model="property.title" placeholder="Title" id="title" />
+          <AppInputText v-model="property.title" placeholder="Title" id="title" />
         </div>
 
         <div class="p-field">
           <label for="description">Description</label>
-          <InputText v-model="property.description" placeholder="Description" id="description" />
+          <AppInputText v-model="property.description" placeholder="Description" id="description" />
         </div>
 
         <div class="p-field">
           <label for="price">Price</label>
-          <InputText v-model="property.price" placeholder="Price" id="price" />
+          <AppInputText v-model="property.price" placeholder="Price" id="price" />
         </div>
 
         <div class="p-field">
           <label for="size">Size</label>
-          <InputText v-model="property.size" placeholder="Size" id="size" />
+          <AppInputText v-model="property.size" placeholder="Size" id="size" />
         </div>
 
         <div class="p-field">
           <label for="imageUrl">Image URL</label>
-          <InputText v-model="property.imageUrl" placeholder="Image URL" id="imageUrl" />
+          <AppInputText v-model="property.imageUrl" placeholder="Image URL" id="imageUrl" />
         </div>
 
         <h2>Location</h2>
         <div class="p-field">
           <label for="zipCode">Zip Code</label>
-          <InputText
+          <AppInputText
             v-model="property.location.zipCode"
             placeholder="Zip Code"
             id="zipCode"
@@ -84,25 +84,25 @@ const getLocationByZipCode = async () => {
 
         <div class="p-field">
           <label for="address">Address</label>
-          <InputText v-model="property.location.address" placeholder="Address" id="address" />
+          <AppInputText v-model="property.location.address" placeholder="Address" id="address" />
         </div>
 
         <div class="p-field">
           <label for="city">City</label>
-          <InputText v-model="property.location.city" placeholder="City" id="city" />
+          <AppInputText v-model="property.location.city" placeholder="City" id="city" />
         </div>
 
         <div class="p-field">
           <label for="state">State</label>
-          <InputText v-model="property.location.state" placeholder="State" id="state" />
+          <AppInputText v-model="property.location.state" placeholder="State" id="state" />
         </div>
 
         <div class="p-field">
           <label for="country">Country</label>
-          <InputText v-model="property.location.country" placeholder="Country" id="country" />
+          <AppInputText v-model="property.location.country" placeholder="Country" id="country" />
         </div>
 
-        <Button label="Save" class="mt-4" @click="saveProperty" />
+        <AppButton label="Save" class="mt-4" @click="saveProperty" />
       </div>
     </div>
   </div>

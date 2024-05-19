@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import AppButton from '@/components/wrappers/AppButton.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -14,7 +15,7 @@ const goToHome = () => {
       <h1>404</h1>
       <h2>Page Not Found</h2>
       <p>The page you are looking for does not exist.</p>
-      <button class="home-button" @click="goToHome">Go to Homepage</button>
+      <AppButton label="Go to Homepage" @click="goToHome" />
     </div>
   </div>
 </template>
@@ -46,18 +47,5 @@ h2 {
 p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
-}
-.home-button {
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.home-button:hover {
-  background-color: #2563eb;
 }
 </style>

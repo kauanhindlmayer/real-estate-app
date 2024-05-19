@@ -4,8 +4,8 @@ import { useRouter } from 'vue-router'
 import Property from '@/types/models/Property'
 import PropertyCard from '@/views/Properties/partials/PropertyCard.vue'
 import PropertyGateway from '@/gateways/PropertyGateway'
-import Button from 'primevue/button'
 import { useLoadingStore } from '@/stores/LoadingStore'
+import AppButton from '@/components/wrappers/AppButton.vue'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
 
@@ -41,7 +41,7 @@ onBeforeMount(async () => {
         <h1>Properties</h1>
         <p>{{ properties.length }} properties</p>
       </div>
-      <Button @click="goToPropertyCreate">New Property</Button>
+      <AppButton label="New Property" @click="goToPropertyCreate" />
     </div>
     <div class="property-cards-container">
       <div v-for="property in properties" :key="property.id">

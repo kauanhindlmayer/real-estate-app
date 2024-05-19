@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import InputText from 'primevue/inputtext'
-import Button from 'primevue/button'
+import AppInputText from '@/components/wrappers/AppInputText.vue'
+import AppButton from '@/components/wrappers/AppButton.vue'
 import { useToast } from 'primevue/usetoast'
 import { useRouter } from 'vue-router'
 
@@ -32,16 +32,16 @@ const login = () => {
           <div class="p-fluid">
             <div class="p-field">
               <label for="username">Username</label>
-              <InputText id="username" v-model="username" />
+              <AppInputText id="username" v-model="username" />
             </div>
             <div class="p-field">
               <label for="password">Password</label>
-              <InputText id="password" v-model="password" />
+              <AppInputText id="password" v-model="password" />
             </div>
           </div>
         </div>
         <div class="login-footer">
-          <Button label="Login" @click="login" />
+          <AppButton label="Login" @click="login" />
         </div>
       </div>
     </div>

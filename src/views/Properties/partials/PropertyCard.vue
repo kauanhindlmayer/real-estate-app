@@ -12,14 +12,14 @@
       <p>Area: {{ property.size }}m²</p>
     </div>
     <div class="property-card__footer">
-      <Button label="View" />
+      <AppButton label="View" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Property from '@/types/models/Property'
-import Button from 'primevue/button'
+import AppButton from '@/components/wrappers/AppButton.vue'
 
 const { property } = defineProps<{
   property: Property
