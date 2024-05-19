@@ -1,6 +1,5 @@
+import type IHttpClient from './httpClient'
 import type Property from '@/types/models/Property'
-import propertiesData from '@/data/properties.json'
-import axios from 'axios'
 
 interface IPropertyGateway {
   getAll(): Promise<Property[]>
@@ -9,24 +8,23 @@ interface IPropertyGateway {
   remove(id: string): Promise<void>
 }
 
-class PropertyGateway implements IPropertyGateway {
+export default class PropertyGateway implements IPropertyGateway {
+  constructor(readonly httpClient: IHttpClient) {}
+
   async getAll(): Promise<Property[]> {
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    return propertiesData
+    return await this.httpClient.get('property/all')
   }
 
   async getById(id: string): Promise<Property> {
-    return propertiesData.find((property) => property.id === id) as Property
+    return await this.httpClient.get(`property/oneById/${id}`)
   }
 
   async save(property: Property): Promise<void> {
     const method = property.id ? 'put' : 'post'
-    return await axios[method]('http://localhost:8070/property/one', property)
+    return await this.httpClient[method]('property/one', property)
   }
 
-  async remove(id: string) {
-    console.log(`Property ${id} deleted`)
+  async remove(id: string): Promise<void> {
+    return await this.httpClient.delete(`property/one/${id}`)
   }
 }
-
-export default new PropertyGateway()

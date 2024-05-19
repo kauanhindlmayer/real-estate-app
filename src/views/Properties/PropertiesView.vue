@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { onBeforeMount, ref } from 'vue'
+import { inject, onBeforeMount, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Property from '@/types/models/Property'
 import PropertyCard from '@/views/Properties/partials/PropertyCard.vue'
 import PropertyGateway from '@/gateways/PropertyGateway'
 import Button from 'primevue/button'
 import { useLoadingStore } from '@/stores/LoadingStore'
-import { useRouter } from 'vue-router'
+
+const propertyGateway = inject('propertyGateway') as PropertyGateway
 
 const loadingStore = useLoadingStore()
 const router = useRouter()
@@ -15,7 +17,7 @@ const properties = ref<Property[]>([])
 const fetchProperties = async () => {
   loadingStore.startLoading()
   try {
-    properties.value = await PropertyGateway.getAll()
+    properties.value = await propertyGateway.getAll()
   } catch (error) {
     console.error(error)
   } finally {
@@ -43,7 +45,7 @@ onBeforeMount(async () => {
     </div>
     <div class="property-cards-container">
       <div v-for="property in properties" :key="property.id">
-        <PropertyCard :property="property" />
+        <PropertyCard :property />
       </div>
     </div>
   </div>

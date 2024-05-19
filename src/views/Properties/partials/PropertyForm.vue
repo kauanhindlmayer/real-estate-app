@@ -1,35 +1,25 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import Property from '@/types/models/Property'
 import PropertyGateway from '@/gateways/PropertyGateway'
 import LocationGateway from '@/gateways/LocationGateway'
 import { useLoadingStore } from '@/stores/LoadingStore'
-import { useRouter } from 'vue-router'
+
+const propertyGateway = inject('propertyGateway') as PropertyGateway
+const locationGateway = inject('locationGateway') as LocationGateway
 
 const router = useRouter()
 const loadingStore = useLoadingStore()
 
-const property = ref<Property>({
-  title: '',
-  description: '',
-  price: 0,
-  size: 0,
-  imageUrl: '',
-  location: {
-    zipCode: '',
-    address: '',
-    city: '',
-    state: '',
-    country: ''
-  }
-})
+const property = ref<Property>(new Property())
 
 const saveProperty = async () => {
   loadingStore.startLoading()
   try {
-    await PropertyGateway.save(property.value)
+    await propertyGateway.save(property.value)
     router.push({ path: '/properties' })
   } catch (error) {
     console.error(error)
@@ -41,7 +31,7 @@ const saveProperty = async () => {
 const getLocationByZipCode = async () => {
   loadingStore.startLoading()
   try {
-    const location = await LocationGateway.getByZipCode(property.value.location.zipCode)
+    const location = await locationGateway.getByZipCode(property.value.location.zipCode)
     property.value.location = location
   } catch (error) {
     console.error(error)
@@ -126,11 +116,9 @@ const getLocationByZipCode = async () => {
   align-items: center;
   flex-direction: column;
 }
-
 .form-container {
   width: 35%;
 }
-
 .p-field {
   margin-bottom: 10px;
 }

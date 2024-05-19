@@ -10,6 +10,9 @@ import ToastService from 'primevue/toastservice'
 
 import App from './App.vue'
 import router from './router'
+import { AxiosAdapter } from './gateways/httpClient'
+import PropertyGateway from './gateways/PropertyGateway'
+import LocationGateway from './gateways/LocationGateway'
 
 const app = createApp(App)
 
@@ -17,5 +20,14 @@ app.use(createPinia())
 app.use(router)
 app.use(PrimeVue)
 app.use(ToastService)
+
+const httpClient = new AxiosAdapter('http://localhost:8070/')
+const propertyGateway = new PropertyGateway(httpClient)
+
+const viaCepHttpClient = new AxiosAdapter('https://viacep.com.br/')
+const locationGateway = new LocationGateway(viaCepHttpClient)
+
+app.provide('propertyGateway', propertyGateway)
+app.provide('locationGateway', locationGateway)
 
 app.mount('#app')

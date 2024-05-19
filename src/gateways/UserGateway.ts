@@ -1,19 +1,19 @@
+import type IHttpClient from './httpClient'
 import User from '@/types/models/User'
-import axios from 'axios'
 
 interface IUserGateway {
   register(user: User): Promise<void>
   login(email: string, password: string): Promise<void>
 }
 
-class UserGateway implements IUserGateway {
+export default class UserGateway implements IUserGateway {
+  constructor(readonly httpClient: IHttpClient) {}
+
   async register(user: User): Promise<void> {
-    return await axios.post('/user/one', user)
+    return await this.httpClient.post('user/one', user)
   }
 
   async login(email: string, password: string): Promise<void> {
-    return await axios.post('/login', { email, password })
+    return await this.httpClient.post('login', { email, password })
   }
 }
-
-export default new UserGateway()

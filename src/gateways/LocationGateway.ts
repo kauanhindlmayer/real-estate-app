@@ -1,21 +1,16 @@
+import type IHttpClient from './httpClient'
 import Location from '@/types/models/Location'
-import axios from 'axios'
 
 interface ILocationGateway {
   getByZipCode(zipCode: string): Promise<Location>
 }
 
-class LocationGateway implements ILocationGateway {
+export default class LocationGateway implements ILocationGateway {
+  constructor(readonly httpClient: IHttpClient) {}
+
   async getByZipCode(zipCode: string): Promise<Location> {
-    const response = await axios.get(`https://viacep.com.br/ws/${zipCode}/json/`)
-    const {
-      logradouro: address,
-      localidade: city,
-      uf: state,
-      pais: country = 'Brazil'
-    } = response.data
+    const response = await this.httpClient.get(`ws/${zipCode}/json/`)
+    const { logradouro: address, localidade: city, uf: state, pais: country = 'Brazil' } = response
     return new Location(address, city, state, country, zipCode)
   }
 }
-
-export default new LocationGateway()
