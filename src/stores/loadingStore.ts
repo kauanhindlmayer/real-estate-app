@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useLoadingStore = defineStore('loading', () => {
+export const useLoadingStore = defineStore('loadingStore', () => {
   const isLoading = ref<boolean>(false)
 
   const startLoading = () => {
@@ -11,5 +11,9 @@ export const useLoadingStore = defineStore('loading', () => {
     isLoading.value = false
   }
 
-  return { isLoading, startLoading, stopLoading }
+  return {
+    isLoading,
+    startLoading,
+    stopLoading
+  }
 })
