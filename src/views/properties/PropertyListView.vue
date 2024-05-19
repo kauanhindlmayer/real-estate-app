@@ -7,10 +7,12 @@ import PropertyGateway from '@/gateways/PropertyGateway'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import { useLoadingStore } from '@/stores/loadingStore'
 import pluralize from '@/utils/pluralize'
+import useBaseToast from '@/composables/useBaseToast'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
 
 const loadingStore = useLoadingStore()
+const toast = useBaseToast()
 const router = useRouter()
 
 const properties = ref<Property[]>([])
@@ -19,8 +21,8 @@ async function fetchProperties() {
   loadingStore.startLoading()
   try {
     properties.value = await propertyGateway.getAll()
-  } catch (error) {
-    console.error(error)
+  } catch {
+    toast.error({ message: 'Error fetching properties' })
   } finally {
     loadingStore.stopLoading()
   }
