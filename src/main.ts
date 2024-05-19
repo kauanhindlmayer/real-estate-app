@@ -21,10 +21,10 @@ app.use(router)
 app.use(PrimeVue)
 app.use(ToastService)
 
-const httpClient = new AxiosAdapter('http://localhost:8070/')
+const httpClient = new AxiosAdapter(import.meta.env.VITE_API_URL)
 const propertyGateway = new PropertyGateway(httpClient)
 
-const viaCepHttpClient = new AxiosAdapter('https://viacep.com.br/')
+const viaCepHttpClient = new AxiosAdapter(import.meta.env.VITE_ZIP_CODE_API_URL)
 const locationGateway = new LocationGateway(viaCepHttpClient)
 
 app.provide('propertyGateway', propertyGateway)

@@ -1,61 +1,45 @@
-# real-estate-marketplace
+# Real Estate Marketplace
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a real estate marketplace that allows users to buy and sell properties.
 
-## Recommended IDE Setup
+## Getting Started
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+To get started, clone this repository to your local machine.
 
-## Type Support for `.vue` Imports in TS
+### Prerequisites
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+You will need to have the following installed:
 
-## Customize configuration
+- [Node.js](https://nodejs.org/en/)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### Installing
 
-## Project Setup
+To install the project dependencies, navigate to the project directory and run:
 
-```sh
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Then copy the `.env.example` file to `.env`:
 
-```sh
-npm run dev
+```
+cp .env.example .env
 ```
 
-### Type-Check, Compile and Minify for Production
+And update the `.env` file with your own values.
 
-```sh
-npm run build
+### Running the Tests
+
+To run the tests, run:
+
 ```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
 npm run test:unit
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+### Running the Application
 
-```sh
-npm run test:e2e:dev
+To run the application, run:
+
 ```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+npm run dev
 ```
