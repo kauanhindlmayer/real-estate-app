@@ -7,10 +7,11 @@ import { useRouter } from 'vue-router'
 
 const toast = useToast()
 const router = useRouter()
+
 const username = ref('')
 const password = ref('')
 
-const login = () => {
+function login() {
   if (username.value === 'admin' && password.value === 'admin') {
     router.push({ path: '/properties' })
   } else {
@@ -21,7 +22,7 @@ const login = () => {
 
 <template>
   <div class="login-wrapper">
-    <div class="left-panel"></div>
+    <div class="left-panel" />
 
     <div class="right-panel">
       <div class="login-container">

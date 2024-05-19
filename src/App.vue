@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import Toast from 'primevue/toast'
-import AppProgressSpinner from './components/wrappers/AppProgressSpinner.vue'
+import AppToast from '@/components/wrappers/AppToast.vue'
+import AppProgressSpinner from '@/components/wrappers/AppProgressSpinner.vue'
 </script>
 
 <template>
   <RouterView />
-  <Toast />
+  <AppToast />
   <AppProgressSpinner />
 </template>

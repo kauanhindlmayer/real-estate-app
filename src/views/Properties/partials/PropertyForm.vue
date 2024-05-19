@@ -16,7 +16,7 @@ const loadingStore = useLoadingStore()
 
 const property = ref<Property>(new Property())
 
-const saveProperty = async () => {
+async function saveProperty() {
   loadingStore.startLoading()
   try {
     await propertyGateway.save(property.value)
@@ -28,7 +28,7 @@ const saveProperty = async () => {
   }
 }
 
-const getLocationByZipCode = async () => {
+async function getLocationByZipCode() {
   loadingStore.startLoading()
   try {
     const location = await locationGateway.getByZipCode(property.value.location.zipCode)

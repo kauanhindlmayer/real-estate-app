@@ -14,7 +14,7 @@ const router = useRouter()
 
 const properties = ref<Property[]>([])
 
-const fetchProperties = async () => {
+async function fetchProperties() {
   loadingStore.startLoading()
   try {
     properties.value = await propertyGateway.getAll()
@@ -25,7 +25,7 @@ const fetchProperties = async () => {
   }
 }
 
-const goToPropertyCreate = () => {
+function redirectToPropertyCreate() {
   router.push({ path: '/properties/create' })
 }
 
@@ -41,7 +41,7 @@ onBeforeMount(async () => {
         <h1>Properties</h1>
         <p>{{ properties.length }} properties</p>
       </div>
-      <AppButton label="New Property" @click="goToPropertyCreate" />
+      <AppButton label="New Property" @click="redirectToPropertyCreate" />
     </div>
     <div class="property-cards-container">
       <div v-for="property in properties" :key="property.id">

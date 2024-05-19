@@ -1,42 +1,42 @@
 <script lang="ts" setup>
-import Toolbar from 'primevue/toolbar'
-import IconField from 'primevue/iconfield'
-import InputIcon from 'primevue/inputicon'
-import InputText from 'primevue/inputtext'
-import Button from 'primevue/button'
+import AppToolbar from '@/components/wrappers/AppToolbar.vue'
+import AppIconField from '@/components/wrappers/AppIconField.vue'
+import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
+import AppInputText from '@/components/wrappers/AppInputText.vue'
+import AppButton from '@/components/wrappers/AppButton.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const redirectTo = (path: string) => {
+function redirectTo(path: string) {
   router.push({ path })
 }
 </script>
 
 <template>
-  <Toolbar>
+  <AppToolbar>
     <template #start>
-      <div class="page-title">REM</div>
+      <div class="page-title" @click="redirectTo('/')">REM</div>
     </template>
 
     <template #center>
       <div class="flex align-items-center gap-2">
-        <Button label="Home" text plain @click="redirectTo('/')" />
-        <Button label="About" text plain @click="redirectTo('/about')" />
-        <Button label="Properties" text plain @click="redirectTo('/properties')" />
-        <Button label="Blog" text plain @click="redirectTo('/blog')" />
+        <AppButton label="Home" text plain @click="redirectTo('/')" />
+        <AppButton label="About" text plain @click="redirectTo('/about')" />
+        <AppButton label="Properties" text plain @click="redirectTo('/properties')" />
+        <AppButton label="Blog" text plain @click="redirectTo('/blog')" />
       </div>
     </template>
 
     <template #end>
-      <IconField iconPosition="left">
-        <InputIcon>
+      <AppIconField iconPosition="left">
+        <AppInputIcon>
           <i class="pi pi-search" />
-        </InputIcon>
-        <InputText placeholder="Search" />
-      </IconField>
+        </AppInputIcon>
+        <AppInputText placeholder="Search" />
+      </AppIconField>
     </template>
-  </Toolbar>
+  </AppToolbar>
 
   <div class="content-container">
     <router-view />
