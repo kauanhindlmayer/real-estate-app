@@ -4,14 +4,14 @@ import { ref } from 'vue'
 
 const props = defineProps({
   label: { type: String, default: '' },
-  required: { type: Boolean, default: false },
-  modelValue: { type: String, default: '' }
+  required: { type: Boolean, default: false }
 })
 
+const modelValue = defineModel()
 const errorMessage = ref('')
 
 function isValid(): boolean {
-  if (props.required && !props.modelValue) {
+  if (props.required && !modelValue.value) {
     errorMessage.value = 'This field is required'
     return false
   }
@@ -29,6 +29,6 @@ defineExpose({
     {{ label }}
     <span v-if="required" class="p-error"> *</span>
   </label>
-  <InputNumber v-bind="$attrs" :id="label" :placeholder="label" />
+  <InputNumber v-model="modelValue" v-bind="$attrs" :id="label" :placeholder="label" />
   <small class="p-error" v-if="errorMessage">{{ errorMessage }}</small>
 </template>

@@ -47,7 +47,7 @@ function register() {
           <AppButton label="Register" @click="register" />
           <p>
             Already have an account?
-            <router-link to="/login" class="login-link">Login</router-link>
+            <RouterLink to="/login" class="login-link">Login</RouterLink>
           </p>
         </footer>
       </div>

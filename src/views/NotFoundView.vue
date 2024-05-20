@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-function goToHome() {
+function redirectToHome() {
   router.push({ path: '/' })
 }
 </script>
@@ -15,7 +15,7 @@ function goToHome() {
       <h1>404</h1>
       <h2>Page Not Found</h2>
       <p>The page you are looking for does not exist.</p>
-      <AppButton label="Go to Homepage" @click="goToHome" />
+      <AppButton label="Go to Homepage" @click="redirectToHome" />
     </div>
   </div>
 </template>

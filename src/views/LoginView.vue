@@ -49,7 +49,7 @@ function login() {
           <AppButton label="Login" @click="login" />
           <p>
             Don't have an account?
-            <router-link to="/register" class="register-link">Register</router-link>
+            <RouterLink to="/register" class="register-link">Register</RouterLink>
           </p>
         </footer>
       </div>
