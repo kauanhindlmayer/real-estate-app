@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { inject, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useLoadingStore } from '@/stores/loadingStore'
+import { usePropertiesStore } from '@/stores/propertiesStore'
 import useBaseToast from '@/composables/useBaseToast'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import LocationGateway from '@/gateways/LocationGateway'
-import type PropertyGateway from '@/gateways/PropertyGateway'
 import Property from '@/types/models/Property'
 
-const propertyGateway = inject('propertyGateway') as PropertyGateway
 const locationGateway = inject('locationGateway') as LocationGateway
 
 const toast = useBaseToast()
-const router = useRouter()
 const loadingStore = useLoadingStore()
+const propertiesStore = usePropertiesStore()
 const { t } = useI18n()
 
 defineEmits<{ (event: 'previous-step'): void }>()
@@ -40,16 +38,7 @@ async function saveProperty() {
     toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
     return
   }
-  loadingStore.startLoading()
-  try {
-    await propertyGateway.save(property.value)
-    toast.success({ message: t('properties.form.messages.propertyCreated') })
-    router.push({ name: 'properties' })
-  } catch {
-    toast.error({ message: t('properties.form.messages.errorSavingProperty') })
-  } finally {
-    loadingStore.stopLoading()
-  }
+  propertiesStore.saveProperty(property.value)
 }
 
 const zipCodeRef = ref<InstanceType<typeof AppInputText> | null>(null)

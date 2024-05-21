@@ -1,41 +1,19 @@
 <script lang="ts" setup>
-import { inject, ref } from 'vue'
+import { ref } from 'vue'
+import { useAuthStore } from '@/stores/authStore'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
-import { useRouter } from 'vue-router'
-import useBaseToast from '@/composables/useBaseToast'
-import type UserGateway from '@/gateways/UserGateway'
-import { useI18n } from 'vue-i18n'
-import { useLoadingStore } from '@/stores/loadingStore'
 
-const userGateway = inject('userGateway') as UserGateway
-
-const toast = useBaseToast()
-const router = useRouter()
-const loadingStore = useLoadingStore()
-const { t } = useI18n()
+const authStore = useAuthStore()
 
 const username = ref('')
 const password = ref('')
-
-function register() {
-  loadingStore.startLoading()
-  try {
-    userGateway.login(username.value, password.value)
-    toast.success({ message: t('register.messages.userRegistered') })
-    router.push({ name: 'login' })
-  } catch {
-    toast.error({ message: t('register.messages.errorRegisteringUser') })
-  } finally {
-    loadingStore.stopLoading()
-  }
-}
 </script>
 
 <template>
   <div class="container">
     <div class="left-panel">
-      <form @submit.prevent="register">
+      <form @submit.prevent="authStore.register(username, password)">
         <h1>{{ $t('register.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
@@ -73,7 +51,7 @@ function register() {
   height: 100vh;
 }
 .right-panel {
-  background-color: #3b82f6;
+  background-color: var(--primary-color);
   width: 50vw;
   height: 100vh;
 }
@@ -84,6 +62,6 @@ footer {
   margin-bottom: 10px;
 }
 .login-link {
-  color: #3b82f6;
+  color: var(--primary-color);
 }
 </style>

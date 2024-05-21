@@ -1,40 +1,19 @@
 <script setup lang="ts">
-import { inject, onBeforeMount, ref } from 'vue'
+import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { useLoadingStore } from '@/stores/loadingStore'
-import useBaseToast from '@/composables/useBaseToast'
+import { usePropertiesStore } from '@/stores/propertiesStore'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
-import type PropertyGateway from '@/gateways/PropertyGateway'
-import Property from '@/types/models/Property'
 
-const propertyGateway = inject('propertyGateway') as PropertyGateway
-
-const toast = useBaseToast()
 const route = useRoute()
-const loadingStore = useLoadingStore()
-const { t } = useI18n()
-
-const property = ref<Property>(new Property())
-
-async function fetchProperty(propertyId: string) {
-  loadingStore.startLoading()
-  try {
-    property.value = await propertyGateway.getById(propertyId)
-  } catch {
-    toast.error({ message: t('properties.list.messages.errorFetchingProperty') })
-  } finally {
-    loadingStore.stopLoading()
-  }
-}
+const propertiesStore = usePropertiesStore()
 
 onBeforeMount(() => {
-  fetchProperty(route.params.id as string)
+  propertiesStore.getPropertyById(route.params.id as string)
 })
 </script>
 
 <template>
-  <PropertyCard :property hide-footer v-if="property.id" />
+  <PropertyCard v-if="propertiesStore.property" :property="propertiesStore.property" hide-footer />
   <div v-else class="property-not-found-wrapper">{{ $t('properties.details.notFound') }}</div>
 </template>
 

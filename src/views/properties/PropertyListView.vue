@@ -1,40 +1,19 @@
 <script lang="ts" setup>
-import { inject, onBeforeMount, ref } from 'vue'
+import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import { useLoadingStore } from '@/stores/loadingStore'
-import useBaseToast from '@/composables/useBaseToast'
+import { usePropertiesStore } from '@/stores/propertiesStore'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
-import Property from '@/types/models/Property'
-import PropertyGateway from '@/gateways/PropertyGateway'
 
-const propertyGateway = inject('propertyGateway') as PropertyGateway
-
-const loadingStore = useLoadingStore()
-const toast = useBaseToast()
 const router = useRouter()
-const { t } = useI18n()
-
-const properties = ref<Property[]>([])
-
-async function fetchProperties() {
-  loadingStore.startLoading()
-  try {
-    properties.value = await propertyGateway.getAll()
-  } catch {
-    toast.error({ message: t('properties.list.messages.errorFetchingProperties') })
-  } finally {
-    loadingStore.stopLoading()
-  }
-}
+const propertiesStore = usePropertiesStore()
 
 function redirectToPropertyCreate() {
   router.push({ name: 'property-create' })
 }
 
 onBeforeMount(async () => {
-  await fetchProperties()
+  await propertiesStore.getAllProperties()
 })
 </script>
 
@@ -42,7 +21,7 @@ onBeforeMount(async () => {
   <header>
     <div>
       <h1>{{ $t('properties.list.title') }}</h1>
-      <p>{{ $t('properties.list.description', { count: properties.length }) }}</p>
+      <p>{{ $t('properties.list.description', { count: propertiesStore.properties.length }) }}</p>
     </div>
     <AppButton
       :label="$t('properties.list.buttons.createProperty')"
@@ -50,7 +29,7 @@ onBeforeMount(async () => {
     />
   </header>
   <main class="property-cards-container">
-    <PropertyCard v-for="property in properties" :key="property.id" :property />
+    <PropertyCard v-for="property in propertiesStore.properties" :key="property.id" :property />
   </main>
 </template>
 

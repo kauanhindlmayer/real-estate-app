@@ -1,35 +1,14 @@
 <script lang="ts" setup>
-import { inject, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useAuthStore } from '@/stores/authStore'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppInputPassword from '@/components/wrappers/AppInputPassword.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
-import useBaseToast from '@/composables/useBaseToast'
-import type UserGateway from '@/gateways/UserGateway'
-import { useI18n } from 'vue-i18n'
-import { useLoadingStore } from '@/stores/loadingStore'
 
-const userGateway = inject('userGateway') as UserGateway
-
-const toast = useBaseToast()
-const router = useRouter()
-const loadingStore = useLoadingStore()
-const { t } = useI18n()
+const authStore = useAuthStore()
 
 const username = ref('')
 const password = ref('')
-
-function login() {
-  loadingStore.startLoading()
-  try {
-    userGateway.login(username.value, password.value)
-    router.push({ name: 'home' })
-  } catch {
-    toast.error({ message: t('login.messages.invalidCredentials') })
-  } finally {
-    loadingStore.stopLoading()
-  }
-}
 </script>
 
 <template>
@@ -37,7 +16,7 @@ function login() {
     <div class="left-panel" />
 
     <div class="right-panel">
-      <form @submit.prevent="login">
+      <form @submit.prevent="authStore.login(username, password)">
         <h1>{{ $t('login.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
@@ -70,7 +49,7 @@ function login() {
   width: 100vw;
 }
 .left-panel {
-  background-color: #3b82f6;
+  background-color: var(--primary-color);
   width: 50vw;
   height: 100vh;
 }
@@ -85,6 +64,6 @@ function login() {
   margin-bottom: 10px;
 }
 .register-link {
-  color: #3b82f6;
+  color: var(--primary-color);
 }
 </style>

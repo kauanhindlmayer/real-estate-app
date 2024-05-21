@@ -67,7 +67,7 @@ function redirectTo(path: string) {
 .page-title {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #3b82f6;
+  color: var(--primary-color);
 }
 .content-container {
   padding: 20px;

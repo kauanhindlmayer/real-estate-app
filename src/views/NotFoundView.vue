@@ -38,7 +38,7 @@ function redirectToHome() {
 h1 {
   font-size: 5rem;
   margin-bottom: 1rem;
-  color: #3b82f6;
+  color: var(--primary-color);
 }
 h2 {
   font-size: 2rem;
