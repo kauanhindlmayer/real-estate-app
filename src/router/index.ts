@@ -11,17 +11,26 @@ const router = createRouter({
         {
           path: '',
           name: 'home',
-          component: () => import('../views/HomeView.vue')
+          component: () => import('../views/HomeView.vue'),
+          meta: {
+            title: 'Home'
+          }
         },
         {
           path: '/about',
           name: 'about',
-          component: () => import('../views/AboutView.vue')
+          component: () => import('../views/AboutView.vue'),
+          meta: {
+            title: 'About'
+          }
         },
         {
           path: '/blog',
           name: 'blog',
-          component: () => import('../views/BlogView.vue')
+          component: () => import('../views/BlogView.vue'),
+          meta: {
+            title: 'Blog'
+          }
         },
         ...PropertiesRoutes
       ]
@@ -29,19 +38,33 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue')
+      component: () => import('../views/LoginView.vue'),
+      meta: {
+        title: 'Login'
+      }
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/RegisterView.vue')
+      component: () => import('../views/RegisterView.vue'),
+      meta: {
+        title: 'Register'
+      }
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import('../views/NotFoundView.vue')
+      component: () => import('../views/NotFoundView.vue'),
+      meta: {
+        title: 'Not Found'
+      }
     }
   ]
+})
+
+router.beforeEach((to, _, next) => {
+  document.title = `${to.meta.title} | Real Estate`
+  next()
 })
 
 export default router

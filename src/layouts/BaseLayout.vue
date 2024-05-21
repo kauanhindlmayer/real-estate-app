@@ -16,7 +16,7 @@ function redirectTo(path: string) {
 <template>
   <AppToolbar>
     <template #start>
-      <div class="page-title" @click="redirectTo('/')">REM</div>
+      <div class="page-title" @click="redirectTo('/')">Real Estate</div>
     </template>
 
     <template #center>
