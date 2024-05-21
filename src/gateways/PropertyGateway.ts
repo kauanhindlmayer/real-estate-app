@@ -13,8 +13,7 @@ export default class PropertyGateway implements IPropertyGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
   async getAll(): Promise<Property[]> {
-    const properties = await this.httpClient.get('/property/all')
-    return properties.length === 0 ? defaultProperties : properties
+    return await this.httpClient.get('/property/all')
   }
 
   async getById(id: string): Promise<Property> {
@@ -29,5 +28,30 @@ export default class PropertyGateway implements IPropertyGateway {
 
   async remove(id: string): Promise<void> {
     return await this.httpClient.delete(`/property/one/${id}`)
+  }
+}
+
+export class PropertyGatewayInMemory implements IPropertyGateway {
+  private properties: Property[] = defaultProperties
+
+  async getAll(): Promise<Property[]> {
+    return this.properties
+  }
+
+  async getById(id: string): Promise<Property> {
+    return this.properties.find((property) => property.id === id)!
+  }
+
+  async save(property: Property): Promise<void> {
+    const index = this.properties.findIndex((p) => p.id === property.id)
+    if (index === -1) {
+      this.properties.push(property)
+    } else {
+      this.properties[index] = property
+    }
+  }
+
+  async remove(id: string): Promise<void> {
+    this.properties = this.properties.filter((property) => property.id !== id)
   }
 }
