@@ -7,7 +7,7 @@ export default interface IHttpClient {
   delete(url: string): Promise<any>
 }
 
-export class AxiosAdapter implements IHttpClient {
+export default class AxiosAdapter implements IHttpClient {
   baseUrl: string
 
   constructor(params: { baseUrl: string }) {

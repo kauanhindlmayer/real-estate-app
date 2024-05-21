@@ -26,7 +26,7 @@
       "fields": {
         "title": {
           "label": "Título",
-          "placeholder": "Insira o título da propriedade"
+          "placeholder": "Título"
         },
         "description": {
           "label": "Descrição",

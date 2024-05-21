@@ -5,7 +5,7 @@
     "description": "Experience luxury living with breathtaking ocean views in this stunning villa.",
     "price": 1000000,
     "size": 350,
-    "imageUrl": "https://images.unsplash.com/photo-1605457701907-e9c039bed21f?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=150&ixid=MnwxfDB8MXxyYW5kb218MHx8aG91c2V8fHx8fHwxNzExMzAxODk0&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=150",
+    "imageUrl": "https://source.unsplash.com/random",
     "location": {
       "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
       "address": "123 Ocean Drive",
@@ -21,7 +21,7 @@
     "description": "Escape to the mountains and enjoy cozy living in this beautiful mountain cabin.",
     "price": 500000,
     "size": 200,
-    "imageUrl": "https://images.unsplash.com/photo-1459535653751-d571815e906b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=150&ixid=MnwxfDB8MXxyYW5kb218MHx8aG91c2V8fHx8fHwxNzExMzAxOTgy&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=150",
+    "imageUrl": "https://source.unsplash.com/random",
     "location": {
       "id": "1f93c9f9-855d-4440-8985-260645b5544a",
       "address": "456 Mountain Road",
@@ -37,7 +37,7 @@
     "description": "Live in the heart of the city in this sleek and stylish apartment with all amenities nearby.",
     "price": 300000,
     "size": 120,
-    "imageUrl": "https://images.unsplash.com/photo-1593398395073-ae53c3870037?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=150&ixid=MnwxfDB8MXxyYW5kb218MHx8aG91c2V8fHx8fHwxNzExMzAxOTgz&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=150",
+    "imageUrl": "https://source.unsplash.com/random",
     "location": {
       "id": "aae4ac87-3035-438f-8d80-c40579284e68",
       "address": "789 Downtown Blvd",
@@ -45,6 +45,86 @@
       "state": "NY",
       "country": "USA",
       "zipCode": "10001"
+    }
+  },
+  {
+    "id": "f1b3b3b4-1b3b-4b3b-8b3b-1b3b3b3b3b3b",
+    "title": "Rustic Countryside Farmhouse",
+    "description": "Experience country living in this charming farmhouse with beautiful views of the countryside.",
+    "price": 400000,
+    "size": 180,
+    "imageUrl": "https://source.unsplash.com/random",
+    "location": {
+      "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
+      "address": "123 Country Lane",
+      "city": "Nashville",
+      "state": "TN",
+      "country": "USA",
+      "zipCode": "37201"
+    }
+  },
+  {
+    "id": "b3b3b3b3-1b3b-4b3b-8b3b-1b3b3b3b3b3b",
+    "title": "Seaside Cottage",
+    "description": "Enjoy the sound of the waves in this charming seaside cottage with stunning ocean views.",
+    "price": 600000,
+    "size": 150,
+    "imageUrl": "https://source.unsplash.com/random",
+    "location": {
+      "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
+      "address": "123 Beach Road",
+      "city": "Los Angeles",
+      "state": "CA",
+      "country": "USA",
+      "zipCode": "90001"
+    }
+  },
+  {
+    "id": "b3b3b3b3-1b3b-4b3b-8b3b-1b3b3b3b3b3b",
+    "title": "Mountain Chalet",
+    "description": "Experience mountain living in this cozy chalet with stunning views of the mountains.",
+    "price": 700000,
+    "size": 250,
+    "imageUrl": "https://source.unsplash.com/random",
+    "location": {
+      "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
+      "address": "123 Mountain Drive",
+      "city": "Aspen",
+      "state": "CO",
+      "country": "USA",
+      "zipCode": "81611"
+    }
+  },
+  {
+    "id": "b3b3b3b3-1b3b-4b3b-8b3b-1b3b3b3b3b3b",
+    "title": "City Loft",
+    "description": "Live in style in this modern city loft with all amenities nearby.",
+    "price": 800000,
+    "size": 180,
+    "imageUrl": "https://source.unsplash.com/random",
+    "location": {
+      "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
+      "address": "123 Loft Street",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "zipCode": "94101"
+    }
+  },
+  {
+    "id": "b3b3b3b3-1b3b-4b3b-8b3b-1b3b3b3b3b3b",
+    "title": "Lake House",
+    "description": "Relax by the lake in this charming lake house with stunning views of the water.",
+    "price": 900000,
+    "size": 200,
+    "imageUrl": "https://source.unsplash.com/random",
+    "location": {
+      "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
+      "address": "123 Lakeview Drive",
+      "city": "Seattle",
+      "state": "WA",
+      "country": "USA",
+      "zipCode": "98101"
     }
   }
 ]
