@@ -3,21 +3,26 @@ import Password from 'primevue/password'
 import { ref } from 'vue'
 import { useUid } from '@/composables/useUid'
 
-const props = defineProps({
-  label: { type: String, default: '' },
-  required: { type: Boolean, default: false }
+interface IProps {
+  label?: string
+  required?: boolean
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  label: '',
+  required: false
 })
 
 const modelValue = defineModel<String>()
-const error = ref('')
+const errorMessage = ref('')
 const uid = useUid()
 
 function isValid(): boolean {
   if (props.required && !modelValue.value) {
-    error.value = 'This field is required'
+    errorMessage.value = 'This field is required'
     return false
   }
-  error.value = ''
+  errorMessage.value = ''
   return true
 }
 
@@ -35,10 +40,10 @@ defineExpose({
     v-bind="$attrs"
     v-model="modelValue"
     :id="uid"
-    :aria-labelledby="error ? `${uid}-error` : undefined"
-    :aria-invalid="!!error"
+    :aria-labelledby="errorMessage ? `${uid}-error` : undefined"
+    :aria-invalid="!!errorMessage"
   />
-  <small class="p-error" v-if="error" :id="`${uid}-error`" aria-live="assertive">
-    {{ error }}
+  <small class="p-error" v-if="errorMessage" :id="`${uid}-error`" aria-live="assertive">
+    {{ errorMessage }}
   </small>
 </template>

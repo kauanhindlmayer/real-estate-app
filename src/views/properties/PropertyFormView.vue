@@ -45,8 +45,8 @@ const items = [
       <component
         :is="items[active].component"
         v-model="property"
-        @previous="previousStep"
-        @next="nextStep"
+        @previous-step="previousStep"
+        @next-step="nextStep"
       />
     </KeepAlive>
   </div>

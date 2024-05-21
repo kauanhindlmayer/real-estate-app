@@ -18,6 +18,8 @@ const router = useRouter()
 const loadingStore = useLoadingStore()
 const { t } = useI18n()
 
+defineEmits<{ (event: 'previous-step'): void }>()
+
 const property = defineModel<Property>({ default: () => new Property() })
 
 async function getLocationByZipCode() {
@@ -59,12 +61,6 @@ function validateFields() {
   const fieldsToValidate = [zipCodeRef, addressRef, cityRef, stateRef]
   const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
   return validationResults.every((valid) => valid)
-}
-
-const emit = defineEmits(['previous'])
-
-function previous() {
-  emit('previous')
 }
 </script>
 
@@ -127,7 +123,7 @@ function previous() {
         icon="pi pi-arrow-left"
         class="w-2 mt-4"
         type="button"
-        @click="previous"
+        @click="$emit('previous-step')"
       />
       <AppButton
         :label="$t('properties.form.buttons.save')"

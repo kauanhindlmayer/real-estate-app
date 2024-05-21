@@ -3,9 +3,14 @@ import InputText from 'primevue/inputtext'
 import { ref } from 'vue'
 import { useUid } from '@/composables/useUid'
 
-const props = defineProps({
-  label: { type: String, default: '' },
-  required: { type: Boolean, default: false }
+interface IProps {
+  label?: string
+  required?: boolean
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  label: '',
+  required: false
 })
 
 const modelValue = defineModel<String | Number>()

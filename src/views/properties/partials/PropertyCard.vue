@@ -35,15 +35,14 @@ import AppCard from '@/components/wrappers/AppCard.vue'
 import Property from '@/types/models/Property'
 import AppButton from '@/components/wrappers/AppButton.vue'
 
-const props = withDefaults(
-  defineProps<{
-    property: Property
-    hideFooter?: boolean
-  }>(),
-  {
-    hideFooter: false
-  }
-)
+interface IProps {
+  property: Property
+  hideFooter?: boolean
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  hideFooter: false
+})
 
 const router = useRouter()
 

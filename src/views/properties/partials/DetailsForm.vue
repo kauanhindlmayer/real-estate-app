@@ -24,14 +24,14 @@ function validateFields() {
   return validationResults.every((valid) => valid)
 }
 
-const emit = defineEmits(['next'])
+const emit = defineEmits<{ (event: 'next-step'): void }>()
 
 function next() {
   if (!validateFields()) {
     toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
     return
   }
-  emit('next')
+  emit('next-step')
 }
 </script>
 
