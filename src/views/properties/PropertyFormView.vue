@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import Property from '@/types/models/Property'
 import AppSteps from '@/components/wrappers/AppSteps.vue'
 import LocationForm from '@/views/properties/partials/LocationForm.vue'
 import DetailsForm from '@/views/properties/partials/DetailsForm.vue'
+import Property from '@/types/models/Property'
 
 const { t } = useI18n()
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Property from '@/types/models/Property'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
-import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
-import AppButton from '@/components/wrappers/AppButton.vue'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
+import AppInputText from '@/components/wrappers/AppInputText.vue'
+import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
+import AppButton from '@/components/wrappers/AppButton.vue'
+import Property from '@/types/models/Property'
 
 const toast = useBaseToast()
 const { t } = useI18n()

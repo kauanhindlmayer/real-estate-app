@@ -1,4 +1,17 @@
 {
+  "baseLayout": {
+    "header": {
+      "links": {
+        "home": "Home",
+        "about": "About",
+        "blog": "Blog",
+        "properties": "Properties"
+      },
+      "buttons": {
+        "search": "Search"
+      }
+    }
+  },
   "properties": {
     "details": {
       "notFound": "Property not found",
@@ -67,7 +80,14 @@
     },
     "list": {
       "title": "Properties",
-      "description": "No properties | 1 property | {count} properties"
+      "description": "No properties | 1 property | {count} properties",
+      "messages": {
+        "errorFetchingProperties": "Error fetching properties",
+        "errorFetchingProperty": "Error fetching property"
+      },
+      "buttons": {
+        "createProperty": "Create Property"
+      }
     }
   },
   "about": {

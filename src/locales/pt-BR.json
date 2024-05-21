@@ -1,4 +1,17 @@
 {
+  "baseLayout": {
+    "header": {
+      "links": {
+        "home": "Início",
+        "about": "Sobre",
+        "blog": "Blog",
+        "properties": "Propriedades"
+      },
+      "buttons": {
+        "search": "Pesquisar"
+      }
+    }
+  },
   "properties": {
     "details": {
       "notFound": "Propriedade não encontrada",
@@ -67,7 +80,14 @@
     },
     "list": {
       "title": "Propriedades",
-      "description": "Nenhuma propriedade | 1 propriedade | {count} propriedades"
+      "description": "Nenhuma propriedade | 1 propriedade | {count} propriedades",
+      "messages": {
+        "errorFetchingProperties": "Erro ao buscar propriedades",
+        "errorFetchingProperty": "Erro ao buscar propriedade"
+      },
+      "buttons": {
+        "createProperty": "Criar Propriedade"
+      }
     }
   },
   "about": {

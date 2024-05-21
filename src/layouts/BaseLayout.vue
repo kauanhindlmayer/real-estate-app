@@ -21,10 +21,30 @@ function redirectTo(path: string) {
 
     <template #center>
       <div class="flex align-items-center gap-2">
-        <AppButton label="Home" text plain @click="redirectTo('/')" />
-        <AppButton label="About" text plain @click="redirectTo('/about')" />
-        <AppButton label="Properties" text plain @click="redirectTo('/properties')" />
-        <AppButton label="Blog" text plain @click="redirectTo('/blog')" />
+        <AppButton
+          :label="$t('baseLayout.header.links.home')"
+          text
+          plain
+          @click="redirectTo('/')"
+        />
+        <AppButton
+          :label="$t('baseLayout.header.links.about')"
+          text
+          plain
+          @click="redirectTo('/about')"
+        />
+        <AppButton
+          :label="$t('baseLayout.header.links.properties')"
+          text
+          plain
+          @click="redirectTo('/properties')"
+        />
+        <AppButton
+          :label="$t('baseLayout.header.links.blog')"
+          text
+          plain
+          @click="redirectTo('/blog')"
+        />
       </div>
     </template>
 
@@ -33,7 +53,7 @@ function redirectTo(path: string) {
         <AppInputIcon>
           <i class="pi pi-search" />
         </AppInputIcon>
-        <AppInputText placeholder="Search" type="search" />
+        <AppInputText :placeholder="$t('baseLayout.header.buttons.search')" type="search" />
       </AppIconField>
     </template>
   </AppToolbar>

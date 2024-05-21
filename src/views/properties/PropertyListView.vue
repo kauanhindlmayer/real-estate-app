@@ -1,18 +1,20 @@
 <script lang="ts" setup>
 import { inject, onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import AppButton from '@/components/wrappers/AppButton.vue'
-import Property from '@/types/models/Property'
-import PropertyGateway from '@/gateways/PropertyGateway'
-import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
+import { useI18n } from 'vue-i18n'
 import { useLoadingStore } from '@/stores/loadingStore'
 import useBaseToast from '@/composables/useBaseToast'
+import AppButton from '@/components/wrappers/AppButton.vue'
+import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
+import Property from '@/types/models/Property'
+import PropertyGateway from '@/gateways/PropertyGateway'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
 
 const loadingStore = useLoadingStore()
 const toast = useBaseToast()
 const router = useRouter()
+const { t } = useI18n()
 
 const properties = ref<Property[]>([])
 
@@ -21,7 +23,7 @@ async function fetchProperties() {
   try {
     properties.value = await propertyGateway.getAll()
   } catch {
-    toast.error({ message: 'Error fetching properties' })
+    toast.error({ message: t('properties.list.messages.errorFetchingProperties') })
   } finally {
     loadingStore.stopLoading()
   }
@@ -42,7 +44,10 @@ onBeforeMount(async () => {
       <h1>{{ $t('properties.list.title') }}</h1>
       <p>{{ $t('properties.list.description', { count: properties.length }) }}</p>
     </div>
-    <AppButton label="New Property" @click="redirectToPropertyCreate" />
+    <AppButton
+      :label="$t('properties.list.buttons.createProperty')"
+      @click="redirectToPropertyCreate"
+    />
   </header>
   <main class="property-cards-container">
     <PropertyCard v-for="property in properties" :key="property.id" :property />

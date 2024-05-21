@@ -29,11 +29,11 @@
 </template>
 
 <script lang="ts" setup>
+import { withDefaults, defineProps, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import AppCard from '@/components/wrappers/AppCard.vue'
 import Property from '@/types/models/Property'
 import AppButton from '@/components/wrappers/AppButton.vue'
-import { useRouter } from 'vue-router'
-import { withDefaults, defineProps, computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{

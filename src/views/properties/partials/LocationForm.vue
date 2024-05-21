@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { inject, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useLoadingStore } from '@/stores/loadingStore'
+import useBaseToast from '@/composables/useBaseToast'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import LocationGateway from '@/gateways/LocationGateway'
-import Property from '@/types/models/Property'
 import type PropertyGateway from '@/gateways/PropertyGateway'
-import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
-import useBaseToast from '@/composables/useBaseToast'
+import Property from '@/types/models/Property'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
 const locationGateway = inject('locationGateway') as LocationGateway
