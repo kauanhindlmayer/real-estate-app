@@ -29,7 +29,7 @@ async function fetchProperties() {
 }
 
 function redirectToPropertyCreate() {
-  router.push({ path: '/properties/create' })
+  router.push({ name: 'property-create' })
 }
 
 onBeforeMount(async () => {

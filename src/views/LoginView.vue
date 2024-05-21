@@ -21,7 +21,7 @@ function login() {
   loadingStore.startLoading()
   try {
     userGateway.login(username.value, password.value)
-    router.push({ path: '/login' })
+    router.push({ name: 'login' })
   } catch {
     toast.error({ message: 'Invalid credentials' })
   } finally {

@@ -46,7 +46,7 @@ const router = useRouter()
 const property = computed(() => props.property)
 
 function redirectToPropertyDetails() {
-  router.push({ path: `/properties/${property.value.id}` })
+  router.push({ name: 'property-details', params: { id: property.value.id.toString() } })
 }
 </script>
 

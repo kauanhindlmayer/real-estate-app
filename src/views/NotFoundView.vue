@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function redirectToHome() {
-  router.push({ path: '/' })
+  router.push({ name: 'home' })
 }
 </script>
 

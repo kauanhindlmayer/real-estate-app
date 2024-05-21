@@ -21,7 +21,7 @@ function register() {
   try {
     userGateway.login(username.value, password.value)
     toast.success({ message: 'User registered successfully' })
-    router.push({ path: '/login' })
+    router.push({ name: 'login' })
   } catch {
     toast.error({ message: 'Error registering user' })
   } finally {

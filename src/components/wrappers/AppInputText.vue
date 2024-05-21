@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import { useUid } from '@/composables/useUid'
 
 const props = defineProps({
-  modelValue: { type: String, default: '' },
+  modelValue: { type: [String, Number], default: '' },
   label: { type: String, default: '' },
   required: { type: Boolean, default: false }
 })
@@ -13,7 +13,7 @@ const error = ref('')
 const uid = useUid()
 
 function isValid(): boolean {
-  if (props.required && !modelValue.value) {
+  if (props.required && !props.modelValue) {
     error.value = 'This field is required'
     return false
   }

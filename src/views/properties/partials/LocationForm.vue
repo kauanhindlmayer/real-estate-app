@@ -40,7 +40,7 @@ async function saveProperty() {
   try {
     await propertyGateway.save(property.value)
     toast.success({ message: 'Property saved' })
-    router.push({ path: '/properties' })
+    router.push({ name: 'properties' })
   } catch {
     toast.error({ message: 'Error saving property' })
   } finally {
