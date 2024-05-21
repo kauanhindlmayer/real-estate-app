@@ -6,3 +6,7 @@ body {
 :root {
   --primary-color: #007bff;
 }
+
+a {
+  color: var(--primary-color);
+}

@@ -45,66 +45,57 @@ const zipCodeRef = ref<InstanceType<typeof AppInputText> | null>(null)
 const addressRef = ref<InstanceType<typeof AppInputText> | null>(null)
 const cityRef = ref<InstanceType<typeof AppInputText> | null>(null)
 const stateRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const countryRef = ref<InstanceType<typeof AppInputText> | null>(null)
 
 function validateFields() {
-  const fieldsToValidate = [zipCodeRef, addressRef, cityRef, stateRef]
+  const fieldsToValidate = [zipCodeRef, addressRef, cityRef, stateRef, countryRef]
   const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
   return validationResults.every((valid) => valid)
 }
 </script>
 
 <template>
-  <form class="p-fluid" @submit.prevent="saveProperty">
-    <div class="p-field">
-      <AppInputText
-        ref="zipCodeRef"
-        v-model="property.location.zipCode"
-        :label="$t('properties.form.fields.zipCode.label')"
-        :placeholder="$t('properties.form.fields.zipCode.placeholder')"
-        required
-        @change="getLocationByZipCode"
-      />
-    </div>
+  <form class="flex flex-column gap-1" @submit.prevent="saveProperty">
+    <AppInputText
+      ref="zipCodeRef"
+      v-model="property.location.zipCode"
+      :label="$t('properties.form.fields.zipCode.label')"
+      :placeholder="$t('properties.form.fields.zipCode.placeholder')"
+      required
+      @change="getLocationByZipCode"
+    />
 
-    <div class="p-field">
-      <AppInputText
-        ref="addressRef"
-        v-model="property.location.address"
-        :label="$t('properties.form.fields.address.label')"
-        :placeholder="$t('properties.form.fields.address.placeholder')"
-        required
-      />
-    </div>
+    <AppInputText
+      ref="addressRef"
+      v-model="property.location.address"
+      :label="$t('properties.form.fields.address.label')"
+      :placeholder="$t('properties.form.fields.address.placeholder')"
+      required
+    />
 
-    <div class="p-field">
-      <AppInputText
-        ref="cityRef"
-        v-model="property.location.city"
-        :label="$t('properties.form.fields.city.label')"
-        :placeholder="$t('properties.form.fields.city.placeholder')"
-        required
-      />
-    </div>
+    <AppInputText
+      ref="cityRef"
+      v-model="property.location.city"
+      :label="$t('properties.form.fields.city.label')"
+      :placeholder="$t('properties.form.fields.city.placeholder')"
+      required
+    />
 
-    <div class="p-field">
-      <AppInputText
-        ref="stateRef"
-        v-model="property.location.state"
-        :label="$t('properties.form.fields.state.label')"
-        :placeholder="$t('properties.form.fields.state.placeholder')"
-        required
-      />
-    </div>
+    <AppInputText
+      ref="stateRef"
+      v-model="property.location.state"
+      :label="$t('properties.form.fields.state.label')"
+      :placeholder="$t('properties.form.fields.state.placeholder')"
+      required
+    />
 
-    <div class="p-field">
-      <AppInputText
-        ref="countryRef"
-        v-model="property.location.country"
-        :label="$t('properties.form.fields.country.label')"
-        :placeholder="$t('properties.form.fields.country.placeholder')"
-        required
-      />
-    </div>
+    <AppInputText
+      ref="countryRef"
+      v-model="property.location.country"
+      :label="$t('properties.form.fields.country.label')"
+      :placeholder="$t('properties.form.fields.country.placeholder')"
+      required
+    />
 
     <footer>
       <AppButton
@@ -125,9 +116,6 @@ function validateFields() {
 </template>
 
 <style scoped>
-.p-field {
-  margin-bottom: 10px;
-}
 footer {
   display: flex;
   justify-content: space-between;

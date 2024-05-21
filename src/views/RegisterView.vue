@@ -27,33 +27,25 @@ function validateFields() {
 <template>
   <div class="container">
     <div class="left-panel">
-      <form @submit.prevent="register">
+      <form class="flex flex-column gap-1" @submit.prevent="register">
         <h1>{{ $t('register.title') }}</h1>
-        <div class="p-fluid">
-          <div class="p-field">
-            <AppInputText
-              ref="emailRef"
-              v-model="email"
-              :label="$t('register.fields.email.label')"
-              required
-            />
-          </div>
-          <div class="p-field">
-            <AppInputText
-              ref="passwordRef"
-              v-model="password"
-              :label="$t('register.fields.password.label')"
-              required
-            />
-          </div>
-        </div>
-        <footer>
-          <AppButton :label="$t('register.buttons.register')" type="submit" />
-          <p>
-            {{ $t('register.alreadyHaveAccount') }}
-            <RouterLink to="/login" class="login-link">{{ $t('login.title') }}</RouterLink>
-          </p>
-        </footer>
+        <AppInputText
+          ref="emailRef"
+          v-model="email"
+          :label="$t('register.fields.email.label')"
+          required
+        />
+        <AppInputText
+          ref="passwordRef"
+          v-model="password"
+          :label="$t('register.fields.password.label')"
+          required
+        />
+        <AppButton :label="$t('register.buttons.register')" type="submit" class="mt-2" />
+        <p>
+          {{ $t('register.alreadyHaveAccount') }}
+          <RouterLink to="/login">{{ $t('login.title') }}</RouterLink>
+        </p>
       </form>
     </div>
 
@@ -78,14 +70,5 @@ function validateFields() {
   background-color: var(--primary-color);
   width: 50vw;
   height: 100vh;
-}
-footer {
-  margin-top: 1rem;
-}
-.p-field {
-  margin-bottom: 10px;
-}
-.login-link {
-  color: var(--primary-color);
 }
 </style>

@@ -36,61 +36,51 @@ function next() {
 </script>
 
 <template>
-  <form class="p-fluid">
-    <div class="p-field">
-      <AppInputText
-        ref="titleRef"
-        v-model="property.title"
-        :label="$t('properties.form.fields.title.label')"
-        :placeholder="$t('properties.form.fields.title.placeholder')"
-        required
-      />
-    </div>
+  <form class="flex flex-column gap-1">
+    <AppInputText
+      ref="titleRef"
+      v-model="property.title"
+      :label="$t('properties.form.fields.title.label')"
+      :placeholder="$t('properties.form.fields.title.placeholder')"
+      required
+    />
 
-    <div class="p-field">
-      <AppInputText
-        ref="descriptionRef"
-        v-model="property.description"
-        :label="$t('properties.form.fields.description.label')"
-        :placeholder="$t('properties.form.fields.description.placeholder')"
-        required
-      />
-    </div>
+    <AppInputText
+      ref="descriptionRef"
+      v-model="property.description"
+      :label="$t('properties.form.fields.description.label')"
+      :placeholder="$t('properties.form.fields.description.placeholder')"
+      required
+    />
 
-    <div class="p-field">
-      <AppInputNumber
-        ref="priceRef"
-        v-model="property.price"
-        mode="currency"
-        currency="USD"
-        locale="en-US"
-        :label="$t('properties.form.fields.price.label')"
-        :placeholder="$t('properties.form.fields.price.placeholder')"
-        required
-      />
-    </div>
+    <AppInputNumber
+      ref="priceRef"
+      v-model="property.price"
+      mode="currency"
+      currency="USD"
+      locale="en-US"
+      :label="$t('properties.form.fields.price.label')"
+      :placeholder="$t('properties.form.fields.price.placeholder')"
+      required
+    />
 
-    <div class="p-field">
-      <AppInputNumber
-        ref="sizeRef"
-        v-model="property.size"
-        :label="$t('properties.form.fields.size.label')"
-        :placeholder="$t('properties.form.fields.size.placeholder')"
-        suffix="m²"
-        required
-      />
-    </div>
+    <AppInputNumber
+      ref="sizeRef"
+      v-model="property.size"
+      :label="$t('properties.form.fields.size.label')"
+      :placeholder="$t('properties.form.fields.size.placeholder')"
+      suffix="m²"
+      required
+    />
 
-    <div class="p-field">
-      <AppInputText
-        ref="imageUrlRef"
-        v-model="property.imageUrl"
-        type="url"
-        :label="$t('properties.form.fields.imageUrl.label')"
-        :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
-        required
-      />
-    </div>
+    <AppInputText
+      ref="imageUrlRef"
+      v-model="property.imageUrl"
+      type="url"
+      :label="$t('properties.form.fields.imageUrl.label')"
+      :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
+      required
+    />
 
     <footer>
       <AppButton
@@ -106,9 +96,6 @@ function next() {
 </template>
 
 <style scoped>
-.p-field {
-  margin-bottom: 10px;
-}
 footer {
   display: flex;
   justify-content: flex-end;
