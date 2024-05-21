@@ -4,16 +4,16 @@ import { ref } from 'vue'
 import { useUid } from '@/composables/useUid'
 
 const props = defineProps({
-  modelValue: { type: [String, Number], default: '' },
   label: { type: String, default: '' },
   required: { type: Boolean, default: false }
 })
 
+const modelValue = defineModel<String>()
 const error = ref('')
 const uid = useUid()
 
 function isValid(): boolean {
-  if (props.required && !props.modelValue) {
+  if (props.required && !modelValue.value) {
     error.value = 'This field is required'
     return false
   }
@@ -33,8 +33,7 @@ defineExpose({
   </label>
   <Password
     v-bind="$attrs"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+    v-model="modelValue"
     :id="uid"
     :aria-labelledby="error ? `${uid}-error` : undefined"
     :aria-invalid="!!error"
