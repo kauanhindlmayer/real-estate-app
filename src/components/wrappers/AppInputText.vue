@@ -1,22 +1,23 @@
 <script lang="ts" setup>
 import InputText from 'primevue/inputtext'
 import { ref } from 'vue'
+import { useUUID } from '@/composables/useUUID'
 
 const props = defineProps({
   label: { type: String, default: '' },
-  noLabel: { type: Boolean, default: false },
   required: { type: Boolean, default: false }
 })
 
 const modelValue = defineModel()
-const errorMessage = ref('')
+const error = ref('')
+const { uuid } = useUUID()
 
 function isValid(): boolean {
   if (props.required && !modelValue.value) {
-    errorMessage.value = 'This field is required'
+    error.value = 'This field is required'
     return false
   }
-  errorMessage.value = ''
+  error.value = ''
   return true
 }
 
@@ -26,10 +27,18 @@ defineExpose({
 </script>
 
 <template>
-  <label v-if="!noLabel" :for="label">
+  <label v-if="label" :for="uuid">
     {{ label }}
     <span v-if="required" class="p-error"> *</span>
   </label>
-  <InputText v-model="modelValue" v-bind="$attrs" :id="label" :placeholder="label" />
-  <small class="p-error" v-if="errorMessage">{{ errorMessage }}</small>
+  <InputText
+    v-model="modelValue"
+    v-bind="$attrs"
+    :id="uuid"
+    :aria-labelledby="error ? `${uuid}-error` : undefined"
+    :aria-invalid="!!error"
+  />
+  <small class="p-error" v-if="error" :id="`${uuid}-error`" aria-live="assertive">
+    {{ error }}
+  </small>
 </template>
