@@ -35,7 +35,7 @@ function register() {
 <template>
   <div class="container">
     <div class="left-panel">
-      <div>
+      <form @submit.prevent="register">
         <h1>{{ $t('register.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
@@ -46,13 +46,13 @@ function register() {
           </div>
         </div>
         <footer>
-          <AppButton :label="$t('register.buttons.register')" @click="register" />
+          <AppButton :label="$t('register.buttons.register')" type="submit" />
           <p>
             {{ $t('register.alreadyHaveAccount') }}
             <RouterLink to="/login" class="login-link">{{ $t('login.title') }}</RouterLink>
           </p>
         </footer>
-      </div>
+      </form>
     </div>
 
     <div class="right-panel" />

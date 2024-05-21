@@ -37,7 +37,7 @@ function login() {
     <div class="left-panel" />
 
     <div class="right-panel">
-      <div>
+      <form @submit.prevent="login">
         <h1>{{ $t('login.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
@@ -52,13 +52,13 @@ function login() {
           </div>
         </div>
         <footer class="mt-1">
-          <AppButton label="Login" @click="login" />
+          <AppButton label="Login" type="submit" />
           <p>
             {{ $t('login.dontHaveAccount') }}
             <RouterLink to="/register" class="register-link">{{ $t('register.title') }}</RouterLink>
           </p>
         </footer>
-      </div>
+      </form>
     </div>
   </div>
 </template>

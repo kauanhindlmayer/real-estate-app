@@ -36,7 +36,7 @@ function next() {
 </script>
 
 <template>
-  <div class="p-fluid">
+  <form class="p-fluid">
     <div class="p-field">
       <AppInputText
         ref="titleRef"
@@ -98,10 +98,11 @@ function next() {
         icon="pi pi-arrow-right"
         icon-pos="right"
         class="w-2 mt-4"
+        type="button"
         @click="next"
       />
     </footer>
-  </div>
+  </form>
 </template>
 
 <style scoped>

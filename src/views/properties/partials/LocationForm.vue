@@ -69,7 +69,7 @@ function previous() {
 </script>
 
 <template>
-  <div class="p-fluid">
+  <form class="p-fluid" @submit.prevent="saveProperty">
     <div class="p-field">
       <AppInputText
         ref="zipCodeRef"
@@ -126,16 +126,17 @@ function previous() {
         :label="$t('properties.form.buttons.previous')"
         icon="pi pi-arrow-left"
         class="w-2 mt-4"
+        type="button"
         @click="previous"
       />
       <AppButton
         :label="$t('properties.form.buttons.save')"
         icon="pi pi-check"
         class="w-2 mt-4"
-        @click="saveProperty"
+        type="submit"
       />
     </footer>
-  </div>
+  </form>
 </template>
 
 <style scoped>
