@@ -9,7 +9,7 @@ import { useLoadingStore } from '@/stores/loadingStore'
 import pluralize from '@/utils/pluralize'
 import useBaseToast from '@/composables/useBaseToast'
 
-const propertyGateway = inject('propertyGateway') as PropertyGateway
+const propertyGateway = inject<PropertyGateway>('propertyGateway')
 
 const loadingStore = useLoadingStore()
 const toast = useBaseToast()

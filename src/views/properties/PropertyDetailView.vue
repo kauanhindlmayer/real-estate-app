@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import type PropertyGateway from '@/gateways/PropertyGateway'
 import { inject, onBeforeMount, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useLoadingStore } from '@/stores/loadingStore'
 import Property from '@/types/models/Property'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import useBaseToast from '@/composables/useBaseToast'
 
-const propertyGateway = inject('propertyGateway') as PropertyGateway
+const propertyGateway = inject<PropertyGateway>('propertyGateway')
 
 const toast = useBaseToast()
-const router = useRouter()
+const route = useRoute()
 const loadingStore = useLoadingStore()
 
 const property = ref<Property>(new Property())
@@ -27,8 +27,7 @@ async function fetchProperty(propertyId: string) {
 }
 
 onBeforeMount(() => {
-  const propertyId = router.currentRoute.value.params.id as string
-  fetchProperty(propertyId)
+  fetchProperty(route.params.id)
 })
 </script>
 

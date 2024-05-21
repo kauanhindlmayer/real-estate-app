@@ -9,8 +9,8 @@ import type PropertyGateway from '@/gateways/PropertyGateway'
 import { useRouter } from 'vue-router'
 import useBaseToast from '@/composables/useBaseToast'
 
-const propertyGateway = inject('propertyGateway') as PropertyGateway
-const locationGateway = inject('locationGateway') as LocationGateway
+const propertyGateway = inject<PropertyGateway>('propertyGateway')
+const locationGateway = inject<LocationGateway>('locationGateway')
 
 const toast = useBaseToast()
 const router = useRouter()

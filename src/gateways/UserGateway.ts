@@ -10,10 +10,10 @@ export default class UserGateway implements IUserGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
   async register(user: User): Promise<void> {
-    return await this.httpClient.post('user/one', user)
+    return await this.httpClient.post('/user/one', user)
   }
 
   async login(email: string, password: string): Promise<void> {
-    return await this.httpClient.post('login', { email, password })
+    return await this.httpClient.post('/login', { email, password })
   }
 }

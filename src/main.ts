@@ -9,11 +9,12 @@ import PrimeVue from 'primevue/config'
 import ToastService from 'primevue/toastservice'
 
 import App from './App.vue'
-import router from './router'
-import { AxiosAdapter } from './gateways/httpClient'
-import PropertyGateway from './gateways/PropertyGateway'
-import LocationGateway from './gateways/LocationGateway'
-import UserGateway from './gateways/UserGateway'
+import router from '@/router'
+
+import { AxiosAdapter } from '@/gateways/httpClient'
+import PropertyGateway from '@/gateways/PropertyGateway'
+import LocationGateway from '@/gateways/LocationGateway'
+import UserGateway from '@/gateways/UserGateway'
 
 const app = createApp(App)
 
@@ -25,9 +26,7 @@ app.use(ToastService)
 const httpClient = new AxiosAdapter(import.meta.env.VITE_API_URL)
 const propertyGateway = new PropertyGateway(httpClient)
 const userGateway = new UserGateway(httpClient)
-
-const viaCepHttpClient = new AxiosAdapter(import.meta.env.VITE_ZIP_CODE_API_URL)
-const locationGateway = new LocationGateway(viaCepHttpClient)
+const locationGateway = new LocationGateway(httpClient)
 
 app.provide('propertyGateway', propertyGateway)
 app.provide('userGateway', userGateway)

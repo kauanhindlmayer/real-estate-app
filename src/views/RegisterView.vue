@@ -7,7 +7,7 @@ import useBaseToast from '@/composables/useBaseToast'
 import type UserGateway from '@/gateways/UserGateway'
 import { useLoadingStore } from '@/stores/loadingStore'
 
-const userGateway = inject('userGateway') as UserGateway
+const userGateway = inject<UserGateway>('userGateway')
 
 const toast = useBaseToast()
 const router = useRouter()
