@@ -30,39 +30,39 @@
         },
         "description": {
           "label": "Descrição",
-          "placeholder": "Insira uma descrição da propriedade"
+          "placeholder": "Descrição"
         },
         "price": {
           "label": "Preço",
-          "placeholder": "Insira o preço da propriedade"
+          "placeholder": "Preço"
         },
         "size": {
           "label": "Tamanho (m²)",
-          "placeholder": "Insira o tamanho da propriedade"
+          "placeholder": "Tamanho"
         },
         "imageUrl": {
           "label": "URL da Imagem",
-          "placeholder": "Insira o URL da imagem da propriedade"
+          "placeholder": "URL da Imagem"
         },
         "zipCode": {
           "label": "Código Postal",
-          "placeholder": "Insira o código postal da propriedade"
+          "placeholder": "Código Postal"
         },
         "address": {
           "label": "Endereço",
-          "placeholder": "Insira o endereço da propriedade"
+          "placeholder": "Endereço"
         },
         "city": {
           "label": "Cidade",
-          "placeholder": "Insira a cidade da propriedade"
+          "placeholder": "Cidade"
         },
         "state": {
           "label": "Estado",
-          "placeholder": "Insira o estado da propriedade"
+          "placeholder": "Estado"
         },
         "country": {
           "label": "País",
-          "placeholder": "Insira o país da propriedade"
+          "placeholder": "País"
         }
       },
       "buttons": {
@@ -107,11 +107,11 @@
     "fields": {
       "email": {
         "label": "Email",
-        "placeholder": "Insira seu email"
+        "placeholder": "Email"
       },
       "password": {
         "label": "Senha",
-        "placeholder": "Insira sua senha"
+        "placeholder": "Senha"
       }
     },
     "buttons": {
@@ -131,11 +131,11 @@
     "fields": {
       "email": {
         "label": "Email",
-        "placeholder": "Insira seu email"
+        "placeholder": "Email"
       },
       "password": {
         "label": "Senha",
-        "placeholder": "Insira sua senha"
+        "placeholder": "Senha"
       }
     },
     "buttons": {

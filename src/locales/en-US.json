@@ -26,43 +26,43 @@
       "fields": {
         "title": {
           "label": "Title",
-          "placeholder": "Enter the title of the property"
+          "placeholder": "Title"
         },
         "description": {
           "label": "Description",
-          "placeholder": "Enter a description of the property"
+          "placeholder": "Description"
         },
         "price": {
           "label": "Price",
-          "placeholder": "Enter the price of the property"
+          "placeholder": "Price"
         },
         "size": {
           "label": "Size (m²)",
-          "placeholder": "Enter the size of the property"
+          "placeholder": "Size"
         },
         "imageUrl": {
           "label": "Image URL",
-          "placeholder": "Enter the URL of the property image"
+          "placeholder": "Image URL"
         },
         "zipCode": {
           "label": "Zip Code",
-          "placeholder": "Enter the zip code of the property"
+          "placeholder": "Zip Code"
         },
         "address": {
           "label": "Address",
-          "placeholder": "Enter the address of the property"
+          "placeholder": "Address"
         },
         "city": {
           "label": "City",
-          "placeholder": "Enter the city of the property"
+          "placeholder": "City"
         },
         "state": {
           "label": "State",
-          "placeholder": "Enter the state of the property"
+          "placeholder": "State"
         },
         "country": {
           "label": "Country",
-          "placeholder": "Enter the country of the property"
+          "placeholder": "Country"
         }
       },
       "buttons": {
@@ -107,11 +107,11 @@
     "fields": {
       "email": {
         "label": "Email",
-        "placeholder": "Enter your email"
+        "placeholder": "Email"
       },
       "password": {
         "label": "Password",
-        "placeholder": "Enter your password"
+        "placeholder": "Password"
       }
     },
     "buttons": {
@@ -131,11 +131,11 @@
     "fields": {
       "email": {
         "label": "Email",
-        "placeholder": "Enter your email"
+        "placeholder": "Email"
       },
       "password": {
         "label": "Password",
-        "placeholder": "Enter your password"
+        "placeholder": "Password"
       }
     },
     "buttons": {
