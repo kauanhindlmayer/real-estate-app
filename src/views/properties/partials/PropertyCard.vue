@@ -15,10 +15,10 @@
     <template #content>
       <p>{{ property.description }}</p>
       <p>
-        <strong>{{ $t('property.details.price') }}:</strong> ${{ property.price }}
+        <strong>{{ $t('properties.details.price') }}:</strong> ${{ property.price }}
       </p>
       <p>
-        <strong>{{ $t('property.details.size') }}:</strong> {{ property.size }}m²
+        <strong>{{ $t('properties.details.size') }}:</strong> {{ property.size }}m²
       </p>
     </template>
 
