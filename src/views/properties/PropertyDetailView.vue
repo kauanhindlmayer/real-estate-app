@@ -32,5 +32,15 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <PropertyCard :property hide-footer />
+  <PropertyCard :property hide-footer v-if="property.id" />
+  <div v-else class="property-not-found-wrapper">Property not found</div>
 </template>
+
+<style scoped>
+.property-not-found-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+</style>
