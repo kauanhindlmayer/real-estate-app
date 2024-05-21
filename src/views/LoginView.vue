@@ -7,8 +7,22 @@ import AppButton from '@/components/wrappers/AppButton.vue'
 
 const authStore = useAuthStore()
 
-const username = ref('')
+const email = ref('')
 const password = ref('')
+
+function login() {
+  if (!validateFields()) return
+  authStore.login(email.value, password.value)
+}
+
+const emailRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const passwordRef = ref<InstanceType<typeof AppInputText> | null>(null)
+
+function validateFields() {
+  const fieldsToValidate = [emailRef, passwordRef]
+  const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
+  return validationResults.every((valid) => valid)
+}
 </script>
 
 <template>
@@ -16,17 +30,24 @@ const password = ref('')
     <div class="left-panel" />
 
     <div class="right-panel">
-      <form @submit.prevent="authStore.login(username, password)">
+      <form @submit.prevent="login">
         <h1>{{ $t('login.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
-            <AppInputText :label="$t('login.fields.email.label')" v-model="username" />
+            <AppInputText
+              ref="emailRef"
+              v-model="email"
+              :label="$t('login.fields.email.label')"
+              required
+            />
           </div>
           <div class="p-field">
             <AppInputPassword
+              ref="passwordRef"
+              v-model="password"
               :label="$t('login.fields.password.label')"
               toggle-mask
-              v-model="password"
+              required
             />
           </div>
         </div>

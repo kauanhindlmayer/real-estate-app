@@ -6,21 +6,45 @@ import AppButton from '@/components/wrappers/AppButton.vue'
 
 const authStore = useAuthStore()
 
-const username = ref('')
+const email = ref('')
 const password = ref('')
+
+function register() {
+  if (!validateFields()) return
+  authStore.register(email.value, password.value)
+}
+
+const emailRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const passwordRef = ref<InstanceType<typeof AppInputText> | null>(null)
+
+function validateFields() {
+  const fieldsToValidate = [emailRef, passwordRef]
+  const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
+  return validationResults.every((valid) => valid)
+}
 </script>
 
 <template>
   <div class="container">
     <div class="left-panel">
-      <form @submit.prevent="authStore.register(username, password)">
+      <form @submit.prevent="register">
         <h1>{{ $t('register.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
-            <AppInputText :label="$t('register.fields.email.label')" v-model="username" />
+            <AppInputText
+              ref="emailRef"
+              v-model="email"
+              :label="$t('register.fields.email.label')"
+              required
+            />
           </div>
           <div class="p-field">
-            <AppInputText :label="$t('register.fields.password.label')" v-model="password" />
+            <AppInputText
+              ref="passwordRef"
+              v-model="password"
+              :label="$t('register.fields.password.label')"
+              required
+            />
           </div>
         </div>
         <footer>

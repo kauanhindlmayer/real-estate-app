@@ -14,15 +14,15 @@ const props = withDefaults(defineProps<IProps>(), {
 })
 
 const modelValue = defineModel<String | Number>()
-const error = ref('')
+const errorMessage = ref('')
 const uid = useUid()
 
 function isValid(): boolean {
   if (props.required && !modelValue.value) {
-    error.value = 'This field is required'
+    errorMessage.value = 'This field is required'
     return false
   }
-  error.value = ''
+  errorMessage.value = ''
   return true
 }
 
@@ -40,10 +40,10 @@ defineExpose({
     v-bind="$attrs"
     v-model="modelValue"
     :id="uid"
-    :aria-labelledby="error ? `${uid}-error` : undefined"
-    :aria-invalid="!!error"
+    :aria-labelledby="errorMessage ? `${uid}-error` : undefined"
+    :aria-invalid="!!errorMessage"
   />
-  <small class="p-error" v-if="error" :id="`${uid}-error`" aria-live="assertive">
-    {{ error }}
+  <small class="p-error" v-if="errorMessage" :id="`${uid}-error`" aria-live="assertive">
+    {{ errorMessage }}
   </small>
 </template>

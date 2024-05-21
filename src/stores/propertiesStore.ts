@@ -36,7 +36,7 @@ export const usePropertiesStore = defineStore('properties', () => {
     try {
       property.value = await propertyGateway.getById(id)
     } catch {
-      toast.error({ message: t('properties.form.messages.errorFetchingProperty') })
+      toast.error({ message: t('properties.list.messages.errorFetchingProperty') })
     } finally {
       loadingStore.stopLoading()
     }
@@ -47,7 +47,7 @@ export const usePropertiesStore = defineStore('properties', () => {
     try {
       properties.value = await propertyGateway.getAll()
     } catch {
-      toast.error({ message: t('properties.form.messages.errorFetchingProperties') })
+      toast.error({ message: t('properties.list.messages.errorFetchingProperties') })
     } finally {
       loadingStore.stopLoading()
     }
