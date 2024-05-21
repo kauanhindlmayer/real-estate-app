@@ -7,7 +7,7 @@ import Property from '@/types/models/Property'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import useBaseToast from '@/composables/useBaseToast'
 
-const propertyGateway = inject<PropertyGateway>('propertyGateway')
+const propertyGateway = inject('propertyGateway') as PropertyGateway
 
 const toast = useBaseToast()
 const route = useRoute()
@@ -27,7 +27,7 @@ async function fetchProperty(propertyId: string) {
 }
 
 onBeforeMount(() => {
-  fetchProperty(route.params.id)
+  fetchProperty(route.params.id as string)
 })
 </script>
 

@@ -8,7 +8,7 @@ import useBaseToast from '@/composables/useBaseToast'
 import type UserGateway from '@/gateways/UserGateway'
 import { useLoadingStore } from '@/stores/loadingStore'
 
-const userGateway = inject<UserGateway>('userGateway')
+const userGateway = inject('userGateway') as UserGateway
 
 const toast = useBaseToast()
 const router = useRouter()
@@ -21,7 +21,7 @@ function login() {
   loadingStore.startLoading()
   try {
     userGateway.login(username.value, password.value)
-    router.push({ name: 'login' })
+    router.push({ name: 'home' })
   } catch {
     toast.error({ message: 'Invalid credentials' })
   } finally {

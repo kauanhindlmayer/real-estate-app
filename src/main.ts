@@ -23,7 +23,7 @@ app.use(router)
 app.use(PrimeVue)
 app.use(ToastService)
 
-const httpClient = new AxiosAdapter(import.meta.env.VITE_API_URL)
+const httpClient = new AxiosAdapter({ baseUrl: import.meta.env.VITE_API_URL })
 const propertyGateway = new PropertyGateway(httpClient)
 const userGateway = new UserGateway(httpClient)
 const locationGateway = new LocationGateway(httpClient)
