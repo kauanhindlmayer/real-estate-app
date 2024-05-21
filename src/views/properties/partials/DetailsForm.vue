@@ -36,7 +36,13 @@ function next() {
 <template>
   <div class="p-fluid">
     <div class="p-field">
-      <AppInputText ref="titleRef" v-model="property.title" label="Title" required />
+      <AppInputText
+        ref="titleRef"
+        v-model="property.title"
+        label="Title"
+        placeholder="Title"
+        required
+      />
     </div>
 
     <div class="p-field">
@@ -44,6 +50,7 @@ function next() {
         ref="descriptionRef"
         v-model="property.description"
         label="Description"
+        placeholder="Description"
         required
       />
     </div>
@@ -56,6 +63,7 @@ function next() {
         currency="USD"
         locale="en-US"
         label="Price"
+        placeholder="Price"
         required
       />
     </div>
@@ -65,13 +73,21 @@ function next() {
         ref="sizeRef"
         v-model="property.size"
         label="Size (m²)"
+        placeholder="Size (m²)"
         suffix="m²"
         required
       />
     </div>
 
     <div class="p-field">
-      <AppInputText ref="imageUrlRef" v-model="property.imageUrl" label="Image URL" required />
+      <AppInputText
+        ref="imageUrlRef"
+        v-model="property.imageUrl"
+        type="url"
+        label="Image URL"
+        placeholder="Image URL"
+        required
+      />
     </div>
 
     <footer>

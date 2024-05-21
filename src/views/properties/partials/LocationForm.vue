@@ -73,25 +73,50 @@ function previous() {
         ref="zipCodeRef"
         v-model="property.location.zipCode"
         label="Zip Code"
+        placeholder="Zip Code"
         required
         @change="getLocationByZipCode"
       />
     </div>
 
     <div class="p-field">
-      <AppInputText ref="addressRef" v-model="property.location.address" label="Address" required />
+      <AppInputText
+        ref="addressRef"
+        v-model="property.location.address"
+        label="Address"
+        placeholder="Address"
+        required
+      />
     </div>
 
     <div class="p-field">
-      <AppInputText ref="cityRef" v-model="property.location.city" label="City" required />
+      <AppInputText
+        ref="cityRef"
+        v-model="property.location.city"
+        label="City"
+        placeholder="City"
+        required
+      />
     </div>
 
     <div class="p-field">
-      <AppInputText ref="stateRef" v-model="property.location.state" label="State" required />
+      <AppInputText
+        ref="stateRef"
+        v-model="property.location.state"
+        label="State"
+        placeholder="State"
+        required
+      />
     </div>
 
     <div class="p-field">
-      <AppInputText ref="countryRef" v-model="property.location.country" label="Country" required />
+      <AppInputText
+        ref="countryRef"
+        v-model="property.location.country"
+        label="Country"
+        placeholder="Country"
+        required
+      />
     </div>
 
     <footer>

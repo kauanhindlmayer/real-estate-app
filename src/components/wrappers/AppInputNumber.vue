@@ -1,21 +1,23 @@
 <script lang="ts" setup>
 import InputNumber from 'primevue/inputnumber'
 import { ref } from 'vue'
+import { useUid } from '@/composables/useUid'
 
 const props = defineProps({
+  modelValue: { type: String, default: '' },
   label: { type: String, default: '' },
   required: { type: Boolean, default: false }
 })
 
-const modelValue = defineModel()
-const errorMessage = ref('')
+const error = ref('')
+const uid = useUid()
 
 function isValid(): boolean {
   if (props.required && !modelValue.value) {
-    errorMessage.value = 'This field is required'
+    error.value = 'This field is required'
     return false
   }
-  errorMessage.value = ''
+  error.value = ''
   return true
 }
 
@@ -25,10 +27,19 @@ defineExpose({
 </script>
 
 <template>
-  <label :for="label">
+  <label v-if="label" :for="uid">
     {{ label }}
     <span v-if="required" class="p-error"> *</span>
   </label>
-  <InputNumber v-model="modelValue" v-bind="$attrs" :id="label" :placeholder="label" />
-  <small class="p-error" v-if="errorMessage">{{ errorMessage }}</small>
+  <InputNumber
+    v-bind="$attrs"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+    :id="uid"
+    :aria-labelledby="error ? `${uid}-error` : undefined"
+    :aria-invalid="!!error"
+  />
+  <small class="p-error" v-if="error" :id="`${uid}-error`" aria-live="assertive">
+    {{ error }}
+  </small>
 </template>
