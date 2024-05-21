@@ -6,7 +6,6 @@ import Property from '@/types/models/Property'
 import PropertyGateway from '@/gateways/PropertyGateway'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import { useLoadingStore } from '@/stores/loadingStore'
-import pluralize from '@/utils/pluralize'
 import useBaseToast from '@/composables/useBaseToast'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
@@ -40,8 +39,8 @@ onBeforeMount(async () => {
 <template>
   <header>
     <div>
-      <h1>Properties</h1>
-      <p>{{ pluralize(properties.length, 'property', 'properties') }}</p>
+      <h1>{{ $t('properties.list.title') }}</h1>
+      <p>{{ $t('properties.list.description', { count: properties.length }) }}</p>
     </div>
     <AppButton label="New Property" @click="redirectToPropertyCreate" />
   </header>

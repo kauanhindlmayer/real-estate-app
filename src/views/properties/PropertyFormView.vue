@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Property from '@/types/models/Property'
 import AppSteps from '@/components/wrappers/AppSteps.vue'
 import LocationForm from '@/views/properties/partials/LocationForm.vue'
 import DetailsForm from '@/views/properties/partials/DetailsForm.vue'
+
+const { t } = useI18n()
 
 const property = ref<Property>(new Property())
 
@@ -21,19 +24,19 @@ const active = ref(0)
 
 const items = [
   {
-    label: 'Details',
+    label: t('properties.form.details'),
     component: DetailsForm
   },
   {
-    label: 'Location',
+    label: t('properties.form.location'),
     component: LocationForm
   }
 ]
 </script>
 
 <template>
-  <h1>Create Property</h1>
-  <p>Fill in the details to add a new property to your listings</p>
+  <h1>{{ $t('properties.form.title') }}</h1>
+  <p>{{ $t('properties.form.description') }}</p>
 
   <div class="form-container">
     <AppSteps v-model:active-step="active" :model="items" />

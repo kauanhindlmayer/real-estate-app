@@ -1,0 +1,130 @@
+{
+  "properties": {
+    "details": {
+      "notFound": "Propriedade não encontrada",
+      "price": "Preço",
+      "size": "Tamanho"
+    },
+    "form": {
+      "title": "Criar Propriedade",
+      "description": "Preencha os detalhes para adicionar uma nova propriedade às suas listagens",
+      "details": "Detalhes",
+      "location": "Localização",
+      "fields": {
+        "title": {
+          "label": "Título",
+          "placeholder": "Insira o título da propriedade"
+        },
+        "description": {
+          "label": "Descrição",
+          "placeholder": "Insira uma descrição da propriedade"
+        },
+        "price": {
+          "label": "Preço",
+          "placeholder": "Insira o preço da propriedade"
+        },
+        "size": {
+          "label": "Tamanho (m²)",
+          "placeholder": "Insira o tamanho da propriedade"
+        },
+        "imageUrl": {
+          "label": "URL da Imagem",
+          "placeholder": "Insira o URL da imagem da propriedade"
+        },
+        "zipCode": {
+          "label": "Código Postal",
+          "placeholder": "Insira o código postal da propriedade"
+        },
+        "address": {
+          "label": "Endereço",
+          "placeholder": "Insira o endereço da propriedade"
+        },
+        "city": {
+          "label": "Cidade",
+          "placeholder": "Insira a cidade da propriedade"
+        },
+        "state": {
+          "label": "Estado",
+          "placeholder": "Insira o estado da propriedade"
+        },
+        "country": {
+          "label": "País",
+          "placeholder": "Insira o país da propriedade"
+        }
+      },
+      "buttons": {
+        "previous": "Anterior",
+        "next": "Próximo",
+        "save": "Salvar"
+      },
+      "messages": {
+        "propertyCreated": "Propriedade criada com sucesso!",
+        "locationFound": "Localização encontrada com sucesso!",
+        "pleaseFillAllRequiredFields": "Por favor, preencha todos os campos obrigatórios",
+        "locationNotFound": "Localização não encontrada",
+        "errorSavingProperty": "Erro ao salvar a propriedade"
+      }
+    },
+    "list": {
+      "title": "Propriedades",
+      "description": "Nenhuma propriedade | 1 propriedade | {count} propriedades"
+    }
+  },
+  "about": {
+    "title": "Sobre",
+    "description": "Bem-vindo à página sobre"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Bem-vindo à página do blog"
+  },
+  "home": {
+    "title": "Início",
+    "description": "Bem-vindo à página inicial"
+  },
+  "login": {
+    "title": "Entrar",
+    "fields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Insira seu email"
+      },
+      "password": {
+        "label": "Senha",
+        "placeholder": "Insira sua senha"
+      }
+    },
+    "buttons": {
+      "login": "Entrar"
+    },
+    "messages": {
+      "invalidCredentials": "Credenciais inválidas"
+    },
+    "dontHaveAccount": "Não tem uma conta?"
+  },
+  "notFound": {
+    "title": "Não Encontrado",
+    "description": "A página que você está procurando não existe"
+  },
+  "register": {
+    "title": "Registrar",
+    "fields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Insira seu email"
+      },
+      "password": {
+        "label": "Senha",
+        "placeholder": "Insira sua senha"
+      }
+    },
+    "buttons": {
+      "register": "Registrar"
+    },
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "messages": {
+      "userRegistered": "Usuário registrado com sucesso!",
+      "errorRegisteringUser": "Erro ao registrar o usuário"
+    }
+  }
+}

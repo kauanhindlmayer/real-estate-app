@@ -14,8 +14,12 @@
 
     <template #content>
       <p>{{ property.description }}</p>
-      <p><strong>Price:</strong> ${{ property.price }}</p>
-      <p><strong>Area:</strong> {{ property.size }}m²</p>
+      <p>
+        <strong>{{ $t('property.details.price') }}:</strong> ${{ property.price }}
+      </p>
+      <p>
+        <strong>{{ $t('property.details.size') }}:</strong> {{ property.size }}m²
+      </p>
     </template>
 
     <template #footer>
@@ -46,7 +50,7 @@ const router = useRouter()
 const property = computed(() => props.property)
 
 function redirectToPropertyDetails() {
-  router.push({ name: 'property-details', params: { id: property.value.id.toString() } })
+  router.push({ name: 'property-details', params: { id: property.value.id } })
 }
 </script>
 

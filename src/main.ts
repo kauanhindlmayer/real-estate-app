@@ -10,6 +10,7 @@ import ToastService from 'primevue/toastservice'
 
 import App from './App.vue'
 import router from '@/router'
+import i18n from '@/plugins/i18n'
 
 import { AxiosAdapter } from '@/gateways/httpClient'
 import PropertyGateway from '@/gateways/PropertyGateway'
@@ -22,6 +23,7 @@ app.use(createPinia())
 app.use(router)
 app.use(PrimeVue)
 app.use(ToastService)
+app.use(i18n)
 
 const httpClient = new AxiosAdapter({ baseUrl: import.meta.env.VITE_API_URL })
 const propertyGateway = new PropertyGateway(httpClient)

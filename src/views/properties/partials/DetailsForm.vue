@@ -4,9 +4,11 @@ import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
 
 const toast = useBaseToast()
+const { t } = useI18n()
 
 const property = defineModel<Property>({ default: () => new Property() })
 
@@ -26,7 +28,7 @@ const emit = defineEmits(['next'])
 
 function next() {
   if (!validateFields()) {
-    toast.error({ message: 'Please fill in all required fields' })
+    toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
     return
   }
   emit('next')
@@ -39,8 +41,8 @@ function next() {
       <AppInputText
         ref="titleRef"
         v-model="property.title"
-        label="Title"
-        placeholder="Title"
+        :label="$t('properties.form.fields.title.label')"
+        :placeholder="$t('properties.form.fields.title.placeholder')"
         required
       />
     </div>
@@ -49,8 +51,8 @@ function next() {
       <AppInputText
         ref="descriptionRef"
         v-model="property.description"
-        label="Description"
-        placeholder="Description"
+        :label="$t('properties.form.fields.description.label')"
+        :placeholder="$t('properties.form.fields.description.placeholder')"
         required
       />
     </div>
@@ -62,8 +64,8 @@ function next() {
         mode="currency"
         currency="USD"
         locale="en-US"
-        label="Price"
-        placeholder="Price"
+        :label="$t('properties.form.fields.price.label')"
+        :placeholder="$t('properties.form.fields.price.placeholder')"
         required
       />
     </div>
@@ -72,8 +74,8 @@ function next() {
       <AppInputNumber
         ref="sizeRef"
         v-model="property.size"
-        label="Size (m²)"
-        placeholder="Size (m²)"
+        :label="$t('properties.form.fields.size.label')"
+        :placeholder="$t('properties.form.fields.size.placeholder')"
         suffix="m²"
         required
       />
@@ -84,15 +86,15 @@ function next() {
         ref="imageUrlRef"
         v-model="property.imageUrl"
         type="url"
-        label="Image URL"
-        placeholder="Image URL"
+        :label="$t('properties.form.fields.imageUrl.label')"
+        :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
         required
       />
     </div>
 
     <footer>
       <AppButton
-        label="Next"
+        :label="$t('properties.form.buttons.next')"
         icon="pi pi-arrow-right"
         icon-pos="right"
         class="w-2 mt-4"

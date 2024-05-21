@@ -2,7 +2,7 @@
 
 <template>
   <div class="container">
-    <h1>Blog</h1>
-    <p>This is the blog page.</p>
+    <h1>{{ $t('blog.title') }}</h1>
+    <p>{{ $t('blog.description') }}</p>
   </div>
 </template>

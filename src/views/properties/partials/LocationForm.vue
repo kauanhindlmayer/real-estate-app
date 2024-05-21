@@ -7,6 +7,7 @@ import LocationGateway from '@/gateways/LocationGateway'
 import Property from '@/types/models/Property'
 import type PropertyGateway from '@/gateways/PropertyGateway'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
 
 const propertyGateway = inject('propertyGateway') as PropertyGateway
@@ -15,6 +16,7 @@ const locationGateway = inject('locationGateway') as LocationGateway
 const toast = useBaseToast()
 const router = useRouter()
 const loadingStore = useLoadingStore()
+const { t } = useI18n()
 
 const property = defineModel<Property>({ default: () => new Property() })
 
@@ -23,9 +25,9 @@ async function getLocationByZipCode() {
   try {
     const { zipCode } = property.value.location
     property.value.location = await locationGateway.getByZipCode(zipCode)
-    toast.success({ message: 'Location found' })
+    toast.success({ message: t('properties.form.messages.locationFound') })
   } catch {
-    toast.error({ message: 'Location not found' })
+    toast.error({ message: t('properties.form.messages.locationNotFound') })
   } finally {
     loadingStore.stopLoading()
   }
@@ -33,16 +35,16 @@ async function getLocationByZipCode() {
 
 async function saveProperty() {
   if (!validateFields()) {
-    toast.error({ message: 'Please fill in all required fields' })
+    toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
     return
   }
   loadingStore.startLoading()
   try {
     await propertyGateway.save(property.value)
-    toast.success({ message: 'Property saved' })
+    toast.success({ message: t('properties.form.messages.propertyCreated') })
     router.push({ name: 'properties' })
   } catch {
-    toast.error({ message: 'Error saving property' })
+    toast.error({ message: t('properties.form.messages.errorSavingProperty') })
   } finally {
     loadingStore.stopLoading()
   }
@@ -72,8 +74,8 @@ function previous() {
       <AppInputText
         ref="zipCodeRef"
         v-model="property.location.zipCode"
-        label="Zip Code"
-        placeholder="Zip Code"
+        :label="$t('properties.form.fields.zipCode.label')"
+        :placeholder="$t('properties.form.fields.zipCode.placeholder')"
         required
         @change="getLocationByZipCode"
       />
@@ -83,8 +85,8 @@ function previous() {
       <AppInputText
         ref="addressRef"
         v-model="property.location.address"
-        label="Address"
-        placeholder="Address"
+        :label="$t('properties.form.fields.address.label')"
+        :placeholder="$t('properties.form.fields.address.placeholder')"
         required
       />
     </div>
@@ -93,8 +95,8 @@ function previous() {
       <AppInputText
         ref="cityRef"
         v-model="property.location.city"
-        label="City"
-        placeholder="City"
+        :label="$t('properties.form.fields.city.label')"
+        :placeholder="$t('properties.form.fields.city.placeholder')"
         required
       />
     </div>
@@ -103,8 +105,8 @@ function previous() {
       <AppInputText
         ref="stateRef"
         v-model="property.location.state"
-        label="State"
-        placeholder="State"
+        :label="$t('properties.form.fields.state.label')"
+        :placeholder="$t('properties.form.fields.state.placeholder')"
         required
       />
     </div>
@@ -113,15 +115,25 @@ function previous() {
       <AppInputText
         ref="countryRef"
         v-model="property.location.country"
-        label="Country"
-        placeholder="Country"
+        :label="$t('properties.form.fields.country.label')"
+        :placeholder="$t('properties.form.fields.country.placeholder')"
         required
       />
     </div>
 
     <footer>
-      <AppButton label="Previous" icon="pi pi-arrow-left" class="w-2 mt-4" @click="previous" />
-      <AppButton label="Save" icon="pi pi-check" class="w-2 mt-4" @click="saveProperty" />
+      <AppButton
+        :label="$t('properties.form.buttons.previous')"
+        icon="pi pi-arrow-left"
+        class="w-2 mt-4"
+        @click="previous"
+      />
+      <AppButton
+        :label="$t('properties.form.buttons.save')"
+        icon="pi pi-check"
+        class="w-2 mt-4"
+        @click="saveProperty"
+      />
     </footer>
   </div>
 </template>

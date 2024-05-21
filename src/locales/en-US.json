@@ -1,0 +1,130 @@
+{
+  "properties": {
+    "details": {
+      "notFound": "Property not found",
+      "price": "Price",
+      "size": "Size"
+    },
+    "form": {
+      "title": "Create Property",
+      "description": "Fill in the details to add a new property to your listings",
+      "details": "Details",
+      "location": "Location",
+      "fields": {
+        "title": {
+          "label": "Title",
+          "placeholder": "Enter the title of the property"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Enter a description of the property"
+        },
+        "price": {
+          "label": "Price",
+          "placeholder": "Enter the price of the property"
+        },
+        "size": {
+          "label": "Size (m²)",
+          "placeholder": "Enter the size of the property"
+        },
+        "imageUrl": {
+          "label": "Image URL",
+          "placeholder": "Enter the URL of the property image"
+        },
+        "zipCode": {
+          "label": "Zip Code",
+          "placeholder": "Enter the zip code of the property"
+        },
+        "address": {
+          "label": "Address",
+          "placeholder": "Enter the address of the property"
+        },
+        "city": {
+          "label": "City",
+          "placeholder": "Enter the city of the property"
+        },
+        "state": {
+          "label": "State",
+          "placeholder": "Enter the state of the property"
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Enter the country of the property"
+        }
+      },
+      "buttons": {
+        "previous": "Previous",
+        "next": "Next",
+        "save": "Save"
+      },
+      "messages": {
+        "propertyCreated": "Property created successfully!",
+        "locationFound": "Location found successfully!",
+        "pleaseFillAllRequiredFields": "Please fill in all required fields",
+        "locationNotFound": "Location not found",
+        "errorSavingProperty": "Error saving property"
+      }
+    },
+    "list": {
+      "title": "Properties",
+      "description": "No properties | 1 property | {count} properties"
+    }
+  },
+  "about": {
+    "title": "About",
+    "description": "Welcome to the about page"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Welcome to the blog page"
+  },
+  "home": {
+    "title": "Home",
+    "description": "Welcome to the home page"
+  },
+  "login": {
+    "title": "Login",
+    "fields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      }
+    },
+    "buttons": {
+      "login": "Login"
+    },
+    "messages": {
+      "invalidCredentials": "Invalid credentials"
+    },
+    "dontHaveAccount": "Don't have an account?"
+  },
+  "notFound": {
+    "title": "Not Found",
+    "description": "The page you are looking for does not exist"
+  },
+  "register": {
+    "title": "Register",
+    "fields": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      }
+    },
+    "buttons": {
+      "register": "Register"
+    },
+    "alreadyHaveAccount": "Already have an account?",
+    "messages": {
+      "userRegistered": "User registered successfully!",
+      "errorRegisteringUser": "Error registering user"
+    }
+  }
+}

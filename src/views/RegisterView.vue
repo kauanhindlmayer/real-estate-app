@@ -5,6 +5,7 @@ import AppButton from '@/components/wrappers/AppButton.vue'
 import { useRouter } from 'vue-router'
 import useBaseToast from '@/composables/useBaseToast'
 import type UserGateway from '@/gateways/UserGateway'
+import { useI18n } from 'vue-i18n'
 import { useLoadingStore } from '@/stores/loadingStore'
 
 const userGateway = inject('userGateway') as UserGateway
@@ -12,6 +13,7 @@ const userGateway = inject('userGateway') as UserGateway
 const toast = useBaseToast()
 const router = useRouter()
 const loadingStore = useLoadingStore()
+const { t } = useI18n()
 
 const username = ref('')
 const password = ref('')
@@ -20,10 +22,10 @@ function register() {
   loadingStore.startLoading()
   try {
     userGateway.login(username.value, password.value)
-    toast.success({ message: 'User registered successfully' })
+    toast.success({ message: t('register.messages.userRegistered') })
     router.push({ name: 'login' })
   } catch {
-    toast.error({ message: 'Error registering user' })
+    toast.error({ message: t('register.messages.errorRegisteringUser') })
   } finally {
     loadingStore.stopLoading()
   }
@@ -34,20 +36,20 @@ function register() {
   <div class="container">
     <div class="left-panel">
       <div>
-        <h1>Register</h1>
+        <h1>{{ $t('register.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
-            <AppInputText label="Username" v-model="username" />
+            <AppInputText :label="$t('register.fields.email.label')" v-model="username" />
           </div>
           <div class="p-field">
-            <AppInputText label="Password" v-model="password" />
+            <AppInputText :label="$t('register.fields.password.label')" v-model="password" />
           </div>
         </div>
         <footer>
-          <AppButton label="Register" @click="register" />
+          <AppButton :label="$t('register.buttons.register')" @click="register" />
           <p>
-            Already have an account?
-            <RouterLink to="/login" class="login-link">Login</RouterLink>
+            {{ $t('register.alreadyHaveAccount') }}
+            <RouterLink to="/login" class="login-link">{{ $t('login.title') }}</RouterLink>
           </p>
         </footer>
       </div>

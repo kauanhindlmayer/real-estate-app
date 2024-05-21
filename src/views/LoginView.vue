@@ -6,6 +6,7 @@ import AppInputPassword from '@/components/wrappers/AppInputPassword.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import useBaseToast from '@/composables/useBaseToast'
 import type UserGateway from '@/gateways/UserGateway'
+import { useI18n } from 'vue-i18n'
 import { useLoadingStore } from '@/stores/loadingStore'
 
 const userGateway = inject('userGateway') as UserGateway
@@ -13,6 +14,7 @@ const userGateway = inject('userGateway') as UserGateway
 const toast = useBaseToast()
 const router = useRouter()
 const loadingStore = useLoadingStore()
+const { t } = useI18n()
 
 const username = ref('')
 const password = ref('')
@@ -23,7 +25,7 @@ function login() {
     userGateway.login(username.value, password.value)
     router.push({ name: 'home' })
   } catch {
-    toast.error({ message: 'Invalid credentials' })
+    toast.error({ message: t('login.messages.invalidCredentials') })
   } finally {
     loadingStore.stopLoading()
   }
@@ -36,20 +38,24 @@ function login() {
 
     <div class="right-panel">
       <div>
-        <h1>Login</h1>
+        <h1>{{ $t('login.title') }}</h1>
         <div class="p-fluid">
           <div class="p-field">
-            <AppInputText label="Username" v-model="username" />
+            <AppInputText :label="$t('login.fields.email.label')" v-model="username" />
           </div>
           <div class="p-field">
-            <AppInputPassword toggle-mask v-model="password" />
+            <AppInputPassword
+              :label="$t('login.fields.password.label')"
+              toggle-mask
+              v-model="password"
+            />
           </div>
         </div>
         <footer class="mt-1">
           <AppButton label="Login" @click="login" />
           <p>
-            Don't have an account?
-            <RouterLink to="/register" class="register-link">Register</RouterLink>
+            {{ $t('login.dontHaveAccount') }}
+            <RouterLink to="/register" class="register-link">{{ $t('register.title') }}</RouterLink>
           </p>
         </footer>
       </div>
