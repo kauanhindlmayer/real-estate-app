@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { withDefaults, defineProps, computed } from 'vue'
+import { withDefaults, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import AppCard from '@/components/wrappers/AppCard.vue'
 import Property from '@/types/models/Property'

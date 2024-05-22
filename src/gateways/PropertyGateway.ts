@@ -12,8 +12,10 @@ interface IPropertyGateway {
 export default class PropertyGateway implements IPropertyGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
-  async getAll(): Promise<Property[]> {
-    return await this.httpClient.get('/property/all')
+  async getAll(title?: string): Promise<Property[]> {
+    const urlParams = new URLSearchParams()
+    if (title) urlParams.append('filterString', title)
+    return await this.httpClient.get(`/property/all?${urlParams}`)
   }
 
   async getById(id: string): Promise<Property> {
@@ -34,7 +36,12 @@ export default class PropertyGateway implements IPropertyGateway {
 export class PropertyGatewayInMemory implements IPropertyGateway {
   private properties: Property[] = defaultProperties
 
-  async getAll(): Promise<Property[]> {
+  async getAll(title?: string): Promise<Property[]> {
+    if (title) {
+      return this.properties.filter((property) => {
+        return property.title.toLowerCase().includes(title.toLowerCase())
+      })
+    }
     return this.properties
   }
 

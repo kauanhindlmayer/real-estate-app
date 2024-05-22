@@ -42,10 +42,10 @@ export const usePropertiesStore = defineStore('properties', () => {
     }
   }
 
-  async function getAllProperties() {
+  async function getAllProperties(title?: string) {
     loadingStore.startLoading()
     try {
-      properties.value = await propertyGateway.getAll()
+      properties.value = await propertyGateway.getAll(title)
     } catch {
       toast.error({ message: t('properties.list.messages.errorFetchingProperties') })
     } finally {

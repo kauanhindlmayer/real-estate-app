@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import AppToolbar from '@/components/wrappers/AppToolbar.vue'
-import AppIconField from '@/components/wrappers/AppIconField.vue'
-import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import { useRouter } from 'vue-router'
 
@@ -20,41 +17,25 @@ function redirectTo(path: string) {
     </template>
 
     <template #center>
-      <div class="flex align-items-center gap-2">
-        <AppButton
-          :label="$t('baseLayout.header.links.home')"
-          text
-          plain
-          @click="redirectTo('/')"
-        />
-        <AppButton
-          :label="$t('baseLayout.header.links.about')"
-          text
-          plain
-          @click="redirectTo('/about')"
-        />
-        <AppButton
-          :label="$t('baseLayout.header.links.properties')"
-          text
-          plain
-          @click="redirectTo('/properties')"
-        />
-        <AppButton
-          :label="$t('baseLayout.header.links.blog')"
-          text
-          plain
-          @click="redirectTo('/blog')"
-        />
-      </div>
-    </template>
-
-    <template #end>
-      <AppIconField iconPosition="left">
-        <AppInputIcon>
-          <i class="pi pi-search" />
-        </AppInputIcon>
-        <AppInputText :placeholder="$t('baseLayout.header.buttons.search')" type="search" />
-      </AppIconField>
+      <AppButton :label="$t('baseLayout.header.links.home')" text plain @click="redirectTo('/')" />
+      <AppButton
+        :label="$t('baseLayout.header.links.about')"
+        text
+        plain
+        @click="redirectTo('/about')"
+      />
+      <AppButton
+        :label="$t('baseLayout.header.links.properties')"
+        text
+        plain
+        @click="redirectTo('/properties')"
+      />
+      <AppButton
+        :label="$t('baseLayout.header.links.blog')"
+        text
+        plain
+        @click="redirectTo('/blog')"
+      />
     </template>
   </AppToolbar>
 
