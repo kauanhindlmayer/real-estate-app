@@ -11,7 +11,7 @@ function redirectTo(path: string) {
 </script>
 
 <template>
-  <AppToolbar>
+  <AppToolbar class="toolbar">
     <template #start>
       <div class="page-title" @click="redirectTo('/')">Real Estate</div>
     </template>
@@ -45,6 +45,12 @@ function redirectTo(path: string) {
 </template>
 
 <style scoped>
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .page-title {
   font-size: 1.75rem;
   font-weight: 600;

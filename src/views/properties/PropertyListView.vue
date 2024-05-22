@@ -42,7 +42,7 @@ onBeforeMount(async () => {
         />
       </AppIconField>
       <AppButton
-        :label="$t('properties.list.buttons.createProperty')"
+        :label="$t('properties.list.buttons.advertise')"
         @click="redirectToPropertyCreate"
       />
     </div>
