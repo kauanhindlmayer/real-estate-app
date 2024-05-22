@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/authStore'
+import { useUserStore } from '@/stores/userStore'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 
-const authStore = useAuthStore()
+const userStore = useUserStore()
 
 const email = ref('')
 const password = ref('')
 
 function register() {
   if (!validateFields()) return
-  authStore.register(email.value, password.value)
+  userStore.register(email.value, password.value)
 }
 
 const emailRef = ref<InstanceType<typeof AppInputText> | null>(null)

@@ -7,7 +7,7 @@ import useBaseToast from '@/composables/useBaseToast'
 import type UserGateway from '@/gateways/UserGateway'
 import type User from '@/types/models/User'
 
-export const useAuthStore = defineStore('auth', () => {
+export const useUserStore = defineStore('user', () => {
   const userGateway = inject('userGateway') as UserGateway
 
   const loadingStore = useLoadingStore()
@@ -42,11 +42,18 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function logout() {
+    user.value = null
+    localStorage.removeItem('user')
+    router.push({ name: 'login' })
+  }
+
   return {
     /* State */
     user,
     /* Actions */
     register,
-    login
+    login,
+    logout
   }
 })

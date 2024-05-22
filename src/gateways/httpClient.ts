@@ -10,8 +10,8 @@ export default interface IHttpClient {
 export default class AxiosAdapter implements IHttpClient {
   baseUrl: string
 
-  constructor(params: { baseUrl: string }) {
-    this.baseUrl = params.baseUrl
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl
   }
 
   async get(url: string): Promise<any> {
