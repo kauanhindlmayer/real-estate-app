@@ -89,6 +89,7 @@ function next() {
         icon-pos="right"
         class="w-2 mt-4"
         type="button"
+        data-testid="next-button"
         @click="next"
       />
     </footer>
