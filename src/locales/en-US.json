@@ -14,9 +14,7 @@
   },
   "properties": {
     "details": {
-      "notFound": "Property not found",
-      "price": "Price",
-      "size": "Size"
+      "notFound": "Property not found"
     },
     "form": {
       "title": "Create Property",

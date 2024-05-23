@@ -48,7 +48,12 @@ onBeforeMount(async () => {
     </div>
   </header>
   <main class="property-cards-container">
-    <PropertyCard v-for="property in propertiesStore.properties" :key="property.id" :property />
+    <PropertyCard
+      v-for="property in propertiesStore.properties"
+      :key="property.id"
+      :property
+      show-footer
+    />
   </main>
 </template>
 

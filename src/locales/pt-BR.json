@@ -14,9 +14,7 @@
   },
   "properties": {
     "details": {
-      "notFound": "Propriedade não encontrada",
-      "price": "Preço",
-      "size": "Tamanho"
+      "notFound": "Propriedade não encontrada"
     },
     "form": {
       "title": "Criar Propriedade",

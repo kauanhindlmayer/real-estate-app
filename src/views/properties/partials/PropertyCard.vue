@@ -1,11 +1,7 @@
 <template>
   <AppCard>
     <template #header>
-      <img
-        :src="property.imageUrl || 'https://via.placeholder.com/300'"
-        alt="Property Image"
-        class="property-image"
-      />
+      <AppGalleria :images="[property.imageUrl]" />
     </template>
 
     <template #title>
@@ -15,49 +11,42 @@
     <template #content>
       <p>{{ property.description }}</p>
       <p>
-        <strong>{{ $t('properties.details.price') }}:</strong> ${{ property.price }}
+        <strong> {{ formatCurrency(property.price) }}</strong>
       </p>
       <p>
-        <strong>{{ $t('properties.details.size') }}:</strong> {{ property.size }}m²
+        <i class="pi pi-map-marker" />
+        {{ property.location.city }} - {{ property.location.state }}
       </p>
     </template>
 
     <template #footer>
-      <AppButton v-if="!props.hideFooter" label="View" @click="redirectToPropertyDetails" />
+      <AppButton v-if="props.showFooter" label="View" @click="redirectToPropertyDetails" />
     </template>
   </AppCard>
 </template>
 
 <script lang="ts" setup>
-import { withDefaults, computed } from 'vue'
+import { toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import AppCard from '@/components/wrappers/AppCard.vue'
+import AppGalleria from '@/components/wrappers/AppGalleria.vue'
 import Property from '@/types/models/Property'
 import AppButton from '@/components/wrappers/AppButton.vue'
+import formatCurrency from '@/utils/formatCurrency'
 
 interface IProps {
   property: Property
-  hideFooter?: boolean
+  showFooter?: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  hideFooter: false
+  showFooter: false
 })
+const { property } = toRefs(props)
 
 const router = useRouter()
-
-const property = computed(() => props.property)
 
 function redirectToPropertyDetails() {
   router.push({ name: 'property-details', params: { id: property.value.id } })
 }
 </script>
-
-<style scoped>
-.property-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 4px 4px 0 0;
-}
-</style>
