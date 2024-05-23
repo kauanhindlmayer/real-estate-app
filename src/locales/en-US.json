@@ -5,7 +5,9 @@
         "home": "Home",
         "about": "About",
         "blog": "Blog",
-        "properties": "Properties"
+        "properties": "Properties",
+        "login": "Login",
+        "guest": "Guest"
       },
       "buttons": {
         "search": "Search"

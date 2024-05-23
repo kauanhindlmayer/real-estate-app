@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/userStore'
 import AppToolbar from '@/components/wrappers/AppToolbar.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
-import { useRouter } from 'vue-router'
+import AppAvatar from '@/components/wrappers/AppAvatar.vue'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 function redirectTo(path: string) {
   router.push({ path })
@@ -35,6 +38,26 @@ function redirectTo(path: string) {
         text
         plain
         @click="redirectTo('/blog')"
+      />
+    </template>
+
+    <template #end>
+      <div v-if="userStore.isUserLoggedIn">
+        {{ userStore.user?.fullName || $t('baseLayout.header.links.guest') }}
+        <AppAvatar
+          class="ml-2"
+          :image="userStore.user?.avatar"
+          :icon="userStore.user?.avatar ? undefined : 'pi pi-user'"
+          shape="circle"
+        />
+      </div>
+      <AppButton
+        v-else
+        :label="$t('baseLayout.header.links.login')"
+        icon="pi pi-user"
+        text
+        plain
+        @click="redirectTo('/login')"
       />
     </template>
   </AppToolbar>

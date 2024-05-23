@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { inject, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useLoadingStore } from '@/stores/loadingStore'
@@ -16,6 +16,8 @@ export const useUserStore = defineStore('user', () => {
   const { t } = useI18n()
 
   const user = ref<User | null>(null)
+
+  const isUserLoggedIn = computed(() => !!user.value)
 
   async function register(email: string, password: string) {
     loadingStore.startLoading()
@@ -51,6 +53,8 @@ export const useUserStore = defineStore('user', () => {
   return {
     /* State */
     user,
+    /* Getters */
+    isUserLoggedIn,
     /* Actions */
     register,
     login,

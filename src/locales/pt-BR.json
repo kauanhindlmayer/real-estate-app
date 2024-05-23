@@ -5,7 +5,9 @@
         "home": "Início",
         "about": "Sobre",
         "blog": "Blog",
-        "properties": "Propriedades"
+        "properties": "Propriedades",
+        "login": "Entrar",
+        "guest": "Visitante"
       },
       "buttons": {
         "search": "Pesquisar"
