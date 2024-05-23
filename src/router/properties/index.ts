@@ -2,7 +2,7 @@ const PropertiesRoutes = [
   {
     path: '/properties',
     name: 'properties-list',
-    component: () => import('@/views/properties/PropertyListView.vue'),
+    component: () => import('@/views/properties/PropertyList.vue'),
     meta: {
       title: 'Properties',
       requiresAuth: true
@@ -11,7 +11,7 @@ const PropertiesRoutes = [
   {
     path: '/properties/create',
     name: 'property-create',
-    component: () => import('@/views/properties/PropertyFormView.vue'),
+    component: () => import('@/views/properties/PropertyCreate.vue'),
     meta: {
       title: 'Create Property',
       requiresAuth: true
@@ -20,7 +20,7 @@ const PropertiesRoutes = [
   {
     path: '/properties/:id',
     name: 'property-details',
-    component: () => import('@/views/properties/PropertyDetailView.vue'),
+    component: () => import('@/views/properties/PropertyDetails.vue'),
     meta: {
       title: 'Property Details',
       requiresAuth: true

@@ -11,7 +11,7 @@ const router = createRouter({
         {
           path: '',
           name: 'home',
-          component: () => import('../views/HomeView.vue'),
+          component: () => import('@/views/Home.vue'),
           meta: {
             title: 'Home'
           }
@@ -19,7 +19,7 @@ const router = createRouter({
         {
           path: '/about',
           name: 'about',
-          component: () => import('../views/AboutView.vue'),
+          component: () => import('@/views/About.vue'),
           meta: {
             title: 'About'
           }
@@ -27,7 +27,7 @@ const router = createRouter({
         {
           path: '/blog',
           name: 'blog',
-          component: () => import('../views/BlogView.vue'),
+          component: () => import('@/views/Blog.vue'),
           meta: {
             title: 'Blog'
           }
@@ -38,7 +38,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue'),
+      component: () => import('@/views/Login.vue'),
       meta: {
         title: 'Login'
       }
@@ -46,7 +46,7 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/RegisterView.vue'),
+      component: () => import('@/views/Register.vue'),
       meta: {
         title: 'Register'
       }
@@ -54,7 +54,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import('../views/NotFoundView.vue'),
+      component: () => import('@/views/NotFound.vue'),
       meta: {
         title: 'Not Found'
       }

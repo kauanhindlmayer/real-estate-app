@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
-import PropertyFormView from '@/views/properties/PropertyFormView.vue'
+import PropertyFormView from '@/views/properties/PropertyCreate.vue'
 
 describe('PropertyFormView', () => {
   let wrapper: any
