@@ -42,6 +42,7 @@ function next() {
       v-model="property.title"
       :label="$t('properties.form.fields.title.label')"
       :placeholder="$t('properties.form.fields.title.placeholder')"
+      data-testid="title-input"
       required
     />
 
@@ -50,6 +51,7 @@ function next() {
       v-model="property.description"
       :label="$t('properties.form.fields.description.label')"
       :placeholder="$t('properties.form.fields.description.placeholder')"
+      data-testid="description-input"
       required
     />
 
@@ -61,6 +63,7 @@ function next() {
       locale="en-US"
       :label="$t('properties.form.fields.price.label')"
       :placeholder="$t('properties.form.fields.price.placeholder')"
+      data-testid="price-input"
       required
     />
 
@@ -70,6 +73,7 @@ function next() {
       :label="$t('properties.form.fields.size.label')"
       :placeholder="$t('properties.form.fields.size.placeholder')"
       suffix="m²"
+      data-testid="size-input"
       required
     />
 
@@ -79,6 +83,7 @@ function next() {
       type="url"
       :label="$t('properties.form.fields.imageUrl.label')"
       :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
+      data-testid="imageUrl-input"
       required
     />
 

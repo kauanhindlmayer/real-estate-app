@@ -35,8 +35,8 @@ const items = [
 </script>
 
 <template>
-  <h1>{{ $t('properties.form.title') }}</h1>
-  <p>{{ $t('properties.form.description') }}</p>
+  <h1 data-testid="title">{{ $t('properties.form.title') }}</h1>
+  <p data-testid="description">{{ $t('properties.form.description') }}</p>
 
   <div class="form-container">
     <AppSteps v-model:active-step="active" :model="items" />

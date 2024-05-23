@@ -8,7 +8,7 @@ import formatCurrency from '@/utils/formatCurrency'
 
 describe('PropertyCard', () => {
   let wrapper: any
-  const [property] = propertiesData
+  const property = propertiesData[0]
 
   beforeEach(() => {
     wrapper = mount(PropertyCard, {
