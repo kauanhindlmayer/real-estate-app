@@ -10,8 +10,8 @@ import AppMenu from '@/components/wrappers/AppMenu.vue'
 const router = useRouter()
 const userStore = useUserStore()
 
-function redirectTo(path: string) {
-  router.push({ path })
+function redirectTo(name: string) {
+  router.push({ name })
 }
 
 const items = ref([
@@ -21,7 +21,7 @@ const items = ref([
       {
         label: 'Settings',
         icon: 'pi pi-cog',
-        command: () => redirectTo('/settings')
+        command: () => redirectTo('settings')
       },
       {
         label: 'Logout',
@@ -32,34 +32,39 @@ const items = ref([
   }
 ])
 
-const menu = ref<InstanceType<typeof AppMenu> | null>(null)
+const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 </script>
 
 <template>
   <AppToolbar class="toolbar">
     <template #start>
-      <div class="page-title" @click="redirectTo('/')">Real Estate</div>
+      <div class="page-title" @click="redirectTo('home')">Real Estate</div>
     </template>
 
     <template #center>
-      <AppButton :label="$t('baseLayout.header.links.home')" text plain @click="redirectTo('/')" />
+      <AppButton
+        :label="$t('baseLayout.header.links.home')"
+        text
+        plain
+        @click="redirectTo('home')"
+      />
       <AppButton
         :label="$t('baseLayout.header.links.about')"
         text
         plain
-        @click="redirectTo('/about')"
+        @click="redirectTo('about')"
       />
       <AppButton
         :label="$t('baseLayout.header.links.properties')"
         text
         plain
-        @click="redirectTo('/properties')"
+        @click="redirectTo('properties-list')"
       />
       <AppButton
         :label="$t('baseLayout.header.links.blog')"
         text
         plain
-        @click="redirectTo('/blog')"
+        @click="redirectTo('blog')"
       />
     </template>
 
@@ -71,9 +76,9 @@ const menu = ref<InstanceType<typeof AppMenu> | null>(null)
           style="width: 32px; height: 32px"
           aria-haspopup="true"
           aria-controls="overlay_menu"
-          @click="menu?.toggle($event)"
+          @click="menuRef?.toggle($event)"
         />
-        <AppMenu ref="menu" id="overlay_menu" :model="items" popup />
+        <AppMenu ref="menuRef" id="overlay_menu" :model="items" popup />
       </div>
       <AppButton
         v-else
@@ -81,7 +86,7 @@ const menu = ref<InstanceType<typeof AppMenu> | null>(null)
         icon="pi pi-user"
         text
         plain
-        @click="redirectTo('/login')"
+        @click="redirectTo('login')"
       />
     </template>
   </AppToolbar>
