@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import AppToolbar from '@/components/wrappers/AppToolbar.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import AppAvatar from '@/components/wrappers/AppAvatar.vue'
+import AppMenu from '@/components/wrappers/AppMenu.vue'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -11,6 +13,26 @@ const userStore = useUserStore()
 function redirectTo(path: string) {
   router.push({ path })
 }
+
+const items = ref([
+  {
+    label: 'Profile',
+    items: [
+      {
+        label: 'Settings',
+        icon: 'pi pi-cog',
+        command: () => redirectTo('/settings')
+      },
+      {
+        label: 'Logout',
+        icon: 'pi pi-sign-out',
+        command: () => userStore.logout()
+      }
+    ]
+  }
+])
+
+const menu = ref<InstanceType<typeof AppMenu> | null>(null)
 </script>
 
 <template>
@@ -42,14 +64,16 @@ function redirectTo(path: string) {
     </template>
 
     <template #end>
-      <div v-if="userStore.isUserLoggedIn">
+      <div v-if="userStore.isUserLoggedIn" class="flex align-items-center gap-2">
         {{ userStore.user?.fullName || $t('baseLayout.header.links.guest') }}
         <AppAvatar
-          class="ml-2"
           :image="userStore.user?.avatar"
-          :icon="userStore.user?.avatar ? undefined : 'pi pi-user'"
-          shape="circle"
+          style="width: 32px; height: 32px"
+          aria-haspopup="true"
+          aria-controls="overlay_menu"
+          @click="menu?.toggle($event)"
         />
+        <AppMenu ref="menu" id="overlay_menu" :model="items" popup />
       </div>
       <AppButton
         v-else

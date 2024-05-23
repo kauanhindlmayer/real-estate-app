@@ -42,6 +42,7 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   showFooter: false
 })
+
 const { property } = toRefs(props)
 
 const router = useRouter()
