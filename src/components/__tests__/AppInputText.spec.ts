@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { VueWrapper, mount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 
 describe('AppInputText', () => {
-  let wrapper: any
+  let wrapper: VueWrapper<any>
 
   beforeEach(() => {
     wrapper = mount(AppInputText, {

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { VueWrapper, mount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
 import i18n from '@/plugins/i18n'
@@ -8,7 +8,7 @@ import DetailsForm from '@/views/properties/partials/DetailsForm.vue'
 import { property as mockProperty } from '@/data/properties.json'
 
 describe('DetailsForm', () => {
-  let wrapper: any
+  let wrapper: VueWrapper
 
   beforeEach(() => {
     wrapper = mount(DetailsForm, {

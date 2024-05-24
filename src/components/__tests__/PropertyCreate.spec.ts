@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { shallowMount } from '@vue/test-utils'
+import { VueWrapper, shallowMount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
 import i18n from '@/plugins/i18n'
 import PropertyCreate from '@/views/properties/PropertyCreate.vue'
 
 describe('PropertyCreate', () => {
-  let wrapper: any
+  let wrapper: VueWrapper
 
   beforeEach(() => {
     wrapper = shallowMount(PropertyCreate, {

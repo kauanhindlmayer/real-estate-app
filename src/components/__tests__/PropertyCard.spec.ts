@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { VueWrapper, mount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
 import router from '@/router'
@@ -8,7 +8,7 @@ import { property as mockProperty } from '@/data/properties.json'
 import formatCurrency from '@/utils/formatCurrency'
 
 describe('PropertyCard', () => {
-  let wrapper: any
+  let wrapper: VueWrapper
 
   beforeEach(async () => {
     wrapper = mount(PropertyCard, {
@@ -29,7 +29,7 @@ describe('PropertyCard', () => {
     expect(wrapperHtml).toContain(formatCurrency(mockProperty.price))
   })
 
-  it('redirects to the property detail page when clicked on view button', async () => {
+  it('redirects to the property details page when clicked on view button', async () => {
     const push = vi.spyOn(router, 'push')
     await wrapper.find('[data-testid="view-button"]').trigger('click')
     expect(push).toHaveBeenCalledTimes(1)
