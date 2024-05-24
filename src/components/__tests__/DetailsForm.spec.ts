@@ -4,11 +4,10 @@ import { mount } from '@vue/test-utils'
 import PrimeVue from 'primevue/config'
 import i18n from '@/plugins/i18n'
 import DetailsForm from '@/views/properties/partials/DetailsForm.vue'
-import propertiesData from '@/data/properties.json'
+import { property as mockProperty } from '@/data/properties.json'
 
 describe('DetailsForm', () => {
   let wrapper: any
-  const property = propertiesData[0]
 
   beforeEach(() => {
     wrapper = mount(DetailsForm, {
@@ -16,7 +15,7 @@ describe('DetailsForm', () => {
         plugins: [PrimeVue, i18n]
       },
       props: {
-        modelValue: property,
+        modelValue: mockProperty,
         'onUpdate:modelValue': async (e) => await wrapper.setProps({ modelValue: e })
       }
     })
@@ -34,11 +33,11 @@ describe('DetailsForm', () => {
   })
 
   it('emits the next-step event when clicking the next button and all required fields are filled', async () => {
-    await wrapper.find('[data-testid="title-input"]').setValue(property.title)
-    await wrapper.find('[data-testid="description-input"]').setValue(property.description)
-    await wrapper.find('[data-testid="price-input"]').setValue(property.price)
-    await wrapper.find('[data-testid="size-input"]').setValue(property.size)
-    await wrapper.find('[data-testid="imageUrl-input"]').setValue(property.imageUrl)
+    await wrapper.find('[data-testid="title-input"]').setValue(mockProperty.title)
+    await wrapper.find('[data-testid="description-input"]').setValue(mockProperty.description)
+    await wrapper.find('[data-testid="price-input"]').setValue(mockProperty.price)
+    await wrapper.find('[data-testid="size-input"]').setValue(mockProperty.size)
+    await wrapper.find('[data-testid="imageUrl-input"]').setValue(mockProperty.imageUrl)
     await wrapper.find('[data-testid="next-button"]').trigger('click')
     await wrapper.vm.$nextTick()
     expect(wrapper.html()).not.toContain('Please fill all required fields')

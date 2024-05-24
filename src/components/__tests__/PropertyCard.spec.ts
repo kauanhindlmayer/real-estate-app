@@ -3,12 +3,11 @@ import { mount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
-import propertiesData from '@/data/properties.json'
+import { property as mockProperty } from '@/data/properties.json'
 import formatCurrency from '@/utils/formatCurrency'
 
 describe('PropertyCard', () => {
   let wrapper: any
-  const property = propertiesData[0]
 
   beforeEach(() => {
     wrapper = mount(PropertyCard, {
@@ -16,15 +15,15 @@ describe('PropertyCard', () => {
         plugins: [PrimeVue]
       },
       props: {
-        property
+        property: mockProperty
       }
     })
   })
 
   it("renders the property's data successfully", async () => {
     const wrapperHtml = wrapper.html()
-    expect(wrapperHtml).toContain(property.title)
-    expect(wrapperHtml).toContain(property.description)
-    expect(wrapperHtml).toContain(formatCurrency(property.price))
+    expect(wrapperHtml).toContain(mockProperty.title)
+    expect(wrapperHtml).toContain(mockProperty.description)
+    expect(wrapperHtml).toContain(formatCurrency(mockProperty.price))
   })
 })

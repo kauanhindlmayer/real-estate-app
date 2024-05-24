@@ -1,6 +1,6 @@
 import type IHttpClient from './httpClient'
 import type Property from '@/types/models/Property'
-import defaultProperties from '@/data/properties.json'
+import { properties as mockProperties } from '@/data/properties.json'
 
 interface IPropertyGateway {
   getAll(): Promise<Property[]>
@@ -34,7 +34,7 @@ export default class PropertyGateway implements IPropertyGateway {
 }
 
 export class PropertyGatewayInMemory implements IPropertyGateway {
-  private properties: Property[] = defaultProperties
+  private properties: Property[] = mockProperties
 
   async getAll(title?: string): Promise<Property[]> {
     if (title) {
