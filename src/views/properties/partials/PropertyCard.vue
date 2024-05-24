@@ -20,7 +20,12 @@
     </template>
 
     <template #footer>
-      <AppButton v-if="props.showFooter" label="View" @click="redirectToPropertyDetails" />
+      <AppButton
+        v-if="props.showFooter"
+        label="View"
+        data-testid="view-button"
+        @click="redirectToPropertyDetails"
+      />
     </template>
   </AppCard>
 </template>
