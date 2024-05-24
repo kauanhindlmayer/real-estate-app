@@ -20,13 +20,7 @@ const value = computed(() => {
 </script>
 
 <template>
-  <Galleria
-    v-bind="$attrs"
-    :value
-    :show-thumbnails="false"
-    show-item-navigators
-    show-item-navigators-on-hover
-  >
+  <Galleria v-bind="$attrs" :value>
     <template #item="slotProps">
       <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" class="image" />
     </template>

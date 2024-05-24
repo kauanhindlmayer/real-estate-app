@@ -6,7 +6,7 @@ export default class Property {
     public description: string = '',
     public price: number = 0,
     public size: number = 0,
-    public imageUrl: string = '',
+    public imageSources: string[] = [],
     public location: Location = new Location(),
     public id?: string
   ) {}

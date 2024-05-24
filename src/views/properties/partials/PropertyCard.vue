@@ -1,7 +1,14 @@
 <template>
   <AppCard>
     <template #header>
-      <AppGalleria :images="[property.imageUrl]" />
+      <AppGallery
+        :images="property.imageSources"
+        :show-thumbnails="false"
+        show-item-navigators
+        show-item-navigators-on-hover
+        show-indicators
+        circular
+      />
     </template>
 
     <template #title>
@@ -34,7 +41,7 @@
 import { toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import AppCard from '@/components/wrappers/AppCard.vue'
-import AppGalleria from '@/components/wrappers/AppGalleria.vue'
+import AppGallery from '@/components/wrappers/AppGallery.vue'
 import Property from '@/types/models/Property'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import formatCurrency from '@/utils/formatCurrency'

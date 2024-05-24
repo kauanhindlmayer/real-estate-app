@@ -5,7 +5,7 @@
     "description": "Experience luxury living with breathtaking ocean views in this stunning villa.",
     "price": 1000000,
     "size": 350,
-    "imageUrl": "https://source.unsplash.com/random",
+    "imageSources": ["https://source.unsplash.com/random/300x300/?house?sig=0"],
     "location": {
       "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
       "address": "123 Ocean Drive",
@@ -22,7 +22,11 @@
       "description": "Experience luxury living with breathtaking ocean views in this stunning villa.",
       "price": 1000000,
       "size": 350,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": [
+        "https://source.unsplash.com/random/300x300/?house?sig=11",
+        "https://source.unsplash.com/random/300x300/?house?sig=12",
+        "https://source.unsplash.com/random/300x300/?house?sig=13"
+      ],
       "location": {
         "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
         "address": "123 Ocean Drive",
@@ -38,7 +42,11 @@
       "description": "Escape to the mountains and enjoy cozy living in this beautiful mountain cabin.",
       "price": 500000,
       "size": 200,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": [
+        "https://source.unsplash.com/random/300x300/?house?sig=20",
+        "https://source.unsplash.com/random/300x300/?house?sig=21",
+        "https://source.unsplash.com/random/300x300/?house?sig=22"
+      ],
       "location": {
         "id": "1f93c9f9-855d-4440-8985-260645b5544a",
         "address": "456 Mountain Road",
@@ -54,7 +62,7 @@
       "description": "Live in the heart of the city in this sleek and stylish apartment with all amenities nearby.",
       "price": 300000,
       "size": 120,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": ["https://source.unsplash.com/random/300x300/?house?sig=30"],
       "location": {
         "id": "aae4ac87-3035-438f-8d80-c40579284e68",
         "address": "789 Downtown Blvd",
@@ -70,7 +78,7 @@
       "description": "Experience country living in this charming farmhouse with beautiful views of the countryside.",
       "price": 400000,
       "size": 180,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": ["https://source.unsplash.com/random/300x300/?house?sig=40"],
       "location": {
         "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
         "address": "123 Country Lane",
@@ -86,7 +94,7 @@
       "description": "Enjoy the sound of the waves in this charming seaside cottage with stunning ocean views.",
       "price": 600000,
       "size": 150,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": ["https://source.unsplash.com/random/300x300/?house?sig=50"],
       "location": {
         "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
         "address": "123 Beach Road",
@@ -102,7 +110,7 @@
       "description": "Experience mountain living in this cozy chalet with stunning views of the mountains.",
       "price": 700000,
       "size": 250,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": ["https://source.unsplash.com/random/300x300/?house?sig=60"],
       "location": {
         "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
         "address": "123 Mountain Drive",
@@ -118,7 +126,7 @@
       "description": "Live in style in this modern city loft with all amenities nearby.",
       "price": 800000,
       "size": 180,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": ["https://source.unsplash.com/random/300x300/?house?sig=70"],
       "location": {
         "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
         "address": "123 Loft Street",
@@ -134,7 +142,7 @@
       "description": "Relax by the lake in this charming lake house with stunning views of the water.",
       "price": 900000,
       "size": 200,
-      "imageUrl": "https://source.unsplash.com/random",
+      "imageSources": ["https://source.unsplash.com/random/300x300/?house?sig=80"],
       "location": {
         "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
         "address": "123 Lakeview Drive",
