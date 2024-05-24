@@ -12,6 +12,8 @@ const { t } = useI18n()
 
 const property = defineModel<Property>({ default: () => new Property() })
 
+const imageUrl = ref('')
+
 const titleRef = ref<InstanceType<typeof AppInputText> | null>(null)
 const descriptionRef = ref<InstanceType<typeof AppInputText> | null>(null)
 const priceRef = ref<InstanceType<typeof AppInputNumber> | null>(null)
@@ -31,6 +33,7 @@ function next() {
     toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
     return
   }
+  property.value.imageSources.push(imageUrl.value)
   emit('next-step')
 }
 </script>
@@ -79,7 +82,7 @@ function next() {
 
     <AppInputText
       ref="imageUrlRef"
-      v-model="property.imageUrl"
+      v-model="imageUrl"
       type="url"
       :label="$t('properties.form.fields.imageUrl.label')"
       :placeholder="$t('properties.form.fields.imageUrl.placeholder')"

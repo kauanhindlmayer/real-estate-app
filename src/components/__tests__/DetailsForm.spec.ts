@@ -34,7 +34,7 @@ describe('DetailsForm', () => {
     await wrapper.find('[data-testid="description-input"]').setValue(mockProperty.description)
     await wrapper.find('[data-testid="price-input"] > input').setValue(mockProperty.price)
     await wrapper.find('[data-testid="size-input"] > input').setValue(mockProperty.size)
-    await wrapper.find('[data-testid="imageUrl-input"]').setValue(mockProperty.imageUrl)
+    await wrapper.find('[data-testid="imageUrl-input"]').setValue(mockProperty.imageSources[0])
     await wrapper.find('[data-testid="next-button"]').trigger('click')
     expect(wrapper.html()).not.toContain('Please fill all required fields')
     expect(wrapper.emitted('next-step')).toBeTruthy()
