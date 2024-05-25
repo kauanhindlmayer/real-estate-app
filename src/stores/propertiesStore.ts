@@ -6,6 +6,7 @@ import { useLoadingStore } from '@/stores/loadingStore'
 import useBaseToast from '@/composables/useBaseToast'
 import type Property from '@/types/models/Property'
 import type PropertyGateway from '@/gateways/PropertyGateway'
+import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 
 export const usePropertiesStore = defineStore('properties', () => {
   const propertyGateway = inject('propertyGateway') as PropertyGateway
@@ -42,10 +43,10 @@ export const usePropertiesStore = defineStore('properties', () => {
     }
   }
 
-  async function getAllProperties(title?: string) {
+  async function getAllProperties(filters: IPropertyFilters = {}) {
     loadingStore.startLoading()
     try {
-      properties.value = await propertyGateway.getAll(title)
+      properties.value = await propertyGateway.getAll(filters)
     } catch {
       toast.error({ message: t('properties.list.messages.errorFetchingProperties') })
     } finally {

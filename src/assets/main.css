@@ -5,6 +5,8 @@ body {
 
 :root {
   --primary-color: #007bff;
+  --primary-bg-color: #ffffff;
+  --secondary-bg-color: #f8f9fa;
 }
 
 a {
