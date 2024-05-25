@@ -22,7 +22,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="flex">
+  <div class="container">
     <div :class="['sidebar', { 'sidebar-collapsed': isSidebarCollapsed }]">
       <div class="flex flex-column p-2">
         <AppIconField iconPosition="right">
@@ -76,6 +76,10 @@ onBeforeMount(async () => {
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  margin: -1.5rem;
+}
 .sidebar {
   flex: 0 0 calc(100vw / 7);
   height: calc(100vh - 64px);

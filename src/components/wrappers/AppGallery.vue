@@ -35,3 +35,10 @@ const value = computed(() => {
   border-radius: 4px 4px 0 0;
 }
 </style>
+
+<style>
+.p-galleria .p-galleria-indicators .p-galleria-indicator button {
+  height: 0.5rem !important;
+  width: 0.5rem !important;
+}
+</style>

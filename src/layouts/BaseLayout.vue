@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
+import { storeToRefs } from 'pinia'
 import AppToolbar from '@/components/wrappers/AppToolbar.vue'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import AppAvatar from '@/components/wrappers/AppAvatar.vue'
@@ -9,6 +10,7 @@ import AppMenu from '@/components/wrappers/AppMenu.vue'
 
 const router = useRouter()
 const userStore = useUserStore()
+const { user, isUserLoggedIn } = storeToRefs(userStore)
 
 function redirectTo(name: string) {
   router.push({ name })
@@ -69,10 +71,10 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
     </template>
 
     <template #end>
-      <div v-if="userStore.isUserLoggedIn" class="flex align-items-center gap-2 mr-4">
-        {{ userStore.user?.fullName || $t('baseLayout.header.links.guest') }}
+      <div v-if="isUserLoggedIn" class="flex align-items-center gap-2 mr-4">
+        {{ user.fullName }}
         <AppAvatar
-          :image="userStore.user?.avatar"
+          :image="user.avatar"
           style="width: 32px; height: 32px"
           aria-haspopup="true"
           aria-controls="overlay_menu"
@@ -92,7 +94,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
     </template>
   </AppToolbar>
 
-  <div class="content">
+  <div class="content-container">
     <router-view />
   </div>
 </template>
@@ -109,8 +111,9 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
   margin-left: 2rem;
   color: var(--primary-color);
 }
-.content {
+.content-container {
   height: calc(100vh - 64px);
   background-color: var(--secondary-bg-color);
+  padding: 1.5rem;
 }
 </style>
