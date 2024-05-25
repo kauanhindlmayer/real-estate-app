@@ -35,20 +35,24 @@ const items = [
 </script>
 
 <template>
-  <h1 data-testid="title">{{ $t('properties.form.title') }}</h1>
-  <p data-testid="description">{{ $t('properties.form.description') }}</p>
+  <div class="p-4">
+    <div class="form-container">
+      <header>
+        <h1 data-testid="title">{{ $t('properties.form.title') }}</h1>
+        <p data-testid="description">{{ $t('properties.form.description') }}</p>
+      </header>
 
-  <div class="form-container">
-    <AppSteps v-model:active-step="active" :model="items" />
+      <AppSteps v-model:active-step="active" :model="items" />
 
-    <KeepAlive>
-      <component
-        :is="items[active].component"
-        v-model="property"
-        @previous-step="previousStep"
-        @next-step="nextStep"
-      />
-    </KeepAlive>
+      <KeepAlive>
+        <component
+          :is="items[active].component"
+          v-model="property"
+          @previous-step="previousStep"
+          @next-step="nextStep"
+        />
+      </KeepAlive>
+    </div>
   </div>
 </template>
 
@@ -56,5 +60,11 @@ const items = [
 .form-container {
   max-width: 800px;
   margin: 0 auto;
+  background-color: var(--primary-bg-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 </style>

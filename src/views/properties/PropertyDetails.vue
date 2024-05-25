@@ -13,10 +13,12 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div v-if="propertiesStore.property" class="property-wrapper">
-    <PropertyCard :property="propertiesStore.property" hide-footer />
+  <div class="pt-4">
+    <div v-if="propertiesStore.property" class="property-wrapper">
+      <PropertyCard :property="propertiesStore.property" hide-footer />
+    </div>
+    <div v-else class="property-not-found-wrapper">{{ $t('properties.details.notFound') }}</div>
   </div>
-  <div v-else class="property-not-found-wrapper">{{ $t('properties.details.notFound') }}</div>
 </template>
 
 <style scoped>

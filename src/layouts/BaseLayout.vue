@@ -69,7 +69,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
     </template>
 
     <template #end>
-      <div v-if="userStore.isUserLoggedIn" class="flex align-items-center gap-2">
+      <div v-if="userStore.isUserLoggedIn" class="flex align-items-center gap-2 mr-4">
         {{ userStore.user?.fullName || $t('baseLayout.header.links.guest') }}
         <AppAvatar
           :image="userStore.user?.avatar"
@@ -83,6 +83,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
       <AppButton
         v-else
         :label="$t('baseLayout.header.links.login')"
+        class="mr-4"
         icon="pi pi-user"
         text
         plain
@@ -91,7 +92,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
     </template>
   </AppToolbar>
 
-  <div class="content-container">
+  <div class="content">
     <router-view />
   </div>
 </template>
@@ -105,9 +106,11 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 .page-title {
   font-size: 1.75rem;
   font-weight: 600;
+  margin-left: 2rem;
   color: var(--primary-color);
 }
-.content-container {
-  padding: 20px;
+.content {
+  height: calc(100vh - 64px);
+  background-color: var(--secondary-bg-color);
 }
 </style>
