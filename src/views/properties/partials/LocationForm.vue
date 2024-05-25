@@ -5,7 +5,6 @@ import { useLoadingStore } from '@/stores/loadingStore'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import useBaseToast from '@/composables/useBaseToast'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
-import AppButton from '@/components/wrappers/AppButton.vue'
 import LocationGateway from '@/gateways/LocationGateway'
 import Property from '@/types/models/Property'
 

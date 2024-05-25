@@ -7,8 +7,27 @@ body {
   --primary-color: #007bff;
   --primary-bg-color: #ffffff;
   --secondary-bg-color: #f8f9fa;
+  --primary-border-color: #dee2e6;
 }
 
 a {
   color: var(--primary-color);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d3d3d3;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
 }

@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
-import AppButton from '@/components/wrappers/AppButton.vue'
 
 const userStore = useUserStore()
 

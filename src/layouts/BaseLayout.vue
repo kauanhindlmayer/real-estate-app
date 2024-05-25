@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import { storeToRefs } from 'pinia'
 import AppToolbar from '@/components/wrappers/AppToolbar.vue'
-import AppButton from '@/components/wrappers/AppButton.vue'
 import AppAvatar from '@/components/wrappers/AppAvatar.vue'
 import AppMenu from '@/components/wrappers/AppMenu.vue'
 

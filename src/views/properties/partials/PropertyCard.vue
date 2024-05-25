@@ -43,7 +43,6 @@ import { useRouter } from 'vue-router'
 import AppCard from '@/components/wrappers/AppCard.vue'
 import AppGallery from '@/components/wrappers/AppGallery.vue'
 import Property from '@/types/models/Property'
-import AppButton from '@/components/wrappers/AppButton.vue'
 import formatCurrency from '@/utils/formatCurrency'
 
 interface IProps {

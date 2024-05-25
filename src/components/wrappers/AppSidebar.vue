@@ -23,7 +23,6 @@ const isCollapsed = defineModel()
   flex: 0 0 calc(100vw / 7);
   height: calc(100vh - 64px);
   animation: slideIn 0.5s ease;
-  padding: 1rem;
   background-color: var(--primary-bg-color);
 }
 .sidebar--collapsed {
@@ -31,14 +30,22 @@ const isCollapsed = defineModel()
 }
 .sidebar__header {
   flex: 0 0 auto;
+  padding: 0 1rem;
 }
-
 .sidebar__content {
   flex: 1 1 auto;
   overflow-y: auto;
 }
+.sidebar__content::-webkit-scrollbar {
+  width: 0;
+}
+.sidebar__content:hover::-webkit-scrollbar {
+  width: 8px;
+}
 .sidebar__footer {
   flex: 0 0 auto;
+  padding: 1rem;
+  border-top: 1px solid var(--primary-border-color);
 }
 @keyframes slideIn {
   0% {

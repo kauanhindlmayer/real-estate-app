@@ -1,5 +1,6 @@
 import type IHttpClient from './httpClient'
 import type Property from '@/types/models/Property'
+import type { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 import { properties as mockProperties } from '@/data/properties.json'
 
 interface IPropertyGateway {
@@ -14,6 +15,13 @@ export interface IPropertyFilters {
   city?: string
   minPrice?: number
   maxPrice?: number
+  minYearBuilt?: number
+  maxYearBuilt?: number
+  minSize?: number
+  maxSize?: number
+  minBedrooms?: number
+  minBathrooms?: number
+  sellerTypes?: SellerTypeEnum[]
 }
 
 export default class PropertyGateway implements IPropertyGateway {

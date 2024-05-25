@@ -4,7 +4,6 @@ import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
-import AppButton from '@/components/wrappers/AppButton.vue'
 import Property from '@/types/models/Property'
 
 const toast = useBaseToast()
