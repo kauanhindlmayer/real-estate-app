@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onBeforeMount, ref } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
 import AppSidebar from '@/components/wrappers/AppSidebar.vue'
@@ -8,6 +8,8 @@ import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import AppSkeleton from '@/components/wrappers/AppSkeleton.vue'
 import AppCheckbox from '@/components/wrappers/AppCheckbox.vue'
+import AppDropdown from '@/components/wrappers/AppDropdown.vue'
+import AppChips, { type IChip } from '@/components/wrappers/AppChips.vue'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 
@@ -26,14 +28,37 @@ async function getAllProperties() {
 }
 
 async function clearFilters() {
-  filters.value = {
-    city: '',
-    title: '',
-    minPrice: 0,
-    maxPrice: 0
-  }
+  filters.value = {}
   await getAllProperties()
 }
+
+const sortByOptions = [
+  { label: 'Price: Low to High', value: 'priceLowToHigh' },
+  { label: 'Price: High to Low', value: 'priceHighToLow' },
+  { label: 'Newest', value: 'newest' }
+]
+
+const textMap = {
+  city: 'City',
+  minPrice: 'Min Price',
+  maxPrice: 'Max Price',
+  minYearBuilt: 'Min Year Built',
+  maxYearBuilt: 'Max Year Built',
+  minSize: 'Min Size',
+  maxSize: 'Max Size',
+  minBedrooms: 'Min Bedrooms',
+  minBathrooms: 'Min Bathrooms',
+  sellerTypes: 'Seller Type'
+}
+
+type FilterKey = keyof typeof textMap
+
+const activeFilters = computed<IChip[]>(() => {
+  return Object.entries(filters.value).map(([key, value]) => ({
+    id: key,
+    text: `${textMap[key as FilterKey]}: ${value}`
+  }))
+})
 
 onBeforeMount(getAllProperties)
 </script>
@@ -222,16 +247,29 @@ onBeforeMount(getAllProperties)
     </AppSidebar>
     <div class="flex-1">
       <div class="top-bar">
-        <i class="pi pi-sliders-h" @click="toggleSidebar" style="cursor: pointer" />
-        <AppIconField iconPosition="left">
-          <AppInputIcon class="pi pi-search" />
-          <AppInputText
-            v-model="filters.title"
-            placeholder="Type the property title"
-            type="search"
-            @keyup.enter="getAllProperties"
+        <div class="flex align-items-center">
+          <i class="pi pi-sliders-h mr-4" @click="toggleSidebar" style="cursor: pointer" />
+          <AppChips v-model="activeFilters" />
+        </div>
+        <div class="flex align-items-center gap-2">
+          <AppIconField iconPosition="left">
+            <AppInputIcon class="pi pi-search" />
+            <AppInputText
+              v-model="filters.title"
+              placeholder="Type the property title"
+              type="search"
+              @keyup.enter="getAllProperties"
+            />
+          </AppIconField>
+          <AppDropdown
+            v-model="filters.sortBy"
+            :options="sortByOptions"
+            option-label="label"
+            option-value="value"
+            placeholder="Most Relevant"
+            @change="getAllProperties"
           />
-        </AppIconField>
+        </div>
       </div>
       <div class="property-list">
         <header class="mb-4">
