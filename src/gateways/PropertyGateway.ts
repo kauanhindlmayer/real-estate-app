@@ -12,6 +12,8 @@ interface IPropertyGateway {
 export interface IPropertyFilters {
   title?: string
   city?: string
+  minPrice?: number
+  maxPrice?: number
 }
 
 export default class PropertyGateway implements IPropertyGateway {
@@ -43,6 +45,9 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   private properties: Property[] = mockProperties
 
   async getAll({ title, city }: IPropertyFilters): Promise<Property[]> {
+    const randomDelay = Math.floor(Math.random() * 3000) + 1000
+    await new Promise((resolve) => setTimeout(resolve, randomDelay))
+
     if (title) {
       return this.properties.filter((property) => {
         return property.title.toLowerCase().includes(title.toLowerCase())

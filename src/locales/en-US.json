@@ -80,7 +80,7 @@
     },
     "list": {
       "title": "Properties",
-      "description": "No properties | 1 property | {count} properties",
+      "description": "No properties found | 1 property found | {count} properties found",
       "messages": {
         "errorFetchingProperties": "Error fetching properties",
         "errorFetchingProperty": "Error fetching property"

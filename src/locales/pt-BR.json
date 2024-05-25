@@ -80,7 +80,7 @@
     },
     "list": {
       "title": "Propriedades",
-      "description": "Nenhuma propriedade | 1 propriedade | {count} propriedades",
+      "description": "Nenhuma propriedade encontrada | 1 propriedade encontrada | {count} propriedades encontradas",
       "messages": {
         "errorFetchingProperties": "Erro ao buscar propriedades",
         "errorFetchingProperty": "Erro ao buscar propriedade"
