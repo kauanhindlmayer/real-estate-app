@@ -1,7 +1,7 @@
 export enum SellerTypeEnum {
-  REAL_ESTATE_AGENCY = 'REAL_ESTATE_AGENCY',
-  PRIVATE_SELLER = 'PRIVATE_SELLER',
-  DEVELOPER = 'DEVELOPER',
-  BUILDER = 'BUILDER',
-  INVESTOR = 'INVESTOR'
+  REAL_ESTATE_AGENCY = 'Real Estate Agency',
+  PRIVATE_SELLER = 'Private Seller',
+  DEVELOPER = 'Developer',
+  BUILDER = 'Builder',
+  INVESTOR = 'Investor'
 }

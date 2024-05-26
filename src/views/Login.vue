@@ -30,7 +30,7 @@ function validateFields() {
 
     <div class="right-panel">
       <form @submit.prevent="login" class="flex flex-column gap-1">
-        <h1>{{ $t('login.title') }}</h1>
+        <h1>{{ $t('common.login') }}</h1>
         <AppInputText
           ref="emailRef"
           v-model="email"

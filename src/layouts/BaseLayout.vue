@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import { storeToRefs } from 'pinia'
@@ -7,6 +8,7 @@ import AppToolbar from '@/components/wrappers/AppToolbar.vue'
 import AppAvatar from '@/components/wrappers/AppAvatar.vue'
 import AppMenu from '@/components/wrappers/AppMenu.vue'
 
+const { t } = useI18n()
 const router = useRouter()
 const userStore = useUserStore()
 const { user, isUserLoggedIn } = storeToRefs(userStore)
@@ -20,12 +22,12 @@ const items = ref([
     label: 'Profile',
     items: [
       {
-        label: 'Settings',
+        label: t('common.settings'),
         icon: 'pi pi-cog',
         command: () => redirectTo('settings')
       },
       {
-        label: 'Logout',
+        label: t('common.logout'),
         icon: 'pi pi-sign-out',
         command: () => userStore.logout()
       }
@@ -43,30 +45,15 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
     </template>
 
     <template #center>
+      <AppButton :label="$t('common.home')" text plain @click="redirectTo('home')" />
+      <AppButton :label="$t('common.about')" text plain @click="redirectTo('about')" />
       <AppButton
-        :label="$t('baseLayout.header.links.home')"
-        text
-        plain
-        @click="redirectTo('home')"
-      />
-      <AppButton
-        :label="$t('baseLayout.header.links.about')"
-        text
-        plain
-        @click="redirectTo('about')"
-      />
-      <AppButton
-        :label="$t('baseLayout.header.links.properties')"
+        :label="$t('common.properties')"
         text
         plain
         @click="redirectTo('properties-list')"
       />
-      <AppButton
-        :label="$t('baseLayout.header.links.blog')"
-        text
-        plain
-        @click="redirectTo('blog')"
-      />
+      <AppButton :label="$t('common.blog')" text plain @click="redirectTo('blog')" />
     </template>
 
     <template #end>
@@ -83,7 +70,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
       </div>
       <AppButton
         v-else
-        :label="$t('baseLayout.header.links.login')"
+        :label="$t('common.login')"
         class="mr-4"
         icon="pi pi-user"
         text

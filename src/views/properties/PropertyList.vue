@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
 import AppSidebar from '@/components/wrappers/AppSidebar.vue'
@@ -13,6 +14,7 @@ import AppChips, { type IChip } from '@/components/wrappers/AppChips.vue'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 
+const { t } = useI18n()
 const propertiesStore = usePropertiesStore()
 const { properties, propertiesCount, isLoading } = storeToRefs(propertiesStore)
 
@@ -33,12 +35,13 @@ async function clearFilters() {
 }
 
 const sortByOptions = [
-  { label: 'Price: Low to High', value: 'priceLowToHigh' },
-  { label: 'Price: High to Low', value: 'priceHighToLow' },
-  { label: 'Newest', value: 'newest' }
+  { label: t('properties.list.mostRelevant'), value: 'mostRelevant' },
+  { label: t('properties.list.priceAscending'), value: 'priceLowToHigh' },
+  { label: t('properties.list.priceDescending'), value: 'priceHighToLow' },
+  { label: t('properties.list.newest'), value: 'newest' }
 ]
 
-const textMap = {
+const filtersMap = {
   city: 'City',
   minPrice: 'Min Price',
   maxPrice: 'Max Price',
@@ -48,16 +51,25 @@ const textMap = {
   maxSize: 'Max Size',
   minBedrooms: 'Min Bedrooms',
   minBathrooms: 'Min Bathrooms',
-  sellerTypes: 'Seller Type'
+  sellerTypes: 'Seller Types',
+  hasGarage: 'Has Garage',
+  hasGarden: 'Has Garden',
+  hasPool: 'Has Pool',
+  hasElevator: 'Has Elevator',
+  hasTerrace: 'Has Terrace'
 }
 
-type FilterKey = keyof typeof textMap
+type FiltersMapKey = keyof typeof filtersMap
 
 const activeFilters = computed<IChip[]>(() => {
-  return Object.entries(filters.value).map(([key, value]) => ({
-    id: key,
-    text: `${textMap[key as FilterKey]}: ${value}`
-  }))
+  return Object.entries(filters.value)
+    .filter(([, value]) => value)
+    .map(([key, value]) => {
+      return {
+        id: key,
+        text: `${filtersMap[key as FiltersMapKey]}: ${value}`
+      }
+    })
 })
 
 onBeforeMount(getAllProperties)
@@ -73,7 +85,7 @@ onBeforeMount(getAllProperties)
             <AppInputIcon class="pi pi-map-marker" />
             <AppInputText
               v-model="filters.city"
-              placeholder="Type your city or state"
+              :placeholder="$t('properties.list.filters.location.placeholder')"
               type="search"
               @keyup.enter="getAllProperties"
             />
@@ -86,8 +98,7 @@ onBeforeMount(getAllProperties)
             <div class="field">
               <AppInputNumber
                 v-model="filters.minPrice"
-                label="From"
-                placeholder="From"
+                :placeholder="$t('properties.list.from')"
                 inputClass="w-3"
                 mode="currency"
                 currency="USD"
@@ -98,8 +109,7 @@ onBeforeMount(getAllProperties)
             <div class="field">
               <AppInputNumber
                 v-model="filters.maxPrice"
-                label="To"
-                placeholder="To"
+                :placeholder="$t('properties.list.to')"
                 inputClass="w-3"
                 mode="currency"
                 currency="USD"
@@ -116,8 +126,7 @@ onBeforeMount(getAllProperties)
             <div class="field">
               <AppInputNumber
                 v-model="filters.minYearBuilt"
-                label="From"
-                placeholder="From"
+                :placeholder="$t('properties.list.from')"
                 inputClass="w-3"
                 @change="getAllProperties"
               />
@@ -125,8 +134,7 @@ onBeforeMount(getAllProperties)
             <div class="field">
               <AppInputNumber
                 v-model="filters.maxYearBuilt"
-                label="To"
-                placeholder="To"
+                :placeholder="$t('properties.list.to')"
                 inputClass="w-3"
                 @change="getAllProperties"
               />
@@ -140,8 +148,7 @@ onBeforeMount(getAllProperties)
             <div class="field">
               <AppInputNumber
                 v-model="filters.minSize"
-                label="From"
-                placeholder="From"
+                :placeholder="$t('properties.list.from')"
                 inputClass="w-3"
                 suffix="m²"
                 @change="getAllProperties"
@@ -150,8 +157,7 @@ onBeforeMount(getAllProperties)
             <div class="field">
               <AppInputNumber
                 v-model="filters.maxSize"
-                label="To"
-                placeholder="To"
+                :placeholder="$t('properties.list.to')"
                 inputClass="w-3"
                 suffix="m²"
                 @change="getAllProperties"
@@ -165,7 +171,6 @@ onBeforeMount(getAllProperties)
           <div class="field">
             <AppInputNumber
               v-model="filters.minBedrooms"
-              label="Minimum"
               placeholder="Minimum"
               @change="getAllProperties"
             />
@@ -177,14 +182,13 @@ onBeforeMount(getAllProperties)
           <div class="field">
             <AppInputNumber
               v-model="filters.minBathrooms"
-              label="Minimum"
               placeholder="Minimum"
               @change="getAllProperties"
             />
           </div>
         </div>
 
-        <div class="seller-type-section p-3">
+        <div class="seller-type-section section-border">
           <div class="section-title">Seller Type</div>
           <div class="flex flex-column">
             <div class="flex">
@@ -234,11 +238,62 @@ onBeforeMount(getAllProperties)
             </div>
           </div>
         </div>
+
+        <div class="optionals-section p-3">
+          <div class="section-title">Optionals</div>
+          <div class="flex flex-column">
+            <div class="flex">
+              <AppCheckbox
+                v-model="filters.hasGarage"
+                inputId="has-garage"
+                name="hasGarage"
+                :value="true"
+              />
+              <label for="has-garage" class="ml-2">Has Garage</label>
+            </div>
+            <div class="flex">
+              <AppCheckbox
+                v-model="filters.hasGarden"
+                inputId="has-garden"
+                name="hasGarden"
+                :value="true"
+              />
+              <label for="has-garden" class="ml-2">Has Garden</label>
+            </div>
+            <div class="flex">
+              <AppCheckbox
+                v-model="filters.hasPool"
+                inputId="has-pool"
+                name="hasPool"
+                :value="true"
+              />
+              <label for="has-pool" class="ml-2">Has Pool</label>
+            </div>
+            <div class="flex">
+              <AppCheckbox
+                v-model="filters.hasElevator"
+                inputId="has-elevator"
+                name="hasElevator"
+                :value="true"
+              />
+              <label for="has-elevator" class="ml-2">Has Elevator</label>
+            </div>
+            <div class="flex">
+              <AppCheckbox
+                v-model="filters.hasTerrace"
+                inputId="has-terrace"
+                name="hasTerrace"
+                :value="true"
+              />
+              <label for="has-terrace" class="ml-2">Has Terrace</label>
+            </div>
+          </div>
+        </div>
       </template>
 
       <template #footer>
         <AppButton
-          label="Clear filters"
+          :label="$t('properties.list.filters.clearFilters')"
           severity="secondary"
           class="w-full"
           @click="clearFilters"
@@ -273,7 +328,7 @@ onBeforeMount(getAllProperties)
       </div>
       <div class="property-list">
         <header class="mb-4">
-          <h2 class="mb-1">{{ $t('properties.list.title') }}</h2>
+          <h2 class="mb-1">{{ $t('common.properties') }}</h2>
           <p class="m-0">{{ $t('properties.list.description', { count: propertiesCount }) }}</p>
         </header>
         <div v-if="isLoading" class="property-list__cards">

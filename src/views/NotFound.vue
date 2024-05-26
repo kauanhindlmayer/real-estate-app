@@ -12,7 +12,7 @@ function redirectToHome() {
   <div class="not-found-container">
     <div class="not-found-container__content">
       <h1>404</h1>
-      <h2>{{ $t('notFound.title') }}</h2>
+      <h2>{{ $t('common.notFound') }}</h2>
       <p>{{ $t('notFound.description') }}</p>
       <AppButton label="Go to Homepage" @click="redirectToHome" />
     </div>

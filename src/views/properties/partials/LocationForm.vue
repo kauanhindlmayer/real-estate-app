@@ -98,14 +98,14 @@ function validateFields() {
 
     <footer>
       <AppButton
-        :label="$t('properties.form.buttons.previous')"
+        :label="$t('common.buttons.previous')"
         icon="pi pi-arrow-left"
         class="w-2 mt-4"
         type="button"
         @click="$emit('previous-step')"
       />
       <AppButton
-        :label="$t('properties.form.buttons.save')"
+        :label="$t('common.buttons.save')"
         icon="pi pi-check"
         class="w-2 mt-4"
         type="submit"

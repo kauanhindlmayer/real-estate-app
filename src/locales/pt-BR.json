@@ -1,26 +1,29 @@
 {
-  "baseLayout": {
-    "header": {
-      "links": {
-        "home": "Início",
-        "about": "Sobre",
-        "blog": "Blog",
-        "properties": "Propriedades",
-        "login": "Entrar",
-        "guest": "Visitante"
-      },
-      "buttons": {
-        "search": "Pesquisar"
-      }
+  "common": {
+    "properties": "Propriedades",
+    "login": "Entrar",
+    "register": "Registrar",
+    "logout": "Sair",
+    "settings": "Configurações",
+    "home": "Início",
+    "about": "Sobre",
+    "blog": "Blog",
+    "notFound": "Não Encontrado",
+    "buttons": {
+      "previous": "Anterior",
+      "next": "Próximo",
+      "search": "Buscar",
+      "save": "Salvar"
+    },
+    "messages": {
+      "errorFetchingData": "Erro ao buscar dados"
     }
   },
   "properties": {
-    "details": {
-      "notFound": "Propriedade não encontrada"
-    },
+    "propertyNotFound": "Propriedade não encontrada",
     "form": {
       "title": "Criar Propriedade",
-      "description": "Preencha os detalhes para adicionar uma nova propriedade às suas listagens",
+      "description": "Preencha os detalhes para adicionar uma nova propriedade aos seus anúncios",
       "details": "Detalhes",
       "location": "Localização",
       "fields": {
@@ -45,8 +48,8 @@
           "placeholder": "URL da Imagem"
         },
         "zipCode": {
-          "label": "Código Postal",
-          "placeholder": "Código Postal"
+          "label": "CEP",
+          "placeholder": "CEP"
         },
         "address": {
           "label": "Endereço",
@@ -65,45 +68,68 @@
           "placeholder": "País"
         }
       },
-      "buttons": {
-        "previous": "Anterior",
-        "next": "Próximo",
-        "save": "Salvar"
-      },
       "messages": {
         "propertyCreated": "Propriedade criada com sucesso!",
         "locationFound": "Localização encontrada com sucesso!",
         "pleaseFillAllRequiredFields": "Por favor, preencha todos os campos obrigatórios",
         "locationNotFound": "Localização não encontrada",
-        "errorSavingProperty": "Erro ao salvar a propriedade"
+        "errorSavingProperty": "Erro ao salvar propriedade"
       }
     },
     "list": {
-      "title": "Propriedades",
       "description": "Nenhuma propriedade encontrada | 1 propriedade encontrada | {count} propriedades encontradas",
+      "mostRelevant": "Mais relevante",
+      "priceAscending": "Preço: Menor para Maior",
+      "priceDescending": "Preço: Maior para Menor",
+      "newest": "Mais Novo",
+      "from": "de",
+      "to": "para",
+      "filters": {
+        "location": {
+          "label": "Localização",
+          "placeholder": "Digite sua cidade ou estado"
+        },
+        "priceRange": {
+          "label": "Faixa de Preço"
+        },
+        "yearBuilt": {
+          "label": "Ano de Construção"
+        },
+        "size": {
+          "label": "Tamanho (m²)"
+        },
+        "bedrooms": {
+          "label": "Quartos"
+        },
+        "bathrooms": {
+          "label": "Banheiros"
+        },
+        "sellerType": {
+          "label": "Tipo de Vendedor",
+          "realEstateAgency": "Agência Imobiliária",
+          "privateSeller": "Vendedor Particular",
+          "developer": "Desenvolvedor",
+          "builder": "Construtor",
+          "investor": "Investidor"
+        },
+        "clearFilters": "Limpar Filtros"
+      },
       "messages": {
         "errorFetchingProperties": "Erro ao buscar propriedades",
         "errorFetchingProperty": "Erro ao buscar propriedade"
-      },
-      "buttons": {
-        "advertise": "Anunciar"
       }
     }
   },
   "about": {
-    "title": "Sobre",
     "description": "Bem-vindo à página sobre"
   },
   "blog": {
-    "title": "Blog",
-    "description": "Bem-vindo à página do blog"
+    "description": "Bem-vindo à página de blog"
   },
   "home": {
-    "title": "Início",
     "description": "Bem-vindo à página inicial"
   },
   "login": {
-    "title": "Entrar",
     "fields": {
       "email": {
         "label": "Email",
@@ -113,21 +139,16 @@
         "label": "Senha",
         "placeholder": "Senha"
       }
-    },
-    "buttons": {
-      "login": "Entrar"
     },
     "messages": {
       "invalidCredentials": "Credenciais inválidas"
     },
-    "dontHaveAccount": "Não tem uma conta?"
+    "dontHaveAccount": "Não possui uma conta?"
   },
   "notFound": {
-    "title": "Não Encontrado",
-    "description": "A página que você está procurando não existe"
+    "description": "A página que você procura não existe"
   },
   "register": {
-    "title": "Registrar",
     "fields": {
       "email": {
         "label": "Email",
@@ -138,13 +159,10 @@
         "placeholder": "Senha"
       }
     },
-    "buttons": {
-      "register": "Registrar"
-    },
-    "alreadyHaveAccount": "Já tem uma conta?",
+    "alreadyHaveAccount": "Já possui uma conta?",
     "messages": {
       "userRegistered": "Usuário registrado com sucesso!",
-      "errorRegisteringUser": "Erro ao registrar o usuário"
+      "errorRegisteringUser": "Erro ao registrar usuário"
     }
   }
 }

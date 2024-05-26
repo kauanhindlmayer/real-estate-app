@@ -91,7 +91,7 @@ function next() {
 
     <footer>
       <AppButton
-        :label="$t('properties.form.buttons.next')"
+        :label="$t('common.buttons.next')"
         icon="pi pi-arrow-right"
         icon-pos="right"
         class="w-2 mt-4"
