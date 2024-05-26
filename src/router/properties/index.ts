@@ -4,17 +4,15 @@ const PropertiesRoutes = [
     name: 'properties-list',
     component: () => import('@/views/properties/PropertyList.vue'),
     meta: {
-      title: 'Properties',
-      requiresAuth: true
+      title: 'Properties'
     }
   },
   {
-    path: '/properties/create',
-    name: 'property-create',
+    path: '/properties/advertise',
+    name: 'property-advertise',
     component: () => import('@/views/properties/PropertyCreate.vue'),
     meta: {
-      title: 'Create Property',
-      requiresAuth: true
+      title: 'Advertise Property'
     }
   },
   {
@@ -22,8 +20,7 @@ const PropertiesRoutes = [
     name: 'property-details',
     component: () => import('@/views/properties/PropertyDetails.vue'),
     meta: {
-      title: 'Property Details',
-      requiresAuth: true
+      title: 'Property Details'
     }
   }
 ]

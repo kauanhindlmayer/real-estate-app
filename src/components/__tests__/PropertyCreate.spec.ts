@@ -23,6 +23,6 @@ describe('PropertyCreate', () => {
   it('renders the page title with the correct text', async () => {
     const title = await wrapper.find('[data-testid="title"]')
     expect(title.exists()).toBe(true)
-    expect(title.text()).toBe('Create Property')
+    expect(title.text()).toBe('Fill in the property details')
   })
 })

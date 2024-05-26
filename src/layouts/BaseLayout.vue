@@ -56,7 +56,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
         :label="$t('common.advertise')"
         text
         plain
-        @click="redirectTo('property-create')"
+        @click="redirectTo('property-advertise')"
       />
       <AppButton :label="$t('common.help')" text plain @click="redirectTo('help')" />
     </template>

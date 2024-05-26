@@ -14,8 +14,8 @@ function selectPropertyType(type: string) {
   selectedPropertyType.value = type
 }
 
-function redirectToPropertyCreate() {
-  router.push({ name: 'property-create' })
+function redirectToPropertyAdvertise() {
+  router.push({ name: 'property-advertise' })
 }
 
 function redirectToPropertyList() {
@@ -46,7 +46,7 @@ function redirectToPropertyList() {
           >
             {{ $t('common.apartments') }}
           </div>
-          <div class="property-types__option" @click="redirectToPropertyCreate">
+          <div class="property-types__option" @click="redirectToPropertyAdvertise">
             {{ $t('home.wantToSell') }}
           </div>
         </div>
