@@ -1,16 +1,11 @@
 <script lang="ts" setup>
-export interface IChip {
-  id: string
-  text: string
-}
-
-const chips = defineModel<IChip[]>()
+const chips = defineModel<string[]>()
 </script>
 
 <template>
   <div class="chips-container">
-    <div v-for="chip in chips" :key="chip.id" class="chips-container__chip">
-      <span>{{ chip.text }}</span>
+    <div v-for="(chip, index) in chips" :key="index" class="chips-container__chip">
+      <span>{{ chip }}</span>
     </div>
   </div>
 </template>

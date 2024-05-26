@@ -81,7 +81,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
   </AppToolbar>
 
   <div class="content-container">
-    <router-view />
+    <RouterView />
   </div>
 </template>
 

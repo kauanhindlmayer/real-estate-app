@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useLoadingStore } from '@/stores/loadingStore'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import useBaseToast from '@/composables/useBaseToast'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
@@ -11,16 +10,16 @@ import Property from '@/types/models/Property'
 const locationGateway = inject('locationGateway') as LocationGateway
 
 const toast = useBaseToast()
-const loadingStore = useLoadingStore()
 const propertiesStore = usePropertiesStore()
 const { t } = useI18n()
 
 defineEmits<{ (event: 'previous-step'): void }>()
 
 const property = defineModel<Property>({ default: () => new Property() })
+const isLoading = ref(false)
 
 async function getLocationByZipCode() {
-  loadingStore.startLoading()
+  isLoading.value = true
   try {
     const { zipCode } = property.value.location
     property.value.location = await locationGateway.getByZipCode(zipCode)
@@ -28,7 +27,7 @@ async function getLocationByZipCode() {
   } catch {
     toast.error({ message: t('properties.form.messages.locationNotFound') })
   } finally {
-    loadingStore.stopLoading()
+    isLoading.value = false
   }
 }
 
@@ -108,6 +107,7 @@ function validateFields() {
         :label="$t('common.buttons.save')"
         icon="pi pi-check"
         class="w-2 mt-4"
+        :loading="isLoading"
         type="submit"
       />
     </footer>

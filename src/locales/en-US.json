@@ -85,6 +85,21 @@
       "from": "from",
       "to": "to",
       "filters": {
+        "city": "City",
+        "minPrice": "Min Price",
+        "maxPrice": "Max Price",
+        "minYearBuilt": "Min Year Built",
+        "maxYearBuilt": "Max Year Built",
+        "minSize": "Min Size",
+        "maxSize": "Max Size",
+        "minBedrooms": "Min Bedrooms",
+        "minBathrooms": "Min Bathrooms",
+        "sellerTypes": "Seller Types",
+        "hasGarage": "Has Garage",
+        "hasGarden": "Has Garden",
+        "hasPool": "Has Pool",
+        "hasElevator": "Has Elevator",
+        "hasTerrace": "Has Terrace",
         "location": {
           "label": "Location",
           "placeholder": "Type your city or state"

@@ -9,7 +9,7 @@ import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import AppSkeleton from '@/components/wrappers/AppSkeleton.vue'
 import AppBreadcrumb from '@/components/wrappers/AppBreadcrumb.vue'
-import AppChips, { type IChip } from '@/components/wrappers/AppChips.vue'
+import AppChips from '@/components/wrappers/AppChips.vue'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 
@@ -45,35 +45,10 @@ const sortByOptions = [
   { label: t('properties.list.newest'), value: 'newest' }
 ]
 
-const filtersMap = {
-  city: 'City',
-  minPrice: 'Min Price',
-  maxPrice: 'Max Price',
-  minYearBuilt: 'Min Year Built',
-  maxYearBuilt: 'Max Year Built',
-  minSize: 'Min Size',
-  maxSize: 'Max Size',
-  minBedrooms: 'Min Bedrooms',
-  minBathrooms: 'Min Bathrooms',
-  sellerTypes: 'Seller Types',
-  hasGarage: 'Has Garage',
-  hasGarden: 'Has Garden',
-  hasPool: 'Has Pool',
-  hasElevator: 'Has Elevator',
-  hasTerrace: 'Has Terrace'
-}
-
-type FiltersMapKey = keyof typeof filtersMap
-
-const activeFilters = computed<IChip[]>(() => {
+const activeFilters = computed<string[]>(() => {
   return Object.entries(filters.value)
     .filter(([, value]) => value)
-    .map(([key, value]) => {
-      return {
-        id: key,
-        text: `${filtersMap[key as FiltersMapKey]}: ${value}`
-      }
-    })
+    .map(([key, value]) => `${t(`properties.list.filters.${key}`)}: ${value}`)
 })
 
 onBeforeMount(getAllProperties)
@@ -83,8 +58,8 @@ onBeforeMount(getAllProperties)
   <div class="flex -m-4">
     <AppSidebar v-model="isSidebarCollapsed">
       <template #default>
-        <div class="location-section section-border">
-          <div class="section-title">Location</div>
+        <div class="section">
+          <div class="section__title">Location</div>
           <AppIconField iconPosition="right">
             <AppInputIcon class="pi pi-map-marker" />
             <AppInputText
@@ -96,8 +71,8 @@ onBeforeMount(getAllProperties)
           </AppIconField>
         </div>
 
-        <div class="price-section section-border">
-          <div class="section-title">Price Range</div>
+        <div class="section">
+          <div class="section__title">Price Range</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -124,8 +99,8 @@ onBeforeMount(getAllProperties)
           </div>
         </div>
 
-        <div class="year-built-section section-border">
-          <div class="section-title">Year Built</div>
+        <div class="section">
+          <div class="section__title">Year Built</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -146,8 +121,8 @@ onBeforeMount(getAllProperties)
           </div>
         </div>
 
-        <div class="size-section section-border">
-          <div class="section-title">Size (m²)</div>
+        <div class="section">
+          <div class="section__title">Size (m²)</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -170,8 +145,8 @@ onBeforeMount(getAllProperties)
           </div>
         </div>
 
-        <div class="bedrooms-section section-border">
-          <div class="section-title">Bedrooms</div>
+        <div class="section">
+          <div class="section__title">Bedrooms</div>
           <div class="field">
             <AppInputNumber
               v-model="filters.minBedrooms"
@@ -181,8 +156,8 @@ onBeforeMount(getAllProperties)
           </div>
         </div>
 
-        <div class="bathrooms-section section-border">
-          <div class="section-title">Bathrooms</div>
+        <div class="section">
+          <div class="section__title">Bathrooms</div>
           <div class="field">
             <AppInputNumber
               v-model="filters.minBathrooms"
@@ -192,8 +167,8 @@ onBeforeMount(getAllProperties)
           </div>
         </div>
 
-        <div class="seller-type-section section-border">
-          <div class="section-title">Seller Type</div>
+        <div class="section">
+          <div class="section__title">Seller Type</div>
           <div class="flex flex-column">
             <div class="flex">
               <AppCheckbox
@@ -243,8 +218,8 @@ onBeforeMount(getAllProperties)
           </div>
         </div>
 
-        <div class="optionals-section p-3">
-          <div class="section-title">Optionals</div>
+        <div class="p-3">
+          <div class="section__title">Optionals</div>
           <div class="flex flex-column">
             <div class="flex">
               <AppCheckbox
@@ -349,13 +324,13 @@ onBeforeMount(getAllProperties)
 </template>
 
 <style scoped>
-.section-title {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-.section-border {
+.section {
   padding: 1rem;
   border-bottom: 1px solid var(--primary-border-color);
+}
+.section__title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 .top-bar {
   display: flex;

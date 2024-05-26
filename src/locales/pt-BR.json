@@ -85,6 +85,21 @@
       "from": "de",
       "to": "para",
       "filters": {
+        "city": "Cidade",
+        "minPrice": "Preço Mínimo",
+        "maxPrice": "Preço Máximo",
+        "minYearBuilt": "Ano de Construção Mínimo",
+        "maxYearBuilt": "Ano de Construção Máximo",
+        "minSize": "Tamanho Mínimo",
+        "maxSize": "Tamanho Máximo",
+        "minBedrooms": "Mínimo de Quartos",
+        "minBathrooms": "Mínimo de Banheiros",
+        "sellerTypes": "Tipos de Vendedor",
+        "hasGarage": "Possui Garagem",
+        "hasGarden": "Possui Jardim",
+        "hasPool": "Possui Piscina",
+        "hasElevator": "Possui Elevador",
+        "hasTerrace": "Possui Terraço",
         "location": {
           "label": "Localização",
           "placeholder": "Digite sua cidade ou estado"

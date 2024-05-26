@@ -61,7 +61,12 @@ function validateFields() {
           :label="$t('register.fields.passwordConfirmation.label')"
           required
         />
-        <AppButton :label="$t('common.register')" type="submit" class="mt-2" />
+        <AppButton
+          :label="$t('common.register')"
+          type="submit"
+          class="mt-2"
+          :loading="userStore.isLoading"
+        />
         <p>
           {{ $t('register.alreadyHaveAccount') }}
           <RouterLink to="/login">{{ $t('common.login') }}</RouterLink>
