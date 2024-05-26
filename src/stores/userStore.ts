@@ -6,6 +6,7 @@ import { useLoadingStore } from '@/stores/loadingStore'
 import useBaseToast from '@/composables/useBaseToast'
 import User from '@/types/models/User'
 import type UserGateway from '@/gateways/UserGateway'
+import type { IUserData } from '@/gateways/UserGateway'
 
 export const useUserStore = defineStore('user', () => {
   const userGateway = inject('userGateway') as UserGateway
@@ -19,10 +20,10 @@ export const useUserStore = defineStore('user', () => {
 
   const isUserLoggedIn = computed(() => Boolean(user.value.id))
 
-  async function register(email: string, password: string) {
+  async function register(userData: IUserData) {
     loadingStore.startLoading()
     try {
-      await userGateway.register(email, password)
+      await userGateway.register(userData)
       router.push({ name: 'home' })
     } catch {
       toast.error({ message: t('login.messages.invalidCredentials') })

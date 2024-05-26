@@ -8,8 +8,7 @@ import AppIconField from '@/components/wrappers/AppIconField.vue'
 import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import AppSkeleton from '@/components/wrappers/AppSkeleton.vue'
-import AppCheckbox from '@/components/wrappers/AppCheckbox.vue'
-import AppDropdown from '@/components/wrappers/AppDropdown.vue'
+import AppBreadcrumb from '@/components/wrappers/AppBreadcrumb.vue'
 import AppChips, { type IChip } from '@/components/wrappers/AppChips.vue'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
@@ -33,6 +32,11 @@ async function clearFilters() {
   filters.value = {}
   await getAllProperties()
 }
+
+const breadcrumbItems = [
+  { label: t('common.home'), to: { name: 'home' } },
+  { label: t('common.properties') }
+]
 
 const sortByOptions = [
   { label: t('properties.list.mostRelevant'), value: 'mostRelevant' },
@@ -296,6 +300,7 @@ onBeforeMount(getAllProperties)
           :label="$t('properties.list.filters.clearFilters')"
           severity="secondary"
           class="w-full"
+          :loading="isLoading"
           @click="clearFilters"
         />
       </template>
@@ -328,6 +333,7 @@ onBeforeMount(getAllProperties)
       </div>
       <div class="property-list">
         <header class="mb-4">
+          <AppBreadcrumb :model="breadcrumbItems" />
           <h2 class="mb-1">{{ $t('common.properties') }}</h2>
           <p class="m-0">{{ $t('properties.list.description', { count: propertiesCount }) }}</p>
         </header>

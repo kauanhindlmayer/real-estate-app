@@ -2,22 +2,30 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
+import AppInputPassword from '@/components/wrappers/AppInputPassword.vue'
+import type { IUserData } from '@/gateways/UserGateway'
 
 const userStore = useUserStore()
 
-const email = ref('')
-const password = ref('')
+const signupForm = ref<IUserData>({
+  fullName: '',
+  email: '',
+  password: '',
+  passwordConfirmation: ''
+})
 
 function register() {
   if (!validateFields()) return
-  userStore.register(email.value, password.value)
+  userStore.register(signupForm.value)
 }
 
+const fullNameRef = ref<InstanceType<typeof AppInputText> | null>(null)
 const emailRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const passwordRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const passwordRef = ref<InstanceType<typeof AppInputPassword> | null>(null)
+const passwordConfirmationRef = ref<InstanceType<typeof AppInputPassword> | null>(null)
 
 function validateFields() {
-  const fieldsToValidate = [emailRef, passwordRef]
+  const fieldsToValidate = [fullNameRef, emailRef, passwordRef, passwordConfirmationRef]
   const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
   return validationResults.every((valid) => valid)
 }
@@ -29,21 +37,34 @@ function validateFields() {
       <form class="flex flex-column gap-1" @submit.prevent="register">
         <h1>{{ $t('common.register') }}</h1>
         <AppInputText
-          ref="emailRef"
-          v-model="email"
-          :label="$t('register.fields.email.label')"
+          ref="fullNameRef"
+          v-model="signupForm.fullName"
+          :label="$t('register.fields.fullName.label')"
           required
         />
         <AppInputText
+          ref="emailRef"
+          v-model="signupForm.email"
+          :label="$t('register.fields.email.label')"
+          required
+        />
+        <AppInputPassword
           ref="passwordRef"
-          v-model="password"
+          v-model="signupForm.password"
           :label="$t('register.fields.password.label')"
           required
         />
-        <AppButton :label="$t('register.buttons.register')" type="submit" class="mt-2" />
+        <AppInputPassword
+          ref="passwordConfirmationRef"
+          v-model="signupForm.passwordConfirmation"
+          :password="signupForm.password"
+          :label="$t('register.fields.passwordConfirmation.label')"
+          required
+        />
+        <AppButton :label="$t('common.register')" type="submit" class="mt-2" />
         <p>
           {{ $t('register.alreadyHaveAccount') }}
-          <RouterLink to="/login">{{ $t('login.title') }}</RouterLink>
+          <RouterLink to="/login">{{ $t('common.login') }}</RouterLink>
         </p>
       </form>
     </div>

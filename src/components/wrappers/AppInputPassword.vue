@@ -6,11 +6,13 @@ import { useUid } from '@/composables/useUid'
 interface IProps {
   label?: string
   required?: boolean
+  password?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   label: '',
-  required: false
+  required: false,
+  password: ''
 })
 
 const modelValue = defineModel<String>()
@@ -20,6 +22,10 @@ const uid = useUid()
 function isValid(): boolean {
   if (props.required && !modelValue.value) {
     errorMessage.value = 'This field is required'
+    return false
+  }
+  if (props.password && modelValue.value !== props.password) {
+    errorMessage.value = 'Passwords do not match'
     return false
   }
   errorMessage.value = ''

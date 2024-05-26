@@ -44,10 +44,10 @@ function validateFields() {
           toggle-mask
           required
         />
-        <AppButton label="Login" type="submit" class="mt-2" />
+        <AppButton :label="$t('common.login')" type="submit" class="mt-2" />
         <p>
           {{ $t('login.dontHaveAccount') }}
-          <RouterLink to="/register">{{ $t('register.title') }}</RouterLink>
+          <RouterLink to="/register">{{ $t('common.register') }}</RouterLink>
         </p>
       </form>
     </div>

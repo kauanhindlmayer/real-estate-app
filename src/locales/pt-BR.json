@@ -150,6 +150,10 @@
   },
   "register": {
     "fields": {
+      "fullName": {
+        "label": "Nome Completo",
+        "placeholder": "Nome Completo"
+      },
       "email": {
         "label": "Email",
         "placeholder": "Email"
@@ -157,6 +161,10 @@
       "password": {
         "label": "Senha",
         "placeholder": "Senha"
+      },
+      "passwordConfirmation": {
+        "label": "Confirmação de Senha",
+        "placeholder": "Confirmação de Senha"
       }
     },
     "alreadyHaveAccount": "Já possui uma conta?",
