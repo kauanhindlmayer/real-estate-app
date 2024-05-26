@@ -41,7 +41,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 <template>
   <AppToolbar class="toolbar">
     <template #start>
-      <div class="page-title" @click="redirectTo('home')">Real Estate</div>
+      <div class="toolbar__title" @click="redirectTo('home')">Real Estate</div>
     </template>
 
     <template #center>
@@ -57,10 +57,10 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
     </template>
 
     <template #end>
-      <div v-if="isUserLoggedIn" class="flex align-items-center gap-2 mr-4">
+      <div v-if="isUserLoggedIn" class="flex align-items-center gap-2 toolbar__menu">
         {{ user.fullName }}
         <AppAvatar
-          :image="user.avatar"
+          :image="user.avatarUrl"
           style="width: 32px; height: 32px"
           aria-haspopup="true"
           aria-controls="overlay_menu"
@@ -71,7 +71,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
       <AppButton
         v-else
         :label="$t('common.login')"
-        class="mr-4"
+        class="toolbar__menu"
         icon="pi pi-user"
         text
         plain
@@ -91,15 +91,19 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
   top: 0;
   z-index: 1000;
 }
-.page-title {
+.toolbar__title {
   font-size: 1.75rem;
   font-weight: 600;
-  margin-left: 2rem;
+  margin-left: 1.75rem;
   color: var(--primary-color);
+}
+.toolbar__menu {
+  margin-right: 1.75rem;
 }
 .content-container {
   height: calc(100vh - 64px);
   background-color: var(--secondary-bg-color);
   padding: 1.5rem;
+  overflow-y: auto;
 }
 </style>

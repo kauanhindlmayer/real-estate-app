@@ -4,19 +4,19 @@ import Card from 'primevue/card'
 
 <template>
   <Card>
-    <template #header>
+    <template #header v-if="$slots.header">
       <slot name="header" />
     </template>
-    <template #title>
+    <template #title v-if="$slots.title">
       <slot name="title" />
     </template>
-    <template #subtitle>
+    <template #subtitle v-if="$slots.subtitle">
       <slot name="subtitle" />
     </template>
-    <template #content>
+    <template #content v-if="$slots.content">
       <slot name="content" />
     </template>
-    <template #footer>
+    <template #footer v-if="$slots.footer">
       <slot name="footer" />
     </template>
   </Card>

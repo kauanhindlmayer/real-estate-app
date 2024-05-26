@@ -9,6 +9,8 @@
     "about": "Sobre",
     "blog": "Blog",
     "notFound": "Não Encontrado",
+    "houses": "Houses",
+    "apartments": "Apartments",
     "buttons": {
       "previous": "Anterior",
       "next": "Próximo",
@@ -128,7 +130,8 @@
     "description": "Bem-vindo à página de blog"
   },
   "home": {
-    "description": "Bem-vindo à página inicial"
+    "seeOffers": "Ver Ofertas ({count})",
+    "wantToSell": "Quer vender seu imóvel?"
   },
   "login": {
     "fields": {
