@@ -12,7 +12,7 @@ interface IPropertyGateway {
 
 export interface IPropertyFilters {
   title?: string
-  city?: string
+  location?: string
   minPrice?: number
   maxPrice?: number
   minYearBuilt?: number
@@ -29,10 +29,19 @@ export interface IPropertyFilters {
 export default class PropertyGateway implements IPropertyGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
-  async getAll({ title, city }: IPropertyFilters): Promise<Property[]> {
+  async getAll(filters: IPropertyFilters): Promise<Property[]> {
     const urlParams = new URLSearchParams()
-    if (title) urlParams.append('filterString', title)
-    if (city) urlParams.append('filterString', city)
+
+    for (const key in filters) {
+      const value = filters[key as keyof IPropertyFilters]
+      if (!value) continue
+      if (Array.isArray(value)) {
+        value.forEach((item: string) => urlParams.append(key, item))
+      } else {
+        urlParams.append(key, value as string)
+      }
+    }
+
     return await this.httpClient.get(`/property/all?${urlParams}`)
   }
 
@@ -54,7 +63,7 @@ export default class PropertyGateway implements IPropertyGateway {
 export class PropertyGatewayInMemory implements IPropertyGateway {
   private properties: Property[] = mockProperties
 
-  async getAll({ title, city }: IPropertyFilters): Promise<Property[]> {
+  async getAll({ title, location }: IPropertyFilters): Promise<Property[]> {
     const randomDelay = Math.floor(Math.random() * 3000) + 1000
     await new Promise((resolve) => setTimeout(resolve, randomDelay))
 
@@ -63,11 +72,11 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
         return property.title.toLowerCase().includes(title.toLowerCase())
       })
     }
-    if (city) {
+    if (location) {
       return this.properties.filter((property) => {
         return (
-          property.location.city.toLowerCase().includes(city.toLowerCase()) ||
-          property.location.state.toLowerCase().includes(city.toLowerCase())
+          property.location.city.toLowerCase().includes(location.toLowerCase()) ||
+          property.location.state.toLowerCase().includes(location.toLowerCase())
         )
       })
     }

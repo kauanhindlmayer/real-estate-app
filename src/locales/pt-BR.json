@@ -85,57 +85,34 @@
       "from": "de",
       "to": "para",
       "filters": {
-        "city": "Cidade",
+        "location": "Localização",
+        "locationPlaceholder": "Digite sua cidade ou estado",
+        "titlePlaceholder": "Digite o título do imóvel",
         "minPrice": "Preço Mínimo",
         "maxPrice": "Preço Máximo",
         "minYearBuilt": "Ano de Construção Mínimo",
         "maxYearBuilt": "Ano de Construção Máximo",
         "minSize": "Tamanho Mínimo",
         "maxSize": "Tamanho Máximo",
-        "minBedrooms": "Mínimo de Quartos",
-        "minBathrooms": "Mínimo de Banheiros",
+        "minBedrooms": "Quartos Mínimos",
+        "minBathrooms": "Banheiros Mínimos",
+        "priceRange": "Faixa de Preço",
+        "yearBuilt": "Ano de Construção",
+        "size": "Tamanho (m²)",
+        "bedrooms": "Quartos",
+        "bathrooms": "Banheiros",
         "sellerTypes": "Tipos de Vendedor",
+        "realEstateAgency": "Imobiliária",
+        "privateSeller": "Vendedor Particular",
+        "developer": "Incorporadora",
+        "builder": "Construtora",
+        "investor": "Investidor",
+        "optionals": "Opcionais",
         "hasGarage": "Garagem",
         "hasGarden": "Jardim",
         "hasPool": "Piscina",
         "hasElevator": "Elevador",
         "hasTerrace": "Terraço",
-        "typeThePropertyTitle": "Type the property title",
-        "location": {
-          "label": "Localização",
-          "placeholder": "Digite sua cidade ou estado"
-        },
-        "priceRange": {
-          "label": "Faixa de Preço"
-        },
-        "yearBuilt": {
-          "label": "Ano de Construção"
-        },
-        "size": {
-          "label": "Tamanho (m²)"
-        },
-        "bedrooms": {
-          "label": "Quartos"
-        },
-        "bathrooms": {
-          "label": "Banheiros"
-        },
-        "sellerType": {
-          "label": "Tipo de Vendedor",
-          "realEstateAgency": "Agência Imobiliária",
-          "privateSeller": "Vendedor Particular",
-          "developer": "Desenvolvedor",
-          "builder": "Construtor",
-          "investor": "Investidor"
-        },
-        "optionals": {
-          "label": "Opcionais",
-          "hasGarage": "Garagem",
-          "hasGarden": "Jardim",
-          "hasPool": "Piscina",
-          "hasElevator": "Elevador",
-          "hasTerrace": "Terraço"
-        },
         "clearFilters": "Limpar Filtros"
       },
       "messages": {

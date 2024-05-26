@@ -3,6 +3,7 @@ import { computed, onBeforeMount, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 import AppSidebar from '@/components/wrappers/AppSidebar.vue'
 import AppIconField from '@/components/wrappers/AppIconField.vue'
 import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
@@ -13,8 +14,10 @@ import AppChips from '@/components/wrappers/AppChips.vue'
 import AppCheckboxGroup from '@/components/wrappers/AppCheckboxGroup.vue'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
+import toCamelCase from '@/utils/toCamelCase'
 
 const { t } = useI18n()
+const router = useRouter()
 const propertiesStore = usePropertiesStore()
 const { properties, propertiesCount, isLoading } = storeToRefs(propertiesStore)
 
@@ -26,6 +29,10 @@ function toggleSidebar() {
 }
 
 async function getAllProperties() {
+  const activeFilters = Object.fromEntries(
+    Object.entries(filters.value).filter(([, value]) => value)
+  )
+  router.push({ query: activeFilters })
   await propertiesStore.getAllProperties(filters.value)
 }
 
@@ -49,38 +56,43 @@ const sortByOptions = [
 const activeFilters = computed<string[]>(() => {
   return Object.entries(filters.value)
     .filter(([, value]) => value)
-    .map(([key, value]) => `${t(`properties.list.filters.${key}`)}: ${value}`)
+    .map(([key, value]) => {
+      if (Array.isArray(value)) {
+        return `${t(`properties.list.filters.${key}`)}: ${value.map((v: string) => t(`properties.list.filters.${toCamelCase(v)}`)).join(', ')}`
+      }
+      return `${t(`properties.list.filters.${key}`)}: ${value}`
+    })
 })
 
 const sellerTypesOptions = [
   {
-    label: t('properties.list.filters.sellerType.realEstateAgency'),
+    label: t('properties.list.filters.realEstateAgency'),
     value: SellerTypeEnum.REAL_ESTATE_AGENCY
   },
   {
-    label: t('properties.list.filters.sellerType.privateSeller'),
+    label: t('properties.list.filters.privateSeller'),
     value: SellerTypeEnum.PRIVATE_SELLER
   },
   {
-    label: t('properties.list.filters.sellerType.developer'),
+    label: t('properties.list.filters.developer'),
     value: SellerTypeEnum.DEVELOPER
   },
   {
-    label: t('properties.list.filters.sellerType.builder'),
+    label: t('properties.list.filters.builder'),
     value: SellerTypeEnum.BUILDER
   },
   {
-    label: t('properties.list.filters.sellerType.investor'),
+    label: t('properties.list.filters.investor'),
     value: SellerTypeEnum.INVESTOR
   }
 ]
 
 const optionalsOptions = [
-  { label: t('properties.list.filters.optionals.hasGarage'), value: 'hasGarage' },
-  { label: t('properties.list.filters.optionals.hasGarden'), value: 'hasGarden' },
-  { label: t('properties.list.filters.optionals.hasPool'), value: 'hasPool' },
-  { label: t('properties.list.filters.optionals.hasElevator'), value: 'hasElevator' },
-  { label: t('properties.list.filters.optionals.hasTerrace'), value: 'hasTerrace' }
+  { label: t('properties.list.filters.hasGarage'), value: 'hasGarage' },
+  { label: t('properties.list.filters.hasGarden'), value: 'hasGarden' },
+  { label: t('properties.list.filters.hasPool'), value: 'hasPool' },
+  { label: t('properties.list.filters.hasElevator'), value: 'hasElevator' },
+  { label: t('properties.list.filters.hasTerrace'), value: 'hasTerrace' }
 ]
 
 onBeforeMount(getAllProperties)
@@ -91,12 +103,12 @@ onBeforeMount(getAllProperties)
     <AppSidebar v-model="isSidebarCollapsed">
       <template #default>
         <div class="section">
-          <div class="section__title">{{ $t('properties.list.filters.location.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.location') }}</div>
           <AppIconField iconPosition="right">
             <AppInputIcon class="pi pi-map-marker" />
             <AppInputText
-              v-model="filters.city"
-              :placeholder="$t('properties.list.filters.location.placeholder')"
+              v-model="filters.location"
+              :placeholder="$t('properties.list.filters.locationPlaceholder')"
               type="search"
               @keyup.enter="getAllProperties"
             />
@@ -104,7 +116,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="section">
-          <div class="section__title">{{ $t('properties.list.filters.priceRange.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.priceRange') }}</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -114,7 +126,7 @@ onBeforeMount(getAllProperties)
                 mode="currency"
                 currency="USD"
                 locale="en-US"
-                @change="getAllProperties"
+                @update:modelValue="getAllProperties"
               />
             </div>
             <div class="field">
@@ -125,21 +137,21 @@ onBeforeMount(getAllProperties)
                 mode="currency"
                 currency="USD"
                 locale="en-US"
-                @change="getAllProperties"
+                @update:modelValue="getAllProperties"
               />
             </div>
           </div>
         </div>
 
         <div class="section">
-          <div class="section__title">{{ $t('properties.list.filters.yearBuilt.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.yearBuilt') }}</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
                 v-model="filters.minYearBuilt"
                 :placeholder="$t('properties.list.from')"
                 inputClass="w-3"
-                @change="getAllProperties"
+                @update:modelValue="getAllProperties"
               />
             </div>
             <div class="field">
@@ -147,14 +159,14 @@ onBeforeMount(getAllProperties)
                 v-model="filters.maxYearBuilt"
                 :placeholder="$t('properties.list.to')"
                 inputClass="w-3"
-                @change="getAllProperties"
+                @update:modelValue="getAllProperties"
               />
             </div>
           </div>
         </div>
 
         <div class="section">
-          <div class="section__title">{{ $t('properties.list.filters.size.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.size') }}</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -162,7 +174,7 @@ onBeforeMount(getAllProperties)
                 :placeholder="$t('properties.list.from')"
                 inputClass="w-3"
                 suffix="m²"
-                @change="getAllProperties"
+                @update:modelValue="getAllProperties"
               />
             </div>
             <div class="field">
@@ -171,36 +183,36 @@ onBeforeMount(getAllProperties)
                 :placeholder="$t('properties.list.to')"
                 inputClass="w-3"
                 suffix="m²"
-                @change="getAllProperties"
+                @update:modelValue="getAllProperties"
               />
             </div>
           </div>
         </div>
 
         <div class="section">
-          <div class="section__title">{{ $t('properties.list.filters.bedrooms.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.bedrooms') }}</div>
           <div class="field">
             <AppInputNumber
               v-model="filters.minBedrooms"
               placeholder="Minimum"
-              @change="getAllProperties"
+              @update:modelValue="getAllProperties"
             />
           </div>
         </div>
 
         <div class="section">
-          <div class="section__title">{{ $t('properties.list.filters.bathrooms.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.bathrooms') }}</div>
           <div class="field">
             <AppInputNumber
               v-model="filters.minBathrooms"
               placeholder="Minimum"
-              @change="getAllProperties"
+              @update:modelValue="getAllProperties"
             />
           </div>
         </div>
 
         <div class="section">
-          <div class="section__title">{{ $t('properties.list.filters.sellerType.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.sellerTypes') }}</div>
           <AppCheckboxGroup
             v-model="filters.sellerTypes"
             name="sellerTypes"
@@ -209,7 +221,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="p-3">
-          <div class="section__title">{{ $t('properties.list.filters.optionals.label') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.optionals') }}</div>
           <AppCheckboxGroup
             v-model="filters.optionals"
             name="optionals"
@@ -232,14 +244,14 @@ onBeforeMount(getAllProperties)
       <div class="top-bar">
         <div class="flex align-items-center">
           <i class="pi pi-sliders-h mr-4" @click="toggleSidebar" style="cursor: pointer" />
-          <AppChips v-model="activeFilters" />
+          <AppChips v-model="activeFilters" :limit="7" />
         </div>
         <div class="flex align-items-center gap-2">
           <AppIconField iconPosition="left">
             <AppInputIcon class="pi pi-search" />
             <AppInputText
               v-model="filters.title"
-              :placeholder="$t('properties.list.filters.typeThePropertyTitle')"
+              :placeholder="$t('properties.list.filters.titlePlaceholder')"
               type="search"
               @keyup.enter="getAllProperties"
             />
@@ -250,7 +262,7 @@ onBeforeMount(getAllProperties)
             option-label="label"
             option-value="value"
             placeholder="Most Relevant"
-            @change="getAllProperties"
+            @update:modelValue="getAllProperties"
           />
         </div>
       </div>

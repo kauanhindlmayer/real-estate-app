@@ -85,7 +85,9 @@
       "from": "from",
       "to": "to",
       "filters": {
-        "city": "City",
+        "location": "Location",
+        "locationPlaceholder": "Type your city or state",
+        "titlePlaceholder": "Type the property title",
         "minPrice": "Min Price",
         "maxPrice": "Max Price",
         "minYearBuilt": "Min Year Built",
@@ -94,48 +96,23 @@
         "maxSize": "Max Size",
         "minBedrooms": "Min Bedrooms",
         "minBathrooms": "Min Bathrooms",
+        "priceRange": "Price Range",
+        "yearBuilt": "Year Built",
+        "size": "Size (m²)",
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
         "sellerTypes": "Seller Types",
+        "realEstateAgency": "Real Estate Agency",
+        "privateSeller": "Private Seller",
+        "developer": "Developer",
+        "builder": "Builder",
+        "investor": "Investor",
+        "optionals": "Optionals",
         "hasGarage": "Garage",
         "hasGarden": "Garden",
         "hasPool": "Pool",
         "hasElevator": "Elevator",
         "hasTerrace": "Terrace",
-        "typeThePropertyTitle": "Type the property title",
-        "location": {
-          "label": "Location",
-          "placeholder": "Type your city or state"
-        },
-        "priceRange": {
-          "label": "Price Range"
-        },
-        "yearBuilt": {
-          "label": "Year Built"
-        },
-        "size": {
-          "label": "Size (m²)"
-        },
-        "bedrooms": {
-          "label": "Bedrooms"
-        },
-        "bathrooms": {
-          "label": "Bathrooms"
-        },
-        "sellerType": {
-          "label": "Seller Type",
-          "realEstateAgency": "Real Estate Agency",
-          "privateSeller": "Private Seller",
-          "developer": "Developer",
-          "builder": "Builder",
-          "investor": "Investor"
-        },
-        "optionals": {
-          "label": "Optionals",
-          "hasGarage": "Garage",
-          "hasGarden": "Garden",
-          "hasPool": "Pool",
-          "hasElevator": "Elevator",
-          "hasTerrace": "Terrace"
-        },
         "clearFilters": "Clear Filters"
       },
       "messages": {

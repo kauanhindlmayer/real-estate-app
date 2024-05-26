@@ -1,10 +1,27 @@
 <script lang="ts" setup>
-const chips = defineModel<string[]>()
+import { computed } from 'vue'
+
+interface IProps {
+  limit: number
+}
+
+const props = defineProps<IProps>()
+
+const chips = defineModel<string[]>({ default: [] })
+
+const chipsList = computed(() => {
+  if (props.limit && chips.value.length > props.limit) {
+    const limitedChips = chips.value.slice(0, props.limit)
+    limitedChips.push('...')
+    return limitedChips
+  }
+  return chips.value
+})
 </script>
 
 <template>
   <div class="chips-container">
-    <div v-for="(chip, index) in chips" :key="index" class="chips-container__chip">
+    <div v-for="(chip, index) in chipsList" :key="index" class="chips-container__chip">
       <span>{{ chip }}</span>
     </div>
   </div>
