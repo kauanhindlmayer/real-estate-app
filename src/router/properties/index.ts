@@ -12,7 +12,7 @@ const PropertiesRoutes = [
     name: 'property-advertise',
     component: () => import('@/views/properties/PropertyCreate.vue'),
     meta: {
-      title: 'Advertise Property'
+      title: 'Advertise'
     }
   },
   {
@@ -20,7 +20,7 @@ const PropertiesRoutes = [
     name: 'property-details',
     component: () => import('@/views/properties/PropertyDetails.vue'),
     meta: {
-      title: 'Property Details'
+      title: 'Details'
     }
   }
 ]

@@ -77,4 +77,7 @@ function validateFields() {
   width: 50vw;
   height: 100vh;
 }
+a {
+  color: var(--primary-color);
+}
 </style>

@@ -1,0 +1,42 @@
+<template>
+  <div class="security-info">
+    <div>
+      <div class="security-info__title" v-html="$t('help.title')" />
+      <div v-html="$t('help.description')" />
+      <div class="security-info__read-carefully" v-html="$t('help.readCarefully')" />
+    </div>
+    <img
+      src="@/assets/images/security.svg"
+      alt="Illustration of a security lock"
+      class="security-info__image"
+    />
+  </div>
+</template>
+
+<style scoped>
+.security-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+.security-info__title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.security-info__read-carefully {
+  margin-top: 2rem;
+  font-weight: bold;
+}
+.security-info__image {
+  width: 300px;
+}
+</style>
+
+<style>
+span.emphasis {
+  color: var(--primary-color);
+}
+</style>

@@ -17,11 +17,11 @@ const router = createRouter({
           }
         },
         {
-          path: '/help',
-          name: 'help',
-          component: () => import('@/views/Help.vue'),
+          path: '/security',
+          name: 'security',
+          component: () => import('@/views/Security.vue'),
           meta: {
-            title: 'Help'
+            title: 'Security'
           }
         },
         ...PropertiesRoutes

@@ -4,9 +4,9 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import { storeToRefs } from 'pinia'
-import AppToolbar from '@/components/wrappers/AppToolbar.vue'
 import AppAvatar from '@/components/wrappers/AppAvatar.vue'
 import AppMenu from '@/components/wrappers/AppMenu.vue'
+import AppMenubar from '@/components/wrappers/AppMenubar.vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -16,6 +16,30 @@ const { user, isUserLoggedIn } = storeToRefs(userStore)
 function redirectTo(name: string) {
   router.push({ name })
 }
+
+const menubarItems = ref([
+  {
+    label: t('common.home'),
+    command: () => redirectTo('home')
+  },
+  {
+    label: t('common.properties'),
+    command: () => redirectTo('properties-list')
+  },
+  {
+    label: t('common.advertise'),
+    command: () => redirectTo('property-advertise')
+  },
+  {
+    label: t('common.help'),
+    items: [
+      {
+        label: 'Security',
+        route: 'security'
+      }
+    ]
+  }
+])
 
 const items = ref([
   {
@@ -39,30 +63,13 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 </script>
 
 <template>
-  <AppToolbar class="toolbar">
+  <AppMenubar class="menubar" :model="menubarItems">
     <template #start>
-      <div class="toolbar__title" @click="redirectTo('home')">Real Estate</div>
-    </template>
-
-    <template #center>
-      <AppButton :label="$t('common.home')" text plain @click="redirectTo('home')" />
-      <AppButton
-        :label="$t('common.properties')"
-        text
-        plain
-        @click="redirectTo('properties-list')"
-      />
-      <AppButton
-        :label="$t('common.advertise')"
-        text
-        plain
-        @click="redirectTo('property-advertise')"
-      />
-      <AppButton :label="$t('common.help')" text plain @click="redirectTo('help')" />
+      <div class="menubar__start" @click="redirectTo('home')">Real Estate</div>
     </template>
 
     <template #end>
-      <div v-if="isUserLoggedIn" class="flex align-items-center gap-2 toolbar__menu">
+      <div v-if="isUserLoggedIn" class="flex align-items-center gap-2 menubar__end">
         {{ user.fullName }}
         <AppAvatar
           :image="user.avatarUrl"
@@ -76,14 +83,14 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
       <AppButton
         v-else
         :label="$t('common.login')"
-        class="toolbar__menu"
+        class="menubar__end"
         icon="pi pi-user"
         text
         plain
         @click="redirectTo('login')"
       />
     </template>
-  </AppToolbar>
+  </AppMenubar>
 
   <div class="content-container">
     <RouterView />
@@ -91,18 +98,18 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 </template>
 
 <style scoped>
-.toolbar {
+.menubar {
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-.toolbar__title {
+.menubar__start {
   font-size: 1.75rem;
   font-weight: 600;
   margin-left: 1.75rem;
   color: var(--primary-color);
 }
-.toolbar__menu {
+.menubar__end {
   margin-right: 1.75rem;
 }
 .content-container {
@@ -110,5 +117,13 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
   background-color: var(--secondary-bg-color);
   padding: 1.5rem;
   overflow-y: auto;
+}
+</style>
+
+<style>
+.p-menubar-root-list,
+.p-menubar-button {
+  position: absolute;
+  left: 40%;
 }
 </style>
