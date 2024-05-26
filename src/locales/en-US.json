@@ -1,14 +1,12 @@
 {
   "common": {
-    "properties": "Properties",
     "login": "Login",
     "register": "Register",
     "logout": "Logout",
     "settings": "Settings",
     "home": "Home",
-    "buy": "Buy",
-    "sell": "Sell",
-    "services": "Services",
+    "properties": "Properties",
+    "advertise": "Advertise",
     "help": "Help",
     "notFound": "Not Found",
     "houses": "Houses",

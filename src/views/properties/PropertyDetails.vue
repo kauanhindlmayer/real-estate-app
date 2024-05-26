@@ -17,7 +17,7 @@ onBeforeMount(() => {
     <div v-if="propertiesStore.property" class="property-wrapper">
       <PropertyCard :property="propertiesStore.property" hide-footer />
     </div>
-    <div v-else class="property-not-found-wrapper">{{ $t('properties.details.notFound') }}</div>
+    <div v-else class="property-not-found-wrapper">{{ $t('properties.propertyNotFound') }}</div>
   </div>
 </template>
 

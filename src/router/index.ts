@@ -17,14 +17,6 @@ const router = createRouter({
           }
         },
         {
-          path: '/services',
-          name: 'services',
-          component: () => import('@/views/Services.vue'),
-          meta: {
-            title: 'Services'
-          }
-        },
-        {
           path: '/help',
           name: 'help',
           component: () => import('@/views/Help.vue'),

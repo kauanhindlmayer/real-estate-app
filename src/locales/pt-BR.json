@@ -1,14 +1,12 @@
 {
   "common": {
-    "properties": "Propriedades",
     "login": "Entrar",
     "register": "Registrar",
     "logout": "Sair",
     "settings": "Configurações",
     "home": "Início",
-    "buy": "Comprar",
-    "sell": "Vender",
-    "services": "Serviços",
+    "properties": "Propriedades",
+    "advertise": "Anunciar",
     "help": "Ajuda",
     "notFound": "Não Encontrado",
     "houses": "Houses",
