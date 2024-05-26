@@ -6,8 +6,10 @@
     "logout": "Sair",
     "settings": "Configurações",
     "home": "Início",
-    "about": "Sobre",
-    "blog": "Blog",
+    "buy": "Comprar",
+    "sell": "Vender",
+    "services": "Serviços",
+    "help": "Ajuda",
     "notFound": "Não Encontrado",
     "houses": "Houses",
     "apartments": "Apartments",
@@ -24,10 +26,11 @@
   "properties": {
     "propertyNotFound": "Propriedade não encontrada",
     "form": {
-      "title": "Criar Propriedade",
-      "description": "Preencha os detalhes para adicionar uma nova propriedade aos seus anúncios",
+      "title": "Preencha os dados do imóvel",
       "details": "Detalhes",
       "location": "Localização",
+      "review": "Revisão",
+      "propertyDataEditRestriction": "Não é possível editar os dados do veículo após criar o anúncio. Confirme os dados antes de continuar.",
       "fields": {
         "title": {
           "label": "Título",
@@ -123,15 +126,14 @@
       }
     }
   },
-  "about": {
-    "description": "Bem-vindo à página sobre"
-  },
-  "blog": {
-    "description": "Bem-vindo à página de blog"
-  },
   "home": {
     "seeOffers": "Ver Ofertas ({count})",
     "wantToSell": "Quer vender seu imóvel?"
+  },
+  "help": {
+    "title": "Segurança para gente <br /> <span class=\"emphasis\">é assunto sério.</span>",
+    "description": "O Real Estate é o melhor lugar para comprar, vender e cuidar <br /> do seu imóvel. Preparamos esse conteúdo para tornar  <br /> sua negociação ainda mais segura e tranquila.",
+    "readCarefully": "<span class=\"emphasis\">Dá uma lida com atenção</span>, e boa negociação ;)"
   },
   "login": {
     "fields": {

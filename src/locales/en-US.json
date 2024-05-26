@@ -6,8 +6,10 @@
     "logout": "Logout",
     "settings": "Settings",
     "home": "Home",
-    "about": "About",
-    "blog": "Blog",
+    "buy": "Buy",
+    "sell": "Sell",
+    "services": "Services",
+    "help": "Help",
     "notFound": "Not Found",
     "houses": "Houses",
     "apartments": "Apartments",
@@ -24,10 +26,11 @@
   "properties": {
     "propertyNotFound": "Property not found",
     "form": {
-      "title": "Create Property",
-      "description": "Fill in the details to add a new property to your listings",
+      "title": "Fill in the property details",
       "details": "Details",
       "location": "Location",
+      "review": "Review",
+      "propertyDataEditRestriction": "You cannot edit the property data after creating the advertisement. Please confirm the data before proceeding.",
       "fields": {
         "title": {
           "label": "Title",
@@ -123,15 +126,14 @@
       }
     }
   },
-  "about": {
-    "description": "Welcome to the about page"
-  },
-  "blog": {
-    "description": "Welcome to the blog page"
-  },
   "home": {
     "seeOffers": "See Offers ({count})",
     "wantToSell": "Want to sell your property?"
+  },
+  "help": {
+    "title": "Security is a serious <br /> <span class=\"emphasis\"> matter for us.</span>",
+    "description": "Real Estate is the best place to buy, sell, and take care <br /> of your property. We've prepared this content to make <br /> your negotiation even safer and smoother.",
+    "readCarefully": "<span class=\"emphasis\">Read it carefully</span>, and happy negotiating! ;)"
   },
   "login": {
     "fields": {

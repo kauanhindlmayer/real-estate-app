@@ -30,6 +30,10 @@ const items = [
   {
     label: t('properties.form.location'),
     component: LocationForm
+  },
+  {
+    label: t('properties.form.review'),
+    component: 'div'
   }
 ]
 </script>
@@ -37,12 +41,11 @@ const items = [
 <template>
   <div class="p-4">
     <div class="form-container">
-      <header>
-        <h1 data-testid="title">{{ $t('properties.form.title') }}</h1>
-        <p data-testid="description">{{ $t('properties.form.description') }}</p>
-      </header>
-
       <AppSteps v-model:active-step="active" :model="items" />
+
+      <div class="flex justify-content-center">
+        <h1 data-testid="title">{{ $t('properties.form.title') }}</h1>
+      </div>
 
       <KeepAlive>
         <component

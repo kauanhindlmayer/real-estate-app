@@ -17,19 +17,19 @@ const router = createRouter({
           }
         },
         {
-          path: '/about',
-          name: 'about',
-          component: () => import('@/views/About.vue'),
+          path: '/services',
+          name: 'services',
+          component: () => import('@/views/Services.vue'),
           meta: {
-            title: 'About'
+            title: 'Services'
           }
         },
         {
-          path: '/blog',
-          name: 'blog',
-          component: () => import('@/views/Blog.vue'),
+          path: '/help',
+          name: 'help',
+          component: () => import('@/views/Help.vue'),
           meta: {
-            title: 'Blog'
+            title: 'Help'
           }
         },
         ...PropertiesRoutes

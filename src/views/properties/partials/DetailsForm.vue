@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import AppInputText from '@/components/wrappers/AppInputText.vue'
 import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
+import AppInlineMessage from '@/components/wrappers/AppInlineMessage.vue'
 import Property from '@/types/models/Property'
 
 const toast = useBaseToast()
@@ -87,6 +88,12 @@ function next() {
       :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
       data-testid="imageUrl-input"
       required
+    />
+
+    <AppInlineMessage
+      severity="info"
+      class="mt-4"
+      :text="$t('properties.form.propertyDataEditRestriction')"
     />
 
     <footer>

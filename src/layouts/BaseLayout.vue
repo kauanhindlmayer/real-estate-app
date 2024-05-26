@@ -46,14 +46,10 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 
     <template #center>
       <AppButton :label="$t('common.home')" text plain @click="redirectTo('home')" />
-      <AppButton :label="$t('common.about')" text plain @click="redirectTo('about')" />
-      <AppButton
-        :label="$t('common.properties')"
-        text
-        plain
-        @click="redirectTo('properties-list')"
-      />
-      <AppButton :label="$t('common.blog')" text plain @click="redirectTo('blog')" />
+      <AppButton :label="$t('common.buy')" text plain @click="redirectTo('properties-list')" />
+      <AppButton :label="$t('common.sell')" text plain @click="redirectTo('property-create')" />
+      <AppButton :label="$t('common.services')" text plain @click="redirectTo('services')" />
+      <AppButton :label="$t('common.help')" text plain @click="redirectTo('help')" />
     </template>
 
     <template #end>

@@ -25,10 +25,4 @@ describe('PropertyCreate', () => {
     expect(title.exists()).toBe(true)
     expect(title.text()).toBe('Create Property')
   })
-
-  it('renders the page description with the correct text', async () => {
-    const description = await wrapper.find('[data-testid="description"]')
-    expect(description.exists()).toBe(true)
-    expect(description.text()).toBe('Fill in the details to add a new property to your listings')
-  })
 })
