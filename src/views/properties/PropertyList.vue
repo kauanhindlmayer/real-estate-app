@@ -59,7 +59,7 @@ onBeforeMount(getAllProperties)
     <AppSidebar v-model="isSidebarCollapsed">
       <template #default>
         <div class="section">
-          <div class="section__title">Location</div>
+          <div class="section__title">{{ $t('properties.list.filters.location.label') }}</div>
           <AppIconField iconPosition="right">
             <AppInputIcon class="pi pi-map-marker" />
             <AppInputText
@@ -72,7 +72,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="section">
-          <div class="section__title">Price Range</div>
+          <div class="section__title">{{ $t('properties.list.filters.priceRange.label') }}</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -100,7 +100,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="section">
-          <div class="section__title">Year Built</div>
+          <div class="section__title">{{ $t('properties.list.filters.yearBuilt.label') }}</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -122,7 +122,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="section">
-          <div class="section__title">Size (m²)</div>
+          <div class="section__title">{{ $t('properties.list.filters.size.label') }}</div>
           <div class="flex justify-content-between gap-2">
             <div class="field">
               <AppInputNumber
@@ -146,7 +146,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="section">
-          <div class="section__title">Bedrooms</div>
+          <div class="section__title">{{ $t('properties.list.filters.bedrooms.label') }}</div>
           <div class="field">
             <AppInputNumber
               v-model="filters.minBedrooms"
@@ -157,7 +157,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="section">
-          <div class="section__title">Bathrooms</div>
+          <div class="section__title">{{ $t('properties.list.filters.bathrooms.label') }}</div>
           <div class="field">
             <AppInputNumber
               v-model="filters.minBathrooms"
@@ -168,7 +168,7 @@ onBeforeMount(getAllProperties)
         </div>
 
         <div class="section">
-          <div class="section__title">Seller Type</div>
+          <div class="section__title">{{ $t('properties.list.filters.sellerType.label') }}</div>
           <div class="flex flex-column">
             <div class="flex">
               <AppCheckbox
@@ -177,7 +177,9 @@ onBeforeMount(getAllProperties)
                 name="sellerTypes"
                 :value="SellerTypeEnum.REAL_ESTATE_AGENCY"
               />
-              <label for="real-estate-agency" class="ml-2">Real Estate Agency</label>
+              <label for="real-estate-agency" class="ml-2">
+                {{ $t('properties.list.filters.sellerType.realEstateAgency') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
@@ -186,7 +188,9 @@ onBeforeMount(getAllProperties)
                 name="sellerTypes"
                 :value="SellerTypeEnum.PRIVATE_SELLER"
               />
-              <label for="private-seller" class="ml-2">Private Seller</label>
+              <label for="private-seller" class="ml-2">
+                {{ $t('properties.list.filters.sellerType.privateSeller') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
@@ -195,7 +199,9 @@ onBeforeMount(getAllProperties)
                 name="sellerTypes"
                 :value="SellerTypeEnum.DEVELOPER"
               />
-              <label for="developer" class="ml-2">Developer</label>
+              <label for="developer" class="ml-2">
+                {{ $t('properties.list.filters.sellerType.developer') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
@@ -204,7 +210,9 @@ onBeforeMount(getAllProperties)
                 name="sellerTypes"
                 :value="SellerTypeEnum.BUILDER"
               />
-              <label for="builder" class="ml-2">Builder</label>
+              <label for="builder" class="ml-2">
+                {{ $t('properties.list.filters.sellerType.builder') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
@@ -213,58 +221,70 @@ onBeforeMount(getAllProperties)
                 name="sellerTypes"
                 :value="SellerTypeEnum.INVESTOR"
               />
-              <label for="investor" class="ml-2">Investor</label>
+              <label for="investor" class="ml-2">
+                {{ $t('properties.list.filters.sellerType.investor') }}
+              </label>
             </div>
           </div>
         </div>
 
         <div class="p-3">
-          <div class="section__title">Optionals</div>
+          <div class="section__title">{{ $t('properties.list.filters.optionals.label') }}</div>
           <div class="flex flex-column">
             <div class="flex">
               <AppCheckbox
                 v-model="filters.hasGarage"
                 inputId="has-garage"
-                name="hasGarage"
-                :value="true"
+                name="optionals"
+                :value="$t('properties.list.filters.optionals.hasGarage')"
               />
-              <label for="has-garage" class="ml-2">Has Garage</label>
+              <label for="has-garage" class="ml-2">
+                {{ $t('properties.list.filters.optionals.hasGarage') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
                 v-model="filters.hasGarden"
                 inputId="has-garden"
-                name="hasGarden"
-                :value="true"
+                name="optionals"
+                :value="$t('properties.list.filters.optionals.hasGarden')"
               />
-              <label for="has-garden" class="ml-2">Has Garden</label>
+              <label for="has-garden" class="ml-2">
+                {{ $t('properties.list.filters.optionals.hasGarden') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
                 v-model="filters.hasPool"
                 inputId="has-pool"
-                name="hasPool"
-                :value="true"
+                name="optionals"
+                :value="$t('properties.list.filters.optionals.hasPool')"
               />
-              <label for="has-pool" class="ml-2">Has Pool</label>
+              <label for="has-pool" class="ml-2">
+                {{ $t('properties.list.filters.optionals.hasPool') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
                 v-model="filters.hasElevator"
                 inputId="has-elevator"
-                name="hasElevator"
-                :value="true"
+                name="optionals"
+                :value="$t('properties.list.filters.optionals.hasElevator')"
               />
-              <label for="has-elevator" class="ml-2">Has Elevator</label>
+              <label for="has-elevator" class="ml-2">
+                {{ $t('properties.list.filters.optionals.hasElevator') }}
+              </label>
             </div>
             <div class="flex">
               <AppCheckbox
                 v-model="filters.hasTerrace"
                 inputId="has-terrace"
-                name="hasTerrace"
-                :value="true"
+                name="optionals"
+                :value="$t('properties.list.filters.optionals.hasTerrace')"
               />
-              <label for="has-terrace" class="ml-2">Has Terrace</label>
+              <label for="has-terrace" class="ml-2">
+                {{ $t('properties.list.filters.optionals.hasTerrace') }}
+              </label>
             </div>
           </div>
         </div>
@@ -291,7 +311,7 @@ onBeforeMount(getAllProperties)
             <AppInputIcon class="pi pi-search" />
             <AppInputText
               v-model="filters.title"
-              placeholder="Type the property title"
+              :placeholder="$t('properties.list.filters.typeThePropertyTitle')"
               type="search"
               @keyup.enter="getAllProperties"
             />

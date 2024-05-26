@@ -95,11 +95,12 @@
         "minBedrooms": "Mínimo de Quartos",
         "minBathrooms": "Mínimo de Banheiros",
         "sellerTypes": "Tipos de Vendedor",
-        "hasGarage": "Possui Garagem",
-        "hasGarden": "Possui Jardim",
-        "hasPool": "Possui Piscina",
-        "hasElevator": "Possui Elevador",
-        "hasTerrace": "Possui Terraço",
+        "hasGarage": "Garagem",
+        "hasGarden": "Jardim",
+        "hasPool": "Piscina",
+        "hasElevator": "Elevador",
+        "hasTerrace": "Terraço",
+        "typeThePropertyTitle": "Type the property title",
         "location": {
           "label": "Localização",
           "placeholder": "Digite sua cidade ou estado"
@@ -126,6 +127,14 @@
           "developer": "Desenvolvedor",
           "builder": "Construtor",
           "investor": "Investidor"
+        },
+        "optionals": {
+          "label": "Opcionais",
+          "hasGarage": "Garagem",
+          "hasGarden": "Jardim",
+          "hasPool": "Piscina",
+          "hasElevator": "Elevador",
+          "hasTerrace": "Terraço"
         },
         "clearFilters": "Limpar Filtros"
       },

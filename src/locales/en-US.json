@@ -95,11 +95,12 @@
         "minBedrooms": "Min Bedrooms",
         "minBathrooms": "Min Bathrooms",
         "sellerTypes": "Seller Types",
-        "hasGarage": "Has Garage",
-        "hasGarden": "Has Garden",
-        "hasPool": "Has Pool",
-        "hasElevator": "Has Elevator",
-        "hasTerrace": "Has Terrace",
+        "hasGarage": "Garage",
+        "hasGarden": "Garden",
+        "hasPool": "Pool",
+        "hasElevator": "Elevator",
+        "hasTerrace": "Terrace",
+        "typeThePropertyTitle": "Type the property title",
         "location": {
           "label": "Location",
           "placeholder": "Type your city or state"
@@ -126,6 +127,14 @@
           "developer": "Developer",
           "builder": "Builder",
           "investor": "Investor"
+        },
+        "optionals": {
+          "label": "Optionals",
+          "hasGarage": "Garage",
+          "hasGarden": "Garden",
+          "hasPool": "Pool",
+          "hasElevator": "Elevator",
+          "hasTerrace": "Terrace"
         },
         "clearFilters": "Clear Filters"
       },
