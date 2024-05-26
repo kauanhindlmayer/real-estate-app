@@ -10,6 +10,7 @@ import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import AppSkeleton from '@/components/wrappers/AppSkeleton.vue'
 import AppBreadcrumb from '@/components/wrappers/AppBreadcrumb.vue'
 import AppChips from '@/components/wrappers/AppChips.vue'
+import AppCheckboxGroup from '@/components/wrappers/AppCheckboxGroup.vue'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 
@@ -50,6 +51,37 @@ const activeFilters = computed<string[]>(() => {
     .filter(([, value]) => value)
     .map(([key, value]) => `${t(`properties.list.filters.${key}`)}: ${value}`)
 })
+
+const sellerTypesOptions = [
+  {
+    label: t('properties.list.filters.sellerType.realEstateAgency'),
+    value: SellerTypeEnum.REAL_ESTATE_AGENCY
+  },
+  {
+    label: t('properties.list.filters.sellerType.privateSeller'),
+    value: SellerTypeEnum.PRIVATE_SELLER
+  },
+  {
+    label: t('properties.list.filters.sellerType.developer'),
+    value: SellerTypeEnum.DEVELOPER
+  },
+  {
+    label: t('properties.list.filters.sellerType.builder'),
+    value: SellerTypeEnum.BUILDER
+  },
+  {
+    label: t('properties.list.filters.sellerType.investor'),
+    value: SellerTypeEnum.INVESTOR
+  }
+]
+
+const optionalsOptions = [
+  { label: t('properties.list.filters.optionals.hasGarage'), value: 'hasGarage' },
+  { label: t('properties.list.filters.optionals.hasGarden'), value: 'hasGarden' },
+  { label: t('properties.list.filters.optionals.hasPool'), value: 'hasPool' },
+  { label: t('properties.list.filters.optionals.hasElevator'), value: 'hasElevator' },
+  { label: t('properties.list.filters.optionals.hasTerrace'), value: 'hasTerrace' }
+]
 
 onBeforeMount(getAllProperties)
 </script>
@@ -169,124 +201,20 @@ onBeforeMount(getAllProperties)
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.sellerType.label') }}</div>
-          <div class="flex flex-column">
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.sellerTypes"
-                inputId="real-estate-agency"
-                name="sellerTypes"
-                :value="SellerTypeEnum.REAL_ESTATE_AGENCY"
-              />
-              <label for="real-estate-agency" class="ml-2">
-                {{ $t('properties.list.filters.sellerType.realEstateAgency') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.sellerTypes"
-                inputId="private-seller"
-                name="sellerTypes"
-                :value="SellerTypeEnum.PRIVATE_SELLER"
-              />
-              <label for="private-seller" class="ml-2">
-                {{ $t('properties.list.filters.sellerType.privateSeller') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.sellerTypes"
-                inputId="developer"
-                name="sellerTypes"
-                :value="SellerTypeEnum.DEVELOPER"
-              />
-              <label for="developer" class="ml-2">
-                {{ $t('properties.list.filters.sellerType.developer') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.sellerTypes"
-                inputId="builder"
-                name="sellerTypes"
-                :value="SellerTypeEnum.BUILDER"
-              />
-              <label for="builder" class="ml-2">
-                {{ $t('properties.list.filters.sellerType.builder') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.sellerTypes"
-                inputId="investor"
-                name="sellerTypes"
-                :value="SellerTypeEnum.INVESTOR"
-              />
-              <label for="investor" class="ml-2">
-                {{ $t('properties.list.filters.sellerType.investor') }}
-              </label>
-            </div>
-          </div>
+          <AppCheckboxGroup
+            v-model="filters.sellerTypes"
+            name="sellerTypes"
+            :options="sellerTypesOptions"
+          />
         </div>
 
         <div class="p-3">
           <div class="section__title">{{ $t('properties.list.filters.optionals.label') }}</div>
-          <div class="flex flex-column">
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.hasGarage"
-                inputId="has-garage"
-                name="optionals"
-                :value="$t('properties.list.filters.optionals.hasGarage')"
-              />
-              <label for="has-garage" class="ml-2">
-                {{ $t('properties.list.filters.optionals.hasGarage') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.hasGarden"
-                inputId="has-garden"
-                name="optionals"
-                :value="$t('properties.list.filters.optionals.hasGarden')"
-              />
-              <label for="has-garden" class="ml-2">
-                {{ $t('properties.list.filters.optionals.hasGarden') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.hasPool"
-                inputId="has-pool"
-                name="optionals"
-                :value="$t('properties.list.filters.optionals.hasPool')"
-              />
-              <label for="has-pool" class="ml-2">
-                {{ $t('properties.list.filters.optionals.hasPool') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.hasElevator"
-                inputId="has-elevator"
-                name="optionals"
-                :value="$t('properties.list.filters.optionals.hasElevator')"
-              />
-              <label for="has-elevator" class="ml-2">
-                {{ $t('properties.list.filters.optionals.hasElevator') }}
-              </label>
-            </div>
-            <div class="flex">
-              <AppCheckbox
-                v-model="filters.hasTerrace"
-                inputId="has-terrace"
-                name="optionals"
-                :value="$t('properties.list.filters.optionals.hasTerrace')"
-              />
-              <label for="has-terrace" class="ml-2">
-                {{ $t('properties.list.filters.optionals.hasTerrace') }}
-              </label>
-            </div>
-          </div>
+          <AppCheckboxGroup
+            v-model="filters.optionals"
+            name="optionals"
+            :options="optionalsOptions"
+          />
         </div>
       </template>
 
