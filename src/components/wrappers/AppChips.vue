@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Tag from 'primevue/tag'
 import { computed } from 'vue'
 
 interface IProps {
@@ -21,9 +22,7 @@ const chipsList = computed(() => {
 
 <template>
   <div class="chips-container">
-    <div v-for="(chip, index) in chipsList" :key="index" class="chips-container__chip">
-      <span>{{ chip }}</span>
-    </div>
+    <Tag v-for="(chip, index) in chipsList" :key="index" :value="chip" severity="secondary" />
   </div>
 </template>
 
@@ -31,17 +30,6 @@ const chipsList = computed(() => {
 .chips-container {
   display: flex;
   flex-wrap: wrap;
-}
-.chips-container__chip {
-  background-color: #f1f1f1;
-  border-radius: 16px;
-  padding: 4px 8px;
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
+  gap: 0.5rem;
 }
 </style>
