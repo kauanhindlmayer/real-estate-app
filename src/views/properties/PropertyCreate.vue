@@ -39,35 +39,46 @@ const items = [
 </script>
 
 <template>
-  <div class="p-4">
-    <div class="form-container">
-      <AppSteps v-model:active-step="active" :model="items" />
+  <div class="steps-container">
+    <AppSteps v-model:active-step="active" :model="items" class="mb-4" />
+  </div>
 
-      <div class="flex justify-content-center">
-        <h1 data-testid="title">{{ $t('properties.form.title') }}</h1>
-      </div>
-
-      <KeepAlive>
-        <component
-          :is="items[active].component"
-          v-model="property"
-          @previous-step="previousStep"
-          @next-step="nextStep"
-        />
-      </KeepAlive>
+  <div class="form-container">
+    <div class="flex justify-content-center">
+      <h1 data-testid="title">{{ $t('properties.form.title') }}</h1>
     </div>
+
+    <KeepAlive>
+      <component
+        :is="items[active].component"
+        v-model="property"
+        @previous-step="previousStep"
+        @next-step="nextStep"
+      />
+    </KeepAlive>
   </div>
 </template>
 
 <style scoped>
-.form-container {
-  max-width: 800px;
+.steps-container {
+  max-width: 700px;
   margin: 0 auto;
-  background-color: var(--primary-bg-color);
-  padding: 2rem;
-  border-radius: 0.5rem;
+  background-color: var(--secondary-bg-color);
+}
+.form-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--primary-bg-color);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+</style>
+
+<style>
+.p-menuitem-link {
+  background-color: var(--secondary-color) !important;
 }
 </style>

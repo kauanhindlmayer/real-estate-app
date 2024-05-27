@@ -32,18 +32,21 @@ defineExpose({
 </script>
 
 <template>
-  <label v-if="label" :for="uid">
-    {{ label }}
-    <span v-if="required" class="p-error"> *</span>
-  </label>
-  <InputText
-    v-bind="$attrs"
-    v-model="modelValue"
-    :id="uid"
-    :aria-labelledby="errorMessage ? `${uid}-error` : undefined"
-    :aria-invalid="!!errorMessage"
-  />
-  <small class="p-error" v-if="errorMessage" :id="`${uid}-error`" aria-live="assertive">
-    {{ errorMessage }}
-  </small>
+  <div class="field">
+    <label v-if="label" :for="uid">
+      {{ label }}
+      <span v-if="required" class="p-error"> *</span>
+    </label>
+    <InputText
+      v-bind="$attrs"
+      v-model="modelValue"
+      :id="uid"
+      :aria-labelledby="errorMessage ? `${uid}-error` : undefined"
+      :aria-invalid="!!errorMessage"
+      class="w-full"
+    />
+    <small class="p-error" v-if="errorMessage" :id="`${uid}-error`" aria-live="assertive">
+      {{ errorMessage }}
+    </small>
+  </div>
 </template>

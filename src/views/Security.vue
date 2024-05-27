@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 .security-info__title {
   font-size: 36px;
@@ -32,6 +32,13 @@
 }
 .security-info__image {
   width: 300px;
+  margin-top: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .security-info {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 </style>
 

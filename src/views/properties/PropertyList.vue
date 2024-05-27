@@ -12,6 +12,7 @@ import AppSkeleton from '@/components/wrappers/AppSkeleton.vue'
 import AppBreadcrumb from '@/components/wrappers/AppBreadcrumb.vue'
 import AppChips from '@/components/wrappers/AppChips.vue'
 import AppCheckboxGroup from '@/components/wrappers/AppCheckboxGroup.vue'
+import InputText from 'primevue/inputtext'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 import toCamelCase from '@/utils/toCamelCase'
@@ -104,9 +105,9 @@ onBeforeMount(getAllProperties)
       <template #default>
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.location') }}</div>
-          <AppIconField iconPosition="right">
+          <AppIconField iconPosition="left">
             <AppInputIcon class="pi pi-map-marker" />
-            <AppInputText
+            <InputText
               v-model="filters.location"
               :placeholder="$t('properties.list.filters.locationPlaceholder')"
               type="search"
@@ -118,97 +119,81 @@ onBeforeMount(getAllProperties)
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.priceRange') }}</div>
           <div class="flex justify-content-between gap-2">
-            <div class="field">
-              <AppInputNumber
-                v-model="filters.minPrice"
-                :placeholder="$t('properties.list.from')"
-                inputClass="w-3"
-                mode="currency"
-                currency="USD"
-                locale="en-US"
-                @update:modelValue="getAllProperties"
-              />
-            </div>
-            <div class="field">
-              <AppInputNumber
-                v-model="filters.maxPrice"
-                :placeholder="$t('properties.list.to')"
-                inputClass="w-3"
-                mode="currency"
-                currency="USD"
-                locale="en-US"
-                @update:modelValue="getAllProperties"
-              />
-            </div>
+            <AppInputNumber
+              v-model="filters.minPrice"
+              :placeholder="$t('properties.list.from')"
+              inputClass="w-3"
+              mode="currency"
+              currency="USD"
+              locale="en-US"
+              @update:modelValue="getAllProperties"
+            />
+            <AppInputNumber
+              v-model="filters.maxPrice"
+              :placeholder="$t('properties.list.to')"
+              inputClass="w-3"
+              mode="currency"
+              currency="USD"
+              locale="en-US"
+              @update:modelValue="getAllProperties"
+            />
           </div>
         </div>
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.yearBuilt') }}</div>
           <div class="flex justify-content-between gap-2">
-            <div class="field">
-              <AppInputNumber
-                v-model="filters.minYearBuilt"
-                :placeholder="$t('properties.list.from')"
-                inputClass="w-3"
-                @update:modelValue="getAllProperties"
-              />
-            </div>
-            <div class="field">
-              <AppInputNumber
-                v-model="filters.maxYearBuilt"
-                :placeholder="$t('properties.list.to')"
-                inputClass="w-3"
-                @update:modelValue="getAllProperties"
-              />
-            </div>
+            <AppInputNumber
+              v-model="filters.minYearBuilt"
+              :placeholder="$t('properties.list.from')"
+              inputClass="w-3"
+              @update:modelValue="getAllProperties"
+            />
+            <AppInputNumber
+              v-model="filters.maxYearBuilt"
+              :placeholder="$t('properties.list.to')"
+              inputClass="w-3"
+              @update:modelValue="getAllProperties"
+            />
           </div>
         </div>
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.size') }}</div>
           <div class="flex justify-content-between gap-2">
-            <div class="field">
-              <AppInputNumber
-                v-model="filters.minSize"
-                :placeholder="$t('properties.list.from')"
-                inputClass="w-3"
-                suffix="m²"
-                @update:modelValue="getAllProperties"
-              />
-            </div>
-            <div class="field">
-              <AppInputNumber
-                v-model="filters.maxSize"
-                :placeholder="$t('properties.list.to')"
-                inputClass="w-3"
-                suffix="m²"
-                @update:modelValue="getAllProperties"
-              />
-            </div>
+            <AppInputNumber
+              v-model="filters.minSize"
+              :placeholder="$t('properties.list.from')"
+              inputClass="w-3"
+              suffix="m²"
+              @update:modelValue="getAllProperties"
+            />
+            <AppInputNumber
+              v-model="filters.maxSize"
+              :placeholder="$t('properties.list.to')"
+              inputClass="w-3"
+              suffix="m²"
+              @update:modelValue="getAllProperties"
+            />
           </div>
         </div>
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.bedrooms') }}</div>
-          <div class="field">
-            <AppInputNumber
-              v-model="filters.minBedrooms"
-              placeholder="Minimum"
-              @update:modelValue="getAllProperties"
-            />
-          </div>
+          <AppInputNumber
+            v-model="filters.minBedrooms"
+            placeholder="Minimum"
+            @update:modelValue="getAllProperties"
+          />
         </div>
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.bathrooms') }}</div>
-          <div class="field">
-            <AppInputNumber
-              v-model="filters.minBathrooms"
-              placeholder="Minimum"
-              @update:modelValue="getAllProperties"
-            />
-          </div>
+          <AppInputNumber
+            v-model="filters.minBathrooms"
+            placeholder="Minimum"
+            @update:modelValue="getAllProperties"
+          />
         </div>
 
         <div class="section">
@@ -249,7 +234,7 @@ onBeforeMount(getAllProperties)
         <div class="flex align-items-center gap-2">
           <AppIconField iconPosition="left">
             <AppInputIcon class="pi pi-search" />
-            <AppInputText
+            <InputText
               v-model="filters.title"
               :placeholder="$t('properties.list.filters.titlePlaceholder')"
               type="search"

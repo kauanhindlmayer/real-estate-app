@@ -39,7 +39,7 @@ function next() {
 </script>
 
 <template>
-  <form class="flex flex-column gap-1">
+  <form>
     <AppInputText
       ref="titleRef"
       v-model="property.title"
@@ -101,7 +101,7 @@ function next() {
         :label="$t('common.buttons.next')"
         icon="pi pi-arrow-right"
         icon-pos="right"
-        class="w-2 mt-4"
+        class="w-3 mt-4"
         type="button"
         data-testid="next-button"
         @click="next"

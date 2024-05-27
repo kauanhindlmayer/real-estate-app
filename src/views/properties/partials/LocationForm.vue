@@ -53,7 +53,7 @@ function validateFields() {
 </script>
 
 <template>
-  <form class="flex flex-column gap-1" @submit.prevent="saveProperty">
+  <form @submit.prevent="saveProperty">
     <AppInputText
       ref="zipCodeRef"
       v-model="property.location.zipCode"
@@ -99,14 +99,14 @@ function validateFields() {
       <AppButton
         :label="$t('common.buttons.previous')"
         icon="pi pi-arrow-left"
-        class="w-2 mt-4"
+        class="w-3 mt-4"
         type="button"
         @click="$emit('previous-step')"
       />
       <AppButton
         :label="$t('common.buttons.save')"
         icon="pi pi-check"
-        class="w-2 mt-4"
+        class="w-3 mt-4"
         :loading="isLoading"
         type="submit"
       />

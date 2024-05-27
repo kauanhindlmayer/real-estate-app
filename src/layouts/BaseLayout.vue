@@ -35,7 +35,7 @@ const menubarItems = ref([
     items: [
       {
         label: 'Security',
-        route: 'security'
+        route: '/security'
       }
     ]
   }
@@ -63,7 +63,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 </script>
 
 <template>
-  <AppMenubar class="menubar" :model="menubarItems">
+  <AppMenubar :model="menubarItems">
     <template #start>
       <div class="menubar__start" @click="redirectTo('home')">Real Estate</div>
     </template>
@@ -98,11 +98,6 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 </template>
 
 <style scoped>
-.menubar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
 .menubar__start {
   font-size: 1.75rem;
   font-weight: 600;
@@ -125,5 +120,12 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
 .p-menubar-button {
   position: absolute;
   left: 40%;
+}
+@media screen and (max-width: 960px) {
+  .p-menubar-root-list,
+  .p-menubar-button {
+    position: static;
+    margin-left: 2rem;
+  }
 }
 </style>

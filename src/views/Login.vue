@@ -29,7 +29,7 @@ function validateFields() {
     <div class="left-panel" />
 
     <div class="right-panel">
-      <form @submit.prevent="login" class="flex flex-column gap-1">
+      <form @submit.prevent="login">
         <h1>{{ $t('common.login') }}</h1>
         <AppInputText
           ref="emailRef"
@@ -42,12 +42,13 @@ function validateFields() {
           v-model="password"
           :label="$t('login.fields.password.label')"
           toggle-mask
+          class="w-full"
           required
         />
         <AppButton
           :label="$t('common.login')"
           type="submit"
-          class="mt-2"
+          class="w-full mt-4"
           :loading="userStore.isLoading"
         />
         <p>

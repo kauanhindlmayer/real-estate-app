@@ -34,7 +34,7 @@ function validateFields() {
 <template>
   <div class="container">
     <div class="left-panel">
-      <form class="flex flex-column gap-1" @submit.prevent="register">
+      <form @submit.prevent="register">
         <h1>{{ $t('common.register') }}</h1>
         <AppInputText
           ref="fullNameRef"
@@ -52,6 +52,7 @@ function validateFields() {
           ref="passwordRef"
           v-model="signupForm.password"
           :label="$t('register.fields.password.label')"
+          class="w-full mb-2"
           required
         />
         <AppInputPassword
@@ -59,12 +60,13 @@ function validateFields() {
           v-model="signupForm.passwordConfirmation"
           :password="signupForm.password"
           :label="$t('register.fields.passwordConfirmation.label')"
+          class="w-full"
           required
         />
         <AppButton
           :label="$t('common.register')"
           type="submit"
-          class="mt-2"
+          class="w-full mt-4"
           :loading="userStore.isLoading"
         />
         <p>
