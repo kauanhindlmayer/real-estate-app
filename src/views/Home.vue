@@ -3,9 +3,6 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AppButton from '@/components/wrappers/AppButton.vue'
 import AppCard from '@/components/wrappers/AppCard.vue'
-import AppIconField from '@/components/wrappers/AppIconField.vue'
-import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
-import InputText from 'primevue/inputtext'
 
 const router = useRouter()
 
@@ -53,14 +50,12 @@ function redirectToPropertyList() {
         </div>
 
         <div class="flex align-items-center gap-2">
-          <AppIconField iconPosition="left">
-            <AppInputIcon class="pi pi-search" />
-            <InputText
-              class="w-30rem"
-              :placeholder="$t('properties.list.filters.titlePlaceholder')"
-              type="search"
-            />
-          </AppIconField>
+          <AppInputIcon
+            icon="pi pi-map-marker"
+            class="w-30rem"
+            :placeholder="$t('properties.list.filters.locationPlaceholder')"
+            type="search"
+          />
           <AppButton :label="$t('home.seeOffers', { count: 8 })" @click="redirectToPropertyList" />
         </div>
       </template>

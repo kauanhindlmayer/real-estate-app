@@ -4,18 +4,13 @@ import { useI18n } from 'vue-i18n'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
+import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import AppSidebar from '@/components/wrappers/AppSidebar.vue'
-import AppIconField from '@/components/wrappers/AppIconField.vue'
-import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
-import AppSkeleton from '@/components/wrappers/AppSkeleton.vue'
 import AppBreadcrumb from '@/components/wrappers/AppBreadcrumb.vue'
 import AppChips from '@/components/wrappers/AppChips.vue'
-import AppCheckboxGroup from '@/components/wrappers/AppCheckboxGroup.vue'
-import InputText from 'primevue/inputtext'
-import type { IPropertyFilters } from '@/gateways/PropertyGateway'
-import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 import toCamelCase from '@/utils/toCamelCase'
+import propertiesResolver from '@/views/properties/partials/propertiesResolver.ts'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -47,13 +42,6 @@ const breadcrumbItems = [
   { label: t('common.properties') }
 ]
 
-const sortByOptions = [
-  { label: t('properties.list.mostRelevant'), value: 'mostRelevant' },
-  { label: t('properties.list.priceAscending'), value: 'priceLowToHigh' },
-  { label: t('properties.list.priceDescending'), value: 'priceHighToLow' },
-  { label: t('properties.list.newest'), value: 'newest' }
-]
-
 const activeFilters = computed<string[]>(() => {
   return Object.entries(filters.value)
     .filter(([, value]) => value)
@@ -65,37 +53,6 @@ const activeFilters = computed<string[]>(() => {
     })
 })
 
-const sellerTypesOptions = [
-  {
-    label: t('properties.list.filters.realEstateAgency'),
-    value: SellerTypeEnum.REAL_ESTATE_AGENCY
-  },
-  {
-    label: t('properties.list.filters.privateSeller'),
-    value: SellerTypeEnum.PRIVATE_SELLER
-  },
-  {
-    label: t('properties.list.filters.developer'),
-    value: SellerTypeEnum.DEVELOPER
-  },
-  {
-    label: t('properties.list.filters.builder'),
-    value: SellerTypeEnum.BUILDER
-  },
-  {
-    label: t('properties.list.filters.investor'),
-    value: SellerTypeEnum.INVESTOR
-  }
-]
-
-const optionalsOptions = [
-  { label: t('properties.list.filters.hasGarage'), value: 'hasGarage' },
-  { label: t('properties.list.filters.hasGarden'), value: 'hasGarden' },
-  { label: t('properties.list.filters.hasPool'), value: 'hasPool' },
-  { label: t('properties.list.filters.hasElevator'), value: 'hasElevator' },
-  { label: t('properties.list.filters.hasTerrace'), value: 'hasTerrace' }
-]
-
 onBeforeMount(getAllProperties)
 </script>
 
@@ -105,15 +62,14 @@ onBeforeMount(getAllProperties)
       <template #default>
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.location') }}</div>
-          <AppIconField iconPosition="left">
-            <AppInputIcon class="pi pi-map-marker" />
-            <InputText
-              v-model="filters.location"
-              :placeholder="$t('properties.list.filters.locationPlaceholder')"
-              type="search"
-              @keyup.enter="getAllProperties"
-            />
-          </AppIconField>
+          <AppInputIcon
+            v-model="filters.location"
+            :placeholder="$t('properties.list.filters.locationPlaceholder')"
+            icon="pi pi-map-marker"
+            position="right"
+            type="search"
+            @keyup.enter="getAllProperties"
+          />
         </div>
 
         <div class="section">
@@ -201,7 +157,7 @@ onBeforeMount(getAllProperties)
           <AppCheckboxGroup
             v-model="filters.sellerTypes"
             name="sellerTypes"
-            :options="sellerTypesOptions"
+            :options="propertiesResolver.sellerTypesOptions"
           />
         </div>
 
@@ -210,7 +166,7 @@ onBeforeMount(getAllProperties)
           <AppCheckboxGroup
             v-model="filters.optionals"
             name="optionals"
-            :options="optionalsOptions"
+            :options="propertiesResolver.optionalsOptions"
           />
         </div>
       </template>
@@ -232,18 +188,17 @@ onBeforeMount(getAllProperties)
           <AppChips v-model="activeFilters" :limit="7" />
         </div>
         <div class="flex align-items-center gap-2">
-          <AppIconField iconPosition="left">
-            <AppInputIcon class="pi pi-search" />
-            <InputText
-              v-model="filters.title"
-              :placeholder="$t('properties.list.filters.titlePlaceholder')"
-              type="search"
-              @keyup.enter="getAllProperties"
-            />
-          </AppIconField>
+          <AppInputIcon
+            v-model="filters.title"
+            :placeholder="$t('properties.list.filters.titlePlaceholder')"
+            icon="pi pi-search"
+            type="search"
+            icon-position="left"
+            @keyup.enter="getAllProperties"
+          />
           <AppDropdown
             v-model="filters.sortBy"
-            :options="sortByOptions"
+            :options="propertiesResolver.sortByOptions"
             option-label="label"
             option-value="value"
             placeholder="Most Relevant"

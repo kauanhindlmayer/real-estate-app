@@ -62,7 +62,7 @@ const items = [
 <style scoped>
 .steps-container {
   max-width: 700px;
-  margin: 0 auto;
+  margin: 1rem auto;
   background-color: var(--secondary-bg-color);
 }
 .form-container {
