@@ -116,8 +116,8 @@ function next() {
       <BaseInputText
         ref="typeRef"
         v-model="property.type"
-        :label="$t('properties.form.fields.propertyType.label')"
-        :placeholder="$t('properties.form.fields.propertyType.placeholder')"
+        :label="$t('properties.form.fields.type.label')"
+        :placeholder="$t('properties.form.fields.type.placeholder')"
         data-testid="type-input"
         class="col-6"
         required

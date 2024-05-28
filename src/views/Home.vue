@@ -6,7 +6,8 @@ import BaseCard from '@/components/wrappers/misc/BaseCard.vue'
 
 const router = useRouter()
 
-const selectedPropertyType = ref('house')
+const location = ref('')
+const selectedPropertyType = ref('House')
 
 function selectPropertyType(type: string) {
   selectedPropertyType.value = type
@@ -17,7 +18,10 @@ function redirectToPropertyAdvertise() {
 }
 
 function redirectToPropertyList() {
-  router.push({ name: 'properties-list', query: { type: selectedPropertyType.value } })
+  router.push({
+    name: 'properties-list',
+    query: { type: selectedPropertyType.value, location: location.value }
+  })
 }
 </script>
 
@@ -29,7 +33,7 @@ function redirectToPropertyList() {
           <div
             :class="[
               'property-types__option',
-              { 'property-types__option--selected': selectedPropertyType === 'house' }
+              { 'property-types__option--selected': selectedPropertyType === 'House' }
             ]"
             @click="selectPropertyType('house')"
           >
@@ -38,7 +42,7 @@ function redirectToPropertyList() {
           <div
             :class="[
               'property-types__option',
-              { 'property-types__option--selected': selectedPropertyType === 'apartment' }
+              { 'property-types__option--selected': selectedPropertyType === 'Apartment' }
             ]"
             @click="selectPropertyType('apartment')"
           >
@@ -51,10 +55,12 @@ function redirectToPropertyList() {
 
         <div class="flex align-items-center gap-2">
           <BaseInputIcon
+            v-model="location"
             icon="pi pi-map-marker"
             class="w-30rem"
             :placeholder="$t('properties.list.filters.locationPlaceholder')"
             type="search"
+            @keyup.enter="redirectToPropertyList"
           />
           <BaseButton :label="$t('home.seeOffers', { count: 8 })" @click="redirectToPropertyList" />
         </div>

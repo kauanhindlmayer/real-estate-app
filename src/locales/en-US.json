@@ -50,7 +50,7 @@
           "label": "Image URL",
           "placeholder": "Image URL"
         },
-        "propertyType": {
+        "type": {
           "label": "Property Type",
           "placeholder": "Property Type"
         },
@@ -115,6 +115,7 @@
         "location": "Location",
         "locationPlaceholder": "Type your city or state",
         "titlePlaceholder": "Type the property title",
+        "type": "Type",
         "minPrice": "Min Price",
         "maxPrice": "Max Price",
         "minYearBuilt": "Min Year Built",

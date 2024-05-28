@@ -3,7 +3,7 @@ import { computed, onBeforeMount, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import BaseSidebar from '@/components/wrappers/menu/BaseSidebar.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
@@ -14,6 +14,7 @@ import propertiesResolver from '@/views/properties/partials/propertiesResolver'
 
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
 const propertiesStore = usePropertiesStore()
 const { properties, propertiesCount, isLoading } = storeToRefs(propertiesStore)
 
@@ -58,7 +59,10 @@ const activeFilters = computed<string[]>(() => {
   return formattedFilters
 })
 
-onBeforeMount(getAllProperties)
+onBeforeMount(async () => {
+  filters.value = route.query
+  await getAllProperties()
+})
 </script>
 
 <template>
@@ -71,7 +75,7 @@ onBeforeMount(getAllProperties)
             v-model="filters.location"
             :placeholder="$t('properties.list.filters.locationPlaceholder')"
             icon="pi pi-map-marker"
-            position="right"
+            iconPosition="right"
             type="search"
             @keyup.enter="getAllProperties"
           />

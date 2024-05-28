@@ -50,7 +50,7 @@
           "label": "URL da Imagem",
           "placeholder": "URL da Imagem"
         },
-        "propertyType": {
+        "type": {
           "label": "Tipo de Imóvel",
           "placeholder": "Tipo de Imóvel"
         },
@@ -115,6 +115,7 @@
         "location": "Localização",
         "locationPlaceholder": "Digite sua cidade ou estado",
         "titlePlaceholder": "Digite o título do imóvel",
+        "type": "Tipo de Imóvel",
         "minPrice": "Preço Mínimo",
         "maxPrice": "Preço Máximo",
         "minYearBuilt": "Ano de Construção Mínimo",
