@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppCheckbox from '@/components/wrappers/AppCheckbox.vue'
+import BaseCheckbox from '@/components/wrappers/form/BaseCheckbox.vue'
 
 interface IProps {
   name: string
@@ -13,7 +13,7 @@ const modelValue = defineModel()
 
 <template>
   <div v-for="(option, index) in options" :key="index" class="flex">
-    <AppCheckbox
+    <BaseCheckbox
       v-model="modelValue"
       :name="props.name"
       :value="option.value"

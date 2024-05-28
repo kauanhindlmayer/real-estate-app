@@ -14,19 +14,19 @@ onBeforeMount(() => {
 
 <template>
   <div class="pt-4">
-    <div v-if="propertiesStore.property" class="property-wrapper">
+    <div v-if="propertiesStore.property" class="property-wrBaseer">
       <PropertyCard :property="propertiesStore.property" hide-footer />
     </div>
-    <div v-else class="property-not-found-wrapper">{{ $t('properties.propertyNotFound') }}</div>
+    <div v-else class="property-not-found-wrBaseer">{{ $t('properties.propertyNotFound') }}</div>
   </div>
 </template>
 
 <style scoped>
-.property-wrapper {
+.property-wrBaseer {
   max-width: 800px;
   margin: 0 auto;
 }
-.property-not-found-wrapper {
+.property-not-found-wrBaseer {
   display: flex;
   justify-content: center;
   align-items: center;

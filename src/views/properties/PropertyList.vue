@@ -5,12 +5,12 @@ import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
-import AppSidebar from '@/components/wrappers/AppSidebar.vue'
+import BaseSidebar from '@/components/wrappers/menu/BaseSidebar.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
-import AppBreadcrumb from '@/components/wrappers/AppBreadcrumb.vue'
-import AppChips from '@/components/wrappers/AppChips.vue'
+import BaseBreadcrumb from '@/components/wrappers/misc/BaseBreadcrumb.vue'
+import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 import toCamelCase from '@/utils/toCamelCase'
-import propertiesResolver from '@/views/properties/partials/propertiesResolver.ts'
+import propertiesResolver from '@/views/properties/partials/propertiesResolver'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -43,7 +43,8 @@ const breadcrumbItems = [
 ]
 
 const activeFilters = computed<string[]>(() => {
-  return Object.entries(filters.value)
+  const MAX_FILTERS = 7
+  const formattedFilters = Object.entries(filters.value)
     .filter(([, value]) => value)
     .map(([key, value]) => {
       if (Array.isArray(value)) {
@@ -51,6 +52,10 @@ const activeFilters = computed<string[]>(() => {
       }
       return `${t(`properties.list.filters.${key}`)}: ${value}`
     })
+  if (formattedFilters.length > MAX_FILTERS) {
+    formattedFilters.splice(MAX_FILTERS, formattedFilters.length - MAX_FILTERS, '...')
+  }
+  return formattedFilters
 })
 
 onBeforeMount(getAllProperties)
@@ -58,11 +63,11 @@ onBeforeMount(getAllProperties)
 
 <template>
   <div class="flex -m-4">
-    <AppSidebar v-model="isSidebarCollapsed">
+    <BaseSidebar v-model="isSidebarCollapsed">
       <template #default>
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.location') }}</div>
-          <AppInputIcon
+          <BaseInputIcon
             v-model="filters.location"
             :placeholder="$t('properties.list.filters.locationPlaceholder')"
             icon="pi pi-map-marker"
@@ -75,7 +80,7 @@ onBeforeMount(getAllProperties)
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.priceRange') }}</div>
           <div class="flex justify-content-between gap-2">
-            <AppInputNumber
+            <BaseInputNumber
               v-model="filters.minPrice"
               :placeholder="$t('properties.list.from')"
               inputClass="w-3"
@@ -84,7 +89,7 @@ onBeforeMount(getAllProperties)
               locale="en-US"
               @update:modelValue="getAllProperties"
             />
-            <AppInputNumber
+            <BaseInputNumber
               v-model="filters.maxPrice"
               :placeholder="$t('properties.list.to')"
               inputClass="w-3"
@@ -99,13 +104,13 @@ onBeforeMount(getAllProperties)
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.yearBuilt') }}</div>
           <div class="flex justify-content-between gap-2">
-            <AppInputNumber
+            <BaseInputNumber
               v-model="filters.minYearBuilt"
               :placeholder="$t('properties.list.from')"
               inputClass="w-3"
               @update:modelValue="getAllProperties"
             />
-            <AppInputNumber
+            <BaseInputNumber
               v-model="filters.maxYearBuilt"
               :placeholder="$t('properties.list.to')"
               inputClass="w-3"
@@ -117,14 +122,14 @@ onBeforeMount(getAllProperties)
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.size') }}</div>
           <div class="flex justify-content-between gap-2">
-            <AppInputNumber
+            <BaseInputNumber
               v-model="filters.minSize"
               :placeholder="$t('properties.list.from')"
               inputClass="w-3"
               suffix="m²"
               @update:modelValue="getAllProperties"
             />
-            <AppInputNumber
+            <BaseInputNumber
               v-model="filters.maxSize"
               :placeholder="$t('properties.list.to')"
               inputClass="w-3"
@@ -136,7 +141,7 @@ onBeforeMount(getAllProperties)
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.bedrooms') }}</div>
-          <AppInputNumber
+          <BaseInputNumber
             v-model="filters.minBedrooms"
             placeholder="Minimum"
             @update:modelValue="getAllProperties"
@@ -145,7 +150,7 @@ onBeforeMount(getAllProperties)
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.bathrooms') }}</div>
-          <AppInputNumber
+          <BaseInputNumber
             v-model="filters.minBathrooms"
             placeholder="Minimum"
             @update:modelValue="getAllProperties"
@@ -154,7 +159,7 @@ onBeforeMount(getAllProperties)
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.sellerTypes') }}</div>
-          <AppCheckboxGroup
+          <BaseCheckboxGroup
             v-model="filters.sellerTypes"
             name="sellerTypes"
             :options="propertiesResolver.sellerTypesOptions"
@@ -163,7 +168,7 @@ onBeforeMount(getAllProperties)
 
         <div class="p-3">
           <div class="section__title">{{ $t('properties.list.filters.optionals') }}</div>
-          <AppCheckboxGroup
+          <BaseCheckboxGroup
             v-model="filters.optionals"
             name="optionals"
             :options="propertiesResolver.optionalsOptions"
@@ -172,7 +177,7 @@ onBeforeMount(getAllProperties)
       </template>
 
       <template #footer>
-        <AppButton
+        <BaseButton
           :label="$t('properties.list.filters.clearFilters')"
           severity="secondary"
           class="w-full"
@@ -180,15 +185,22 @@ onBeforeMount(getAllProperties)
           @click="clearFilters"
         />
       </template>
-    </AppSidebar>
+    </BaseSidebar>
     <div class="flex-1">
       <div class="top-bar">
         <div class="flex align-items-center">
           <i class="pi pi-sliders-h mr-4" @click="toggleSidebar" style="cursor: pointer" />
-          <AppChips v-model="activeFilters" :limit="7" />
+          <div class="active-filters-container">
+            <BaseTag
+              v-for="(activeFilter, index) in activeFilters"
+              :key="index"
+              :value="activeFilter"
+              severity="secondary"
+            />
+          </div>
         </div>
         <div class="flex align-items-center gap-2">
-          <AppInputIcon
+          <BaseInputIcon
             v-model="filters.title"
             :placeholder="$t('properties.list.filters.titlePlaceholder')"
             icon="pi pi-search"
@@ -196,7 +208,7 @@ onBeforeMount(getAllProperties)
             icon-position="left"
             @keyup.enter="getAllProperties"
           />
-          <AppDropdown
+          <BaseDropdown
             v-model="filters.sortBy"
             :options="propertiesResolver.sortByOptions"
             option-label="label"
@@ -208,12 +220,12 @@ onBeforeMount(getAllProperties)
       </div>
       <div class="property-list">
         <header class="mb-4">
-          <AppBreadcrumb :model="breadcrumbItems" />
+          <BaseBreadcrumb :model="breadcrumbItems" />
           <h2 class="mb-1">{{ $t('common.properties') }}</h2>
           <p class="m-0">{{ $t('properties.list.description', { count: propertiesCount }) }}</p>
         </header>
         <div v-if="isLoading" class="property-list__cards">
-          <AppSkeleton v-for="n in 8" :key="n" width="23rem" height="36rem" borderRadius="8px" />
+          <BaseSkeleton v-for="n in 8" :key="n" width="23rem" height="36rem" borderRadius="8px" />
         </div>
         <div v-else class="property-list__skeletons">
           <PropertyCard v-for="property in properties" :key="property.id" :property show-footer />
@@ -249,5 +261,10 @@ onBeforeMount(getAllProperties)
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+}
+.active-filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 </style>

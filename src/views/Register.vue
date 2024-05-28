@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
-import AppInputPassword from '@/components/wrappers/AppInputPassword.vue'
+import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
+import BaseInputPassword from '@/components/wrappers/form/BaseInputPassword.vue'
 import type { IUserData } from '@/gateways/UserGateway'
 
 const userStore = useUserStore()
@@ -19,10 +19,10 @@ function register() {
   userStore.register(signupForm.value)
 }
 
-const fullNameRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const emailRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const passwordRef = ref<InstanceType<typeof AppInputPassword> | null>(null)
-const passwordConfirmationRef = ref<InstanceType<typeof AppInputPassword> | null>(null)
+const fullNameRef = ref<InstanceType<typeof BaseInputText> | null>(null)
+const emailRef = ref<InstanceType<typeof BaseInputText> | null>(null)
+const passwordRef = ref<InstanceType<typeof BaseInputPassword> | null>(null)
+const passwordConfirmationRef = ref<InstanceType<typeof BaseInputPassword> | null>(null)
 
 function validateFields() {
   const fieldsToValidate = [fullNameRef, emailRef, passwordRef, passwordConfirmationRef]
@@ -36,26 +36,26 @@ function validateFields() {
     <div class="left-panel">
       <form @submit.prevent="register">
         <h1>{{ $t('common.register') }}</h1>
-        <AppInputText
+        <BaseInputText
           ref="fullNameRef"
           v-model="signupForm.fullName"
           :label="$t('register.fields.fullName.label')"
           required
         />
-        <AppInputText
+        <BaseInputText
           ref="emailRef"
           v-model="signupForm.email"
           :label="$t('register.fields.email.label')"
           required
         />
-        <AppInputPassword
+        <BaseInputPassword
           ref="passwordRef"
           v-model="signupForm.password"
           :label="$t('register.fields.password.label')"
           class="w-full mb-2"
           required
         />
-        <AppInputPassword
+        <BaseInputPassword
           ref="passwordConfirmationRef"
           v-model="signupForm.passwordConfirmation"
           :password="signupForm.password"
@@ -63,7 +63,7 @@ function validateFields() {
           class="w-full"
           required
         />
-        <AppButton
+        <BaseButton
           :label="$t('common.register')"
           type="submit"
           class="w-full mt-4"

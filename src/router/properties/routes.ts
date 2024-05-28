@@ -1,4 +1,6 @@
-const PropertiesRoutes = [
+import type { RouteRecordRaw } from 'vue-router'
+
+const propertiesRoutes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/properties',
     name: 'properties-list',
@@ -25,4 +27,4 @@ const PropertiesRoutes = [
   }
 ]
 
-export default PropertiesRoutes
+export default propertiesRoutes

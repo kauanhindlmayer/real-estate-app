@@ -1,19 +1,19 @@
 import type { App } from 'vue'
 
-import AppButton from '@/components/wrappers/AppButton.vue'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
-import AppInputNumber from '@/components/wrappers/AppInputNumber.vue'
-import AppInputIcon from '@/components/wrappers/AppInputIcon.vue'
-import AppCheckboxGroup from '@/components/wrappers/AppCheckboxGroup.vue'
-import AppDropdown from '@/components/wrappers/AppDropdown.vue'
-import AppSkeleton from '@/components/wrappers/AppSkeleton.vue'
+import BaseButton from '@/components/wrappers/form/BaseButton.vue'
+import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
+import BaseInputNumber from '@/components/wrappers/form/BaseInputNumber.vue'
+import BaseInputIcon from '@/components/wrappers/form/BaseInputIcon.vue'
+import BaseCheckboxGroup from '@/components/wrappers/form/BaseCheckboxGroup.vue'
+import BaseDropdown from '@/components/wrappers/form/BaseDropdown.vue'
+import BaseSkeleton from '@/components/wrappers/misc/BaseSkeleton.vue'
 
 export function registerComponents(app: App<Element>) {
-  app.component('AppButton', AppButton)
-  app.component('AppInputText', AppInputText)
-  app.component('AppInputNumber', AppInputNumber)
-  app.component('AppInputIcon', AppInputIcon)
-  app.component('AppCheckboxGroup', AppCheckboxGroup)
-  app.component('AppDropdown', AppDropdown)
-  app.component('AppSkeleton', AppSkeleton)
+  app.component('BaseButton', BaseButton)
+  app.component('BaseInputText', BaseInputText)
+  app.component('BaseInputNumber', BaseInputNumber)
+  app.component('BaseInputIcon', BaseInputIcon)
+  app.component('BaseCheckboxGroup', BaseCheckboxGroup)
+  app.component('BaseDropdown', BaseDropdown)
+  app.component('BaseSkeleton', BaseSkeleton)
 }

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
-import AppInputPassword from '@/components/wrappers/AppInputPassword.vue'
+import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
+import BaseInputPassword from '@/components/wrappers/form/BaseInputPassword.vue'
 
 const userStore = useUserStore()
 
@@ -14,8 +14,8 @@ function login() {
   userStore.login(email.value, password.value)
 }
 
-const emailRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const passwordRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const emailRef = ref<InstanceType<typeof BaseInputText> | null>(null)
+const passwordRef = ref<InstanceType<typeof BaseInputText> | null>(null)
 
 function validateFields() {
   const fieldsToValidate = [emailRef, passwordRef]
@@ -31,13 +31,13 @@ function validateFields() {
     <div class="right-panel">
       <form @submit.prevent="login">
         <h1>{{ $t('common.login') }}</h1>
-        <AppInputText
+        <BaseInputText
           ref="emailRef"
           v-model="email"
           :label="$t('login.fields.email.label')"
           required
         />
-        <AppInputPassword
+        <BaseInputPassword
           ref="passwordRef"
           v-model="password"
           :label="$t('login.fields.password.label')"
@@ -45,7 +45,7 @@ function validateFields() {
           class="w-full"
           required
         />
-        <AppButton
+        <BaseButton
           :label="$t('common.login')"
           type="submit"
           class="w-full mt-4"

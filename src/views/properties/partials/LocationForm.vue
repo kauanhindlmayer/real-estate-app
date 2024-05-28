@@ -3,7 +3,6 @@ import { inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import useBaseToast from '@/composables/useBaseToast'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
 import LocationGateway from '@/gateways/LocationGateway'
 import Property from '@/types/models/Property'
 
@@ -39,11 +38,11 @@ async function saveProperty() {
   propertiesStore.saveProperty(property.value)
 }
 
-const zipCodeRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const addressRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const cityRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const stateRef = ref<InstanceType<typeof AppInputText> | null>(null)
-const countryRef = ref<InstanceType<typeof AppInputText> | null>(null)
+const zipCodeRef = ref<InstanceType<typeof BaseInputText> | null>(null)
+const addressRef = ref<InstanceType<typeof BaseInputText> | null>(null)
+const cityRef = ref<InstanceType<typeof BaseInputText> | null>(null)
+const stateRef = ref<InstanceType<typeof BaseInputText> | null>(null)
+const countryRef = ref<InstanceType<typeof BaseInputText> | null>(null)
 
 function validateFields() {
   const fieldsToValidate = [zipCodeRef, addressRef, cityRef, stateRef, countryRef]
@@ -54,7 +53,7 @@ function validateFields() {
 
 <template>
   <form @submit.prevent="saveProperty">
-    <AppInputText
+    <BaseInputText
       ref="zipCodeRef"
       v-model="property.location.zipCode"
       :label="$t('properties.form.fields.zipCode.label')"
@@ -63,7 +62,7 @@ function validateFields() {
       @change="getLocationByZipCode"
     />
 
-    <AppInputText
+    <BaseInputText
       ref="addressRef"
       v-model="property.location.address"
       :label="$t('properties.form.fields.address.label')"
@@ -71,7 +70,7 @@ function validateFields() {
       required
     />
 
-    <AppInputText
+    <BaseInputText
       ref="cityRef"
       v-model="property.location.city"
       :label="$t('properties.form.fields.city.label')"
@@ -79,7 +78,7 @@ function validateFields() {
       required
     />
 
-    <AppInputText
+    <BaseInputText
       ref="stateRef"
       v-model="property.location.state"
       :label="$t('properties.form.fields.state.label')"
@@ -87,7 +86,7 @@ function validateFields() {
       required
     />
 
-    <AppInputText
+    <BaseInputText
       ref="countryRef"
       v-model="property.location.country"
       :label="$t('properties.form.fields.country.label')"
@@ -96,14 +95,14 @@ function validateFields() {
     />
 
     <footer>
-      <AppButton
+      <BaseButton
         :label="$t('common.buttons.previous')"
         icon="pi pi-arrow-left"
         class="w-3 mt-4"
         type="button"
         @click="$emit('previous-step')"
       />
-      <AppButton
+      <BaseButton
         :label="$t('common.buttons.save')"
         icon="pi pi-check"
         class="w-3 mt-4"

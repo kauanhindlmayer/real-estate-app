@@ -14,7 +14,7 @@ function redirectToHome() {
       <h1>404</h1>
       <h2>{{ $t('common.notFound') }}</h2>
       <p>{{ $t('notFound.description') }}</p>
-      <AppButton label="Go to Homepage" @click="redirectToHome" />
+      <BaseButton label="Go to Homepage" @click="redirectToHome" />
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PropertiesRoutes from './properties'
+import propertiesRoutes from './properties/routes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +24,7 @@ const router = createRouter({
             title: 'Security'
           }
         },
-        ...PropertiesRoutes
+        ...propertiesRoutes
       ]
     },
     {
@@ -55,7 +55,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
-  document.title = `${to.meta.title} | Real Estate`
+  const appName = import.meta.env.VITE_APP_NAME
+  document.title = to.meta.title ? `${to.meta.title} | ${appName}` : appName
   next()
 })
 

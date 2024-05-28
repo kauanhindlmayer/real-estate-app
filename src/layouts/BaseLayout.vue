@@ -4,9 +4,9 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import { storeToRefs } from 'pinia'
-import AppAvatar from '@/components/wrappers/AppAvatar.vue'
-import AppMenu from '@/components/wrappers/AppMenu.vue'
-import AppMenubar from '@/components/wrappers/AppMenubar.vue'
+import BaseAvatar from '@/components/wrappers/misc/BaseAvatar.vue'
+import BaseMenu from '@/components/wrappers/menu/BaseMenu.vue'
+import BaseMenubar from '@/components/wrappers/menu/BaseMenubar.vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -59,11 +59,11 @@ const items = ref([
   }
 ])
 
-const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
+const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
 </script>
 
 <template>
-  <AppMenubar :model="menubarItems">
+  <BaseMenubar :model="menubarItems">
     <template #start>
       <div class="menubar__start" @click="redirectTo('home')">Real Estate</div>
     </template>
@@ -71,16 +71,16 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
     <template #end>
       <div v-if="isUserLoggedIn" class="flex align-items-center gap-2 menubar__end">
         {{ user.fullName }}
-        <AppAvatar
+        <BaseAvatar
           :image="user.avatarUrl"
           style="width: 32px; height: 32px"
           aria-haspopup="true"
           aria-controls="overlay_menu"
           @click="menuRef?.toggle($event)"
         />
-        <AppMenu ref="menuRef" id="overlay_menu" :model="items" popup />
+        <BaseMenu ref="menuRef" id="overlay_menu" :model="items" popup />
       </div>
-      <AppButton
+      <BaseButton
         v-else
         :label="$t('common.login')"
         class="menubar__end"
@@ -90,7 +90,7 @@ const menuRef = ref<InstanceType<typeof AppMenu> | null>(null)
         @click="redirectTo('login')"
       />
     </template>
-  </AppMenubar>
+  </BaseMenubar>
 
   <div class="content-container">
     <RouterView />

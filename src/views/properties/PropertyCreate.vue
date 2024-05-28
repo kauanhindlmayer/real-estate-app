@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import AppSteps from '@/components/wrappers/AppSteps.vue'
+import BaseSteps from '@/components/wrappers/menu/BaseSteps.vue'
 import LocationForm from '@/views/properties/partials/LocationForm.vue'
 import DetailsForm from '@/views/properties/partials/DetailsForm.vue'
 import Property from '@/types/models/Property'
@@ -40,7 +40,7 @@ const items = [
 
 <template>
   <div class="steps-container">
-    <AppSteps v-model:active-step="active" :model="items" class="mb-4" />
+    <BaseSteps v-model:active-step="active" :model="items" class="mb-4" />
   </div>
 
   <div class="form-container">
@@ -61,7 +61,7 @@ const items = [
 
 <style scoped>
 .steps-container {
-  max-width: 700px;
+  max-width: 1200px;
   margin: 1rem auto;
   background-color: var(--secondary-bg-color);
 }
@@ -69,7 +69,7 @@ const items = [
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 700px;
+  max-width: 1200px;
   margin: 0 auto;
   background-color: var(--primary-bg-color);
   border-radius: 0.5rem;

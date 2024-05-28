@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import AppButton from '@/components/wrappers/AppButton.vue'
-import AppCard from '@/components/wrappers/AppCard.vue'
+import BaseButton from '@/components/wrappers/form/BaseButton.vue'
+import BaseCard from '@/components/wrappers/misc/BaseCard.vue'
 
 const router = useRouter()
 
@@ -23,7 +23,7 @@ function redirectToPropertyList() {
 
 <template>
   <div class="container">
-    <AppCard class="container__card">
+    <BaseCard class="container__card">
       <template #content>
         <div class="property-types">
           <div
@@ -50,16 +50,16 @@ function redirectToPropertyList() {
         </div>
 
         <div class="flex align-items-center gap-2">
-          <AppInputIcon
+          <BaseInputIcon
             icon="pi pi-map-marker"
             class="w-30rem"
             :placeholder="$t('properties.list.filters.locationPlaceholder')"
             type="search"
           />
-          <AppButton :label="$t('home.seeOffers', { count: 8 })" @click="redirectToPropertyList" />
+          <BaseButton :label="$t('home.seeOffers', { count: 8 })" @click="redirectToPropertyList" />
         </div>
       </template>
-    </AppCard>
+    </BaseCard>
   </div>
 </template>
 
