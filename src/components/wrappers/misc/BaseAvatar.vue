@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import Avatar from 'primevue/avatar'
-import { computed, toRefs } from 'vue'
 
 interface IProps {
   image: string | undefined
@@ -11,12 +10,13 @@ const props = withDefaults(defineProps<IProps>(), {
   image: undefined,
   shape: 'circle'
 })
-
-const { image, shape } = toRefs(props)
-
-const icon = computed(() => (image.value ? undefined : 'pi pi-user'))
 </script>
 
 <template>
-  <Avatar v-bind="$attrs" :icon :shape />
+  <Avatar
+    v-bind="$attrs"
+    :image="props.image"
+    :icon="props.image ? undefined : 'pi pi-user'"
+    :shape="props.shape"
+  />
 </template>

@@ -2,13 +2,13 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { VueWrapper, mount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
-import AppInputText from '@/components/wrappers/AppInputText.vue'
+import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
 
-describe('AppInputText', () => {
+describe('BaseInputText', () => {
   let wrapper: VueWrapper<any>
 
   beforeEach(() => {
-    wrapper = mount(AppInputText, {
+    wrapper = mount(BaseInputText, {
       global: {
         plugins: [PrimeVue]
       }
