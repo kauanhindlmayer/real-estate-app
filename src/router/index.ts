@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import propertiesRoutes from './properties/routes'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,10 +56,19 @@ const router = createRouter({
   ]
 })
 
+router.beforeResolve((to, _, next) => {
+  if (to.name) NProgress.start()
+  next()
+})
+
 router.beforeEach((to, _, next) => {
   const appName = import.meta.env.VITE_APP_NAME
   document.title = to.meta.title ? `${to.meta.title} | ${appName}` : appName
   next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router

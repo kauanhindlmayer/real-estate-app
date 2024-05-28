@@ -50,6 +50,30 @@
           "label": "Image URL",
           "placeholder": "Image URL"
         },
+        "propertyType": {
+          "label": "Property Type",
+          "placeholder": "Property Type"
+        },
+        "bedrooms": {
+          "label": "Bedrooms",
+          "placeholder": "Bedrooms"
+        },
+        "bathrooms": {
+          "label": "Bathrooms",
+          "placeholder": "Bathrooms"
+        },
+        "sellerType": {
+          "label": "Seller Type",
+          "placeholder": "Seller Type"
+        },
+        "amenities": {
+          "label": "Amenities",
+          "placeholder": "Amenities"
+        },
+        "availability": {
+          "label": "Availability",
+          "placeholder": "Availability"
+        },
         "zipCode": {
           "label": "Zip Code",
           "placeholder": "Zip Code"

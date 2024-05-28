@@ -8,6 +8,11 @@ export default class Property {
     public size: number = 0,
     public imageSources: string[] = [],
     public location: Location = new Location(),
+    public type?: string,
+    public bedrooms?: number,
+    public bathrooms?: number,
+    public amenities?: string[],
+    public availability?: string,
     public id?: string
   ) {}
 }

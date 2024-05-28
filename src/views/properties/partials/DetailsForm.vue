@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
+import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
+import BaseInputNumber from '@/components/wrappers/form/BaseInputNumber.vue'
 import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
 import Property from '@/types/models/Property'
 
@@ -62,7 +64,7 @@ function next() {
         :label="$t('properties.form.fields.title.label')"
         :placeholder="$t('properties.form.fields.title.placeholder')"
         data-testid="title-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
@@ -72,7 +74,7 @@ function next() {
         :label="$t('properties.form.fields.description.label')"
         :placeholder="$t('properties.form.fields.description.placeholder')"
         data-testid="description-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
@@ -85,7 +87,7 @@ function next() {
         :label="$t('properties.form.fields.price.label')"
         :placeholder="$t('properties.form.fields.price.placeholder')"
         data-testid="price-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
@@ -96,7 +98,7 @@ function next() {
         :placeholder="$t('properties.form.fields.size.placeholder')"
         suffix="m²"
         data-testid="size-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
@@ -107,17 +109,17 @@ function next() {
         :label="$t('properties.form.fields.imageUrl.label')"
         :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
         data-testid="imageUrl-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
       <BaseInputText
         ref="typeRef"
         v-model="property.type"
-        :label="$t('properties.form.fields.type.label')"
-        :placeholder="$t('properties.form.fields.type.placeholder')"
+        :label="$t('properties.form.fields.propertyType.label')"
+        :placeholder="$t('properties.form.fields.propertyType.placeholder')"
         data-testid="type-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
@@ -127,7 +129,7 @@ function next() {
         :label="$t('properties.form.fields.bedrooms.label')"
         :placeholder="$t('properties.form.fields.bedrooms.placeholder')"
         data-testid="bedrooms-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
@@ -137,7 +139,7 @@ function next() {
         :label="$t('properties.form.fields.bathrooms.label')"
         :placeholder="$t('properties.form.fields.bathrooms.placeholder')"
         data-testid="bathrooms-input"
-        class="col-4"
+        class="col-6"
         required
       />
 
@@ -147,7 +149,7 @@ function next() {
         :label="$t('properties.form.fields.amenities.label')"
         :placeholder="$t('properties.form.fields.amenities.placeholder')"
         data-testid="amenities-input"
-        class="col-4"
+        class="col-6"
       />
 
       <BaseInputText
@@ -156,7 +158,7 @@ function next() {
         :label="$t('properties.form.fields.availability.label')"
         :placeholder="$t('properties.form.fields.availability.placeholder')"
         data-testid="availability-input"
-        class="col-4"
+        class="col-6"
       />
     </div>
 

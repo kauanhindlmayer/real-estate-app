@@ -61,7 +61,7 @@ const items = [
 
 <style scoped>
 .steps-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 1rem auto;
   background-color: var(--secondary-bg-color);
 }
@@ -69,7 +69,7 @@ const items = [
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   background-color: var(--primary-bg-color);
   border-radius: 0.5rem;

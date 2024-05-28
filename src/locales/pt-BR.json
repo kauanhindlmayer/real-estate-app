@@ -50,6 +50,30 @@
           "label": "URL da Imagem",
           "placeholder": "URL da Imagem"
         },
+        "propertyType": {
+          "label": "Tipo de Imóvel",
+          "placeholder": "Tipo de Imóvel"
+        },
+        "bedrooms": {
+          "label": "Quartos",
+          "placeholder": "Quartos"
+        },
+        "bathrooms": {
+          "label": "Banheiros",
+          "placeholder": "Banheiros"
+        },
+        "sellerType": {
+          "label": "Tipo de Vendedor",
+          "placeholder": "Tipo de Vendedor"
+        },
+        "amenities": {
+          "label": "Amenidades",
+          "placeholder": "Amenidades"
+        },
+        "availability": {
+          "label": "Disponibilidade",
+          "placeholder": "Disponibilidade"
+        },
         "zipCode": {
           "label": "CEP",
           "placeholder": "CEP"
