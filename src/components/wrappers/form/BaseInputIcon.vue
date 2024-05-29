@@ -5,7 +5,7 @@ import InputText from 'primevue/inputtext'
 
 interface IProps {
   icon: string
-  iconPosition: 'left' | 'right'
+  iconPosition?: 'left' | 'right'
 }
 
 const props = withDefaults(defineProps<IProps>(), {

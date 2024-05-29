@@ -34,7 +34,7 @@ const menubarItems = ref([
     label: t('common.help'),
     items: [
       {
-        label: 'Security',
+        label: t('common.security'),
         route: '/security'
       }
     ]

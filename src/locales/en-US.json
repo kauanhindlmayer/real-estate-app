@@ -8,6 +8,7 @@
     "properties": "Properties",
     "advertise": "Advertise",
     "help": "Help",
+    "security": "Security",
     "notFound": "Not Found",
     "houses": "Houses",
     "apartments": "Apartments",
@@ -18,6 +19,8 @@
       "save": "Save"
     },
     "messages": {
+      "required": "This field is required",
+      "passwordsDoNotMatch": "Passwords do not match",
       "errorFetchingData": "Error fetching data"
     }
   },

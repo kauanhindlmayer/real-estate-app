@@ -1,6 +1,11 @@
 import { t } from '@/plugins/i18n'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 
+export const propertyTypesOptions = [
+  { label: t('properties.list.filters.apartment'), value: 'apartment' },
+  { label: t('properties.list.filters.house'), value: 'house' }
+]
+
 export const sellerTypesOptions = [
   {
     label: t('properties.list.filters.realEstateAgency'),
@@ -40,6 +45,7 @@ export const sortByOptions = [
 ]
 
 export default {
+  propertyTypesOptions,
   sellerTypesOptions,
   optionalsOptions,
   sortByOptions

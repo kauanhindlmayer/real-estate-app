@@ -6,6 +6,8 @@ import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
 import BaseInputNumber from '@/components/wrappers/form/BaseInputNumber.vue'
 import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
 import Property from '@/types/models/Property'
+import { optionalsOptions } from './propertiesResolver'
+import BaseMultiSelect from '@/components/wrappers/form/BaseMultiSelect.vue'
 
 const toast = useBaseToast()
 const { t } = useI18n()
@@ -57,109 +59,107 @@ function next() {
 
 <template>
   <form>
-    <div class="grid">
-      <BaseInputText
-        ref="titleRef"
-        v-model="property.title"
-        :label="$t('properties.form.fields.title.label')"
-        :placeholder="$t('properties.form.fields.title.placeholder')"
-        data-testid="title-input"
-        class="col-6"
-        required
-      />
+    <div class="flex align-items-center justify-content-between">
+      <div>
+        <BaseInputText
+          ref="titleRef"
+          v-model="property.title"
+          :label="$t('properties.form.fields.title.label')"
+          :placeholder="$t('properties.form.fields.title.placeholder')"
+          data-testid="title-input"
+          required
+        />
 
-      <BaseInputText
-        ref="descriptionRef"
-        v-model="property.description"
-        :label="$t('properties.form.fields.description.label')"
-        :placeholder="$t('properties.form.fields.description.placeholder')"
-        data-testid="description-input"
-        class="col-6"
-        required
-      />
+        <BaseInputText
+          ref="descriptionRef"
+          v-model="property.description"
+          :label="$t('properties.form.fields.description.label')"
+          :placeholder="$t('properties.form.fields.description.placeholder')"
+          data-testid="description-input"
+          required
+        />
 
-      <BaseInputNumber
-        ref="priceRef"
-        v-model="property.price"
-        mode="currency"
-        currency="USD"
-        locale="en-US"
-        :label="$t('properties.form.fields.price.label')"
-        :placeholder="$t('properties.form.fields.price.placeholder')"
-        data-testid="price-input"
-        class="col-6"
-        required
-      />
+        <BaseInputNumber
+          ref="priceRef"
+          v-model="property.price"
+          mode="currency"
+          currency="USD"
+          locale="en-US"
+          :label="$t('properties.form.fields.price.label')"
+          :placeholder="$t('properties.form.fields.price.placeholder')"
+          data-testid="price-input"
+          required
+        />
 
-      <BaseInputNumber
-        ref="sizeRef"
-        v-model="property.size"
-        :label="$t('properties.form.fields.size.label')"
-        :placeholder="$t('properties.form.fields.size.placeholder')"
-        suffix="m²"
-        data-testid="size-input"
-        class="col-6"
-        required
-      />
+        <BaseInputNumber
+          ref="sizeRef"
+          v-model="property.size"
+          :label="$t('properties.form.fields.size.label')"
+          :placeholder="$t('properties.form.fields.size.placeholder')"
+          suffix="m²"
+          data-testid="size-input"
+          required
+        />
 
-      <BaseInputText
-        ref="imageUrlRef"
-        v-model="imageUrl"
-        type="url"
-        :label="$t('properties.form.fields.imageUrl.label')"
-        :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
-        data-testid="imageUrl-input"
-        class="col-6"
-        required
-      />
+        <BaseInputText
+          ref="imageUrlRef"
+          v-model="imageUrl"
+          type="url"
+          :label="$t('properties.form.fields.imageUrl.label')"
+          :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
+          data-testid="imageUrl-input"
+          required
+        />
+      </div>
 
-      <BaseInputText
-        ref="typeRef"
-        v-model="property.type"
-        :label="$t('properties.form.fields.type.label')"
-        :placeholder="$t('properties.form.fields.type.placeholder')"
-        data-testid="type-input"
-        class="col-6"
-        required
-      />
+      <div>
+        <BaseMultiSelect
+          ref="typeRef"
+          v-model="property.type"
+          :label="$t('properties.form.fields.type.label')"
+          :placeholder="$t('properties.form.fields.type.placeholder')"
+          data-testid="type-input"
+          required
+        />
 
-      <BaseInputNumber
-        ref="bedroomsRef"
-        v-model="property.bedrooms"
-        :label="$t('properties.form.fields.bedrooms.label')"
-        :placeholder="$t('properties.form.fields.bedrooms.placeholder')"
-        data-testid="bedrooms-input"
-        class="col-6"
-        required
-      />
+        <BaseInputNumber
+          ref="bedroomsRef"
+          v-model="property.bedrooms"
+          :label="$t('properties.form.fields.bedrooms.label')"
+          :placeholder="$t('properties.form.fields.bedrooms.placeholder')"
+          data-testid="bedrooms-input"
+          required
+        />
 
-      <BaseInputNumber
-        ref="bathroomsRef"
-        v-model="property.bathrooms"
-        :label="$t('properties.form.fields.bathrooms.label')"
-        :placeholder="$t('properties.form.fields.bathrooms.placeholder')"
-        data-testid="bathrooms-input"
-        class="col-6"
-        required
-      />
+        <BaseInputNumber
+          ref="bathroomsRef"
+          v-model="property.bathrooms"
+          :label="$t('properties.form.fields.bathrooms.label')"
+          :placeholder="$t('properties.form.fields.bathrooms.placeholder')"
+          data-testid="bathrooms-input"
+          required
+        />
 
-      <BaseInputText
-        ref="amenitiesRef"
-        v-model="property.amenities"
-        :label="$t('properties.form.fields.amenities.label')"
-        :placeholder="$t('properties.form.fields.amenities.placeholder')"
-        data-testid="amenities-input"
-        class="col-6"
-      />
+        <BaseMultiSelect
+          ref="amenitiesRef"
+          v-model="property.amenities"
+          :label="$t('properties.form.fields.amenities.label')"
+          :placeholder="$t('properties.form.fields.amenities.placeholder')"
+          :options="optionalsOptions"
+          option-label="label"
+          option-value="value"
+          data-testid="amenities-input"
+          required
+        />
 
-      <BaseInputText
-        ref="availabilityRef"
-        v-model="property.availability"
-        :label="$t('properties.form.fields.availability.label')"
-        :placeholder="$t('properties.form.fields.availability.placeholder')"
-        data-testid="availability-input"
-        class="col-6"
-      />
+        <BaseInputText
+          ref="availabilityRef"
+          v-model="property.availability"
+          :label="$t('properties.form.fields.availability.label')"
+          :placeholder="$t('properties.form.fields.availability.placeholder')"
+          data-testid="availability-input"
+        />
+      </div>
     </div>
 
     <BaseInlineMessage

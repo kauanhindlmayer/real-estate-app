@@ -7,6 +7,7 @@ import BaseInputIcon from '@/components/wrappers/form/BaseInputIcon.vue'
 import BaseCheckboxGroup from '@/components/wrappers/form/BaseCheckboxGroup.vue'
 import BaseDropdown from '@/components/wrappers/form/BaseDropdown.vue'
 import BaseSkeleton from '@/components/wrappers/misc/BaseSkeleton.vue'
+import BaseMultiSelect from '@/components/wrappers/form/BaseMultiSelect.vue'
 
 export function registerComponents(app: App<Element>) {
   app.component('BaseButton', BaseButton)
@@ -16,4 +17,5 @@ export function registerComponents(app: App<Element>) {
   app.component('BaseCheckboxGroup', BaseCheckboxGroup)
   app.component('BaseDropdown', BaseDropdown)
   app.component('BaseSkeleton', BaseSkeleton)
+  app.component('BaseMultiSelect', BaseMultiSelect)
 }
