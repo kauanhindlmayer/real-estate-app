@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
 import Property from '@/types/models/Property'
-import { optionalsOptions } from './propertiesResolver'
+import { optionalsOptions, propertyTypesOptions } from './propertiesResolver'
 import { useField, useForm } from 'vee-validate'
 import { object, string, number, array } from 'yup'
 
@@ -25,7 +25,7 @@ const validationSchema = object({
   availability: string().required()
 })
 
-const { validate, errors } = useForm({ validationSchema })
+const { validate, errors, values } = useForm({ validationSchema })
 const { value: title } = useField('title')
 const { value: description } = useField('description')
 const { value: price } = useField('price')
@@ -45,15 +45,15 @@ async function next() {
     toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
     return
   }
-  property.value.imageSources.push(imageUrl.value)
+  property.value = { ...property.value, ...values }
   emit('next-step')
 }
 </script>
 
 <template>
   <form>
-    <div class="flex align-items-center justify-content-between">
-      <div>
+    <div class="grid">
+      <div class="col-6">
         <BaseInputText
           v-model="title"
           :error="errors.title"
@@ -61,7 +61,8 @@ async function next() {
           :placeholder="$t('properties.form.fields.title.placeholder')"
           data-testid="title-input"
         />
-
+      </div>
+      <div class="col-6">
         <BaseInputText
           v-model="description"
           :error="errors.description"
@@ -69,7 +70,9 @@ async function next() {
           :placeholder="$t('properties.form.fields.description.placeholder')"
           data-testid="description-input"
         />
+      </div>
 
+      <div class="col-6">
         <BaseInputNumber
           v-model="price"
           :error="errors.price"
@@ -80,7 +83,8 @@ async function next() {
           :placeholder="$t('properties.form.fields.price.placeholder')"
           data-testid="price-input"
         />
-
+      </div>
+      <div class="col-6">
         <BaseInputNumber
           v-model="size"
           :error="errors.size"
@@ -89,7 +93,9 @@ async function next() {
           suffix="m²"
           data-testid="size-input"
         />
+      </div>
 
+      <div class="col-6">
         <BaseInputText
           v-model="imageUrl"
           :error="errors.imageUrl"
@@ -99,16 +105,20 @@ async function next() {
           data-testid="imageUrl-input"
         />
       </div>
-
-      <div>
+      <div class="col-6">
         <BaseMultiSelect
           v-model="type"
           :error="errors.type"
           :label="$t('properties.form.fields.type.label')"
           :placeholder="$t('properties.form.fields.type.placeholder')"
+          :options="propertyTypesOptions"
+          option-label="label"
+          option-value="value"
           data-testid="type-input"
         />
+      </div>
 
+      <div class="col-6">
         <BaseInputNumber
           v-model="bedrooms"
           :error="errors.bedrooms"
@@ -116,7 +126,8 @@ async function next() {
           :placeholder="$t('properties.form.fields.bedrooms.placeholder')"
           data-testid="bedrooms-input"
         />
-
+      </div>
+      <div class="col-6">
         <BaseInputNumber
           v-model="bathrooms"
           :error="errors.bathrooms"
@@ -124,7 +135,9 @@ async function next() {
           :placeholder="$t('properties.form.fields.bathrooms.placeholder')"
           data-testid="bathrooms-input"
         />
+      </div>
 
+      <div class="col-6">
         <BaseMultiSelect
           v-model="amenities"
           :error="errors.amenities"
@@ -135,7 +148,8 @@ async function next() {
           option-value="value"
           data-testid="amenities-input"
         />
-
+      </div>
+      <div class="col-6">
         <BaseInputText
           v-model="availability"
           :error="errors.availability"

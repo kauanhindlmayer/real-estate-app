@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import formatCurrency from '@/utils/formatCurrency'
+import formatCurrency from '../../src/utils/formatCurrency'
 
 describe('formatCurrency', () => {
   it('formats a number to currency', () => {

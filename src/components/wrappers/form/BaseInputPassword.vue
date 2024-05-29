@@ -12,7 +12,6 @@ const uid = useUid()
   <div>
     <label v-if="label" :for="uid">
       {{ label }}
-      <span v-if="required" class="p-error"> *</span>
     </label>
     <Password
       v-bind="$attrs"

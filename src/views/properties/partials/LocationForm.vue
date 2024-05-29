@@ -5,6 +5,8 @@ import { usePropertiesStore } from '@/stores/propertiesStore'
 import useBaseToast from '@/composables/useBaseToast'
 import LocationGateway from '@/gateways/LocationGateway'
 import Property from '@/types/models/Property'
+import { useField, useForm } from 'vee-validate'
+import { object, string } from 'yup'
 
 const locationGateway = inject('locationGateway') as LocationGateway
 
@@ -30,68 +32,68 @@ async function getLocationByZipCode() {
   }
 }
 
+const validationSchema = object({
+  zipCode: string().required(),
+  address: string().required(),
+  city: string().required(),
+  state: string().required(),
+  country: string().required()
+})
+
+const { validate, values, errors } = useForm({ validationSchema })
+const { value: zipCode } = useField('zipCode')
+const { value: address } = useField('address')
+const { value: city } = useField('city')
+const { value: state } = useField('state')
+const { value: country } = useField('country')
+
 async function saveProperty() {
-  if (!validateFields()) {
+  const result = await validate()
+  if (!result.valid) {
     toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
     return
   }
+  property.value.location = { ...property.value.location, ...values }
   propertiesStore.saveProperty(property.value)
-}
-
-const zipCodeRef = ref<InstanceType<typeof BaseInputText> | null>(null)
-const addressRef = ref<InstanceType<typeof BaseInputText> | null>(null)
-const cityRef = ref<InstanceType<typeof BaseInputText> | null>(null)
-const stateRef = ref<InstanceType<typeof BaseInputText> | null>(null)
-const countryRef = ref<InstanceType<typeof BaseInputText> | null>(null)
-
-function validateFields() {
-  const fieldsToValidate = [zipCodeRef, addressRef, cityRef, stateRef, countryRef]
-  const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
-  return validationResults.every((valid) => valid)
 }
 </script>
 
 <template>
   <form @submit.prevent="saveProperty">
     <BaseInputText
-      ref="zipCodeRef"
-      v-model="property.location.zipCode"
+      v-model="zipCode"
       :label="$t('properties.form.fields.zipCode.label')"
       :placeholder="$t('properties.form.fields.zipCode.placeholder')"
-      required
+      :error="errors.zipCode"
       @change="getLocationByZipCode"
     />
 
     <BaseInputText
-      ref="addressRef"
-      v-model="property.location.address"
+      v-model="address"
       :label="$t('properties.form.fields.address.label')"
       :placeholder="$t('properties.form.fields.address.placeholder')"
-      required
+      :error="errors.address"
     />
 
     <BaseInputText
-      ref="cityRef"
-      v-model="property.location.city"
+      v-model="city"
       :label="$t('properties.form.fields.city.label')"
       :placeholder="$t('properties.form.fields.city.placeholder')"
-      required
+      :error="errors.city"
     />
 
     <BaseInputText
-      ref="stateRef"
-      v-model="property.location.state"
+      v-model="state"
       :label="$t('properties.form.fields.state.label')"
       :placeholder="$t('properties.form.fields.state.placeholder')"
-      required
+      :error="errors.state"
     />
 
     <BaseInputText
-      ref="countryRef"
-      v-model="property.location.country"
+      v-model="country"
       :label="$t('properties.form.fields.country.label')"
       :placeholder="$t('properties.form.fields.country.placeholder')"
-      required
+      :error="errors.country"
     />
 
     <footer>

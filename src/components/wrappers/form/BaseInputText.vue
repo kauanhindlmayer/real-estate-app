@@ -9,10 +9,9 @@ const uid = useUid()
 </script>
 
 <template>
-  <div class="field">
+  <div>
     <label v-if="label" :for="uid">
       {{ label }}
-      <span v-if="required" class="p-error"> *</span>
     </label>
     <InputText
       v-bind="$attrs"

@@ -9,14 +9,13 @@ const uid = useUid()
 </script>
 
 <template>
-  <div class="field">
+  <div>
     <label v-if="label" :for="uid">
       {{ label }}
-      <span v-if="required" class="p-error"> *</span>
     </label>
     <MultiSelect
-      v-model="modelValue"
       v-bind="$attrs"
+      v-model="modelValue"
       :id="uid"
       :aria-labelledby="error ? `${uid}-error` : undefined"
       :aria-invalid="!!error"
