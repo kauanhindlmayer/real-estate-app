@@ -38,11 +38,13 @@
     "amenities": "Amenities",
     "availability": "Availability",
     "sellerType": "Seller Type",
-    "zipCode": "Zip Code",
-    "address": "Address",
-    "city": "City",
-    "state": "State",
-    "country": "Country"
+    "location": {
+      "zipCode": "Zip Code",
+      "address": "Address",
+      "city": "City",
+      "state": "State",
+      "country": "Country"
+    }
   },
   "validation": {
     "required": "Please fill out the {path} field",

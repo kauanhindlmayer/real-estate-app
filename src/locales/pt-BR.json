@@ -38,11 +38,13 @@
     "amenities": "Comodidades",
     "availability": "Disponibilidade",
     "sellerType": "Tipo de Vendedor",
-    "zipCode": "CEP",
-    "address": "Endereço",
-    "city": "Cidade",
-    "state": "Estado",
-    "country": "País"
+    "location": {
+      "zipCode": "CEP",
+      "address": "Endereço",
+      "city": "Cidade",
+      "state": "Estado",
+      "country": "País"
+    }
   },
   "validation": {
     "required": "Por favor, preencha o campo {path}",

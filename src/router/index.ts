@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { startLoading, finishLoading } from '@/plugins/nprogress'
 import propertiesRoutes from './properties/routes'
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,7 +56,7 @@ const router = createRouter({
 })
 
 router.beforeResolve((to, _, next) => {
-  if (to.name) NProgress.start()
+  if (to.name) startLoading()
   next()
 })
 
@@ -68,7 +67,7 @@ router.beforeEach((to, _, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done()
+  finishLoading()
 })
 
 export default router

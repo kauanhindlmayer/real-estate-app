@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
-import { inject, ref } from 'vue'
+import { inject } from 'vue'
 import { useField, useForm } from 'vee-validate'
 import { object, string, number, array } from 'yup'
 import { optionalsOptions, propertyTypesOptions } from './partials/propertiesResolver'
 import { usePropertiesStore } from '@/stores/propertiesStore'
+import { useDebounceFn } from '@vueuse/core'
 import useBaseToast from '@/composables/useBaseToast'
 import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
 import type Property from '@/types/models/Property'
@@ -29,22 +30,24 @@ const validationSchema = object({
   availability: string()
     .required()
     .matches(/^\d{4}-\d{2}-\d{2}$/),
-  zipCode: string()
-    .required()
-    .matches(/^\d{5}-\d{3}$/),
-  address: string().required().min(5),
-  city: string()
-    .required()
-    .matches(/^[a-zA-Z\sá]+$/)
-    .min(2),
-  state: string().required().length(2),
-  country: string()
-    .required()
-    .matches(/^[a-zA-Z\s]+$/)
-    .min(2)
+  location: object({
+    zipCode: string()
+      .required()
+      .matches(/^\d{5}-\d{3}$/),
+    address: string().required().min(5),
+    city: string()
+      .required()
+      .matches(/^[a-zA-Z\sá]+$/)
+      .min(2),
+    state: string().required().length(2),
+    country: string()
+      .required()
+      .matches(/^[a-zA-Z\s]+$/)
+      .min(2)
+  }).required()
 })
 
-const { handleSubmit, errors, setValues } = useForm({ validationSchema })
+const { handleSubmit, errors, setFieldValue } = useForm({ validationSchema })
 const { value: title } = useField('title')
 const { value: description } = useField('description')
 const { value: price } = useField('price')
@@ -55,36 +58,25 @@ const { value: bedrooms } = useField('bedrooms')
 const { value: bathrooms } = useField('bathrooms')
 const { value: amenities } = useField('amenities')
 const { value: availability } = useField('availability')
-const { value: zipCode } = useField('zipCode')
-const { value: address } = useField('address')
-const { value: city } = useField('city')
-const { value: state } = useField('state')
-const { value: country } = useField('country')
+const { value: zipCode } = useField('location.zipCode')
+const { value: address } = useField('location.address')
+const { value: city } = useField('location.city')
+const { value: state } = useField('location.state')
+const { value: country } = useField('location.country')
 
-const saveProperty = handleSubmit(async (values) => {
-  propertiesStore.saveProperty(values as Property)
+const saveProperty = handleSubmit(async (property: Property) => {
+  propertiesStore.saveProperty(property)
 })
 
-const isLoading = ref(false)
-
-async function getLocationByZipCode() {
-  isLoading.value = true
+const getLocationByZipCode = useDebounceFn(async () => {
   try {
     const location = await locationGateway.getByZipCode(zipCode.value)
-    setValues({
-      address: location.address,
-      city: location.city,
-      state: location.state,
-      country: location.country,
-      zipCode: location.zipCode
-    })
+    setFieldValue('location', location)
     toast.success({ message: t('properties.form.messages.locationFound') })
   } catch {
     toast.error({ message: t('properties.form.messages.locationNotFound') })
-  } finally {
-    isLoading.value = false
   }
-}
+}, 1000)
 </script>
 
 <template>
@@ -200,9 +192,9 @@ async function getLocationByZipCode() {
         <div class="col-2">
           <BaseInputMask
             v-model="zipCode"
-            :label="$t('fields.zipCode')"
-            :placeholder="$t('fields.zipCode')"
-            :error="errors.zipCode"
+            :label="$t('fields.location.zipCode')"
+            :placeholder="$t('fields.location.zipCode')"
+            :error="errors['location.zipCode']"
             mask="99999-999"
             @change="getLocationByZipCode"
           />
@@ -210,33 +202,33 @@ async function getLocationByZipCode() {
         <div class="col-3">
           <BaseInputText
             v-model="address"
-            :label="$t('fields.address')"
-            :placeholder="$t('fields.address')"
-            :error="errors.address"
+            :label="$t('fields.location.address')"
+            :placeholder="$t('fields.location.address')"
+            :error="errors['location.address']"
           />
         </div>
         <div class="col-3">
           <BaseInputText
             v-model="city"
-            :label="$t('fields.city')"
-            :placeholder="$t('fields.city')"
-            :error="errors.city"
+            :label="$t('fields.location.city')"
+            :placeholder="$t('fields.location.city')"
+            :error="errors['location.city']"
           />
         </div>
         <div class="col-2">
           <BaseInputText
             v-model="state"
-            :label="$t('fields.state')"
-            :placeholder="$t('fields.state')"
-            :error="errors.state"
+            :label="$t('fields.location.state')"
+            :placeholder="$t('fields.location.state')"
+            :error="errors['location.state']"
           />
         </div>
         <div class="col-2">
           <BaseInputText
             v-model="country"
-            :label="$t('fields.country')"
-            :placeholder="$t('fields.country')"
-            :error="errors.country"
+            :label="$t('fields.location.country')"
+            :placeholder="$t('fields.location.country')"
+            :error="errors['location.country']"
           />
         </div>
       </div>
@@ -252,7 +244,7 @@ async function getLocationByZipCode() {
           :label="$t('common.buttons.save')"
           icon="pi pi-check"
           class="w-3 mt-4"
-          :loading="isLoading"
+          :loading="propertiesStore.isLoading"
           type="submit"
         />
       </footer>
