@@ -19,85 +19,65 @@
       "save": "Salvar"
     },
     "messages": {
-      "required": "Campo obrigatório",
-      "passwordsDoNotMatch": "Senhas não conferem",
       "errorFetchingData": "Erro ao buscar dados"
     }
+  },
+  "fields": {
+    "fullName": "Nome Completo",
+    "email": "Email",
+    "password": "Senha",
+    "passwordConfirmation": "Confirmação de Senha",
+    "title": "Título",
+    "description": "Descrição",
+    "price": "Preço",
+    "size": "Tamanho",
+    "imageUrl": "URL da Imagem",
+    "type": "Tipo",
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
+    "amenities": "Comodidades",
+    "availability": "Disponibilidade",
+    "sellerType": "Tipo de Vendedor",
+    "zipCode": "CEP",
+    "address": "Endereço",
+    "city": "Cidade",
+    "state": "Estado",
+    "country": "País"
+  },
+  "validation": {
+    "required": "Por favor, preencha o campo {path}",
+    "oneOf": "O valor inserido para {path} não é válido",
+    "notOneOf": "{path} não pode ser um dos seguintes valores: {values}",
+    "length": "{path} deve ter exatamente {length} caracteres",
+    "min": "{path} deve ter pelo menos {min} caracteres",
+    "max": "{path} deve ter no máximo {max} caracteres",
+    "matches": "O valor inserido para {path} não está no formato correto",
+    "email": "Por favor, insira um endereço de email válido para {path}",
+    "url": "Por favor, insira uma URL válida para {path}",
+    "trim": "{path} não deve conter espaços em branco no início ou no fim",
+    "lowercase": "{path} deve estar em letras minúsculas",
+    "uppercase": "{path} deve estar em letras maiúsculas",
+    "minValue": "{path} deve ser maior que {min}",
+    "maxValue": "{path} deve ser menor que {max}",
+    "positive": "{path} deve ser um número positivo",
+    "negative": "{path} deve ser um número negativo",
+    "integer": "{path} deve ser um número inteiro",
+    "minDate": "{path} deve ser uma data após {min}",
+    "maxDate": "{path} deve ser uma data antes de {max}",
+    "boolean": "{path} deve ser {value}",
+    "noUnknown": "{path} possui algumas chaves não reconhecidas: {unknown}",
+    "arrayMin": "{path} deve ter pelo menos {min} itens",
+    "arrayMax": "{path} deve ter no máximo {max} itens"
   },
   "properties": {
     "propertyNotFound": "Propriedade não encontrada",
     "form": {
-      "title": "Preencha os dados do imóvel",
+      "title": "Anunciar Imóvel",
+      "subtitle": "Preencha os campos abaixo para anunciar seu imóvel",
       "details": "Detalhes",
       "location": "Localização",
       "review": "Revisão",
       "propertyDataEditRestriction": "Não é possível editar os dados do veículo após criar o anúncio. Confirme os dados antes de continuar.",
-      "fields": {
-        "title": {
-          "label": "Título",
-          "placeholder": "Título"
-        },
-        "description": {
-          "label": "Descrição",
-          "placeholder": "Descrição"
-        },
-        "price": {
-          "label": "Preço",
-          "placeholder": "Preço"
-        },
-        "size": {
-          "label": "Tamanho (m²)",
-          "placeholder": "Tamanho"
-        },
-        "imageUrl": {
-          "label": "URL da Imagem",
-          "placeholder": "URL da Imagem"
-        },
-        "type": {
-          "label": "Tipo de Imóvel",
-          "placeholder": "Tipo de Imóvel"
-        },
-        "bedrooms": {
-          "label": "Quartos",
-          "placeholder": "Quartos"
-        },
-        "bathrooms": {
-          "label": "Banheiros",
-          "placeholder": "Banheiros"
-        },
-        "sellerType": {
-          "label": "Tipo de Vendedor",
-          "placeholder": "Tipo de Vendedor"
-        },
-        "amenities": {
-          "label": "Amenidades",
-          "placeholder": "Amenidades"
-        },
-        "availability": {
-          "label": "Disponibilidade",
-          "placeholder": "Disponibilidade"
-        },
-        "zipCode": {
-          "label": "CEP",
-          "placeholder": "CEP"
-        },
-        "address": {
-          "label": "Endereço",
-          "placeholder": "Endereço"
-        },
-        "city": {
-          "label": "Cidade",
-          "placeholder": "Cidade"
-        },
-        "state": {
-          "label": "Estado",
-          "placeholder": "Estado"
-        },
-        "country": {
-          "label": "País",
-          "placeholder": "País"
-        }
-      },
       "messages": {
         "propertyCreated": "Propriedade criada com sucesso!",
         "locationFound": "Localização encontrada com sucesso!",
@@ -144,6 +124,8 @@
         "hasPool": "Piscina",
         "hasElevator": "Elevador",
         "hasTerrace": "Terraço",
+        "house": "Casa",
+        "apartment": "Apartamento",
         "clearFilters": "Limpar Filtros"
       },
       "messages": {
@@ -156,22 +138,12 @@
     "seeOffers": "Ver Ofertas ({count})",
     "wantToSell": "Quer vender seu imóvel?"
   },
-  "help": {
+  "security": {
     "title": "Segurança para gente <br /> <span class=\"emphasis\">é assunto sério.</span>",
     "description": "O Real Estate é o melhor lugar para comprar, vender e cuidar <br /> do seu imóvel. Preparamos esse conteúdo para tornar  <br /> sua negociação ainda mais segura e tranquila.",
     "readCarefully": "<span class=\"emphasis\">Dá uma lida com atenção</span>, e boa negociação ;)"
   },
   "login": {
-    "fields": {
-      "email": {
-        "label": "Email",
-        "placeholder": "Email"
-      },
-      "password": {
-        "label": "Senha",
-        "placeholder": "Senha"
-      }
-    },
     "messages": {
       "invalidCredentials": "Credenciais inválidas"
     },
@@ -181,24 +153,6 @@
     "description": "A página que você procura não existe"
   },
   "register": {
-    "fields": {
-      "fullName": {
-        "label": "Nome Completo",
-        "placeholder": "Nome Completo"
-      },
-      "email": {
-        "label": "Email",
-        "placeholder": "Email"
-      },
-      "password": {
-        "label": "Senha",
-        "placeholder": "Senha"
-      },
-      "passwordConfirmation": {
-        "label": "Confirmação de Senha",
-        "placeholder": "Confirmação de Senha"
-      }
-    },
     "alreadyHaveAccount": "Já possui uma conta?",
     "messages": {
       "userRegistered": "Usuário registrado com sucesso!",

@@ -2,11 +2,11 @@ import type IHttpClient from './httpClient'
 import User from '@/types/models/User'
 
 interface IUserGateway {
-  register(userData: IUserData): Promise<void>
+  register(userData: UserRegistrationData): Promise<void>
   login(email: string, password: string): Promise<User>
 }
 
-export interface IUserData {
+export type UserRegistrationData = {
   fullName: string
   email: string
   password: string
@@ -16,7 +16,7 @@ export interface IUserData {
 export default class UserGateway implements IUserGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
-  async register(userData: IUserData): Promise<void> {
+  async register(userData: UserRegistrationData): Promise<void> {
     return await this.httpClient.post('/user/one', userData)
   }
 
@@ -28,7 +28,7 @@ export default class UserGateway implements IUserGateway {
 export class UserGatewayInMemory implements IUserGateway {
   private users: User[] = []
 
-  async register(userData: IUserData): Promise<void> {
+  async register(userData: UserRegistrationData): Promise<void> {
     if (this.users.find((user) => user.email === userData.email)) {
       throw new Error('User already exists')
     }

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import BaseButton from '@/components/wrappers/form/BaseButton.vue'
 import BaseCard from '@/components/wrappers/misc/BaseCard.vue'
 
 const router = useRouter()

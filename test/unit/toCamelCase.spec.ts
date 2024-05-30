@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import toCamelCase from '@/utils/toCamelCase'
+import toCamelCase from '../../src/utils/toCamelCase'
 
 describe('toCamelCase', () => {
   it('converts a string in kebab-case to camel case', () => {

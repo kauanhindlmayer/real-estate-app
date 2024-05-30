@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import User from '@/types/models/User'
 import type UserGateway from '@/gateways/UserGateway'
-import type { IUserData } from '@/gateways/UserGateway'
+import type { UserRegistrationData } from '@/gateways/UserGateway'
 
 export const useUserStore = defineStore('user', () => {
   const userGateway = inject('userGateway') as UserGateway
@@ -19,11 +19,12 @@ export const useUserStore = defineStore('user', () => {
 
   const isUserLoggedIn = computed(() => Boolean(user.value.id))
 
-  async function register(userData: IUserData) {
+  async function register(userData: UserRegistrationData) {
     isLoading.value = true
     try {
       await userGateway.register(userData)
-      router.push({ name: 'home' })
+      router.push({ name: 'login' })
+      toast.success({ message: t('register.messages.userRegistered') })
     } catch {
       toast.error({ message: t('login.messages.invalidCredentials') })
     } finally {

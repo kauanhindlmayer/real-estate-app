@@ -19,85 +19,65 @@
       "save": "Save"
     },
     "messages": {
-      "required": "This field is required",
-      "passwordsDoNotMatch": "Passwords do not match",
       "errorFetchingData": "Error fetching data"
     }
+  },
+  "fields": {
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirmation": "Password Confirmation",
+    "title": "Title",
+    "description": "Description",
+    "price": "Price",
+    "size": "Size",
+    "imageUrl": "Image URL",
+    "type": "Type",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "amenities": "Amenities",
+    "availability": "Availability",
+    "sellerType": "Seller Type",
+    "zipCode": "Zip Code",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country"
+  },
+  "validation": {
+    "required": "Please fill out the {path} field",
+    "oneOf": "The value entered for {path} is not valid",
+    "notOneOf": "{path} cannot be one of the following: {values}",
+    "length": "{path} must be exactly {length} characters long",
+    "min": "{path} must be at least {min} characters long",
+    "max": "{path} must be no more than {max} characters long",
+    "matches": "The value entered for {path} is not in the correct format",
+    "email": "Please enter a valid email address for {path}",
+    "url": "Please enter a valid URL for {path}",
+    "trim": "{path} should not have leading or trailing spaces",
+    "lowercase": "{path} should be in lowercase letters",
+    "uppercase": "{path} should be in uppercase letters",
+    "minValue": "{path} must be greater than {min}",
+    "maxValue": "{path} must be less than {max}",
+    "positive": "{path} must be a positive number",
+    "negative": "{path} must be a negative number",
+    "integer": "{path} must be an integer",
+    "minDate": "{path} must be a date after {min}",
+    "maxDate": "{path} must be a date before {max}",
+    "boolean": "{path} must be {value}",
+    "noUnknown": "{path} has some unrecognized keys: {unknown}",
+    "arrayMin": "{path} must have at least {min} items",
+    "arrayMax": "{path} must have no more than {max} items"
   },
   "properties": {
     "propertyNotFound": "Property not found",
     "form": {
-      "title": "Fill in the property details",
+      "title": "Advertise your property",
+      "subtitle": "Fill in the details of the property you want to advertise",
       "details": "Details",
       "location": "Location",
       "review": "Review",
       "propertyDataEditRestriction": "You cannot edit the property data after creating the advertisement. Please confirm the data before proceeding.",
-      "fields": {
-        "title": {
-          "label": "Title",
-          "placeholder": "Title"
-        },
-        "description": {
-          "label": "Description",
-          "placeholder": "Description"
-        },
-        "price": {
-          "label": "Price",
-          "placeholder": "Price"
-        },
-        "size": {
-          "label": "Size (m²)",
-          "placeholder": "Size"
-        },
-        "imageUrl": {
-          "label": "Image URL",
-          "placeholder": "Image URL"
-        },
-        "type": {
-          "label": "Property Type",
-          "placeholder": "Property Type"
-        },
-        "bedrooms": {
-          "label": "Bedrooms",
-          "placeholder": "Bedrooms"
-        },
-        "bathrooms": {
-          "label": "Bathrooms",
-          "placeholder": "Bathrooms"
-        },
-        "sellerType": {
-          "label": "Seller Type",
-          "placeholder": "Seller Type"
-        },
-        "amenities": {
-          "label": "Amenities",
-          "placeholder": "Amenities"
-        },
-        "availability": {
-          "label": "Availability",
-          "placeholder": "Availability"
-        },
-        "zipCode": {
-          "label": "Zip Code",
-          "placeholder": "Zip Code"
-        },
-        "address": {
-          "label": "Address",
-          "placeholder": "Address"
-        },
-        "city": {
-          "label": "City",
-          "placeholder": "City"
-        },
-        "state": {
-          "label": "State",
-          "placeholder": "State"
-        },
-        "country": {
-          "label": "Country",
-          "placeholder": "Country"
-        }
-      },
       "messages": {
         "propertyCreated": "Property created successfully!",
         "locationFound": "Location found successfully!",
@@ -144,6 +124,8 @@
         "hasPool": "Pool",
         "hasElevator": "Elevator",
         "hasTerrace": "Terrace",
+        "house": "House",
+        "apartment": "Apartment",
         "clearFilters": "Clear Filters"
       },
       "messages": {
@@ -156,22 +138,12 @@
     "seeOffers": "See Offers ({count})",
     "wantToSell": "Want to sell your property?"
   },
-  "help": {
+  "security": {
     "title": "Security is a serious <br /> <span class=\"emphasis\"> matter for us.</span>",
     "description": "Real Estate is the best place to buy, sell, and take care <br /> of your property. We've prepared this content to make <br /> your negotiation even safer and smoother.",
     "readCarefully": "<span class=\"emphasis\">Read it carefully</span>, and happy negotiating! ;)"
   },
   "login": {
-    "fields": {
-      "email": {
-        "label": "Email",
-        "placeholder": "Email"
-      },
-      "password": {
-        "label": "Password",
-        "placeholder": "Password"
-      }
-    },
     "messages": {
       "invalidCredentials": "Invalid credentials"
     },
@@ -181,24 +153,6 @@
     "description": "The page you are looking for does not exist"
   },
   "register": {
-    "fields": {
-      "fullName": {
-        "label": "Full Name",
-        "placeholder": "Full Name"
-      },
-      "email": {
-        "label": "Email",
-        "placeholder": "Email"
-      },
-      "password": {
-        "label": "Password",
-        "placeholder": "Password"
-      },
-      "passwordConfirmation": {
-        "label": "Password Confirmation",
-        "placeholder": "Password Confirmation"
-      }
-    },
     "alreadyHaveAccount": "Already have an account?",
     "messages": {
       "userRegistered": "User registered successfully!",

@@ -1,9 +1,9 @@
 <template>
   <div class="security-info">
     <div>
-      <div class="security-info__title" v-html="$t('help.title')" />
-      <div v-html="$t('help.description')" />
-      <div class="security-info__read-carefully" v-html="$t('help.readCarefully')" />
+      <div class="security-info__title" v-html="$t('security.title')" />
+      <div v-html="$t('security.description')" />
+      <div class="security-info__read-carefully" v-html="$t('security.readCarefully')" />
     </div>
     <img
       src="@/assets/images/security.svg"
@@ -39,11 +39,5 @@
     flex-direction: column;
     gap: 2rem;
   }
-}
-</style>
-
-<style>
-span.emphasis {
-  color: var(--primary-color);
 }
 </style>

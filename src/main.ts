@@ -11,6 +11,7 @@ import ToastService from 'primevue/toastservice'
 import App from '@/App.vue'
 import router from '@/router'
 import i18n from '@/plugins/i18n'
+import setYupLocale from '@/plugins/yup'
 
 import { registerComponents } from '@/utils/registerComponents'
 import { registerGateways } from '@/utils/registerGateways'
@@ -22,6 +23,7 @@ app.use(router)
 app.use(PrimeVue)
 app.use(ToastService)
 app.use(i18n)
+setYupLocale()
 
 registerComponents(app)
 registerGateways(app, { useInMemory: true })

@@ -33,9 +33,7 @@ describe('BaseInputText', () => {
   })
 
   it('renders the error message when input is invalid', async () => {
-    wrapper.setProps({ modelValue: '', label: 'Name', required: true })
-    await wrapper.vm.$nextTick()
-    wrapper.vm.isValid()
+    wrapper.setProps({ modelValue: '', label: 'Name', error: 'This field is required' })
     await wrapper.vm.$nextTick()
     const errorMessageElement = wrapper.find('small.p-error')
     expect(errorMessageElement.exists()).toBe(true)
@@ -44,9 +42,7 @@ describe('BaseInputText', () => {
   })
 
   it('does not render the error message when input is valid', async () => {
-    wrapper.setProps({ modelValue: 'John Doe', required: true })
-    await wrapper.vm.$nextTick()
-    wrapper.vm.isValid()
+    wrapper.setProps({ modelValue: 'John Doe' })
     await wrapper.vm.$nextTick()
     const errorMessageElement = wrapper.find('small.p-error')
     expect(errorMessageElement.exists()).toBe(false)

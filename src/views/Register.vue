@@ -1,81 +1,101 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useUserStore } from '@/stores/userStore'
-import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
-import BaseInputPassword from '@/components/wrappers/form/BaseInputPassword.vue'
-import type { IUserData } from '@/gateways/UserGateway'
+import { useField, useForm } from 'vee-validate'
+import { object, string, ref } from 'yup'
+import type { UserRegistrationData } from '@/gateways/UserGateway'
 
 const userStore = useUserStore()
 
-const signupForm = ref<IUserData>({
-  fullName: '',
-  email: '',
-  password: '',
-  passwordConfirmation: ''
+const validationSchema = object({
+  fullName: string()
+    .required()
+    .matches(/^[a-zA-Z\s]+$/)
+    .min(3),
+  email: string().required().email(),
+  password: string()
+    .required()
+    .min(8)
+    .matches(/[a-z]/)
+    .matches(/[A-Z]/)
+    .matches(/[0-9]/)
+    .matches(/[@$!%*?&]/),
+  passwordConfirmation: string()
+    .required()
+    .oneOf([ref('password')])
 })
 
-function register() {
-  if (!validateFields()) return
-  userStore.register(signupForm.value)
-}
+const { handleSubmit, errors } = useForm({ validationSchema })
+const { value: fullName } = useField('fullName')
+const { value: email } = useField('email')
+const { value: password } = useField('password')
+const { value: passwordConfirmation } = useField('passwordConfirmation')
 
-const fullNameRef = ref<InstanceType<typeof BaseInputText> | null>(null)
-const emailRef = ref<InstanceType<typeof BaseInputText> | null>(null)
-const passwordRef = ref<InstanceType<typeof BaseInputPassword> | null>(null)
-const passwordConfirmationRef = ref<InstanceType<typeof BaseInputPassword> | null>(null)
-
-function validateFields() {
-  const fieldsToValidate = [fullNameRef, emailRef, passwordRef, passwordConfirmationRef]
-  const validationResults = fieldsToValidate.map((ref) => ref.value?.isValid())
-  return validationResults.every((valid) => valid)
-}
+const register = handleSubmit(async (values) => {
+  await userStore.register(values as UserRegistrationData)
+})
 </script>
 
 <template>
   <div class="container">
     <div class="left-panel">
-      <form @submit.prevent="register">
-        <h1>{{ $t('common.register') }}</h1>
-        <BaseInputText
-          ref="fullNameRef"
-          v-model="signupForm.fullName"
-          :label="$t('register.fields.fullName.label')"
-          required
-        />
-        <BaseInputText
-          ref="emailRef"
-          v-model="signupForm.email"
-          :label="$t('register.fields.email.label')"
-          required
-        />
-        <BaseInputPassword
-          ref="passwordRef"
-          v-model="signupForm.password"
-          :label="$t('register.fields.password.label')"
-          class="w-full mb-2"
-          required
-        />
-        <BaseInputPassword
-          ref="passwordConfirmationRef"
-          v-model="signupForm.passwordConfirmation"
-          :password="signupForm.password"
-          :label="$t('register.fields.passwordConfirmation.label')"
-          class="w-full"
-          required
-        />
-        <BaseButton
-          :label="$t('common.register')"
-          type="submit"
-          class="w-full mt-4"
-          :loading="userStore.isLoading"
-        />
-        <p>
-          {{ $t('register.alreadyHaveAccount') }}
-          <RouterLink to="/login">{{ $t('common.login') }}</RouterLink>
-        </p>
+      <form @submit.prevent="register" class="flex justify-content-center">
+        <div class="grid w-7">
+          <div class="col-12">
+            <h1>{{ $t('common.register') }}</h1>
+          </div>
+          <div class="col-12">
+            <BaseInputText
+              v-model="fullName"
+              :label="$t('fields.fullName')"
+              :placeholder="$t('fields.fullName')"
+              :error="errors.fullName"
+            />
+          </div>
+          <div class="col-12">
+            <BaseInputText
+              v-model="email"
+              :label="$t('fields.email')"
+              :placeholder="$t('fields.email')"
+              :error="errors.email"
+            />
+          </div>
+          <div class="col-12">
+            <BaseInputPassword
+              v-model="password"
+              :feedback="false"
+              :label="$t('fields.password')"
+              :placeholder="$t('fields.password')"
+              :error="errors.password"
+              class="w-full"
+            />
+          </div>
+          <div class="col-12">
+            <BaseInputPassword
+              v-model="passwordConfirmation"
+              :feedback="false"
+              :label="$t('fields.passwordConfirmation')"
+              :placeholder="$t('fields.passwordConfirmation')"
+              :error="errors.passwordConfirmation"
+              class="w-full"
+            />
+          </div>
+          <div class="col-12">
+            <BaseButton
+              :label="$t('common.register')"
+              type="submit"
+              class="w-full mt-4"
+              :loading="userStore.isLoading"
+            />
+          </div>
+          <div class="col-12">
+            <p>
+              {{ $t('register.alreadyHaveAccount') }}
+              <RouterLink to="/login" class="emphasis">{{ $t('common.login') }}</RouterLink>
+            </p>
+          </div>
+        </div>
       </form>
     </div>
-
     <div class="right-panel" />
   </div>
 </template>
@@ -91,14 +111,9 @@ function validateFields() {
   justify-content: center;
   align-items: center;
   width: 50vw;
-  height: 100vh;
 }
 .right-panel {
   background-color: var(--primary-color);
   width: 50vw;
-  height: 100vh;
-}
-a {
-  color: var(--primary-color);
 }
 </style>

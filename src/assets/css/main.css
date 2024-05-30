@@ -11,8 +11,17 @@ body {
 }
 
 label {
+  display: block !important;
+  margin-bottom: 4px !important;
+}
+
+.p-error {
   display: block;
-  margin-bottom: 8px;
+  margin-top: 4px;
+}
+
+.emphasis {
+  color: var(--primary-color);
 }
 
 ::-webkit-scrollbar {
