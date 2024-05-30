@@ -1,19 +1,13 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
 import { useUserStore } from '@/stores/userStore'
-import BaseInputText from '@/components/wrappers/form/BaseInputText.vue'
-import BaseInputPassword from '@/components/wrappers/form/BaseInputPassword.vue'
 import { useField, useForm } from 'vee-validate'
 import { object, string } from 'yup'
 
-const { t } = useI18n()
 const userStore = useUserStore()
 
 const validationSchema = object({
-  email: string()
-    .required(t('login.fields.email.required'))
-    .email(t('login.fields.email.invalidFormat')),
-  password: string().required(t('login.fields.password.required'))
+  email: string().required().email(),
+  password: string().required()
 })
 
 const { handleSubmit, errors } = useForm({ validationSchema })
@@ -38,8 +32,8 @@ const login = handleSubmit(async (values) => {
           <div class="col-12">
             <BaseInputText
               v-model="email"
-              :label="$t('login.fields.email.label')"
-              :placeholder="$t('login.fields.email.placeholder')"
+              :label="$t('fields.email')"
+              :placeholder="$t('fields.email')"
               :error="errors.email"
             />
           </div>
@@ -48,8 +42,8 @@ const login = handleSubmit(async (values) => {
               v-model="password"
               toggle-mask
               :feedback="false"
-              :label="$t('login.fields.password.label')"
-              :placeholder="$t('login.fields.password.placeholder')"
+              :label="$t('fields.password')"
+              :placeholder="$t('fields.password')"
               :error="errors.password"
               class="w-full"
             />

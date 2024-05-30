@@ -22,6 +22,53 @@
       "errorFetchingData": "Error fetching data"
     }
   },
+  "fields": {
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirmation": "Password Confirmation",
+    "title": "Title",
+    "description": "Description",
+    "price": "Price",
+    "size": "Size",
+    "imageUrl": "Image URL",
+    "type": "Type",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "amenities": "Amenities",
+    "availability": "Availability",
+    "sellerType": "Seller Type",
+    "zipCode": "Zip Code",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country"
+  },
+  "validation": {
+    "required": "Please fill out the {path} field",
+    "oneOf": "The value entered for {path} is not valid",
+    "notOneOf": "{path} cannot be one of the following: {values}",
+    "length": "{path} must be exactly {length} characters long",
+    "min": "{path} must be at least {min} characters long",
+    "max": "{path} must be no more than {max} characters long",
+    "matches": "The value entered for {path} is not in the correct format",
+    "email": "Please enter a valid email address for {path}",
+    "url": "Please enter a valid URL for {path}",
+    "trim": "{path} should not have leading or trailing spaces",
+    "lowercase": "{path} should be in lowercase letters",
+    "uppercase": "{path} should be in uppercase letters",
+    "minValue": "{path} must be greater than {min}",
+    "maxValue": "{path} must be less than {max}",
+    "positive": "{path} must be a positive number",
+    "negative": "{path} must be a negative number",
+    "integer": "{path} must be an integer",
+    "minDate": "{path} must be a date after {min}",
+    "maxDate": "{path} must be a date before {max}",
+    "boolean": "{path} must be {value}",
+    "noUnknown": "{path} has some unrecognized keys: {unknown}",
+    "arrayMin": "{path} must have at least {min} items",
+    "arrayMax": "{path} must have no more than {max} items"
+  },
   "properties": {
     "propertyNotFound": "Property not found",
     "form": {
@@ -30,111 +77,6 @@
       "location": "Location",
       "review": "Review",
       "propertyDataEditRestriction": "You cannot edit the property data after creating the advertisement. Please confirm the data before proceeding.",
-      "fields": {
-        "title": {
-          "label": "Title",
-          "placeholder": "Title",
-          "required": "Title is required",
-          "minLength": "Title must have at least 5 characters",
-          "maxLength": "Title must have at most 100 characters"
-        },
-        "description": {
-          "label": "Description",
-          "placeholder": "Description",
-          "required": "Description is required",
-          "minLength": "Description must have at least 20 characters"
-        },
-        "price": {
-          "label": "Price",
-          "placeholder": "Price",
-          "required": "Price is required",
-          "minValue": "Price must be greater than 0",
-          "maxValue": "Price must be less than 10,000,000"
-        },
-        "size": {
-          "label": "Size (m²)",
-          "placeholder": "Size",
-          "required": "Size is required",
-          "minValue": "Size must be greater than 0",
-          "maxValue": "Size must be less than 100,000"
-        },
-        "imageUrl": {
-          "label": "Image URL",
-          "placeholder": "Image URL",
-          "required": "Image URL is required",
-          "invalidFormat": "Image URL must be a valid URL"
-        },
-        "type": {
-          "label": "Property Type",
-          "placeholder": "Property Type",
-          "required": "Property Type is required",
-          "invalidFormat": "Invalid Property Type"
-        },
-        "bedrooms": {
-          "label": "Bedrooms",
-          "placeholder": "Bedrooms",
-          "required": "Bedrooms is required",
-          "integer": "Bedrooms must be an integer",
-          "minValue": "Bedrooms must be greater than 0",
-          "maxValue": "Bedrooms must be less than 50"
-        },
-        "bathrooms": {
-          "label": "Bathrooms",
-          "placeholder": "Bathrooms",
-          "required": "Bathrooms is required",
-          "integer": "Bathrooms must be an integer",
-          "minValue": "Bathrooms must be greater than 0",
-          "maxValue": "Bathrooms must be less than 50"
-        },
-        "amenities": {
-          "label": "Amenities",
-          "placeholder": "Amenities",
-          "required": "Amenities is required",
-          "minLength": "There must be at least one amenity"
-        },
-        "availability": {
-          "label": "Availability",
-          "placeholder": "Availability",
-          "required": "Availability is required",
-          "invalidFormat": "Invalid Availability"
-        },
-        "sellerType": {
-          "label": "Seller Type",
-          "placeholder": "Seller Type"
-        },
-        "zipCode": {
-          "label": "Zip Code",
-          "placeholder": "Zip Code",
-          "required": "Zip Code is required",
-          "invalidFormat": "Invalid CEP format (e.g., 12345-678)"
-        },
-        "address": {
-          "label": "Address",
-          "placeholder": "Address",
-          "required": "Address is required",
-          "minLength": "Address must have at least 5 characters"
-        },
-        "city": {
-          "label": "City",
-          "placeholder": "City",
-          "required": "City is required",
-          "invalidFormat": "City can only contain letters and spaces",
-          "minLength": "City must have at least 2 characters"
-        },
-        "state": {
-          "label": "State",
-          "placeholder": "State",
-          "required": "State is required",
-          "invalidFormat": "State must be a 2-letter code"
-        },
-        "country": {
-          "label": "Country",
-          "placeholder": "Country",
-          "required": "Country is required",
-          "invalidFormat": "Country can only contain letters and spaces",
-          "minLength": "Country must have at least 2 characters"
-        }
-      },
       "messages": {
         "propertyCreated": "Property created successfully!",
         "locationFound": "Location found successfully!",
@@ -199,19 +141,6 @@
     "readCarefully": "<span class=\"emphasis\">Read it carefully</span>, and happy negotiating! ;)"
   },
   "login": {
-    "fields": {
-      "email": {
-        "label": "Email",
-        "placeholder": "Email",
-        "required": "Email is required",
-        "invalidFormat": "Invalid email format"
-      },
-      "password": {
-        "label": "Password",
-        "placeholder": "Password",
-        "required": "Password is required"
-      }
-    },
     "messages": {
       "invalidCredentials": "Invalid credentials"
     },
@@ -221,37 +150,6 @@
     "description": "The page you are looking for does not exist"
   },
   "register": {
-    "fields": {
-      "fullName": {
-        "label": "Full Name",
-        "placeholder": "Full Name",
-        "required": "Full Name is required",
-        "invalidFormat": "Full Name must contain only letters and spaces",
-        "minLength": "Full Name must have at least 3 characters"
-      },
-      "email": {
-        "label": "Email",
-        "placeholder": "Email",
-        "required": "Email is required",
-        "invalidFormat": "Invalid email format"
-      },
-      "password": {
-        "label": "Password",
-        "placeholder": "Password",
-        "required": "Password is required",
-        "minLength": "Password must have at least 8 characters",
-        "lowercaseLetter": "Password must contain at least one lowercase letter",
-        "uppercaseLetter": "Password must contain at least one uppercase letter",
-        "number": "Password must contain at least one number",
-        "specialCharacter": "Password must contain at least one special character"
-      },
-      "passwordConfirmation": {
-        "label": "Password Confirmation",
-        "placeholder": "Password Confirmation",
-        "required": "Password Confirmation is required",
-        "notMatch": "Passwords do not match"
-      }
-    },
     "alreadyHaveAccount": "Already have an account?",
     "messages": {
       "userRegistered": "User registered successfully!",

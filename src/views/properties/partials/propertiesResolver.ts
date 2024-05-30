@@ -1,5 +1,7 @@
-import { t } from '@/plugins/i18n'
+import i18n from '@/plugins/i18n'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
+
+const { t } = i18n.global
 
 export const propertyTypesOptions = [
   { label: t('properties.list.filters.apartment'), value: 'apartment' },

@@ -22,6 +22,53 @@
       "errorFetchingData": "Erro ao buscar dados"
     }
   },
+  "fields": {
+    "fullName": "Nome Completo",
+    "email": "Email",
+    "password": "Senha",
+    "passwordConfirmation": "Confirmação de Senha",
+    "title": "Título",
+    "description": "Descrição",
+    "price": "Preço",
+    "size": "Tamanho",
+    "imageUrl": "URL da Imagem",
+    "type": "Tipo",
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
+    "amenities": "Comodidades",
+    "availability": "Disponibilidade",
+    "sellerType": "Tipo de Vendedor",
+    "zipCode": "CEP",
+    "address": "Endereço",
+    "city": "Cidade",
+    "state": "Estado",
+    "country": "País"
+  },
+  "validation": {
+    "required": "Por favor, preencha o campo {path}",
+    "oneOf": "O valor inserido para {path} não é válido",
+    "notOneOf": "{path} não pode ser um dos seguintes valores: {values}",
+    "length": "{path} deve ter exatamente {length} caracteres",
+    "min": "{path} deve ter pelo menos {min} caracteres",
+    "max": "{path} deve ter no máximo {max} caracteres",
+    "matches": "O valor inserido para {path} não está no formato correto",
+    "email": "Por favor, insira um endereço de email válido para {path}",
+    "url": "Por favor, insira uma URL válida para {path}",
+    "trim": "{path} não deve conter espaços em branco no início ou no fim",
+    "lowercase": "{path} deve estar em letras minúsculas",
+    "uppercase": "{path} deve estar em letras maiúsculas",
+    "minValue": "{path} deve ser maior que {min}",
+    "maxValue": "{path} deve ser menor que {max}",
+    "positive": "{path} deve ser um número positivo",
+    "negative": "{path} deve ser um número negativo",
+    "integer": "{path} deve ser um número inteiro",
+    "minDate": "{path} deve ser uma data após {min}",
+    "maxDate": "{path} deve ser uma data antes de {max}",
+    "boolean": "{path} deve ser {value}",
+    "noUnknown": "{path} possui algumas chaves não reconhecidas: {unknown}",
+    "arrayMin": "{path} deve ter pelo menos {min} itens",
+    "arrayMax": "{path} deve ter no máximo {max} itens"
+  },
   "properties": {
     "propertyNotFound": "Propriedade não encontrada",
     "form": {
@@ -30,111 +77,6 @@
       "location": "Localização",
       "review": "Revisão",
       "propertyDataEditRestriction": "Não é possível editar os dados do veículo após criar o anúncio. Confirme os dados antes de continuar.",
-      "fields": {
-        "title": {
-          "label": "Título",
-          "placeholder": "Título",
-          "required": "Título é obrigatório",
-          "minLength": "O título deve ter pelo menos 5 caracteres",
-          "maxLength": "O título deve ter no máximo 100 caracteres"
-        },
-        "description": {
-          "label": "Descrição",
-          "placeholder": "Descrição",
-          "required": "Descrição é obrigatória",
-          "minLength": "A descrição deve ter pelo menos 20 caracteres"
-        },
-        "price": {
-          "label": "Preço",
-          "placeholder": "Preço",
-          "required": "Preço é obrigatório",
-          "minValue": "O preço deve ser maior que 0",
-          "maxValue": "O preço deve ser menor que 10.000.000"
-        },
-        "size": {
-          "label": "Tamanho (m²)",
-          "placeholder": "Tamanho",
-          "required": "Tamanho é obrigatório",
-          "minValue": "O tamanho deve ser maior que 0",
-          "maxValue": "O tamanho deve ser menor que 100.000"
-        },
-        "imageUrl": {
-          "label": "URL da Imagem",
-          "placeholder": "URL da Imagem",
-          "required": "URL da Imagem é obrigatória",
-          "invalidFormat": "A URL da Imagem deve ser uma URL válida"
-        },
-        "type": {
-          "label": "Tipo de Propriedade",
-          "placeholder": "Tipo de Propriedade",
-          "required": "Tipo de Propriedade é obrigatório",
-          "invalidFormat": "Tipo de Propriedade inválido"
-        },
-        "bedrooms": {
-          "label": "Quartos",
-          "placeholder": "Quartos",
-          "required": "Quartos são obrigatórios",
-          "integer": "Os quartos devem ser um número inteiro",
-          "minValue": "Os quartos devem ser mais que 0",
-          "maxValue": "Os quartos devem ser menos que 50"
-        },
-        "bathrooms": {
-          "label": "Banheiros",
-          "placeholder": "Banheiros",
-          "required": "Banheiros são obrigatórios",
-          "integer": "Os banheiros devem ser um número inteiro",
-          "minValue": "Os banheiros devem ser mais que 0",
-          "maxValue": "Os banheiros devem ser menos que 50"
-        },
-        "amenities": {
-          "label": "Comodidades",
-          "placeholder": "Comodidades",
-          "required": "Comodidades são obrigatórias",
-          "minLength": "Deve haver pelo menos uma comodidade"
-        },
-        "availability": {
-          "label": "Disponibilidade",
-          "placeholder": "Disponibilidade",
-          "required": "Disponibilidade é obrigatória",
-          "invalidFormat": "Disponibilidade inválida"
-        },
-        "sellerType": {
-          "label": "Tipo de Vendedor",
-          "placeholder": "Tipo de Vendedor"
-        },
-        "zipCode": {
-          "label": "CEP",
-          "placeholder": "CEP",
-          "required": "CEP é obrigatório",
-          "invalidFormat": "Formato de CEP inválido (ex.: 12345-678)"
-        },
-        "address": {
-          "label": "Endereço",
-          "placeholder": "Endereço",
-          "required": "Endereço é obrigatório",
-          "minLength": "O endereço deve ter pelo menos 5 caracteres"
-        },
-        "city": {
-          "label": "Cidade",
-          "placeholder": "Cidade",
-          "required": "Cidade é obrigatória",
-          "invalidFormat": "A cidade só pode conter letras e espaços",
-          "minLength": "A cidade deve ter pelo menos 2 caracteres"
-        },
-        "state": {
-          "label": "Estado",
-          "placeholder": "Estado",
-          "required": "Estado é obrigatório",
-          "invalidFormat": "O estado deve ser um código de 2 letras"
-        },
-        "country": {
-          "label": "País",
-          "placeholder": "País",
-          "required": "País é obrigatório",
-          "invalidFormat": "O país só pode conter letras e espaços",
-          "minLength": "O país deve ter pelo menos 2 caracteres"
-        }
-      },
       "messages": {
         "propertyCreated": "Propriedade criada com sucesso!",
         "locationFound": "Localização encontrada com sucesso!",
@@ -199,19 +141,6 @@
     "readCarefully": "<span class=\"emphasis\">Dá uma lida com atenção</span>, e boa negociação ;)"
   },
   "login": {
-    "fields": {
-      "email": {
-        "label": "Email",
-        "placeholder": "Email",
-        "required": "Email é obrigatório",
-        "invalidFormat": "Email inválido"
-      },
-      "password": {
-        "label": "Senha",
-        "placeholder": "Senha",
-        "required": "Senha é obrigatória"
-      }
-    },
     "messages": {
       "invalidCredentials": "Credenciais inválidas"
     },
@@ -221,37 +150,6 @@
     "description": "A página que você procura não existe"
   },
   "register": {
-    "fields": {
-      "fullName": {
-        "label": "Nome Completo",
-        "placeholder": "Nome Completo",
-        "required": "Nome Completo é obrigatório",
-        "invalidFormat": "Nome Completo deve conter apenas letras e espaços",
-        "minLength": "Nome Completo deve ter pelo menos 3 caracteres"
-      },
-      "email": {
-        "label": "Email",
-        "placeholder": "Email",
-        "required": "Email é obrigatório",
-        "invalidFormat": "Formato de email inválido"
-      },
-      "password": {
-        "label": "Senha",
-        "placeholder": "Senha",
-        "required": "Senha é obrigatória",
-        "minLength": "A senha deve ter pelo menos 8 caracteres",
-        "lowercaseLetter": "A senha deve conter pelo menos uma letra minúscula",
-        "uppercaseLetter": "A senha deve conter pelo menos uma letra maiúscula",
-        "number": "A senha deve conter pelo menos um número",
-        "specialCharacter": "A senha deve conter pelo menos um caractere especial"
-      },
-      "passwordConfirmation": {
-        "label": "Confirmação de Senha",
-        "placeholder": "Confirmação de Senha",
-        "required": "Confirmação de Senha é obrigatória",
-        "notMatch": "As senhas não coincidem"
-      }
-    },
     "alreadyHaveAccount": "Já possui uma conta?",
     "messages": {
       "userRegistered": "Usuário registrado com sucesso!",

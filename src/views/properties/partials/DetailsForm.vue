@@ -1,53 +1,25 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
-import Property from '@/types/models/Property'
-import { optionalsOptions, propertyTypesOptions } from './propertiesResolver'
 import { useField, useForm } from 'vee-validate'
 import { object, string, number, array } from 'yup'
+import { optionalsOptions, propertyTypesOptions } from './propertiesResolver'
+import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
+import Property from '@/types/models/Property'
 
-const { t } = useI18n()
 const property = defineModel<Property>({ default: () => new Property() })
 
 const validationSchema = object({
-  title: string()
-    .required(t('properties.form.fields.title.required'))
-    .min(5, t('properties.form.fields.title.minLength'))
-    .max(100, t('properties.form.fields.title.maxLength')),
-  description: string()
-    .required(t('properties.form.fields.description.required'))
-    .min(20, t('properties.form.fields.description.minLength')),
-  price: number()
-    .required(t('properties.form.fields.price.required'))
-    .positive(t('properties.form.fields.price.minValue'))
-    .max(10000000, t('properties.form.fields.price.maxValue')),
-  size: number()
-    .required(t('properties.form.fields.size.required'))
-    .positive(t('properties.form.fields.size.minValue'))
-    .max(100000, t('properties.form.fields.size.maxValue')),
-  imageUrl: string()
-    .required(t('properties.form.fields.imageUrl.required'))
-    .url(t('properties.form.fields.imageUrl.invalidFormat')),
-  type: string()
-    .required(t('properties.form.fields.type.required'))
-    .oneOf(['house', 'apartment'], t('properties.form.fields.type.invalidValue')),
-  bedrooms: number()
-    .required(t('properties.form.fields.bedrooms.required'))
-    .integer(t('properties.form.fields.bedrooms.integer'))
-    .min(0, t('properties.form.fields.bedrooms.minValue'))
-    .max(50, t('properties.form.fields.bedrooms.maxValue')),
-  bathrooms: number()
-    .required(t('properties.form.fields.bathrooms.required'))
-    .integer(t('properties.form.fields.bathrooms.integer'))
-    .min(0, t('properties.form.fields.bathrooms.minValue'))
-    .max(50, t('properties.form.fields.bathrooms.maxValue')),
-  amenities: array()
-    .required(t('properties.form.fields.amenities.required'))
-    .min(1, t('properties.form.fields.amenities.minValue'))
-    .of(string()),
+  title: string().required().min(5).max(100),
+  description: string().required().min(20),
+  price: number().required().positive().max(10000000),
+  size: number().required().positive().max(100000),
+  imageUrl: string().required().url(),
+  type: string().required().oneOf(['house', 'apartment']),
+  bedrooms: number().required().integer().min(0).max(50),
+  bathrooms: number().required().integer().min(0).max(50),
+  amenities: array().required().min(1).of(string()),
   availability: string()
-    .required(t('properties.form.fields.availability.required'))
-    .matches(/^\d{4}-\d{2}-\d{2}$/, t('properties.form.fields.availability.invalidFormat'))
+    .required()
+    .matches(/^\d{4}-\d{2}-\d{2}$/)
 })
 
 const { handleSubmit, errors } = useForm({ validationSchema })
@@ -77,8 +49,8 @@ const next = handleSubmit(async (values) => {
         <BaseInputText
           v-model="title"
           :error="errors.title"
-          :label="$t('properties.form.fields.title.label')"
-          :placeholder="$t('properties.form.fields.title.placeholder')"
+          :label="$t('fields.title')"
+          :placeholder="$t('fields.title')"
           data-testid="title-input"
         />
       </div>
@@ -86,8 +58,8 @@ const next = handleSubmit(async (values) => {
         <BaseInputText
           v-model="description"
           :error="errors.description"
-          :label="$t('properties.form.fields.description.label')"
-          :placeholder="$t('properties.form.fields.description.placeholder')"
+          :label="$t('fields.description')"
+          :placeholder="$t('fields.description')"
           data-testid="description-input"
         />
       </div>
@@ -99,8 +71,8 @@ const next = handleSubmit(async (values) => {
           mode="currency"
           currency="USD"
           locale="en-US"
-          :label="$t('properties.form.fields.price.label')"
-          :placeholder="$t('properties.form.fields.price.placeholder')"
+          :label="$t('fields.price')"
+          :placeholder="$t('fields.price')"
           data-testid="price-input"
         />
       </div>
@@ -108,8 +80,8 @@ const next = handleSubmit(async (values) => {
         <BaseInputNumber
           v-model="size"
           :error="errors.size"
-          :label="$t('properties.form.fields.size.label')"
-          :placeholder="$t('properties.form.fields.size.placeholder')"
+          :label="$t('fields.size')"
+          :placeholder="$t('fields.size')"
           suffix="m²"
           data-testid="size-input"
         />
@@ -120,8 +92,8 @@ const next = handleSubmit(async (values) => {
           v-model="imageUrl"
           :error="errors.imageUrl"
           type="url"
-          :label="$t('properties.form.fields.imageUrl.label')"
-          :placeholder="$t('properties.form.fields.imageUrl.placeholder')"
+          :label="$t('fields.imageUrl')"
+          :placeholder="$t('fields.imageUrl')"
           data-testid="imageUrl-input"
         />
       </div>
@@ -129,8 +101,8 @@ const next = handleSubmit(async (values) => {
         <BaseMultiSelect
           v-model="type"
           :error="errors.type"
-          :label="$t('properties.form.fields.type.label')"
-          :placeholder="$t('properties.form.fields.type.placeholder')"
+          :label="$t('fields.type')"
+          :placeholder="$t('fields.type')"
           :options="propertyTypesOptions"
           option-label="label"
           option-value="value"
@@ -142,8 +114,8 @@ const next = handleSubmit(async (values) => {
         <BaseInputNumber
           v-model="bedrooms"
           :error="errors.bedrooms"
-          :label="$t('properties.form.fields.bedrooms.label')"
-          :placeholder="$t('properties.form.fields.bedrooms.placeholder')"
+          :label="$t('fields.bedrooms')"
+          :placeholder="$t('fields.bedrooms')"
           data-testid="bedrooms-input"
         />
       </div>
@@ -151,8 +123,8 @@ const next = handleSubmit(async (values) => {
         <BaseInputNumber
           v-model="bathrooms"
           :error="errors.bathrooms"
-          :label="$t('properties.form.fields.bathrooms.label')"
-          :placeholder="$t('properties.form.fields.bathrooms.placeholder')"
+          :label="$t('fields.bathrooms')"
+          :placeholder="$t('fields.bathrooms')"
           data-testid="bathrooms-input"
         />
       </div>
@@ -161,8 +133,8 @@ const next = handleSubmit(async (values) => {
         <BaseMultiSelect
           v-model="amenities"
           :error="errors.amenities"
-          :label="$t('properties.form.fields.amenities.label')"
-          :placeholder="$t('properties.form.fields.amenities.placeholder')"
+          :label="$t('fields.amenities')"
+          :placeholder="$t('fields.amenities')"
           :options="optionalsOptions"
           option-label="label"
           option-value="value"
@@ -173,8 +145,8 @@ const next = handleSubmit(async (values) => {
         <BaseInputText
           v-model="availability"
           :error="errors.availability"
-          :label="$t('properties.form.fields.availability.label')"
-          :placeholder="$t('properties.form.fields.availability.placeholder')"
+          :label="$t('fields.availability')"
+          :placeholder="$t('fields.availability')"
           data-testid="availability-input"
         />
       </div>

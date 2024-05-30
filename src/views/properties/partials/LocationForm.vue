@@ -2,11 +2,11 @@
 import { inject, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePropertiesStore } from '@/stores/propertiesStore'
+import { useField, useForm } from 'vee-validate'
+import { object, string } from 'yup'
 import useBaseToast from '@/composables/useBaseToast'
 import LocationGateway from '@/gateways/LocationGateway'
 import Property from '@/types/models/Property'
-import { useField, useForm } from 'vee-validate'
-import { object, string } from 'yup'
 
 const locationGateway = inject('locationGateway') as LocationGateway
 
@@ -34,22 +34,18 @@ async function getLocationByZipCode() {
 
 const validationSchema = object({
   zipCode: string()
-    .required(t('properties.form.fields.zipCode.required'))
-    .matches(/^\d{5}-\d{3}$/, t('properties.form.fields.zipCode.invalidFormat')),
-  address: string()
-    .required(t('properties.form.fields.address.required'))
-    .min(5, t('properties.form.fields.address.minLength')),
+    .required()
+    .matches(/^\d{5}-\d{3}$/),
+  address: string().required().min(5),
   city: string()
-    .required(t('properties.form.fields.city.required'))
-    .matches(/^[a-zA-Z\s]+$/, t('properties.form.fields.city.invalidFormat'))
-    .min(2, t('properties.form.fields.city.minLength')),
-  state: string()
-    .required(t('properties.form.fields.state.required'))
-    .length(2, t('properties.form.fields.state.invalidFormat')),
+    .required()
+    .matches(/^[a-zA-Z\s]+$/)
+    .min(2),
+  state: string().required().length(2),
   country: string()
-    .required(t('properties.form.fields.country.required'))
-    .matches(/^[a-zA-Z\s]+$/, t('properties.form.fields.country.invalidFormat'))
-    .min(2, t('properties.form.fields.country.minLength'))
+    .required()
+    .matches(/^[a-zA-Z\s]+$/)
+    .min(2)
 })
 
 const { handleSubmit, errors } = useForm({ validationSchema })
@@ -69,37 +65,37 @@ const saveProperty = handleSubmit(async (values) => {
   <form @submit.prevent="saveProperty">
     <BaseInputText
       v-model="zipCode"
-      :label="$t('properties.form.fields.zipCode.label')"
-      :placeholder="$t('properties.form.fields.zipCode.placeholder')"
+      :label="$t('fields.zipCode')"
+      :placeholder="$t('fields.zipCode')"
       :error="errors.zipCode"
       @change="getLocationByZipCode"
     />
 
     <BaseInputText
       v-model="address"
-      :label="$t('properties.form.fields.address.label')"
-      :placeholder="$t('properties.form.fields.address.placeholder')"
+      :label="$t('fields.address')"
+      :placeholder="$t('fields.address')"
       :error="errors.address"
     />
 
     <BaseInputText
       v-model="city"
-      :label="$t('properties.form.fields.city.label')"
-      :placeholder="$t('properties.form.fields.city.placeholder')"
+      :label="$t('fields.city')"
+      :placeholder="$t('fields.city')"
       :error="errors.city"
     />
 
     <BaseInputText
       v-model="state"
-      :label="$t('properties.form.fields.state.label')"
-      :placeholder="$t('properties.form.fields.state.placeholder')"
+      :label="$t('fields.state')"
+      :placeholder="$t('fields.state')"
       :error="errors.state"
     />
 
     <BaseInputText
       v-model="country"
-      :label="$t('properties.form.fields.country.label')"
-      :placeholder="$t('properties.form.fields.country.placeholder')"
+      :label="$t('fields.country')"
+      :placeholder="$t('fields.country')"
       :error="errors.country"
     />
 
