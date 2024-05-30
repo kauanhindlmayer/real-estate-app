@@ -72,7 +72,8 @@
   "properties": {
     "propertyNotFound": "Propriedade não encontrada",
     "form": {
-      "title": "Preencha os dados do imóvel",
+      "title": "Anunciar Imóvel",
+      "subtitle": "Preencha os campos abaixo para anunciar seu imóvel",
       "details": "Detalhes",
       "location": "Localização",
       "review": "Revisão",
@@ -123,6 +124,8 @@
         "hasPool": "Piscina",
         "hasElevator": "Elevador",
         "hasTerrace": "Terraço",
+        "house": "Casa",
+        "apartment": "Apartamento",
         "clearFilters": "Limpar Filtros"
       },
       "messages": {
@@ -135,7 +138,7 @@
     "seeOffers": "Ver Ofertas ({count})",
     "wantToSell": "Quer vender seu imóvel?"
   },
-  "help": {
+  "security": {
     "title": "Segurança para gente <br /> <span class=\"emphasis\">é assunto sério.</span>",
     "description": "O Real Estate é o melhor lugar para comprar, vender e cuidar <br /> do seu imóvel. Preparamos esse conteúdo para tornar  <br /> sua negociação ainda mais segura e tranquila.",
     "readCarefully": "<span class=\"emphasis\">Dá uma lida com atenção</span>, e boa negociação ;)"

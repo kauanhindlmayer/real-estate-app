@@ -72,7 +72,8 @@
   "properties": {
     "propertyNotFound": "Property not found",
     "form": {
-      "title": "Fill in the property details",
+      "title": "Advertise your property",
+      "subtitle": "Fill in the details of the property you want to advertise",
       "details": "Details",
       "location": "Location",
       "review": "Review",
@@ -123,6 +124,8 @@
         "hasPool": "Pool",
         "hasElevator": "Elevator",
         "hasTerrace": "Terrace",
+        "house": "House",
+        "apartment": "Apartment",
         "clearFilters": "Clear Filters"
       },
       "messages": {
@@ -135,7 +138,7 @@
     "seeOffers": "See Offers ({count})",
     "wantToSell": "Want to sell your property?"
   },
-  "help": {
+  "security": {
     "title": "Security is a serious <br /> <span class=\"emphasis\"> matter for us.</span>",
     "description": "Real Estate is the best place to buy, sell, and take care <br /> of your property. We've prepared this content to make <br /> your negotiation even safer and smoother.",
     "readCarefully": "<span class=\"emphasis\">Read it carefully</span>, and happy negotiating! ;)"

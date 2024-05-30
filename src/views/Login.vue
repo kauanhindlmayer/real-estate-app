@@ -22,7 +22,6 @@ const login = handleSubmit(async (values) => {
 <template>
   <div class="container">
     <div class="left-panel" />
-
     <div class="right-panel">
       <form @submit.prevent="login" class="flex justify-content-center">
         <div class="grid w-7">
@@ -59,7 +58,7 @@ const login = handleSubmit(async (values) => {
           <div class="col-12">
             <p>
               {{ $t('login.dontHaveAccount') }}
-              <RouterLink to="/register">{{ $t('common.register') }}</RouterLink>
+              <RouterLink to="/register" class="emphasis">{{ $t('common.register') }}</RouterLink>
             </p>
           </div>
         </div>
@@ -83,8 +82,5 @@ const login = handleSubmit(async (values) => {
   justify-content: center;
   align-items: center;
   width: 50vw;
-}
-a {
-  color: var(--primary-color);
 }
 </style>

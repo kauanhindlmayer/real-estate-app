@@ -90,13 +90,12 @@ const register = handleSubmit(async (values) => {
           <div class="col-12">
             <p>
               {{ $t('register.alreadyHaveAccount') }}
-              <RouterLink to="/login">{{ $t('common.login') }}</RouterLink>
+              <RouterLink to="/login" class="emphasis">{{ $t('common.login') }}</RouterLink>
             </p>
           </div>
         </div>
       </form>
     </div>
-
     <div class="right-panel" />
   </div>
 </template>
@@ -116,8 +115,5 @@ const register = handleSubmit(async (values) => {
 .right-panel {
   background-color: var(--primary-color);
   width: 50vw;
-}
-a {
-  color: var(--primary-color);
 }
 </style>
