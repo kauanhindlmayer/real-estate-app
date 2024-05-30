@@ -1,31 +1,56 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import useBaseToast from '@/composables/useBaseToast'
 import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
 import Property from '@/types/models/Property'
 import { optionalsOptions, propertyTypesOptions } from './propertiesResolver'
 import { useField, useForm } from 'vee-validate'
 import { object, string, number, array } from 'yup'
 
-const toast = useBaseToast()
 const { t } = useI18n()
-
 const property = defineModel<Property>({ default: () => new Property() })
 
 const validationSchema = object({
-  title: string().required(),
-  description: string().required(),
-  price: number().required(),
-  size: number().required(),
-  imageUrl: string().required(),
-  type: string().required(),
-  bedrooms: number().required(),
-  bathrooms: number().required(),
-  amenities: array().required(),
-  availability: string().required()
+  title: string()
+    .required(t('properties.form.fields.title.required'))
+    .min(5, t('properties.form.fields.title.minLength'))
+    .max(100, t('properties.form.fields.title.maxLength')),
+  description: string()
+    .required(t('properties.form.fields.description.required'))
+    .min(20, t('properties.form.fields.description.minLength')),
+  price: number()
+    .required(t('properties.form.fields.price.required'))
+    .positive(t('properties.form.fields.price.minValue'))
+    .max(10000000, t('properties.form.fields.price.maxValue')),
+  size: number()
+    .required(t('properties.form.fields.size.required'))
+    .positive(t('properties.form.fields.size.minValue'))
+    .max(100000, t('properties.form.fields.size.maxValue')),
+  imageUrl: string()
+    .required(t('properties.form.fields.imageUrl.required'))
+    .url(t('properties.form.fields.imageUrl.invalidFormat')),
+  type: string()
+    .required(t('properties.form.fields.type.required'))
+    .oneOf(['house', 'apartment'], t('properties.form.fields.type.invalidValue')),
+  bedrooms: number()
+    .required(t('properties.form.fields.bedrooms.required'))
+    .integer(t('properties.form.fields.bedrooms.integer'))
+    .min(0, t('properties.form.fields.bedrooms.minValue'))
+    .max(50, t('properties.form.fields.bedrooms.maxValue')),
+  bathrooms: number()
+    .required(t('properties.form.fields.bathrooms.required'))
+    .integer(t('properties.form.fields.bathrooms.integer'))
+    .min(0, t('properties.form.fields.bathrooms.minValue'))
+    .max(50, t('properties.form.fields.bathrooms.maxValue')),
+  amenities: array()
+    .required(t('properties.form.fields.amenities.required'))
+    .min(1, t('properties.form.fields.amenities.minValue'))
+    .of(string()),
+  availability: string()
+    .required(t('properties.form.fields.availability.required'))
+    .matches(/^\d{4}-\d{2}-\d{2}$/, t('properties.form.fields.availability.invalidFormat'))
 })
 
-const { validate, errors, values } = useForm({ validationSchema })
+const { handleSubmit, errors } = useForm({ validationSchema })
 const { value: title } = useField('title')
 const { value: description } = useField('description')
 const { value: price } = useField('price')
@@ -39,15 +64,10 @@ const { value: availability } = useField('availability')
 
 const emit = defineEmits<{ (event: 'next-step'): void }>()
 
-async function next() {
-  const result = await validate()
-  if (!result.valid) {
-    toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
-    return
-  }
+const next = handleSubmit(async (values) => {
   property.value = { ...property.value, ...values }
   emit('next-step')
-}
+})
 </script>
 
 <template>

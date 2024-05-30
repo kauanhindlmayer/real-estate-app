@@ -33,29 +33,36 @@ async function getLocationByZipCode() {
 }
 
 const validationSchema = object({
-  zipCode: string().required(),
-  address: string().required(),
-  city: string().required(),
-  state: string().required(),
-  country: string().required()
+  zipCode: string()
+    .required(t('properties.form.fields.zipCode.required'))
+    .matches(/^\d{5}-\d{3}$/, t('properties.form.fields.zipCode.invalidFormat')),
+  address: string()
+    .required(t('properties.form.fields.address.required'))
+    .min(5, t('properties.form.fields.address.minLength')),
+  city: string()
+    .required(t('properties.form.fields.city.required'))
+    .matches(/^[a-zA-Z\s]+$/, t('properties.form.fields.city.invalidFormat'))
+    .min(2, t('properties.form.fields.city.minLength')),
+  state: string()
+    .required(t('properties.form.fields.state.required'))
+    .length(2, t('properties.form.fields.state.invalidFormat')),
+  country: string()
+    .required(t('properties.form.fields.country.required'))
+    .matches(/^[a-zA-Z\s]+$/, t('properties.form.fields.country.invalidFormat'))
+    .min(2, t('properties.form.fields.country.minLength'))
 })
 
-const { validate, values, errors } = useForm({ validationSchema })
+const { handleSubmit, errors } = useForm({ validationSchema })
 const { value: zipCode } = useField('zipCode')
 const { value: address } = useField('address')
 const { value: city } = useField('city')
 const { value: state } = useField('state')
 const { value: country } = useField('country')
 
-async function saveProperty() {
-  const result = await validate()
-  if (!result.valid) {
-    toast.error({ message: t('properties.form.messages.pleaseFillAllRequiredFields') })
-    return
-  }
+const saveProperty = handleSubmit(async (values) => {
   property.value.location = { ...property.value.location, ...values }
   propertiesStore.saveProperty(property.value)
-}
+})
 </script>
 
 <template>

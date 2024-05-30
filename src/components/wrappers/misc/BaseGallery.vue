@@ -22,9 +22,7 @@ const value = computed(() => {
 <template>
   <Galleria v-bind="$attrs" :value>
     <template #item="slotProps">
-      <!-- TODO: Uncomment this when the issue with unsplash images is fixed -->
-      <!-- <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" class="image" /> -->
-      <img src="@/assets/images/house.jpeg" :alt="slotProps.item.alt" class="image" />
+      <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" class="image" />
     </template>
   </Galleria>
 </template>
