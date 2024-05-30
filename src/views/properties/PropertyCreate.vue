@@ -29,12 +29,13 @@ const validationSchema = object({
   availability: string()
     .required()
     .matches(/^\d{4}-\d{2}-\d{2}$/),
-  zipCode: string().required(),
-  // .matches(/^\d{5}-\d{3}$/),
+  zipCode: string()
+    .required()
+    .matches(/^\d{5}-\d{3}$/),
   address: string().required().min(5),
   city: string()
     .required()
-    .matches(/^[a-zA-Z\s]+$/)
+    .matches(/^[a-zA-Z\sá]+$/)
     .min(2),
   state: string().required().length(2),
   country: string()
@@ -69,13 +70,13 @@ const isLoading = ref(false)
 async function getLocationByZipCode() {
   isLoading.value = true
   try {
-    console.log(zipCode.value)
-    const location = await locationGateway.getByZipCode(zipCode)
+    const location = await locationGateway.getByZipCode(zipCode.value)
     setValues({
       address: location.address,
       city: location.city,
       state: location.state,
-      country: location.country
+      country: location.country,
+      zipCode: location.zipCode
     })
     toast.success({ message: t('properties.form.messages.locationFound') })
   } catch {
@@ -197,11 +198,12 @@ async function getLocationByZipCode() {
         </div>
 
         <div class="col-2">
-          <BaseInputText
+          <BaseInputMask
             v-model="zipCode"
             :label="$t('fields.zipCode')"
             :placeholder="$t('fields.zipCode')"
             :error="errors.zipCode"
+            mask="99999-999"
             @change="getLocationByZipCode"
           />
         </div>
