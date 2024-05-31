@@ -1,25 +1,30 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { usePropertiesStore } from '@/stores/propertiesStore'
+import { useField, useForm } from 'vee-validate'
+import { boolean, object, string } from 'yup'
+import { useI18n } from 'vue-i18n'
+import { storeToRefs } from 'pinia'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import BaseCard from '@/components/wrappers/misc/BaseCard.vue'
 import formatCurrency from '@/utils/formatCurrency'
 import BaseInputTextarea from '@/components/wrappers/form/BaseInputTextarea.vue'
 import BaseCheckbox from '@/components/wrappers/form/BaseCheckbox.vue'
-import { useField, useForm } from 'vee-validate'
-import { object, string } from 'yup'
-import { useI18n } from 'vue-i18n'
+import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 
 const { t } = useI18n()
 const route = useRoute()
+const router = useRouter()
 const propertiesStore = usePropertiesStore()
+
+const { property } = storeToRefs(propertiesStore)
 
 const validationSchema = object({
   name: string().required().min(5).max(100),
   email: string().required().email(),
   message: string().required().min(20),
-  receiveContacts: string()
+  receiveContacts: boolean().required().oneOf([true, false])
 })
 
 const { handleSubmit, errors } = useForm({
@@ -42,18 +47,46 @@ const sendMessageToSeller = handleSubmit((values) => {
   window.open(whatsappURL, '_blank')
 })
 
-onBeforeMount(() => {
-  propertiesStore.getPropertyById(route.params.id as string)
+onBeforeMount(async () => {
+  await propertiesStore.getPropertyById(route.params.id as string)
+  if (!propertiesStore.property) {
+    router.push({ name: 'not-found' })
+  }
 })
 </script>
 
 <template>
   <div class="pt-4">
-    <div v-if="propertiesStore.property" class="property-wrapper flex gap-2">
-      <PropertyCard :property="propertiesStore.property" hide-footer class="w-12" />
-      <BaseCard class="w-5">
+    <div v-if="property" class="property-wrapper flex gap-2">
+      <div class="w-12">
+        <PropertyCard :property extended-data hide-footer />
+        <BaseCard class="mt-3">
+          <template #title> Amenities </template>
+          <template #content>
+            <BaseTag
+              v-for="amenity in property.amenities"
+              :key="amenity"
+              :value="amenity"
+              severity="secondary"
+              class="mr-2"
+            >
+            </BaseTag>
+          </template>
+        </BaseCard>
+        <BaseCard class="mt-3">
+          <template #title> About the Seller </template>
+          <template #content>
+            <div class="seller-info">
+              <p class="seller-info__title">{{ property.seller?.name }}</p>
+              <p>{{ property.seller?.email }}</p>
+              <p>{{ property.seller?.phone }}</p>
+            </div>
+          </template>
+        </BaseCard>
+      </div>
+      <BaseCard class="message-seller-card w-5 ml-2">
         <template #title>
-          <span class="title">{{ formatCurrency(propertiesStore.property.price) }}</span>
+          <span class="text-4xl">{{ formatCurrency(property.price) }}</span>
         </template>
         <template #subtitle> {{ $t('properties.sendMessageToSeller') }} </template>
         <template #content>
@@ -79,8 +112,11 @@ onBeforeMount(() => {
               />
             </div>
             <div class="col-12 flex gap-2">
-              <BaseCheckbox v-model="receiveContacts" value="yes" />
-              <label>{{ $t('properties.receiveContactsFromRealEstate') }}</label>
+              <BaseCheckbox
+                v-model="receiveContacts"
+                :label="$t('properties.receiveContactsFromRealEstate')"
+                :value="false"
+              />
             </div>
             <div class="col-12">
               <BaseButton label="Send" class="w-full" @click="sendMessageToSeller" />
@@ -89,7 +125,6 @@ onBeforeMount(() => {
         </template>
       </BaseCard>
     </div>
-    <div v-else class="property-not-found-wrapper">{{ $t('properties.propertyNotFound') }}</div>
   </div>
 </template>
 
@@ -98,13 +133,14 @@ onBeforeMount(() => {
   max-width: 1400px;
   margin: 0 auto;
 }
-.title {
-  font-size: 2rem;
+.message-seller-card {
+  height: 33rem;
 }
-.property-not-found-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
+.seller-info__title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.seller-info p {
+  margin: 0;
 }
 </style>

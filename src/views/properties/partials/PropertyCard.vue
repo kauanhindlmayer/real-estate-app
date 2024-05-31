@@ -9,10 +9,12 @@ import formatCurrency from '@/utils/formatCurrency'
 interface IProps {
   property: Property
   showFooter?: boolean
+  extendedData?: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  showFooter: false
+  showFooter: false,
+  extendedData: false
 })
 
 const { property } = toRefs(props)
@@ -43,18 +45,46 @@ function redirectToPropertyDetails() {
 
     <template #content>
       <p>{{ property.description }}</p>
-      <p>
-        <strong>{{ formatCurrency(property.price) }}</strong>
-      </p>
-      <p>
-        <i class="pi pi-map-marker" />
-        {{ property.location.city }} - {{ property.location.state }}
-      </p>
+      <div v-if="!extendedData">
+        <p>
+          <strong>{{ formatCurrency(property.price) }}</strong>
+        </p>
+        <p>
+          <i class="pi pi-map-marker" />
+          {{ property.location.city }} - {{ property.location.state }}
+        </p>
+      </div>
+      <div v-else class="flex align-items-center mt-4">
+        <div class="mr-6">
+          <div class="font-medium">Location</div>
+          <div>{{ property.location.city }} - {{ property.location.state }}</div>
+        </div>
+        <div class="mr-6">
+          <div class="font-medium">Size</div>
+          <div>{{ property.size }} m²</div>
+        </div>
+        <div class="mr-6">
+          <div class="font-medium">Bedrooms</div>
+          <div>{{ property.bedrooms }}</div>
+        </div>
+        <div class="mr-6">
+          <div class="font-medium">Bathrooms</div>
+          <div>{{ property.bathrooms }}</div>
+        </div>
+        <div class="mr-6">
+          <div class="font-medium">Type</div>
+          <div>{{ property.type }}</div>
+        </div>
+        <div class="mr-6">
+          <div class="font-medium">Availability</div>
+          <div>{{ property.availability }}</div>
+        </div>
+      </div>
     </template>
 
     <template #footer>
       <BaseButton
-        v-if="props.showFooter"
+        v-if="showFooter"
         label="View"
         data-testid="view-button"
         @click="redirectToPropertyDetails"

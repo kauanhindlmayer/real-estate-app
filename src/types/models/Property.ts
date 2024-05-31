@@ -13,6 +13,11 @@ export default class Property {
     public bathrooms?: number,
     public amenities?: string[],
     public availability?: string,
+    public seller?: {
+      name: string
+      phone: string
+      email: string
+    },
     public id?: string
   ) {}
 }

@@ -12,13 +12,12 @@ const modelValue = defineModel()
 </script>
 
 <template>
-  <div v-for="(option, index) in options" :key="index" class="flex">
+  <div v-for="(option, index) in options" :key="index">
     <BaseCheckbox
       v-model="modelValue"
       :name="props.name"
+      :label="option.label"
       :value="option.value"
-      :inputId="option.value"
     />
-    <label :for="option.value" class="ml-2">{{ option.label }}</label>
   </div>
 </template>

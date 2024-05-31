@@ -78,6 +78,10 @@
     "sendMessageToSeller": "Enviar Mensagem para o Vendedor",
     "receiveContactsFromRealEstate": "Quero receber contatos do Real Estate por e-mail, WhatsApp e outros canais.",
     "interestedInRealEstateContactMe": "Olá, tenho interesse no imóvel. Por favor entre em contato.",
+    "type": "Tipo",
+    "availability": "Disponibilidade",
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
     "form": {
       "title": "Anunciar Imóvel",
       "subtitle": "Preencha os campos abaixo para anunciar seu imóvel",

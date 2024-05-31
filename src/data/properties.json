@@ -34,6 +34,17 @@
         "state": "FL",
         "country": "USA",
         "zipCode": "33101"
+      },
+      "type": "House",
+      "availability": "For Sale",
+      "bathrooms": 3,
+      "bedrooms": 4,
+      "amenities": ["Pool", "Gym", "Garage"],
+      "seller": {
+        "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
+        "name": "John Doe",
+        "email": "john.doe@gmail.com",
+        "phone": "123-456-7890"
       }
     },
     {
