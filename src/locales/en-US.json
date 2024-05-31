@@ -46,7 +46,10 @@
       "city": "City",
       "state": "State",
       "country": "Country"
-    }
+    },
+    "phone": "Phone",
+    "receiveContacts": "Receive Contacts",
+    "dataSharingConsent": "Data Sharing Consent"
   },
   "validation": {
     "required": "Please fill out the {path} field",
@@ -78,6 +81,12 @@
     "sendMessageToSeller": "Send a message to the seller",
     "receiveContactsFromRealEstate": "I agree to receive contacts from Real Estate",
     "interestedInRealEstateContactMe": "Hello, I'm interested in this property. Please get in touch.",
+    "aboutTheSeller": "About the seller",
+    "reportThisAd": "Report this ad",
+    "reportAd": "Denunciar Anúncio",
+    "reportAdIrregularitiesPrompt": "Does this ad have irregularities? Let us know!",
+    "reportDescriptionPlaceholder": "Describe your complaint in detail (minimum 30 characters)",
+    "dataSharingConsent": "I authorize Real Estate to share my data with partners to resolve the issue.",
     "type": "Type",
     "availability": "Availability",
     "bedrooms": "Bedrooms",
