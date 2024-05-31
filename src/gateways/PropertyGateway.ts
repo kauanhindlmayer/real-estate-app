@@ -23,7 +23,7 @@ export interface IPropertyFilters {
   minBathrooms?: number
   sellerTypes?: SellerTypeEnum[]
   sortBy?: string
-  optionals?: string[]
+  amenities?: string[]
 }
 
 export default class PropertyGateway implements IPropertyGateway {
