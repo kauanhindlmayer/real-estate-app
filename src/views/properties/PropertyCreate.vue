@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { inject } from 'vue'
 import { useField, useForm } from 'vee-validate'
 import { object, string, number, array } from 'yup'
-import { optionalsOptions, propertyTypesOptions } from './partials/propertiesResolver'
+import { amenitiesOptions, propertyTypesOptions } from './partials/propertiesResolver'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { useDebounceFn } from '@vueuse/core'
 import useBaseToast from '@/composables/useBaseToast'
@@ -165,7 +165,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors.amenities"
             :label="$t('fields.amenities')"
             :placeholder="$t('fields.amenities')"
-            :options="optionalsOptions"
+            :options="amenitiesOptions"
             option-label="label"
             option-value="value"
           />

@@ -31,7 +31,7 @@ export const sellerTypesOptions = [
   }
 ]
 
-export const optionalsOptions = [
+export const amenitiesOptions = [
   { label: t('properties.list.filters.hasGarage'), value: 'hasGarage' },
   { label: t('properties.list.filters.hasGarden'), value: 'hasGarden' },
   { label: t('properties.list.filters.hasPool'), value: 'hasPool' },
@@ -49,6 +49,6 @@ export const sortByOptions = [
 export default {
   propertyTypesOptions,
   sellerTypesOptions,
-  optionalsOptions,
+  amenitiesOptions,
   sortByOptions
 }

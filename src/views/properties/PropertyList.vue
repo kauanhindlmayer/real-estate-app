@@ -171,11 +171,11 @@ onBeforeMount(async () => {
         </div>
 
         <div class="p-3">
-          <div class="section__title">{{ $t('properties.list.filters.optionals') }}</div>
+          <div class="section__title">{{ $t('properties.list.filters.amenities') }}</div>
           <BaseCheckboxGroup
-            v-model="filters.optionals"
-            name="optionals"
-            :options="propertiesResolver.optionalsOptions"
+            v-model="filters.amenities"
+            name="amenities"
+            :options="propertiesResolver.amenitiesOptions"
           />
         </div>
       </template>
@@ -232,7 +232,7 @@ onBeforeMount(async () => {
           <BaseSkeleton v-for="n in 8" :key="n" width="23rem" height="36rem" borderRadius="8px" />
         </div>
         <div v-else class="property-list__skeletons">
-          <PropertyCard v-for="property in properties" :key="property.id" :property show-footer />
+          <PropertyCard v-for="property in properties" :key="property.id" :property />
         </div>
       </div>
     </div>

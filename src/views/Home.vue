@@ -34,7 +34,7 @@ function redirectToPropertyList() {
               'property-types__option',
               { 'property-types__option--selected': selectedPropertyType === 'House' }
             ]"
-            @click="selectPropertyType('house')"
+            @click="selectPropertyType('House')"
           >
             {{ $t('common.houses') }}
           </div>
@@ -43,7 +43,7 @@ function redirectToPropertyList() {
               'property-types__option',
               { 'property-types__option--selected': selectedPropertyType === 'Apartment' }
             ]"
-            @click="selectPropertyType('apartment')"
+            @click="selectPropertyType('Apartment')"
           >
             {{ $t('common.apartments') }}
           </div>
