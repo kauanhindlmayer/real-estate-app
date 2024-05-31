@@ -4,8 +4,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import User from '@/types/models/User'
-import type UserGateway from '@/gateways/UserGateway'
-import type { UserRegistrationData } from '@/gateways/UserGateway'
+import UserGateway, { type RegistrationRequest, type LoginRequest } from '@/gateways/UserGateway'
 
 export const useUserStore = defineStore('user', () => {
   const userGateway = inject('userGateway') as UserGateway
@@ -19,10 +18,10 @@ export const useUserStore = defineStore('user', () => {
 
   const isUserLoggedIn = computed(() => Boolean(user.value.id))
 
-  async function register(userData: UserRegistrationData) {
+  async function register(registrationData: RegistrationRequest) {
     isLoading.value = true
     try {
-      await userGateway.register(userData)
+      await userGateway.register(registrationData)
       router.push({ name: 'login' })
       toast.success({ message: t('register.messages.userRegistered') })
     } catch {
@@ -32,10 +31,10 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  async function login(email: string, password: string) {
+  async function login(loginData: LoginRequest) {
     isLoading.value = true
     try {
-      user.value = await userGateway.login(email, password)
+      user.value = await userGateway.login(loginData)
       localStorage.setItem('user', JSON.stringify(user.value))
       router.push({ name: 'home' })
     } catch {

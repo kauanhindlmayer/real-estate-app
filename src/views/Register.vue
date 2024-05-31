@@ -2,7 +2,7 @@
 import { useUserStore } from '@/stores/userStore'
 import { useField, useForm } from 'vee-validate'
 import { object, string, ref } from 'yup'
-import type { UserRegistrationData } from '@/gateways/UserGateway'
+import type { RegistrationRequest } from '@/gateways/UserGateway'
 
 const userStore = useUserStore()
 
@@ -24,14 +24,14 @@ const validationSchema = object({
     .oneOf([ref('password')])
 })
 
-const { handleSubmit, errors } = useForm({ validationSchema })
+const { handleSubmit, errors } = useForm<RegistrationRequest>({ validationSchema })
 const { value: fullName } = useField('fullName')
 const { value: email } = useField('email')
 const { value: password } = useField('password')
 const { value: passwordConfirmation } = useField('passwordConfirmation')
 
-const register = handleSubmit(async (values) => {
-  await userStore.register(values as UserRegistrationData)
+const register = handleSubmit(async (registrationData) => {
+  await userStore.register(registrationData)
 })
 </script>
 

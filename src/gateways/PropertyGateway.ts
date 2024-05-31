@@ -63,24 +63,13 @@ export default class PropertyGateway implements IPropertyGateway {
 export class PropertyGatewayInMemory implements IPropertyGateway {
   private properties: Property[] = mockProperties
 
-  async getAll({ title, location }: IPropertyFilters): Promise<Property[]> {
-    const randomDelay = Math.floor(Math.random() * 3000) + 1000
-    await new Promise((resolve) => setTimeout(resolve, randomDelay))
-
-    if (title) {
-      return this.properties.filter((property) => {
-        return property.title.toLowerCase().includes(title.toLowerCase())
-      })
-    }
-    if (location) {
-      return this.properties.filter((property) => {
-        return (
-          property.location.city.toLowerCase().includes(location.toLowerCase()) ||
-          property.location.state.toLowerCase().includes(location.toLowerCase())
-        )
-      })
-    }
-    return this.properties
+  async getAll(filters: IPropertyFilters): Promise<Property[]> {
+    const { title, location } = filters
+    return this.properties.filter(
+      (property) =>
+        (!title || property.title.includes(title)) &&
+        (!location || property.location.city === location || property.location.state === location)
+    )
   }
 
   async getById(id: string): Promise<Property> {

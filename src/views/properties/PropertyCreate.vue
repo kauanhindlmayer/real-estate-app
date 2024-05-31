@@ -64,13 +64,13 @@ const { value: city } = useField('location.city')
 const { value: state } = useField('location.state')
 const { value: country } = useField('location.country')
 
-const saveProperty = handleSubmit(async (property: Property) => {
-  propertiesStore.saveProperty(property)
+const saveProperty = handleSubmit(async (property) => {
+  propertiesStore.saveProperty(property as Property)
 })
 
 const getLocationByZipCode = useDebounceFn(async () => {
   try {
-    const location = await locationGateway.getByZipCode(zipCode.value)
+    const location = await locationGateway.getByZipCode(zipCode.value as string)
     setFieldValue('location', location)
     toast.success({ message: t('properties.form.messages.locationFound') })
   } catch {
@@ -91,7 +91,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors.title"
             :label="$t('fields.title')"
             :placeholder="$t('fields.title')"
-            data-testid="title-input"
           />
         </div>
         <div class="col-6">
@@ -100,7 +99,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors.description"
             :label="$t('fields.description')"
             :placeholder="$t('fields.description')"
-            data-testid="description-input"
           />
         </div>
 
@@ -113,7 +111,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             locale="en-US"
             :label="$t('fields.price')"
             :placeholder="$t('fields.price')"
-            data-testid="price-input"
           />
         </div>
         <div class="col-2">
@@ -123,7 +120,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :label="$t('fields.size')"
             :placeholder="$t('fields.size')"
             suffix="m²"
-            data-testid="size-input"
           />
         </div>
         <div class="col-3">
@@ -133,7 +129,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             type="url"
             :label="$t('fields.imageUrl')"
             :placeholder="$t('fields.imageUrl')"
-            data-testid="imageUrl-input"
           />
         </div>
         <div class="col-3">
@@ -145,7 +140,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :options="propertyTypesOptions"
             option-label="label"
             option-value="value"
-            data-testid="type-input"
           />
         </div>
 
@@ -155,7 +149,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors.bedrooms"
             :label="$t('fields.bedrooms')"
             :placeholder="$t('fields.bedrooms')"
-            data-testid="bedrooms-input"
           />
         </div>
         <div class="col-2">
@@ -164,7 +157,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors.bathrooms"
             :label="$t('fields.bathrooms')"
             :placeholder="$t('fields.bathrooms')"
-            data-testid="bathrooms-input"
           />
         </div>
         <div class="col-4">
@@ -176,7 +168,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :options="optionalsOptions"
             option-label="label"
             option-value="value"
-            data-testid="amenities-input"
           />
         </div>
         <div class="col-4">
@@ -185,7 +176,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors.availability"
             :label="$t('fields.availability')"
             :placeholder="$t('fields.availability')"
-            data-testid="availability-input"
           />
         </div>
 

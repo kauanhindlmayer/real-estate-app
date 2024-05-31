@@ -23,6 +23,8 @@
     }
   },
   "fields": {
+    "name": "Nome",
+    "message": "Mensagem",
     "fullName": "Nome Completo",
     "email": "Email",
     "password": "Senha",
@@ -73,6 +75,9 @@
   },
   "properties": {
     "propertyNotFound": "Propriedade não encontrada",
+    "sendMessageToSeller": "Enviar Mensagem para o Vendedor",
+    "receiveContactsFromRealEstate": "Quero receber contatos do Real Estate por e-mail, WhatsApp e outros canais.",
+    "interestedInRealEstateContactMe": "Olá, tenho interesse no imóvel. Por favor entre em contato.",
     "form": {
       "title": "Anunciar Imóvel",
       "subtitle": "Preencha os campos abaixo para anunciar seu imóvel",

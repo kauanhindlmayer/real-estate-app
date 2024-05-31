@@ -44,7 +44,7 @@ function redirectToPropertyDetails() {
     <template #content>
       <p>{{ property.description }}</p>
       <p>
-        <strong> {{ formatCurrency(property.price) }}</strong>
+        <strong>{{ formatCurrency(property.price) }}</strong>
       </p>
       <p>
         <i class="pi pi-map-marker" />

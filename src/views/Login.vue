@@ -2,6 +2,7 @@
 import { useUserStore } from '@/stores/userStore'
 import { useField, useForm } from 'vee-validate'
 import { object, string } from 'yup'
+import type { LoginRequest } from '@/gateways/UserGateway'
 
 const userStore = useUserStore()
 
@@ -10,12 +11,12 @@ const validationSchema = object({
   password: string().required()
 })
 
-const { handleSubmit, errors } = useForm({ validationSchema })
+const { handleSubmit, errors } = useForm<LoginRequest>({ validationSchema })
 const { value: email } = useField('email')
 const { value: password } = useField('password')
 
-const login = handleSubmit(async (values) => {
-  await userStore.login(values.email, values.password)
+const login = handleSubmit(async (loginData) => {
+  await userStore.login(loginData)
 })
 </script>
 
