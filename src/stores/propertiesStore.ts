@@ -3,7 +3,7 @@ import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import useBaseToast from '@/composables/useBaseToast'
-import type Property from '@/types/models/Property'
+import Property from '@/types/models/Property'
 import type PropertyGateway from '@/gateways/PropertyGateway'
 import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 
@@ -15,7 +15,7 @@ export const usePropertiesStore = defineStore('properties', () => {
   const { t } = useI18n()
 
   const isLoading = ref(false)
-  const property = ref<Property | null>(null)
+  const property = ref<Property>(new Property())
   const properties = ref<Property[]>([])
 
   const propertiesCount = computed(() => properties.value.length)

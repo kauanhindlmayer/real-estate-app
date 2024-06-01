@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import BaseCheckbox from '@/components/wrappers/form/BaseCheckbox.vue'
-
 interface IProps {
   name: string
   options: { label: string; value: string }[]

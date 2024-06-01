@@ -3,18 +3,13 @@ import { onBeforeMount, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useField, useForm } from 'vee-validate'
 import { boolean, object, string } from 'yup'
-import { usePropertiesStore } from '@/stores/propertiesStore'
-import { storeToRefs } from 'pinia'
-import BaseCard from '@/components/wrappers/misc/BaseCard.vue'
 import BaseInputTextarea from '@/components/wrappers/form/BaseInputTextarea.vue'
-import BaseCheckbox from '@/components/wrappers/form/BaseCheckbox.vue'
 import ReportAdDialog from '@/views/properties/partials/ReportAdDialog.vue'
 import formatCurrency from '@/utils/formatCurrency'
 
-const { t } = useI18n()
-const propertiesStore = usePropertiesStore()
+defineProps<{ propertyPrice: number }>()
 
-const { property } = storeToRefs(propertiesStore)
+const { t } = useI18n()
 const reportAdDialogRef = ref<InstanceType<typeof ReportAdDialog> | null>(null)
 
 const validationSchema = object({
@@ -45,10 +40,10 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="w-6">
-    <BaseCard v-if="property">
+  <div class="property-contact-form">
+    <BaseCard>
       <template #title>
-        <span class="text-4xl">{{ formatCurrency(property.price) }}</span>
+        <span class="text-4xl">{{ formatCurrency(propertyPrice) }}</span>
       </template>
       <template #subtitle> {{ $t('properties.sendMessageToSeller') }} </template>
       <template #content>
@@ -112,6 +107,9 @@ onBeforeMount(() => {
 </template>
 
 <style scoped>
+.property-contact-form {
+  width: 32%;
+}
 .report-ad {
   display: flex;
   justify-content: center;
@@ -124,5 +122,10 @@ onBeforeMount(() => {
 }
 .report-ad__title:hover {
   text-decoration: underline;
+}
+@media (max-width: 1300px) {
+  .property-contact-form {
+    width: 100%;
+  }
 }
 </style>

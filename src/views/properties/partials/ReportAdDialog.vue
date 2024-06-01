@@ -5,7 +5,6 @@ import { useField, useForm } from 'vee-validate'
 import { boolean, object, string } from 'yup'
 import BaseDialog from '@/components/wrappers/misc/BaseDialog.vue'
 import BaseInputTextarea from '@/components/wrappers/form/BaseInputTextarea.vue'
-import BaseCheckbox from '@/components/wrappers/form/BaseCheckbox.vue'
 
 const { t } = useI18n()
 
