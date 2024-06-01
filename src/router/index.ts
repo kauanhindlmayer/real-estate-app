@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { startLoading, finishLoading } from '@/plugins/nprogress'
-import propertiesRoutes from './properties/routes'
+import propertiesRoutes from '@/router/properties/routes'
+import middlewarePipeline, {
+  type MiddlewareContext,
+  type MiddlewareFunction
+} from '@/middlewares/middlewarePipeline'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,19 +58,21 @@ const router = createRouter({
   ]
 })
 
-router.beforeResolve((to, _, next) => {
-  if (to.name) startLoading()
-  next()
-})
-
-router.beforeEach((to, _, next) => {
+router.beforeEach((to, from, next) => {
   const appName = import.meta.env.VITE_APP_NAME
   document.title = to.meta.title ? `${to.meta.title} | ${appName}` : appName
-  next()
-})
 
-router.afterEach(() => {
-  finishLoading()
+  if (!to.meta.middleware) {
+    return next()
+  }
+
+  const middleware = to.meta.middleware as MiddlewareFunction[]
+  const context = { to, from, next } as MiddlewareContext
+
+  return middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1)
+  })
 })
 
 export default router

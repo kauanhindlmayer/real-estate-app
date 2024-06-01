@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
+import { t } from '@/plugins/i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import Property from '@/types/models/Property'
 import type PropertyGateway from '@/gateways/PropertyGateway'
@@ -12,7 +12,6 @@ export const usePropertiesStore = defineStore('properties', () => {
 
   const toast = useBaseToast()
   const router = useRouter()
-  const { t } = useI18n()
 
   const isLoading = ref(false)
   const property = ref<Property>(new Property())

@@ -11,7 +11,7 @@ import BaseMenubar from '@/components/wrappers/menu/BaseMenubar.vue'
 const { t } = useI18n()
 const router = useRouter()
 const userStore = useUserStore()
-const { user, isUserLoggedIn } = storeToRefs(userStore)
+const { user, isLoggedIn } = storeToRefs(userStore)
 
 function redirectTo(name: string) {
   router.push({ name })
@@ -69,14 +69,17 @@ const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
     </template>
 
     <template #end>
-      <div v-if="isUserLoggedIn" class="flex align-items-center gap-2 menubar__end">
+      <div
+        v-if="isLoggedIn"
+        class="flex align-items-center gap-2 menubar__end"
+        @click="menuRef?.toggle($event)"
+      >
         {{ user.fullName }}
         <BaseAvatar
           :image="user.avatarUrl"
           style="width: 32px; height: 32px"
           aria-haspopup="true"
           aria-controls="overlay_menu"
-          @click="menuRef?.toggle($event)"
         />
         <BaseMenu ref="menuRef" id="overlay_menu" :model="items" popup />
       </div>
@@ -106,6 +109,7 @@ const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
 }
 .menubar__end {
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 .content-container {
   height: calc(100vh - 64px);

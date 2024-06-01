@@ -15,4 +15,6 @@ const i18n = createI18n<[MessageSchema], 'en-US' | 'pt-BR'>({
   }
 })
 
+export const t = i18n.global.t
+
 export default i18n

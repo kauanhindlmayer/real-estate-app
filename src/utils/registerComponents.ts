@@ -13,7 +13,7 @@ import BaseSkeleton from '@/components/wrappers/misc/BaseSkeleton.vue'
 import BaseCard from '@/components/wrappers/misc/BaseCard.vue'
 import BaseMultiSelect from '@/components/wrappers/form/BaseMultiSelect.vue'
 
-export function registerComponents(app: App<Element>) {
+function registerComponents(app: App<Element>) {
   app.component('BaseButton', BaseButton)
   app.component('BaseInputText', BaseInputText)
   app.component('BaseInputNumber', BaseInputNumber)
@@ -27,3 +27,5 @@ export function registerComponents(app: App<Element>) {
   app.component('BaseCard', BaseCard)
   app.component('BaseMultiSelect', BaseMultiSelect)
 }
+
+export default registerComponents

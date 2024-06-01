@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
+import { t } from '@/plugins/i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import User from '@/types/models/User'
 import UserGateway, { type RegistrationRequest, type LoginRequest } from '@/gateways/UserGateway'
@@ -11,12 +11,11 @@ export const useUserStore = defineStore('user', () => {
 
   const toast = useBaseToast()
   const router = useRouter()
-  const { t } = useI18n()
 
   const isLoading = ref(false)
   const user = ref<User>(new User())
 
-  const isUserLoggedIn = computed(() => Boolean(user.value.id))
+  const isLoggedIn = computed(() => Boolean(user.value.id))
 
   async function register(registrationData: RegistrationRequest) {
     isLoading.value = true
@@ -54,7 +53,7 @@ export const useUserStore = defineStore('user', () => {
     isLoading,
     user,
     /* Getters */
-    isUserLoggedIn,
+    isLoggedIn,
     /* Actions */
     register,
     login,

@@ -1,9 +1,7 @@
 import { setLocale } from 'yup'
-import i18n from '@/plugins/i18n'
+import { t } from '@/plugins/i18n'
 
-const { t } = i18n.global
-
-const setYupLocale = () => {
+const installYup = () => {
   setLocale({
     mixed: {
       required: ({ path }) => t('validation.required', { field: t(`fields.${path}`) }),
@@ -47,4 +45,4 @@ const setYupLocale = () => {
   })
 }
 
-export default setYupLocale
+export default installYup

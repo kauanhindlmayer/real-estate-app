@@ -1,8 +1,9 @@
+import requireAuthentication from '@/middlewares/requireAuthentication'
 import type { RouteRecordRaw } from 'vue-router'
 
 const propertiesRoutes: Readonly<RouteRecordRaw[]> = [
   {
-    path: '/properties',
+    path: '/properties/list',
     name: 'properties-list',
     component: () => import('@/views/properties/PropertyList.vue'),
     meta: {
@@ -14,11 +15,12 @@ const propertiesRoutes: Readonly<RouteRecordRaw[]> = [
     name: 'property-advertise',
     component: () => import('@/views/properties/PropertyCreate.vue'),
     meta: {
-      title: 'Advertise'
+      title: 'Advertise',
+      middleware: [requireAuthentication]
     }
   },
   {
-    path: '/properties/:id',
+    path: '/properties/details/:id',
     name: 'property-details',
     component: () => import('@/views/properties/PropertyDetails.vue'),
     meta: {

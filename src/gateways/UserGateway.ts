@@ -1,5 +1,6 @@
 import type IHttpClient from './httpClient'
 import User from '@/types/models/User'
+import { users as mockUsers } from '@/data/users.json'
 
 interface IUserGateway {
   register(registrationData: RegistrationRequest): Promise<void>
@@ -31,13 +32,13 @@ export default class UserGateway implements IUserGateway {
 }
 
 export class UserGatewayInMemory implements IUserGateway {
-  private users: User[] = []
+  private users: User[] = mockUsers
 
   async register({ fullName, email, password }: RegistrationRequest): Promise<void> {
     if (this.users.find((user) => user.email === email)) {
       throw new Error('User already exists')
     }
-    const id = this.users.length + 1
+    const id = String(this.users.length + 1)
     const defaultAvatarUrl = 'https://placehold.co/200x200'
     const user = new User(id, fullName, email, password, defaultAvatarUrl)
     this.users.push(user)
