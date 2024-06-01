@@ -235,11 +235,11 @@ const getLocationByZipCode = useDebounceFn(async () => {
 
       <footer class="flex justify-content-end">
         <BaseButton
-          :label="$t('common.buttons.save')"
-          icon="pi pi-check"
-          class="w-3 mt-4"
-          :loading="propertiesStore.isLoading"
           type="submit"
+          icon="pi pi-check"
+          class="w-6 mt-4 md:w-3"
+          :label="$t('common.save')"
+          :loading="propertiesStore.isLoading"
         />
       </footer>
     </form>

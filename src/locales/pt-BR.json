@@ -10,8 +10,8 @@
     "help": "Ajuda",
     "security": "Segurança",
     "notFound": "Não Encontrado",
-    "houses": "Houses",
-    "apartments": "Apartments",
+    "houses": "Casas",
+    "apartments": "Apartamentos",
     "buttons": {
       "previous": "Anterior",
       "next": "Próximo",
@@ -19,73 +19,19 @@
       "save": "Salvar"
     },
     "messages": {
-      "errorFetchingData": "Erro ao buscar dados"
+      "errorFetchingData": "Erro ao buscar dados. Tente novamente mais tarde."
     }
   },
-  "fields": {
-    "name": "Nome",
-    "message": "Mensagem",
-    "fullName": "Nome Completo",
-    "email": "Email",
-    "password": "Senha",
-    "passwordConfirmation": "Confirmação de Senha",
-    "title": "Título",
-    "description": "Descrição",
-    "price": "Preço",
-    "size": "Tamanho",
-    "imageUrl": "URL da Imagem",
-    "type": "Tipo",
-    "bedrooms": "Quartos",
-    "bathrooms": "Banheiros",
-    "amenities": "Comodidades",
-    "availability": "Disponibilidade",
-    "sellerType": "Tipo de Vendedor",
-    "location": {
-      "zipCode": "CEP",
-      "address": "Endereço",
-      "city": "Cidade",
-      "state": "Estado",
-      "country": "País"
-    },
-    "phone": "Telefone",
-    "receiveContacts": "Receber Contatos",
-    "dataSharingConsent": "Consentimento de Compartilhamento de Dados"
-  },
-  "validation": {
-    "required": "Por favor, preencha o campo {path}",
-    "oneOf": "O valor inserido para {path} não é válido",
-    "notOneOf": "{path} não pode ser um dos seguintes valores: {values}",
-    "length": "{path} deve ter exatamente {length} caracteres",
-    "min": "{path} deve ter pelo menos {min} caracteres",
-    "max": "{path} deve ter no máximo {max} caracteres",
-    "matches": "O valor inserido para {path} não está no formato correto",
-    "email": "Por favor, insira um endereço de email válido para {path}",
-    "url": "Por favor, insira uma URL válida para {path}",
-    "trim": "{path} não deve conter espaços em branco no início ou no fim",
-    "lowercase": "{path} deve estar em letras minúsculas",
-    "uppercase": "{path} deve estar em letras maiúsculas",
-    "minValue": "{path} deve ser maior que {min}",
-    "maxValue": "{path} deve ser menor que {max}",
-    "positive": "{path} deve ser um número positivo",
-    "negative": "{path} deve ser um número negativo",
-    "integer": "{path} deve ser um número inteiro",
-    "minDate": "{path} deve ser uma data após {min}",
-    "maxDate": "{path} deve ser uma data antes de {max}",
-    "boolean": "{path} deve ser {value}",
-    "noUnknown": "{path} possui algumas chaves não reconhecidas: {unknown}",
-    "arrayMin": "{path} deve ter pelo menos {min} itens",
-    "arrayMax": "{path} deve ter no máximo {max} itens"
-  },
   "properties": {
-    "propertyNotFound": "Propriedade não encontrada",
-    "sendMessageToSeller": "Enviar Mensagem para o Vendedor",
+    "propertyNotFound": "Propriedade não encontrada.",
+    "sendMessageToSeller": "Enviar Mensagem ao Vendedor",
     "receiveContactsFromRealEstate": "Quero receber contatos do Real Estate por e-mail, WhatsApp e outros canais.",
-    "interestedInRealEstateContactMe": "Olá, tenho interesse no imóvel. Por favor entre em contato.",
+    "interestedInRealEstateContactMe": "Olá, tenho interesse no imóvel. Por favor, entre em contato.",
     "aboutTheSeller": "Sobre o Vendedor",
     "reportThisAd": "Denunciar este Anúncio",
     "reportAd": "Denunciar Anúncio",
-    "reportAdIrregularitiesPrompt": "Esse anúncio possui irregularidades? Conta para a gente!",
-    "reportDescriptionPlaceholder": "Descreva com detalhes sua denúncia (mínimo 30 caracteres)",
+    "reportAdIrregularitiesPrompt": "Esse anúncio possui irregularidades? Conte para a gente!",
+    "reportDescriptionPlaceholder": "Descreva com detalhes sua denúncia (mínimo 30 caracteres).",
     "dataSharingConsent": "Autorizo que o Real Estate compartilhe meus dados com parceiros para resolver a questão.",
     "type": "Tipo",
     "availability": "Disponibilidade",
@@ -97,18 +43,18 @@
       "details": "Detalhes",
       "location": "Localização",
       "review": "Revisão",
-      "propertyDataEditRestriction": "Não é possível editar os dados do veículo após criar o anúncio. Confirme os dados antes de continuar.",
+      "propertyDataEditRestriction": "Não é possível editar os dados do imóvel após criar o anúncio. Confirme os dados antes de continuar.",
       "messages": {
         "propertyCreated": "Propriedade criada com sucesso!",
         "locationFound": "Localização encontrada com sucesso!",
-        "pleaseFillAllRequiredFields": "Por favor, preencha todos os campos obrigatórios",
-        "locationNotFound": "Localização não encontrada",
-        "errorSavingProperty": "Erro ao salvar propriedade"
+        "pleaseFillAllRequiredFields": "Por favor, preencha todos os campos obrigatórios.",
+        "locationNotFound": "Localização não encontrada.",
+        "errorSavingProperty": "Erro ao salvar propriedade. Tente novamente mais tarde."
       }
     },
     "list": {
       "description": "Nenhuma propriedade encontrada | 1 propriedade encontrada | {count} propriedades encontradas",
-      "mostRelevant": "Mais relevante",
+      "mostRelevant": "Mais Relevante",
       "priceAscending": "Preço: Menor para Maior",
       "priceDescending": "Preço: Maior para Menor",
       "newest": "Mais Novo",
@@ -149,8 +95,8 @@
         "clearFilters": "Limpar Filtros"
       },
       "messages": {
-        "errorFetchingProperties": "Erro ao buscar propriedades",
-        "propertyNotFound": "Propriedade não encontrada"
+        "errorFetchingProperties": "Erro ao buscar propriedades. Tente novamente mais tarde.",
+        "propertyNotFound": "Propriedade não encontrada."
       }
     }
   },
@@ -165,18 +111,72 @@
   },
   "login": {
     "messages": {
-      "invalidCredentials": "Credenciais inválidas"
+      "invalidCredentials": "Credenciais inválidas. Tente novamente."
     },
     "dontHaveAccount": "Não possui uma conta?"
   },
   "notFound": {
-    "description": "A página que você procura não existe"
+    "description": "A página que você procura não existe."
   },
   "register": {
     "alreadyHaveAccount": "Já possui uma conta?",
     "messages": {
       "userRegistered": "Usuário registrado com sucesso!",
-      "errorRegisteringUser": "Erro ao registrar usuário"
+      "errorRegisteringUser": "Erro ao registrar usuário. Tente novamente mais tarde."
     }
+  },
+  "fields": {
+    "name": "Nome",
+    "message": "Mensagem",
+    "fullName": "Nome Completo",
+    "email": "Email",
+    "password": "Senha",
+    "passwordConfirmation": "Confirmação de Senha",
+    "title": "Título",
+    "description": "Descrição",
+    "price": "Preço",
+    "size": "Tamanho",
+    "imageUrl": "URL da Imagem",
+    "type": "Tipo",
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
+    "amenities": "Comodidades",
+    "availability": "Disponibilidade",
+    "sellerType": "Tipo de Vendedor",
+    "location": {
+      "zipCode": "CEP",
+      "address": "Endereço",
+      "city": "Cidade",
+      "state": "Estado",
+      "country": "País"
+    },
+    "phone": "Telefone",
+    "receiveContacts": "Receber Contatos",
+    "dataSharingConsent": "Consentimento de Compartilhamento de Dados"
+  },
+  "validation": {
+    "required": "Por favor, preencha o campo {field}",
+    "oneOf": "O valor inserido para {field} não é válido",
+    "notOneOf": "{field} não pode ser um dos seguintes valores: {values}",
+    "length": "{field} deve ter exatamente {length} caracteres",
+    "min": "{field} deve ter pelo menos {min} caracteres",
+    "max": "{field} deve ter no máximo {max} caracteres",
+    "matches": "O valor inserido para {field} não está no formato correto",
+    "email": "Por favor, insira um endereço de email válido para {field}",
+    "url": "Por favor, insira uma URL válida para {field}",
+    "trim": "{field} não deve conter espaços em branco no início ou no fim",
+    "lowercase": "{field} deve estar em letras minúsculas",
+    "uppercase": "{field} deve estar em letras maiúsculas",
+    "minValue": "{field} deve ser maior que {min}",
+    "maxValue": "{field} deve ser menor que {max}",
+    "positive": "{field} deve ser um número positivo",
+    "negative": "{field} deve ser um número negativo",
+    "integer": "{field} deve ser um número inteiro",
+    "minDate": "{field} deve ser uma data após {min}",
+    "maxDate": "{field} deve ser uma data antes de {max}",
+    "boolean": "{field} deve ser {value}",
+    "noUnknown": "{field} possui algumas chaves não reconhecidas: {unknown}",
+    "arrayMin": "{field} deve ter pelo menos {min} itens",
+    "arrayMax": "{field} deve ter no máximo {max} itens"
   }
 }
