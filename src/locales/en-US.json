@@ -85,9 +85,9 @@
         "hasElevator": "Elevator",
         "hasTerrace": "Terrace",
         "house": "House",
-        "apartment": "Apartment"
+        "apartment": "Apartment",
+        "clearFilters": "Clear Filters"
       },
-      "clearFilters": "Clear Filters",
       "messages": {
         "errorFetchingProperties": "There was an error fetching properties. Please try again later.",
         "propertyNotFound": "Property not found."

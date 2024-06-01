@@ -12,12 +12,7 @@
     "notFound": "Não Encontrado",
     "houses": "Casas",
     "apartments": "Apartamentos",
-    "buttons": {
-      "previous": "Anterior",
-      "next": "Próximo",
-      "search": "Buscar",
-      "save": "Salvar"
-    },
+    "save": "Salvar",
     "messages": {
       "errorFetchingData": "Erro ao buscar dados. Tente novamente mais tarde."
     }
