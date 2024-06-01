@@ -150,7 +150,7 @@
       },
       "messages": {
         "errorFetchingProperties": "Error fetching properties",
-        "errorFetchingProperty": "Error fetching property"
+        "propertyNotFound": "Property not found"
       }
     }
   },

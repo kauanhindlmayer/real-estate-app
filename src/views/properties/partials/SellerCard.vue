@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type Property from '@/types/models/Property'
+import type Seller from '@/types/models/Seller'
 
-defineProps<{ property: Property }>()
+defineProps<{ seller: Seller }>()
 </script>
 
 <template>
@@ -9,9 +9,9 @@ defineProps<{ property: Property }>()
     <template #title> {{ $t('properties.aboutTheSeller') }} </template>
     <template #content>
       <div class="seller-card">
-        <p class="seller-card__title">{{ property.seller?.name }}</p>
-        <p>{{ property.seller?.email }}</p>
-        <p>{{ property.seller?.phone }}</p>
+        <p class="seller-card__title">{{ seller.name }}</p>
+        <p>{{ seller.email }}</p>
+        <p>{{ seller.phone }}</p>
       </div>
     </template>
   </BaseCard>

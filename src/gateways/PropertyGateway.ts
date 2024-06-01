@@ -73,7 +73,9 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   }
 
   async getById(id: string): Promise<Property> {
-    return this.properties.find((property) => property.id === id)!
+    const property = this.properties.find((property) => property.id === id)
+    if (!property) throw new Error('Property not found')
+    return property
   }
 
   async save(property: Property): Promise<void> {

@@ -1,33 +1,29 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import PropertyContactForm from '@/views/properties/partials/PropertyContactForm.vue'
-import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 import SellerCard from '@/views/properties/partials/SellerCard.vue'
+import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 
 const route = useRoute()
-const router = useRouter()
 
 const propertiesStore = usePropertiesStore()
 const { property } = storeToRefs(propertiesStore)
 
 onBeforeMount(async () => {
   await propertiesStore.getPropertyById(route.params.id as string)
-  if (!property.value.id) {
-    router.push({ name: 'not-found' })
-  }
 })
 </script>
 
 <template>
-  <div class="container">
-    <div class="flex flex-column gap-3">
+  <div v-if="property.id" class="container">
+    <div class="container__property-details">
       <PropertyCard :property show-extended-info />
 
-      <BaseCard>
+      <BaseCard v-if="property.amenities">
         <template #title> {{ $t('fields.amenities') }} </template>
         <template #content>
           <BaseTag
@@ -40,7 +36,7 @@ onBeforeMount(async () => {
         </template>
       </BaseCard>
 
-      <SellerCard :property />
+      <SellerCard v-if="property.seller" :seller="property.seller" />
     </div>
 
     <PropertyContactForm :property-price="property.price" />
@@ -54,6 +50,11 @@ onBeforeMount(async () => {
   display: flex;
   gap: 1rem;
   padding-top: 1.5rem;
+}
+.container__property-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 @media (max-width: 1300px) {
   .container {

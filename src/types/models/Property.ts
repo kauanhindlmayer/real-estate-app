@@ -1,7 +1,9 @@
 import Location from './Location'
+import Seller from './Seller'
 
 export default class Property {
   constructor(
+    public id?: string,
     public title: string = '',
     public description: string = '',
     public price: number = 0,
@@ -13,11 +15,6 @@ export default class Property {
     public bathrooms?: number,
     public amenities?: string[],
     public availability?: string,
-    public seller?: {
-      name: string
-      phone: string
-      email: string
-    },
-    public id?: string
+    public seller?: Seller
   ) {}
 }

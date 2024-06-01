@@ -33,24 +33,18 @@ export default class UserGateway implements IUserGateway {
 export class UserGatewayInMemory implements IUserGateway {
   private users: User[] = []
 
-  async register(registrationData: RegistrationRequest): Promise<void> {
-    if (this.users.find((user) => user.email === registrationData.email)) {
+  async register({ fullName, email, password }: RegistrationRequest): Promise<void> {
+    if (this.users.find((user) => user.email === email)) {
       throw new Error('User already exists')
     }
-    const user = new User(
-      registrationData.fullName,
-      registrationData.email,
-      registrationData.password,
-      'https://placehold.co/200x200',
-      this.users.length + 1
-    )
+    const id = this.users.length + 1
+    const defaultAvatarUrl = 'https://placehold.co/200x200'
+    const user = new User(id, fullName, email, password, defaultAvatarUrl)
     this.users.push(user)
   }
 
-  async login(loginData: LoginRequest): Promise<User> {
-    const user = this.users.find((user) => {
-      return user.email === loginData.email && user.password === loginData.password
-    })
+  async login({ email, password }: LoginRequest): Promise<User> {
+    const user = this.users.find((user) => user.email === email && user.password === password)
     if (!user) throw new Error('User not found')
     return user
   }
