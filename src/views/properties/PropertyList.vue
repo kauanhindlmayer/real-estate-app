@@ -210,6 +210,7 @@ onBeforeMount(async () => {
             icon="pi pi-search"
             type="search"
             icon-position="left"
+            class="w-full"
             @keyup.enter="getAllProperties"
           />
           <BaseDropdown
@@ -270,5 +271,10 @@ onBeforeMount(async () => {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+@media (max-width: 1024px) {
+  .active-filters-container {
+    display: none;
+  }
 }
 </style>

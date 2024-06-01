@@ -42,7 +42,7 @@ defineExpose({
 </script>
 
 <template>
-  <BaseDialog v-bind="$attrs" v-model:visible="isVisible" class="w-3">
+  <BaseDialog v-bind="$attrs" v-model:visible="isVisible" class="w-9 md:w-6 xl:w-3">
     <template #header>
       <div class="header">
         <h2>{{ $t('properties.reportAd') }}</h2>

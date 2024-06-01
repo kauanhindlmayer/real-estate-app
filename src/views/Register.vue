@@ -116,4 +116,13 @@ const register = handleSubmit(async (registrationData) => {
   background-color: var(--primary-color);
   width: 50vw;
 }
+@media (max-width: 1024px) {
+  .left-panel {
+    width: 100vw;
+    height: 100vh;
+  }
+  .right-panel {
+    display: none;
+  }
+}
 </style>

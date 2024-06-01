@@ -101,11 +101,11 @@ const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
 .menubar__start {
   font-size: 1.75rem;
   font-weight: 600;
-  margin-left: 1.75rem;
+  margin-left: 0.5rem;
   color: var(--primary-color);
 }
 .menubar__end {
-  margin-right: 1.75rem;
+  margin-right: 0.5rem;
 }
 .content-container {
   height: calc(100vh - 64px);

@@ -51,16 +51,20 @@ function redirectToPropertyList() {
           </div>
         </div>
 
-        <div class="flex align-items-center gap-2">
+        <div class="flex flex-column align-items-center gap-2 md:flex-row">
           <BaseInputIcon
             v-model="location"
             icon="pi pi-map-marker"
-            class="w-30rem"
+            class="w-full md:w-30rem"
             :placeholder="$t('properties.list.filters.locationPlaceholder')"
             type="search"
             @keyup.enter="redirectToPropertyList"
           />
-          <BaseButton :label="$t('home.seeOffers', { count: 8 })" @click="redirectToPropertyList" />
+          <BaseButton
+            class="w-full md:w-4"
+            :label="$t('home.seeOffers', { count: 8 })"
+            @click="redirectToPropertyList"
+          />
         </div>
       </template>
     </BaseCard>

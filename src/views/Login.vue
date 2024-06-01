@@ -84,4 +84,13 @@ const login = handleSubmit(async (loginData) => {
   align-items: center;
   width: 50vw;
 }
+@media (max-width: 1024px) {
+  .left-panel {
+    display: none;
+  }
+  .right-panel {
+    width: 100vw;
+    height: 100vh;
+  }
+}
 </style>

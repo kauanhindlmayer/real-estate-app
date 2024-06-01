@@ -85,7 +85,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
     <p data-testid="subtitle" class="mb-4">{{ $t('properties.form.subtitle') }}</p>
     <form @submit.prevent="saveProperty">
       <div class="grid">
-        <div class="col-6">
+        <div class="col-12 md:col-6">
           <BaseInputText
             v-model="title"
             :error="errors.title"
@@ -93,7 +93,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :placeholder="$t('fields.title')"
           />
         </div>
-        <div class="col-6">
+        <div class="col-12 md:col-6">
           <BaseInputText
             v-model="description"
             :error="errors.description"
@@ -102,7 +102,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
           />
         </div>
 
-        <div class="col-4">
+        <div class="col-12 md:col-4">
           <BaseInputNumber
             v-model="price"
             :error="errors.price"
@@ -111,18 +111,20 @@ const getLocationByZipCode = useDebounceFn(async () => {
             locale="en-US"
             :label="$t('fields.price')"
             :placeholder="$t('fields.price')"
+            class="w-full"
           />
         </div>
-        <div class="col-2">
+        <div class="col-12 md:col-2">
           <BaseInputNumber
             v-model="size"
             :error="errors.size"
             :label="$t('fields.size')"
             :placeholder="$t('fields.size')"
             suffix="m²"
+            class="w-full"
           />
         </div>
-        <div class="col-3">
+        <div class="col-12 md:col-3">
           <BaseInputText
             v-model="imageUrl"
             :error="errors.imageUrl"
@@ -131,7 +133,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :placeholder="$t('fields.imageUrl')"
           />
         </div>
-        <div class="col-3">
+        <div class="col-12 md:col-3">
           <BaseMultiSelect
             v-model="type"
             :error="errors.type"
@@ -143,23 +145,25 @@ const getLocationByZipCode = useDebounceFn(async () => {
           />
         </div>
 
-        <div class="col-2">
+        <div class="col-12 md:col-2">
           <BaseInputNumber
             v-model="bedrooms"
             :error="errors.bedrooms"
             :label="$t('fields.bedrooms')"
             :placeholder="$t('fields.bedrooms')"
+            class="w-full"
           />
         </div>
-        <div class="col-2">
+        <div class="col-12 md:col-2">
           <BaseInputNumber
             v-model="bathrooms"
             :error="errors.bathrooms"
             :label="$t('fields.bathrooms')"
             :placeholder="$t('fields.bathrooms')"
+            class="w-full"
           />
         </div>
-        <div class="col-4">
+        <div class="col-12 md:col-4">
           <BaseMultiSelect
             v-model="amenities"
             :error="errors.amenities"
@@ -170,7 +174,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             option-value="value"
           />
         </div>
-        <div class="col-4">
+        <div class="col-12 md:col-4">
           <BaseInputText
             v-model="availability"
             :error="errors.availability"
@@ -179,7 +183,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
           />
         </div>
 
-        <div class="col-2">
+        <div class="col-12 md:col-2">
           <BaseInputMask
             v-model="zipCode"
             :label="$t('fields.location.zipCode')"
@@ -189,7 +193,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             @change="getLocationByZipCode"
           />
         </div>
-        <div class="col-3">
+        <div class="col-12 md:col-3">
           <BaseInputText
             v-model="address"
             :label="$t('fields.location.address')"
@@ -197,7 +201,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors['location.address']"
           />
         </div>
-        <div class="col-3">
+        <div class="col-12 md:col-3">
           <BaseInputText
             v-model="city"
             :label="$t('fields.location.city')"
@@ -205,7 +209,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors['location.city']"
           />
         </div>
-        <div class="col-2">
+        <div class="col-12 md:col-2">
           <BaseInputText
             v-model="state"
             :label="$t('fields.location.state')"
@@ -213,7 +217,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors['location.state']"
           />
         </div>
-        <div class="col-2">
+        <div class="col-12 md:col-2">
           <BaseInputText
             v-model="country"
             :label="$t('fields.location.country')"

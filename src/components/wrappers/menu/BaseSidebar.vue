@@ -55,4 +55,9 @@ const isCollapsed = defineModel()
     transform: translateX(0);
   }
 }
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+}
 </style>
