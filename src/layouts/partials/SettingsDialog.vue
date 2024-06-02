@@ -4,8 +4,10 @@ import { useI18n } from 'vue-i18n'
 import { useStorage } from '@vueuse/core'
 import BaseDialog from '@/components/wrappers/misc/BaseDialog.vue'
 import BaseSelect from '@/components/wrappers/form/BaseSelect.vue'
+import useBaseToast from '@/composables/useBaseToast'
 
 const i18n = useI18n()
+const toast = useBaseToast()
 
 const isVisible = ref(false)
 const selectedLanguage = useStorage<'en-US' | 'pt-BR'>('locale', 'en-US')
@@ -17,6 +19,8 @@ const languagesOptions = [
 
 function setLanguage() {
   i18n.locale.value = selectedLanguage.value
+  const language = languagesOptions.find((option) => option.value == selectedLanguage.value)!.label
+  toast.success({ message: i18n.t('common.languageChanged', { language }) })
 }
 
 function saveChanges() {

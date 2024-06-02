@@ -44,7 +44,7 @@ const menubarItems = computed(() => [
 
 const items = computed(() => [
   {
-    label: 'Profile',
+    label: t('common.profile'),
     items: [
       {
         label: t('common.settings'),

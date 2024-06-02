@@ -13,10 +13,12 @@
     "houses": "Casas",
     "apartments": "Apartamentos",
     "save": "Salvar",
+    "profile": "Perfil",
     "english": "Inglês",
     "portuguese": "Português",
     "language": "Idioma",
     "selectLanguage": "Selecione o Idioma",
+    "languageChanged": "Idioma alterado com sucesso para {language}.",
     "messages": {
       "errorFetchingData": "Erro ao buscar dados. Tente novamente mais tarde."
     }

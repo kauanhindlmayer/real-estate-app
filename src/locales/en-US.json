@@ -13,10 +13,12 @@
     "houses": "Houses",
     "apartments": "Apartments",
     "save": "Save",
+    "profile": "Profile",
     "english": "English",
     "portuguese": "Portuguese",
     "language": "Language",
     "selectLanguage": "Select Language",
+    "languageChanged": "Language changed successfully to {language}.",
     "messages": {
       "errorFetchingData": "There was an error fetching data. Please try again later."
     }
