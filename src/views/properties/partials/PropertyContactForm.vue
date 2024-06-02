@@ -65,11 +65,12 @@ onBeforeMount(() => {
             />
           </div>
           <div class="col-12">
-            <BaseInputNumber
+            <BaseInputMask
               v-model="phone"
               :label="t('fields.phone')"
               :placeholder="t('fields.phone')"
               :error="errors.phone"
+              mask="(99) 9 9999-9999"
               class="w-full"
             />
           </div>
