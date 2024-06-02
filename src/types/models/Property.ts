@@ -8,13 +8,13 @@ export default class Property {
     public description: string = '',
     public price: number = 0,
     public size: number = 0,
+    public bedrooms: number = 0,
+    public bathrooms: number = 0,
+    public type: string = '',
+    public amenities: string[] = [],
+    public availability: string = '',
     public imageSources: string[] = [],
     public location: Location = new Location(),
-    public type?: string,
-    public bedrooms?: number,
-    public bathrooms?: number,
-    public amenities?: string[],
-    public availability?: string,
-    public seller?: Seller
+    public seller: Seller = new Seller()
   ) {}
 }

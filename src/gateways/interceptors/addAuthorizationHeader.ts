@@ -1,12 +1,9 @@
 import type { InternalAxiosRequestConfig } from 'axios'
-
-function getToken() {
-  const user = JSON.parse(localStorage.getItem('user') || '{}')
-  return user?.accessToken
-}
+import { useUserStore } from '@/stores/userStore'
 
 function addAuthorizationHeader(config: InternalAxiosRequestConfig) {
-  const token = getToken()
+  const userStore = useUserStore()
+  const token = userStore.user?.accessToken
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }

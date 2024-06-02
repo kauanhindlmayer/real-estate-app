@@ -137,7 +137,7 @@
     "description": "Descrição",
     "price": "Preço",
     "size": "Tamanho",
-    "imageUrl": "URL da Imagem",
+    "imageSources": "URL da Imagem",
     "type": "Tipo",
     "bedrooms": "Quartos",
     "bathrooms": "Banheiros",

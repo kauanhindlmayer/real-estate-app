@@ -65,6 +65,7 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   async save(property: Property): Promise<void> {
     const index = this.properties.findIndex((p) => p.id === property.id)
     if (index === -1) {
+      property.id = String(this.properties.length + 1)
       this.properties.push(property)
     } else {
       this.properties[index] = property

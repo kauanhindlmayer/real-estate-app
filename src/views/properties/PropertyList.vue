@@ -87,7 +87,7 @@ onBeforeMount(async () => {
             <BaseInputNumber
               v-model="filters.minPrice"
               :placeholder="$t('properties.list.from')"
-              inputClass="w-3"
+              input-class="w-3"
               mode="currency"
               currency="USD"
               locale="en-US"
@@ -96,7 +96,7 @@ onBeforeMount(async () => {
             <BaseInputNumber
               v-model="filters.maxPrice"
               :placeholder="$t('properties.list.to')"
-              inputClass="w-3"
+              input-class="w-3"
               mode="currency"
               currency="USD"
               locale="en-US"
@@ -111,13 +111,13 @@ onBeforeMount(async () => {
             <BaseInputNumber
               v-model="filters.minYearBuilt"
               :placeholder="$t('properties.list.from')"
-              inputClass="w-3"
+              input-class="w-3"
               @update:modelValue="getAllProperties"
             />
             <BaseInputNumber
               v-model="filters.maxYearBuilt"
               :placeholder="$t('properties.list.to')"
-              inputClass="w-3"
+              input-class="w-3"
               @update:modelValue="getAllProperties"
             />
           </div>
@@ -129,14 +129,14 @@ onBeforeMount(async () => {
             <BaseInputNumber
               v-model="filters.minSize"
               :placeholder="$t('properties.list.from')"
-              inputClass="w-3"
+              input-class="w-3"
               suffix="m²"
               @update:modelValue="getAllProperties"
             />
             <BaseInputNumber
               v-model="filters.maxSize"
               :placeholder="$t('properties.list.to')"
-              inputClass="w-3"
+              input-class="w-3"
               suffix="m²"
               @update:modelValue="getAllProperties"
             />

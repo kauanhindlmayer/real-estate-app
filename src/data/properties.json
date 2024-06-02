@@ -13,6 +13,17 @@
       "state": "FL",
       "country": "USA",
       "zipCode": "33101"
+    },
+    "type": "House",
+    "availability": "For Sale",
+    "bathrooms": 3,
+    "bedrooms": 4,
+    "amenities": ["Pool", "Gym", "Garage"],
+    "seller": {
+      "id": "9c57c200-df98-4d38-86db-db0d01be80bd",
+      "name": "John Doe",
+      "email": "john.doe@gmail.com",
+      "phone": "123-456-7890"
     }
   },
   "properties": [
@@ -68,6 +79,17 @@
         "state": "CO",
         "country": "USA",
         "zipCode": "80202"
+      },
+      "type": "Cabin",
+      "availability": "For Sale",
+      "bathrooms": 2,
+      "bedrooms": 3,
+      "amenities": ["Fireplace", "Hot Tub"],
+      "seller": {
+        "id": "f8d901cc-3d50-4b1c-9f78-7358f7df9170",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "phone": "987-654-3210"
       }
     },
     {
@@ -87,6 +109,17 @@
         "state": "NY",
         "country": "USA",
         "zipCode": "10001"
+      },
+      "type": "Apartment",
+      "availability": "For Sale",
+      "bathrooms": 1,
+      "bedrooms": 2,
+      "amenities": ["Gym", "Concierge"],
+      "seller": {
+        "id": "bca18c79-46bc-4d8c-8f79-636b57d7281f",
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "phone": "555-123-4567"
       }
     },
     {
@@ -103,6 +136,17 @@
         "state": "TN",
         "country": "USA",
         "zipCode": "37201"
+      },
+      "type": "Farmhouse",
+      "availability": "For Sale",
+      "bathrooms": 2,
+      "bedrooms": 3,
+      "amenities": ["Barn", "Garden"],
+      "seller": {
+        "id": "d43b8f79-5d8e-4df4-8b3f-2a7a2d073c63",
+        "name": "Robert Brown",
+        "email": "robert.brown@example.com",
+        "phone": "321-654-0987"
       }
     },
     {
@@ -125,6 +169,17 @@
         "state": "CA",
         "country": "USA",
         "zipCode": "90001"
+      },
+      "type": "Cottage",
+      "availability": "For Sale",
+      "bathrooms": 2,
+      "bedrooms": 3,
+      "amenities": ["Beach Access", "Deck"],
+      "seller": {
+        "id": "a43d9f78-5c78-4a7b-8a7c-2c6d8d073c61",
+        "name": "Emily Davis",
+        "email": "emily.davis@example.com",
+        "phone": "654-987-3210"
       }
     },
     {
@@ -146,6 +201,17 @@
         "state": "CO",
         "country": "USA",
         "zipCode": "81611"
+      },
+      "type": "Chalet",
+      "availability": "For Sale",
+      "bathrooms": 3,
+      "bedrooms": 4,
+      "amenities": ["Ski-in/Ski-out", "Hot Tub"],
+      "seller": {
+        "id": "bdf78a4d-8f68-4a9b-8a9c-7a6b8d073c6e",
+        "name": "Michael Wilson",
+        "email": "michael.wilson@example.com",
+        "phone": "789-012-3456"
       }
     },
     {
@@ -165,6 +231,17 @@
         "state": "CA",
         "country": "USA",
         "zipCode": "94101"
+      },
+      "type": "Loft",
+      "availability": "For Sale",
+      "bathrooms": 2,
+      "bedrooms": 2,
+      "amenities": ["Gym", "Rooftop Terrace"],
+      "seller": {
+        "id": "e8f68a4d-8a9c-4a7c-8f7b-7a6d8d073c6a",
+        "name": "Sarah Taylor",
+        "email": "sarah.taylor@example.com",
+        "phone": "890-123-4567"
       }
     },
     {
@@ -188,6 +265,17 @@
         "state": "WA",
         "country": "USA",
         "zipCode": "98101"
+      },
+      "type": "House",
+      "availability": "For Sale",
+      "bathrooms": 3,
+      "bedrooms": 4,
+      "amenities": ["Boat Dock", "Fireplace"],
+      "seller": {
+        "id": "c7d8f8a4-8a9b-4a9c-8f7b-7a6d8d073c6a",
+        "name": "David Miller",
+        "email": "david.miller@example.com",
+        "phone": "567-890-1234"
       }
     }
   ]

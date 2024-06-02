@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import InputNumber from 'primevue/inputnumber'
+import Chips from 'primevue/chips'
 import { useUid } from '@/composables/useUid'
 
 defineProps<{ label?: string; error?: string }>()
 
-const modelValue = defineModel<String | Number>()
+const modelValue = defineModel<String[]>()
 const uid = useUid()
 </script>
 
 <template>
-  <div>
+  <div class="p-fluid">
     <label v-if="label" :for="uid">
       {{ label }}
     </label>
-    <InputNumber
+    <Chips
       v-bind="$attrs"
       v-model="modelValue"
       :id="uid"

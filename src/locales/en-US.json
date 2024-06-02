@@ -136,7 +136,7 @@
     "description": "Description",
     "price": "Price",
     "size": "Size",
-    "imageUrl": "Image URL",
+    "imageSources": "Image URL",
     "type": "Type",
     "bedrooms": "Bedrooms",
     "bathrooms": "Bathrooms",

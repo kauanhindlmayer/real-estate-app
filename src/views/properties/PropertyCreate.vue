@@ -10,6 +10,8 @@ import useBaseToast from '@/composables/useBaseToast'
 import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
 import type Property from '@/types/models/Property'
 import type LocationGateway from '@/gateways/LocationGateway'
+import BaseSelect from '@/components/wrappers/form/BaseSelect.vue'
+import BaseChips from '@/components/wrappers/form/BaseChips.vue'
 
 const locationGateway = inject('locationGateway') as LocationGateway
 
@@ -22,14 +24,12 @@ const validationSchema = object({
   description: string().required().min(20),
   price: number().required().positive().max(10000000),
   size: number().required().positive().max(100000),
-  imageUrl: string().required().url(),
+  imageSources: array().required().min(1).of(string().url()),
   type: string().required().oneOf(['house', 'apartment']),
   bedrooms: number().required().integer().min(0).max(50),
   bathrooms: number().required().integer().min(0).max(50),
   amenities: array().required().min(1).of(string()),
-  availability: string()
-    .required()
-    .matches(/^\d{4}-\d{2}-\d{2}$/),
+  availability: string().required(),
   location: object({
     zipCode: string()
       .required()
@@ -52,7 +52,7 @@ const { value: title } = useField('title')
 const { value: description } = useField('description')
 const { value: price } = useField('price')
 const { value: size } = useField('size')
-const { value: imageUrl } = useField('imageUrl')
+const { value: imageSources } = useField('imageSources')
 const { value: type } = useField('type')
 const { value: bedrooms } = useField('bedrooms')
 const { value: bathrooms } = useField('bathrooms')
@@ -102,7 +102,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
           />
         </div>
 
-        <div class="col-12 md:col-4">
+        <div class="col-12 md:col-3">
           <BaseInputNumber
             v-model="price"
             :error="errors.price"
@@ -114,7 +114,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             class="w-full"
           />
         </div>
-        <div class="col-12 md:col-2">
+        <div class="col-12 md:col-3">
           <BaseInputNumber
             v-model="size"
             :error="errors.size"
@@ -124,17 +124,30 @@ const getLocationByZipCode = useDebounceFn(async () => {
             class="w-full"
           />
         </div>
-        <div class="col-12 md:col-3">
-          <BaseInputText
-            v-model="imageUrl"
-            :error="errors.imageUrl"
-            type="url"
-            :label="$t('fields.imageUrl')"
-            :placeholder="$t('fields.imageUrl')"
+        <div class="col-12 md:col-6">
+          <BaseMultiSelect
+            v-model="amenities"
+            :error="errors.amenities"
+            :label="$t('fields.amenities')"
+            :placeholder="$t('fields.amenities')"
+            :options="amenitiesOptions"
+            option-label="label"
+            option-value="value"
           />
         </div>
+
+        <div class="col-12">
+          <BaseChips
+            v-model="imageSources"
+            :error="errors.imageSources"
+            :label="$t('fields.imageSources')"
+            :placeholder="$t('fields.imageSources')"
+            class="w-full"
+          />
+        </div>
+
         <div class="col-12 md:col-3">
-          <BaseMultiSelect
+          <BaseSelect
             v-model="type"
             :error="errors.type"
             :label="$t('fields.type')"
@@ -144,7 +157,6 @@ const getLocationByZipCode = useDebounceFn(async () => {
             option-value="value"
           />
         </div>
-
         <div class="col-12 md:col-2">
           <BaseInputNumber
             v-model="bedrooms"
@@ -163,18 +175,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
             class="w-full"
           />
         </div>
-        <div class="col-12 md:col-4">
-          <BaseMultiSelect
-            v-model="amenities"
-            :error="errors.amenities"
-            :label="$t('fields.amenities')"
-            :placeholder="$t('fields.amenities')"
-            :options="amenitiesOptions"
-            option-label="label"
-            option-value="value"
-          />
-        </div>
-        <div class="col-12 md:col-4">
+        <div class="col-12 md:col-5">
           <BaseInputText
             v-model="availability"
             :error="errors.availability"
@@ -225,23 +226,24 @@ const getLocationByZipCode = useDebounceFn(async () => {
             :error="errors['location.country']"
           />
         </div>
+
+        <div class="col-12 mt-4">
+          <BaseInlineMessage
+            severity="info"
+            :text="$t('properties.form.propertyDataEditRestriction')"
+          />
+        </div>
+
+        <div class="col-12 text-right">
+          <BaseButton
+            type="submit"
+            icon="pi pi-check"
+            class="w-6 mt-4 md:w-3"
+            :label="$t('common.save')"
+            :loading="propertiesStore.isLoading"
+          />
+        </div>
       </div>
-
-      <BaseInlineMessage
-        severity="info"
-        class="mt-4"
-        :text="$t('properties.form.propertyDataEditRestriction')"
-      />
-
-      <footer class="flex justify-content-end">
-        <BaseButton
-          type="submit"
-          icon="pi pi-check"
-          class="w-6 mt-4 md:w-3"
-          :label="$t('common.save')"
-          :loading="propertiesStore.isLoading"
-        />
-      </footer>
     </form>
   </div>
 </template>

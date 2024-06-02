@@ -20,7 +20,7 @@ const uid = useUid()
       :aria-labelledby="error ? `${uid}-error` : undefined"
       :aria-invalid="!!error"
       :invalid="!!error"
-      inputClass="w-full"
+      input-class="w-full"
     />
     <small class="p-error" v-if="error" :id="`${uid}-error`" aria-live="assertive">
       {{ error }}
