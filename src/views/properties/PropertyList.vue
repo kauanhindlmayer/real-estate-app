@@ -4,13 +4,13 @@ import { useI18n } from 'vue-i18n'
 import { usePropertiesStore } from '@/stores/propertiesStore'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
-import type { IPropertyFilters } from '@/gateways/PropertyGateway'
 import BaseSidebar from '@/components/wrappers/menu/BaseSidebar.vue'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import BaseBreadcrumb from '@/components/wrappers/misc/BaseBreadcrumb.vue'
 import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 import toCamelCase from '@/utils/toCamelCase'
 import propertiesResolver from '@/views/properties/partials/propertiesResolver'
+import type { IPropertyFilters } from '@/types/propertyFilters'
 
 const { t } = useI18n()
 const router = useRouter()

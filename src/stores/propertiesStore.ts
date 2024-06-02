@@ -5,7 +5,7 @@ import { t } from '@/plugins/i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import Property from '@/types/models/Property'
 import type PropertyGateway from '@/gateways/PropertyGateway'
-import type { IPropertyFilters } from '@/gateways/PropertyGateway'
+import type { IPropertyFilters } from '@/types/propertyFilters'
 
 export const usePropertiesStore = defineStore('properties', () => {
   const propertyGateway = inject('propertyGateway') as PropertyGateway
