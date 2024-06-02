@@ -4,12 +4,13 @@ import PropertyGateway, { PropertyGatewayInMemory } from '@/gateways/PropertyGat
 import LocationGateway, { LocationGatewayInMemory } from '@/gateways/LocationGateway'
 import UserGateway, { UserGatewayInMemory } from '@/gateways/UserGateway'
 
-type RegisterGatewaysOptions = {
+type RegisterGatewaysConfig = {
   useInMemory: boolean
 }
 
-function registerGateways(app: App, { useInMemory = false }: RegisterGatewaysOptions) {
-  const httpClient = new AxiosAdapter(import.meta.env.VITE_API_URL)
+function registerGateways(app: App, config: RegisterGatewaysConfig = { useInMemory: false }) {
+  const { useInMemory } = config
+  const httpClient = new AxiosAdapter()
   const propertyGateway = useInMemory
     ? new PropertyGatewayInMemory()
     : new PropertyGateway(httpClient)
