@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
@@ -7,6 +7,7 @@ import { storeToRefs } from 'pinia'
 import BaseAvatar from '@/components/wrappers/misc/BaseAvatar.vue'
 import BaseMenu from '@/components/wrappers/menu/BaseMenu.vue'
 import BaseMenubar from '@/components/wrappers/menu/BaseMenubar.vue'
+import SettingsDialog from '@/layouts/partials/SettingsDialog.vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -17,7 +18,7 @@ function redirectTo(name: string) {
   router.push({ name })
 }
 
-const menubarItems = ref([
+const menubarItems = computed(() => [
   {
     label: t('common.home'),
     command: () => redirectTo('home')
@@ -41,14 +42,14 @@ const menubarItems = ref([
   }
 ])
 
-const items = ref([
+const items = computed(() => [
   {
     label: 'Profile',
     items: [
       {
         label: t('common.settings'),
         icon: 'pi pi-cog',
-        command: () => redirectTo('settings')
+        command: () => settingsDialogRef?.value?.openDialog()
       },
       {
         label: t('common.logout'),
@@ -60,6 +61,7 @@ const items = ref([
 ])
 
 const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
+const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
 </script>
 
 <template>
@@ -69,24 +71,14 @@ const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
     </template>
 
     <template #end>
-      <div
-        v-if="isLoggedIn"
-        class="flex align-items-center gap-2 menubar__end"
-        @click="menuRef?.toggle($event)"
-      >
-        {{ user.fullName }}
-        <BaseAvatar
-          :image="user.avatarUrl"
-          style="width: 32px; height: 32px"
-          aria-haspopup="true"
-          aria-controls="overlay_menu"
-        />
-        <BaseMenu ref="menuRef" id="overlay_menu" :model="items" popup />
+      <div v-if="isLoggedIn" class="menubar__end" @click="menuRef?.toggle($event)">
+        <span>{{ user.fullName }}</span>
+        <BaseAvatar :image="user.avatarUrl" aria-haspopup="true" aria-controls="overlay_menu" />
       </div>
       <BaseButton
         v-else
         :label="$t('common.login')"
-        class="menubar__end"
+        class="cursor-pointer mr-2"
         icon="pi pi-user"
         text
         plain
@@ -98,6 +90,9 @@ const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
   <div class="content-container">
     <RouterView />
   </div>
+
+  <BaseMenu ref="menuRef" id="overlay_menu" :model="items" popup />
+  <SettingsDialog ref="settingsDialogRef" />
 </template>
 
 <style scoped>
@@ -108,7 +103,9 @@ const menuRef = ref<InstanceType<typeof BaseMenu> | null>(null)
   color: var(--primary-color);
 }
 .menubar__end {
-  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
 }
 .content-container {

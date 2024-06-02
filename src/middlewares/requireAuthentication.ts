@@ -1,5 +1,5 @@
 import { useUserStore } from '@/stores/userStore'
-import type { MiddlewareContext } from './middlewarePipeline'
+import type { MiddlewareContext } from '@/middlewares/middlewarePipeline'
 
 function requireAuthentication({ next }: MiddlewareContext) {
   const userStore = useUserStore()

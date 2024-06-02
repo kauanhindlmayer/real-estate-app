@@ -1,48 +1,45 @@
 import { setLocale } from 'yup'
 import { t } from '@/plugins/i18n'
 
-const installYup = () => {
-  setLocale({
-    mixed: {
-      required: ({ path }) => t('validation.required', { field: t(`fields.${path}`) }),
-      oneOf: ({ path }) => t('validation.oneOf', { field: t(`fields.${path}`) }),
-      notOneOf: ({ path, values }) =>
-        t('validation.notOneOf', { field: t(`fields.${path}`), values })
-    },
-    string: {
-      length: ({ path, length }) => t('validation.length', { field: t(`fields.${path}`), length }),
-      min: ({ path, min }) => t('validation.min', { field: t(`fields.${path}`), min }),
-      max: ({ path, max }) => t('validation.max', { field: t(`fields.${path}`), max }),
-      matches: ({ path }) => t('validation.matches', { field: t(`fields.${path}`) }),
-      email: ({ path }) => t('validation.email', { field: t(`fields.${path}`) }),
-      url: ({ path }) => t('validation.url', { field: t(`fields.${path}`) }),
-      trim: ({ path }) => t('validation.trim', { field: t(`fields.${path}`) }),
-      lowercase: ({ path }) => t('validation.lowercase', { field: t(`fields.${path}`) }),
-      uppercase: ({ path }) => t('validation.uppercase', { field: t(`fields.${path}`) })
-    },
-    number: {
-      min: ({ path, min }) => t('validation.minValue', { field: t(`fields.${path}`), min }),
-      max: ({ path, max }) => t('validation.maxValue', { field: t(`fields.${path}`), max }),
-      positive: ({ path }) => t('validation.positive', { field: t(`fields.${path}`) }),
-      negative: ({ path }) => t('validation.negative', { field: t(`fields.${path}`) }),
-      integer: ({ path }) => t('validation.integer', { field: t(`fields.${path}`) })
-    },
-    date: {
-      min: ({ path, min }) => t('validation.minDate', { field: t(`fields.${path}`), min }),
-      max: ({ path, max }) => t('validation.maxDate', { field: t(`fields.${path}`), max })
-    },
-    boolean: {
-      isValue: ({ path, value }) => t('validation.isValue', { field: t(`fields.${path}`), value })
-    },
-    object: {
-      noUnknown: ({ path, unknown }) =>
-        t('validation.noUnknown', { field: t(`fields.${path}`), unknown })
-    },
-    array: {
-      min: ({ path, min }) => t('validation.arrayMin', { field: t(`fields.${path}`), min }),
-      max: ({ path, max }) => t('validation.arrayMax', { field: t(`fields.${path}`), max })
-    }
-  })
+interface ValidationContext {
+  path: string
+  [key: string]: any
+}
+
+interface ValidationTypes {
+  [key: string]: string[]
+}
+
+function createValidationMessage(key: string, { path, ...params }: ValidationContext) {
+  return t(`validation.${key}`, { field: t(`fields.${path}`), ...params })
+}
+
+const validationTypes: ValidationTypes = {
+  mixed: ['required', 'oneOf', 'notOneOf'],
+  string: ['length', 'min', 'max', 'matches', 'email', 'url', 'trim', 'lowercase', 'uppercase'],
+  number: ['min', 'max', 'positive', 'negative', 'integer'],
+  date: ['min', 'max'],
+  boolean: ['isValue'],
+  object: ['noUnknown'],
+  array: ['min', 'max']
+}
+
+function generateValidationConfig(types: ValidationTypes) {
+  return Object.fromEntries(
+    Object.entries(types).map(([type, keys]) => [
+      type,
+      Object.fromEntries(
+        keys.map((key) => [
+          key,
+          (context: ValidationContext) => createValidationMessage(key, context)
+        ])
+      )
+    ])
+  )
+}
+
+function installYup() {
+  setLocale(generateValidationConfig(validationTypes))
 }
 
 export default installYup

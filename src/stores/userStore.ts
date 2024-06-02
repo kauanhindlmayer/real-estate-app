@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { t } from '@/plugins/i18n'
+import { useStorage } from '@vueuse/core'
 import useBaseToast from '@/composables/useBaseToast'
 import User from '@/types/models/User'
 import UserGateway, { type RegistrationRequest, type LoginRequest } from '@/gateways/UserGateway'
@@ -13,7 +14,7 @@ export const useUserStore = defineStore('user', () => {
   const router = useRouter()
 
   const isLoading = ref(false)
-  const user = ref<User>(new User())
+  const user = useStorage('user', new User())
 
   const isLoggedIn = computed(() => Boolean(user.value.id))
 
@@ -34,7 +35,7 @@ export const useUserStore = defineStore('user', () => {
     isLoading.value = true
     try {
       user.value = await userGateway.login(loginData)
-      localStorage.setItem('user', JSON.stringify(user.value))
+      delete user.value.password
       router.push({ name: 'home' })
     } catch {
       toast.error({ message: t('login.messages.invalidCredentials') })
@@ -44,7 +45,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function logout() {
-    localStorage.removeItem('user')
+    user.value = new User()
     router.push({ name: 'login' })
   }
 

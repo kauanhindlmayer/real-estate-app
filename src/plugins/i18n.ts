@@ -7,8 +7,9 @@ type MessageSchema = typeof enUS
 
 const i18n = createI18n<[MessageSchema], 'en-US' | 'pt-BR'>({
   legacy: false,
-  locale: navigator.language,
+  locale: localStorage.getItem('locale') || navigator.language,
   fallbackLocale: 'en',
+  warnHtmlInMessage: 'off',
   messages: {
     'pt-BR': ptBR,
     'en-US': enUS

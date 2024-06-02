@@ -4,6 +4,7 @@ import middlewarePipeline, {
   type MiddlewareContext,
   type MiddlewareFunction
 } from '@/middlewares/middlewarePipeline'
+import redirectAuthenticated from '@/middlewares/redirectAuthenticated'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,7 +37,8 @@ const router = createRouter({
       name: 'login',
       component: () => import('@/views/Login.vue'),
       meta: {
-        title: 'Login'
+        title: 'Login',
+        middleware: [redirectAuthenticated]
       }
     },
     {
@@ -44,7 +46,8 @@ const router = createRouter({
       name: 'register',
       component: () => import('@/views/Register.vue'),
       meta: {
-        title: 'Register'
+        title: 'Register',
+        middleware: [redirectAuthenticated]
       }
     },
     {
