@@ -4,12 +4,11 @@ import { useRouter } from 'vue-router'
 import { t } from '@/plugins/i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import Property from '@/types/models/Property'
-import type PropertyGateway from '@/gateways/PropertyGateway'
 import type { IPropertyFilters } from '@/types/propertyFilters'
+import type { IPropertyGateway } from '@/gateways/PropertyGateway'
 
 export const usePropertiesStore = defineStore('properties', () => {
-  const propertyGateway = inject('propertyGateway') as PropertyGateway
-
+  const propertyGateway = inject<IPropertyGateway>('propertyGateway')!
   const toast = useBaseToast()
   const router = useRouter()
 

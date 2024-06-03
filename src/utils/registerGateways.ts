@@ -1,15 +1,20 @@
 import type { App } from 'vue'
 import AxiosAdapter from '@/gateways/httpClient'
-import PropertyGateway, { PropertyGatewayInMemory } from '@/gateways/PropertyGateway'
-import LocationGateway, { LocationGatewayInMemory } from '@/gateways/LocationGateway'
-import UserGateway, { UserGatewayInMemory } from '@/gateways/UserGateway'
+import PropertyGateway, {
+  PropertyGatewayInMemory,
+  type IPropertyGateway
+} from '@/gateways/PropertyGateway'
+import LocationGateway, {
+  type ILocationGateway,
+  LocationGatewayInMemory
+} from '@/gateways/LocationGateway'
+import UserGateway, { UserGatewayInMemory, type IUserGateway } from '@/gateways/UserGateway'
 
 type RegisterGatewaysConfig = {
   useInMemory: boolean
 }
 
-function registerGateways(app: App, config: RegisterGatewaysConfig = { useInMemory: false }) {
-  const { useInMemory } = config
+function registerGateways(app: App, { useInMemory = false }: RegisterGatewaysConfig) {
   const httpClient = new AxiosAdapter()
   const propertyGateway = useInMemory
     ? new PropertyGatewayInMemory()
@@ -18,9 +23,9 @@ function registerGateways(app: App, config: RegisterGatewaysConfig = { useInMemo
   const locationGateway = useInMemory
     ? new LocationGatewayInMemory()
     : new LocationGateway(httpClient)
-  app.provide('propertyGateway', propertyGateway)
-  app.provide('userGateway', userGateway)
-  app.provide('locationGateway', locationGateway)
+  app.provide<IPropertyGateway>('propertyGateway', propertyGateway)
+  app.provide<IUserGateway>('userGateway', userGateway)
+  app.provide<ILocationGateway>('locationGateway', locationGateway)
 }
 
 export default registerGateways

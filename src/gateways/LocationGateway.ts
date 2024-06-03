@@ -2,7 +2,7 @@ import type IHttpClient from './httpClient'
 import Location from '@/types/models/Location'
 import { locations as mockLocations } from '@/data/locations.json'
 
-interface ILocationGateway {
+export interface ILocationGateway {
   getByZipCode(zipCode: string): Promise<Location>
 }
 

@@ -3,7 +3,7 @@ import type Property from '@/types/models/Property'
 import type { IPropertyFilters } from '@/types/propertyFilters'
 import { properties as mockProperties } from '@/data/properties.json'
 
-interface IPropertyGateway {
+export interface IPropertyGateway {
   getAll(filters: IPropertyFilters): Promise<Property[]>
   getById(id: string): Promise<Property>
   save(property: Property): Promise<void>

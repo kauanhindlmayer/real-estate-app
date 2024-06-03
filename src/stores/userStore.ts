@@ -5,11 +5,10 @@ import { t } from '@/plugins/i18n'
 import { useStorage } from '@vueuse/core'
 import useBaseToast from '@/composables/useBaseToast'
 import User from '@/types/models/User'
-import UserGateway, { type RegistrationRequest, type LoginRequest } from '@/gateways/UserGateway'
+import type { RegistrationRequest, LoginRequest, IUserGateway } from '@/gateways/UserGateway'
 
 export const useUserStore = defineStore('user', () => {
-  const userGateway = inject('userGateway') as UserGateway
-
+  const userGateway = inject<IUserGateway>('userGateway')!
   const toast = useBaseToast()
   const router = useRouter()
 

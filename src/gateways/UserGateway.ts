@@ -2,7 +2,7 @@ import type IHttpClient from './httpClient'
 import User from '@/types/models/User'
 import { users as mockUsers } from '@/data/users.json'
 
-interface IUserGateway {
+export interface IUserGateway {
   register(registrationData: RegistrationRequest): Promise<void>
   login(loginData: LoginRequest): Promise<User>
 }

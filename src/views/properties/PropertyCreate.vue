@@ -8,12 +8,12 @@ import { usePropertiesStore } from '@/stores/propertiesStore'
 import { useDebounceFn } from '@vueuse/core'
 import useBaseToast from '@/composables/useBaseToast'
 import BaseInlineMessage from '@/components/wrappers/form/BaseInlineMessage.vue'
-import type Property from '@/types/models/Property'
-import type LocationGateway from '@/gateways/LocationGateway'
 import BaseSelect from '@/components/wrappers/form/BaseSelect.vue'
 import BaseChips from '@/components/wrappers/form/BaseChips.vue'
+import type Property from '@/types/models/Property'
+import type { ILocationGateway } from '@/gateways/LocationGateway'
 
-const locationGateway = inject('locationGateway') as LocationGateway
+const locationGateway = inject<ILocationGateway>('locationGateway')!
 
 const toast = useBaseToast()
 const propertiesStore = usePropertiesStore()
