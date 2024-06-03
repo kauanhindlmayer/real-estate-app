@@ -1,5 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import addAuthorizationHeader from '@/gateways/interceptors/addAuthorizationHeader'
+import logoutOnUnauthorized from '@/gateways/interceptors/logoutOnUnauthorized'
 
 type RequestConfig = AxiosRequestConfig
 
@@ -11,30 +12,31 @@ export default interface IHttpClient {
 }
 
 export default class AxiosAdapter implements IHttpClient {
-  private httpClient: AxiosInstance
+  private instance: AxiosInstance
 
   constructor() {
-    this.httpClient = axios.create({ baseURL: import.meta.env.VITE_API_URL })
-    this.httpClient.interceptors.request.use(addAuthorizationHeader)
+    this.instance = axios.create({ baseURL: import.meta.env.VITE_API_URL })
+    this.instance.interceptors.request.use(addAuthorizationHeader)
+    this.instance.interceptors.response.use(undefined, logoutOnUnauthorized)
   }
 
   async get(url: string, config?: RequestConfig): Promise<any> {
-    const response = await this.httpClient.get(url, config)
+    const response = await this.instance.get(url, config)
     return response.data
   }
 
   async post(url: string, data?: any, config?: RequestConfig): Promise<any> {
-    const response = await this.httpClient.post(url, data, config)
+    const response = await this.instance.post(url, data, config)
     return response.data
   }
 
   async put(url: string, data?: any, config?: RequestConfig): Promise<any> {
-    const response = await this.httpClient.put(url, data, config)
+    const response = await this.instance.put(url, data, config)
     return response.data
   }
 
   async delete(url: string, config?: RequestConfig): Promise<any> {
-    const response = await this.httpClient.delete(url, config)
+    const response = await this.instance.delete(url, config)
     return response.data
   }
 }

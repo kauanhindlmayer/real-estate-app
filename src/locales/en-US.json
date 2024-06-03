@@ -19,6 +19,7 @@
     "language": "Language",
     "selectLanguage": "Select Language",
     "languageChanged": "Language changed successfully to {language}.",
+    "sessionExpirationMessage": "Your session has expired. Please log in again.",
     "messages": {
       "errorFetchingData": "There was an error fetching data. Please try again later."
     }
