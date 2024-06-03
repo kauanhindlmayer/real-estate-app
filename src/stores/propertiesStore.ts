@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { t } from '@/plugins/i18n'
@@ -67,3 +67,7 @@ export const usePropertiesStore = defineStore('properties', () => {
     getAllProperties
   }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(usePropertiesStore, import.meta.hot))
+}
