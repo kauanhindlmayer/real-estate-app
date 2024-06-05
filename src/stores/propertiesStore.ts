@@ -13,7 +13,7 @@ export const usePropertiesStore = defineStore('properties', () => {
   const router = useRouter()
 
   const isLoading = ref(false)
-  const property = ref<Property>(new Property())
+  const property = ref<Property | null>(null)
   const properties = ref<Property[]>([])
 
   const propertiesCount = computed(() => properties.value.length)

@@ -19,7 +19,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div v-if="property.id" class="container">
+  <div v-if="property" class="container">
     <div class="container__property-details">
       <PropertyCard :property show-extended-info />
 
