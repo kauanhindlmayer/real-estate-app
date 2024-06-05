@@ -72,8 +72,8 @@ const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
 
     <template #end>
       <div v-if="isLoggedIn" class="menubar__end" @click="menuRef?.toggle($event)">
-        <span>{{ user.fullName }}</span>
-        <BaseAvatar :image="user.avatarUrl" aria-haspopup="true" aria-controls="overlay_menu" />
+        <span>{{ user?.fullName }}</span>
+        <BaseAvatar :image="user?.avatarUrl" aria-haspopup="true" aria-controls="overlay_menu" />
       </div>
       <BaseButton
         v-else

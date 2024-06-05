@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const location = ref('')
-const selectedPropertyType = ref('House')
+const selectedPropertyType = ref<'House' | 'Apartment'>('House')
 
 function selectPropertyType(type: string) {
   selectedPropertyType.value = type

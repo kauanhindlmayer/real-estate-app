@@ -13,9 +13,9 @@ export const useUserStore = defineStore('user', () => {
   const router = useRouter()
 
   const isLoading = ref(false)
-  const user = useStorage('user', new User())
+  const user = useStorage<User | null>('user', null)
 
-  const isLoggedIn = computed(() => Boolean(user.value.id))
+  const isLoggedIn = computed(() => Boolean(user.value))
 
   async function register(registrationData: RegistrationRequest) {
     isLoading.value = true
@@ -44,7 +44,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function logout() {
-    user.value = new User()
+    user.value = null
     router.push({ name: 'login' })
   }
 
