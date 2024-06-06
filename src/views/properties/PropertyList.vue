@@ -49,7 +49,7 @@ const activeFilters = computed<string[]>(() => {
     .filter(([, value]) => value)
     .map(([key, value]) => {
       if (Array.isArray(value)) {
-        return `${t(`properties.list.filters.${key}`)}: ${value.map((v: string) => t(`properties.list.filters.${toCamelCase(v)}`)).join(', ')}`
+        value = value.map((v: string) => t(`properties.list.filters.${toCamelCase(v)}`)).join(', ')
       }
       return `${t(`properties.list.filters.${key}`)}: ${value}`
     })

@@ -5,25 +5,23 @@ import { createPinia } from 'pinia'
 
 import App from '@/App.vue'
 import router from '@/router'
+
 import i18n from '@/plugins/i18n'
-
-import installPrimeVue from '@/plugins/primeVue'
-import installYup from '@/plugins/yup'
-import installNProgress from '@/plugins/nprogress'
-
-import registerComponents from '@/utils/registerComponents'
-import registerGateways from '@/utils/registerGateways'
+import primeVue from '@/plugins/prime-vue'
+import yup from '@/plugins/yup'
+import nProgress from '@/plugins/nprogress'
+import globalComponents from '@/plugins/global-components'
+import gatewayProvider from '@/plugins/gateway-provider'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(i18n)
-installPrimeVue(app)
-installYup()
-installNProgress(router)
-
-registerComponents(app)
-registerGateways(app, { useInMemory: true })
+app.use(primeVue)
+app.use(yup)
+app.use(nProgress)
+app.use(globalComponents)
+app.use(gatewayProvider)
 
 app.mount('#app')

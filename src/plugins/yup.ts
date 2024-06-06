@@ -38,8 +38,10 @@ function generateValidationConfig(types: ValidationTypes) {
   )
 }
 
-function installYup() {
-  setLocale(generateValidationConfig(validationTypes))
+const yup = {
+  install() {
+    setLocale(generateValidationConfig(validationTypes))
+  }
 }
 
-export default installYup
+export default yup

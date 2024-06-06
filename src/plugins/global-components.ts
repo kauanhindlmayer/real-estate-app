@@ -13,19 +13,21 @@ import BaseSkeleton from '@/components/wrappers/misc/BaseSkeleton.vue'
 import BaseCard from '@/components/wrappers/misc/BaseCard.vue'
 import BaseMultiSelect from '@/components/wrappers/form/BaseMultiSelect.vue'
 
-function registerComponents(app: App<Element>) {
-  app.component('BaseButton', BaseButton)
-  app.component('BaseInputText', BaseInputText)
-  app.component('BaseInputNumber', BaseInputNumber)
-  app.component('BaseInputIcon', BaseInputIcon)
-  app.component('BaseInputMask', BaseInputMask)
-  app.component('BaseInputPassword', BaseInputPassword)
-  app.component('BaseCheckboxGroup', BaseCheckboxGroup)
-  app.component('BaseCheckbox', BaseCheckbox)
-  app.component('BaseDropdown', BaseDropdown)
-  app.component('BaseSkeleton', BaseSkeleton)
-  app.component('BaseCard', BaseCard)
-  app.component('BaseMultiSelect', BaseMultiSelect)
+const globalComponents = {
+  install(app: App<Element>) {
+    app.component('BaseButton', BaseButton)
+    app.component('BaseInputText', BaseInputText)
+    app.component('BaseInputNumber', BaseInputNumber)
+    app.component('BaseInputIcon', BaseInputIcon)
+    app.component('BaseInputMask', BaseInputMask)
+    app.component('BaseInputPassword', BaseInputPassword)
+    app.component('BaseCheckbox', BaseCheckbox)
+    app.component('BaseCheckboxGroup', BaseCheckboxGroup)
+    app.component('BaseDropdown', BaseDropdown)
+    app.component('BaseSkeleton', BaseSkeleton)
+    app.component('BaseCard', BaseCard)
+    app.component('BaseMultiSelect', BaseMultiSelect)
+  }
 }
 
-export default registerComponents
+export default globalComponents

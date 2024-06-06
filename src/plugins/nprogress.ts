@@ -1,17 +1,20 @@
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import type { Router } from 'vue-router'
+import router from '@/router'
 
 NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
 
-function installNProgress(router: Router) {
-  router.beforeResolve((to, _, next) => {
-    if (to.name) NProgress.start()
-    next()
-  })
+const nProgress = {
+  install() {
+    router.beforeResolve((to, _, next) => {
+      if (to.name) NProgress.start()
+      next()
+    })
 
-  router.afterEach(() => {
-    NProgress.done()
-  })
+    router.afterEach(() => {
+      NProgress.done()
+    })
+  }
 }
-export default installNProgress
+
+export default nProgress
