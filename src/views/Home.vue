@@ -2,12 +2,14 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+type PropertyType = 'House' | 'Apartment'
+
 const router = useRouter()
 
 const location = ref('')
-const selectedPropertyType = ref<'House' | 'Apartment'>('House')
+const selectedPropertyType = ref<PropertyType>('House')
 
-function selectPropertyType(type: 'House' | 'Apartment') {
+function selectPropertyType(type: PropertyType) {
   selectedPropertyType.value = type
 }
 
@@ -29,24 +31,18 @@ function redirectToPropertyList() {
       <template #content>
         <div class="property-types">
           <div
-            :class="[
-              'property-types__option',
-              { 'property-types__option--selected': selectedPropertyType === 'House' }
-            ]"
+            :class="['option', { 'option--selected': selectedPropertyType === 'House' }]"
             @click="selectPropertyType('House')"
           >
             {{ $t('common.houses') }}
           </div>
           <div
-            :class="[
-              'property-types__option',
-              { 'property-types__option--selected': selectedPropertyType === 'Apartment' }
-            ]"
+            :class="['option', { 'option--selected': selectedPropertyType === 'Apartment' }]"
             @click="selectPropertyType('Apartment')"
           >
             {{ $t('common.apartments') }}
           </div>
-          <div class="property-types__option" @click="redirectToPropertyAdvertise">
+          <div class="option" @click="redirectToPropertyAdvertise">
             {{ $t('home.wantToSell') }}
           </div>
         </div>
@@ -87,17 +83,17 @@ function redirectToPropertyList() {
   gap: 2rem;
   margin-bottom: 1rem;
 }
-.property-types__option {
+.option {
   cursor: pointer;
   font-weight: 600;
   color: #cccccc;
   padding: 0.5rem;
 }
-.property-types__option:hover {
+.option:hover {
   color: #333333;
   font-weight: 600;
 }
-.property-types__option--selected {
+.option--selected {
   color: #333333;
   font-weight: 600;
   border-bottom: 2px solid var(--primary-color);

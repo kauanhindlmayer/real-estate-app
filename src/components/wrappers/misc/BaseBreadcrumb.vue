@@ -12,7 +12,7 @@ import Breadcrumb from 'primevue/breadcrumb'
 
 <style>
 .p-breadcrumb {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--surface-50);
   padding: 0;
 }
 .p-breadcrumb > .p-menuitem-text {

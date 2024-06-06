@@ -3,13 +3,6 @@ body {
   padding: 0;
 }
 
-:root {
-  --primary-color: #007bff;
-  --primary-bg-color: #ffffff;
-  --secondary-bg-color: #f8f9fa;
-  --primary-border-color: #dee2e6;
-}
-
 label {
   display: block !important;
   margin-bottom: 4px !important;

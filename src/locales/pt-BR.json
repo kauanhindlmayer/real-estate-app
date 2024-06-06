@@ -18,7 +18,11 @@
     "portuguese": "Português",
     "language": "Idioma",
     "selectLanguage": "Selecione o Idioma",
-    "languageChanged": "Idioma alterado com sucesso para {language}.",
+    "theme": "Tema",
+    "selectTheme": "Selecione o Tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "settingsSaved": "Configurações salvas com sucesso!",
     "sessionExpirationMessage": "Sua sessão expirou. Por favor, faça login novamente.",
     "messages": {
       "errorFetchingData": "Erro ao buscar dados. Tente novamente mais tarde."

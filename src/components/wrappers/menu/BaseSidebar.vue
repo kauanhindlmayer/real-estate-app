@@ -23,7 +23,7 @@ const isCollapsed = defineModel()
   flex: 0 0 calc(100vw / 7);
   height: calc(100vh - 64px);
   animation: slideIn 0.5s ease;
-  background-color: var(--primary-bg-color);
+  background-color: var(--surface-0);
 }
 .sidebar--collapsed {
   display: none;
@@ -45,7 +45,7 @@ const isCollapsed = defineModel()
 .sidebar__footer {
   flex: 0 0 auto;
   padding: 1rem;
-  border-top: 1px solid var(--primary-border-color);
+  border-top: 1px solid var(--surface-200);
 }
 @keyframes slideIn {
   0% {

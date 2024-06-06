@@ -243,7 +243,7 @@ onBeforeMount(async () => {
 <style scoped>
 .section {
   padding: 1rem;
-  border-bottom: 1px solid var(--primary-border-color);
+  border-bottom: 1px solid var(--surface-200);
 }
 .section__title {
   font-weight: 600;
@@ -253,7 +253,7 @@ onBeforeMount(async () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-bg-color);
+  background-color: var(--surface-0);
   padding: 1rem;
 }
 .property-list {

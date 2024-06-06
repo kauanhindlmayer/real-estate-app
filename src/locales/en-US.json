@@ -18,7 +18,11 @@
     "portuguese": "Portuguese",
     "language": "Language",
     "selectLanguage": "Select Language",
-    "languageChanged": "Language changed successfully to {language}.",
+    "theme": "Theme",
+    "selectTheme": "Select Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "settingsSaved": "Settings saved successfully!",
     "sessionExpirationMessage": "Your session has expired. Please log in again.",
     "messages": {
       "errorFetchingData": "There was an error fetching data. Please try again later."

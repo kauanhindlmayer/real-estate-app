@@ -1,6 +1,5 @@
 import type { App } from 'vue'
 
-import 'primevue/resources/themes/aura-light-blue/theme.css'
 import 'primeicons/primeicons.css'
 import '/node_modules/primeflex/primeflex.css'
 
