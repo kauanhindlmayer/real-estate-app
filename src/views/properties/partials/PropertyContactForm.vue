@@ -5,7 +5,6 @@ import { useField, useForm } from 'vee-validate'
 import { boolean, object, string } from 'yup'
 import BaseInputTextarea from '@/components/wrappers/form/BaseInputTextarea.vue'
 import ReportAdDialog from '@/views/properties/partials/ReportAdDialog.vue'
-import formatCurrency from '@/utils/formatCurrency'
 
 defineProps<{ propertyPrice: number }>()
 
@@ -43,7 +42,7 @@ onBeforeMount(() => {
   <div class="property-contact-form">
     <BaseCard>
       <template #title>
-        <span class="text-4xl">{{ formatCurrency(propertyPrice) }}</span>
+        <span class="text-4xl">{{ $n(propertyPrice, 'currency') }}</span>
       </template>
       <template #subtitle> {{ $t('properties.sendMessageToSeller') }} </template>
       <template #content>

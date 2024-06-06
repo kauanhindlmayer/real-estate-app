@@ -2,6 +2,7 @@ import { createI18n } from 'vue-i18n'
 
 import ptBR from '@/locales/pt-BR.json'
 import enUS from '@/locales/en-US.json'
+import numberFormats from '@/locales/number-formats'
 
 type MessageSchema = typeof enUS
 
@@ -13,7 +14,8 @@ const i18n = createI18n<[MessageSchema], 'en-US' | 'pt-BR'>({
   messages: {
     'pt-BR': ptBR,
     'en-US': enUS
-  }
+  },
+  numberFormats
 })
 
 export const t = i18n.global.t

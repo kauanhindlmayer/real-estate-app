@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import BaseGallery from '@/components/wrappers/misc/BaseGallery.vue'
-import formatCurrency from '@/utils/formatCurrency'
 import type Property from '@/types/models/Property'
 
 const props = defineProps<{ property: Property; showExtendedInfo?: boolean }>()
@@ -34,7 +33,7 @@ function redirectToPropertyDetails() {
       <p>{{ property.description }}</p>
 
       <div v-if="!showExtendedInfo">
-        <p class="font-semibold">{{ formatCurrency(property.price) }}</p>
+        <p class="font-semibold">{{ $n(property.price, 'currency') }}</p>
         <p>
           <i class="pi pi-map-marker" />
           {{ property.location.city }} - {{ property.location.state }}
@@ -44,7 +43,7 @@ function redirectToPropertyDetails() {
       <div v-else class="property-card__extended-info">
         <div>
           <div class="font-medium">{{ $t('fields.price') }}</div>
-          <div>{{ formatCurrency(property.price) }}</div>
+          <div>{{ $n(property.price, 'currency') }}</div>
         </div>
         <div>
           <div class="font-medium">{{ $t('properties.form.location') }}</div>

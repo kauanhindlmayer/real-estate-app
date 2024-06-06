@@ -5,7 +5,6 @@ import PrimeVue from 'primevue/config'
 import router from '@/router'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import { property as mockProperty } from '@/data/properties.json'
-import formatCurrency from '@/utils/formatCurrency'
 
 describe('PropertyCard', () => {
   let wrapper: VueWrapper
@@ -17,7 +16,10 @@ describe('PropertyCard', () => {
       },
       props: {
         property: mockProperty,
-        showFooter: true
+        showExtendedInfo: false
+      },
+      mocks: {
+        $n: (value: number) => value
       }
     })
   })
@@ -26,7 +28,7 @@ describe('PropertyCard', () => {
     const wrapperHtml = wrapper.html()
     expect(wrapperHtml).toContain(mockProperty.title)
     expect(wrapperHtml).toContain(mockProperty.description)
-    expect(wrapperHtml).toContain(formatCurrency(mockProperty.price))
+    expect(wrapperHtml).toContain(mockProperty.price)
   })
 
   it('redirects to the property details page when clicked on view button', async () => {
