@@ -1,4 +1,4 @@
-import { useUserStore } from '@/stores/userStore'
+import { useUserStore } from '@/stores/user'
 import type { MiddlewareContext } from '@/middlewares/middlewarePipeline'
 
 /**

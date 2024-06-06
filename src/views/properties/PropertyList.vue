@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { usePropertiesStore } from '@/stores/propertiesStore'
+import { usePropertiesStore } from '@/stores/properties'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import BaseSidebar from '@/components/wrappers/menu/BaseSidebar.vue'

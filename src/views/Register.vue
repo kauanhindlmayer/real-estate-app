@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useUserStore } from '@/stores/userStore'
+import { useUserStore } from '@/stores/user'
 import { useField, useForm } from 'vee-validate'
 import { object, string, ref } from 'yup'
 import type { RegistrationRequest } from '@/gateways/UserGateway'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
-import { usePropertiesStore } from '@/stores/propertiesStore'
+import { usePropertiesStore } from '@/stores/properties'
 import { storeToRefs } from 'pinia'
 import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
 import PropertyContactForm from '@/views/properties/partials/PropertyContactForm.vue'

@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios'
-import { useUserStore } from '@/stores/userStore'
+import { useUserStore } from '@/stores/user'
 import { t } from '@/plugins/i18n'
 import useBaseToast from '@/composables/useBaseToast'
 

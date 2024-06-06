@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/userStore'
+import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import BaseAvatar from '@/components/wrappers/misc/BaseAvatar.vue'
 import BaseMenu from '@/components/wrappers/menu/BaseMenu.vue'

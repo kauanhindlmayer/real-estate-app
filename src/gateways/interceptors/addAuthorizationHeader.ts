@@ -1,5 +1,5 @@
 import type { InternalAxiosRequestConfig } from 'axios'
-import { useUserStore } from '@/stores/userStore'
+import { useUserStore } from '@/stores/user'
 
 function addAuthorizationHeader(config: InternalAxiosRequestConfig) {
   const userStore = useUserStore()
