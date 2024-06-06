@@ -5,11 +5,11 @@ import { usePropertiesStore } from '@/stores/properties'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import BaseSidebar from '@/components/wrappers/menu/BaseSidebar.vue'
-import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
+import PropertyCard from '@/components/properties/PropertyCard.vue'
 import BaseBreadcrumb from '@/components/wrappers/misc/BaseBreadcrumb.vue'
 import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 import toCamelCase from '@/utils/toCamelCase'
-import propertiesResolver from '@/views/properties/partials/propertiesResolver'
+import propertiesResolver from '@/utils/propertiesResolver'
 import type { IPropertyFilters } from '@/types/propertyFilters'
 
 const { t } = useI18n()

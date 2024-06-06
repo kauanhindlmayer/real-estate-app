@@ -7,7 +7,7 @@ const router = useRouter()
 const location = ref('')
 const selectedPropertyType = ref<'House' | 'Apartment'>('House')
 
-function selectPropertyType(type: string) {
+function selectPropertyType(type: 'House' | 'Apartment') {
   selectedPropertyType.value = type
 }
 

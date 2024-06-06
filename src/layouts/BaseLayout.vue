@@ -72,13 +72,17 @@ const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
 
     <template #end>
       <div v-if="isLoggedIn" class="menubar__end" @click="menuRef?.toggle($event)">
-        <span>{{ user?.fullName }}</span>
+        <div>
+          <div class="text-sm font-semibold">{{ user?.fullName }}</div>
+          <div class="text-xs">{{ user?.email }}</div>
+        </div>
         <BaseAvatar :image="user?.avatarUrl" aria-haspopup="true" aria-controls="overlay_menu" />
+        <i class="pi pi-angle-down" />
       </div>
       <BaseButton
         v-else
         :label="$t('common.login')"
-        class="cursor-pointer mr-2"
+        class="cursor-pointer"
         icon="pi pi-user"
         text
         plain
@@ -99,7 +103,7 @@ const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
 .menubar__start {
   font-size: 1.75rem;
   font-weight: 600;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   color: var(--primary-color);
 }
 .menubar__end {
@@ -107,6 +111,7 @@ const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  margin-right: 1rem;
 }
 .content-container {
   height: calc(100vh - 64px);

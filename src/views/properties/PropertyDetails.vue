@@ -3,9 +3,9 @@ import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePropertiesStore } from '@/stores/properties'
 import { storeToRefs } from 'pinia'
-import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
-import PropertyContactForm from '@/views/properties/partials/PropertyContactForm.vue'
-import SellerCard from '@/views/properties/partials/SellerCard.vue'
+import PropertyCard from '@/components/properties/PropertyCard.vue'
+import PropertyContactForm from '@/components/properties/PropertyContactForm.vue'
+import SellerCard from '@/components/properties/SellerCard.vue'
 import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 
 const route = useRoute()

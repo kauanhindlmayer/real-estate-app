@@ -13,7 +13,12 @@ export const useUserStore = defineStore('user', () => {
   const router = useRouter()
 
   const isLoading = ref(false)
-  const user = useStorage<User | null>('user', null)
+  const user = useStorage<User | null>('user', null, undefined, {
+    serializer: {
+      read: (v: any) => (v ? JSON.parse(v) : null),
+      write: (v: any) => JSON.stringify(v)
+    }
+  })
 
   const isLoggedIn = computed(() => Boolean(user.value))
 

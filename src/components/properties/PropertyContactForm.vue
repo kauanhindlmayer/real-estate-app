@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useField, useForm } from 'vee-validate'
 import { boolean, object, string } from 'yup'
 import BaseInputTextarea from '@/components/wrappers/form/BaseInputTextarea.vue'
-import ReportAdDialog from '@/views/properties/partials/ReportAdDialog.vue'
+import ReportAdDialog from '@/components/properties/ReportAdDialog.vue'
 
 defineProps<{ propertyPrice: number }>()
 
