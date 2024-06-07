@@ -230,7 +230,7 @@ onBeforeMount(async () => {
           <p class="m-0">{{ $t('properties.list.description', { count: propertiesCount }) }}</p>
         </header>
         <div v-if="isLoading" class="property-list__cards">
-          <BaseSkeleton v-for="n in 8" :key="n" width="23rem" height="36rem" borderRadius="8px" />
+          <BaseSkeleton v-for="n in 8" :key="n" width="23rem" height="36rem" border-radius="8px" />
         </div>
         <div v-else class="property-list__skeletons">
           <PropertyCard v-for="property in properties" :key="property.id" :property />

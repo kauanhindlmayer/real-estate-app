@@ -19,7 +19,15 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div v-if="property" class="container">
+  <div v-if="isLoading" class="container">
+    <div class="container__property-details">
+      <BaseSkeleton width="55rem" height="29rem" border-radius="8px" />
+      <BaseSkeleton width="55rem" height="7rem" border-radius="8px" />
+      <BaseSkeleton width="55rem" height="9rem" border-radius="8px" />
+    </div>
+    <BaseSkeleton width="28rem" height="37rem" border-radius="8px" />
+  </div>
+  <div v-else class="container">
     <div class="container__property-details">
       <PropertyCard :property show-extended-info />
 
@@ -40,16 +48,6 @@ onBeforeMount(async () => {
     </div>
 
     <PropertyContactForm :property-price="property?.price" />
-  </div>
-  <div v-if="isLoading">
-    <div class="container">
-      <div class="container__property-details">
-        <BaseSkeleton width="55rem" height="29rem" borderRadius="8px" />
-        <BaseSkeleton width="55rem" height="7rem" borderRadius="8px" />
-        <BaseSkeleton width="55rem" height="9rem" borderRadius="8px" />
-      </div>
-      <BaseSkeleton width="28rem" height="37rem" borderRadius="8px" />
-    </div>
   </div>
 </template>
 
