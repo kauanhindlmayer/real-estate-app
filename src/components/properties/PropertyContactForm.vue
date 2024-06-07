@@ -14,7 +14,7 @@ const reportAdDialogRef = ref<InstanceType<typeof ReportAdDialog> | null>(null)
 const validationSchema = object({
   name: string().required().min(5).max(100),
   email: string().required().email(),
-  phone: string().required().min(10).max(15),
+  phone: string().required().min(10).max(16),
   message: string().required().min(20),
   receiveContacts: boolean().required()
 })
