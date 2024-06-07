@@ -86,15 +86,15 @@ function redirectToPropertyList() {
 .option {
   cursor: pointer;
   font-weight: 600;
-  color: #cccccc;
+  color: var(--text-color-secondary);
   padding: 0.5rem;
 }
 .option:hover {
-  color: #333333;
+  color: var(--text-primary-color);
   font-weight: 600;
 }
 .option--selected {
-  color: #333333;
+  color: var(--text-primary-color);
   font-weight: 600;
   border-bottom: 2px solid var(--primary-color);
 }

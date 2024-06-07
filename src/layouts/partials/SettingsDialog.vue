@@ -1,19 +1,17 @@
 <script lang="ts" setup>
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePrimeVue } from 'primevue/config'
 import { useStorage } from '@vueuse/core'
 import BaseDialog from '@/components/wrappers/misc/BaseDialog.vue'
 import BaseSelect from '@/components/wrappers/form/BaseSelect.vue'
 import useBaseToast from '@/composables/useBaseToast'
-import useBaseDialog from '@/composables/useBaseDialog'
 
 const i18n = useI18n()
 const toast = useBaseToast()
 
 const { selectedTheme, themesOptions, setTheme } = useTheme()
 const { selectedLanguage, languagesOptions, setLanguage } = useLanguage()
-const { isVisible, openDialog, closeDialog } = useBaseDialog()
 
 function useLanguage() {
   const selectedLanguage = useStorage<'en-US' | 'pt-BR'>('locale', 'en-US')
@@ -69,6 +67,16 @@ function saveChanges() {
 }
 
 onBeforeMount(() => setTheme())
+
+const isVisible = ref(false)
+
+function openDialog() {
+  isVisible.value = true
+}
+
+function closeDialog() {
+  isVisible.value = false
+}
 
 defineExpose({
   openDialog,

@@ -117,7 +117,7 @@ onBeforeMount(() => {
 }
 .report-ad__title {
   font-size: 0.875rem;
-  color: #666;
+  color: var(--gray-500);
   cursor: pointer;
 }
 .report-ad__title:hover {

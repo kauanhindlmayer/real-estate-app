@@ -11,7 +11,7 @@ import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 const route = useRoute()
 
 const propertiesStore = usePropertiesStore()
-const { property } = storeToRefs(propertiesStore)
+const { property, isLoading } = storeToRefs(propertiesStore)
 
 onBeforeMount(async () => {
   await propertiesStore.getPropertyById(route.params.id as string)
@@ -23,7 +23,7 @@ onBeforeMount(async () => {
     <div class="container__property-details">
       <PropertyCard :property show-extended-info />
 
-      <BaseCard v-if="property.amenities">
+      <BaseCard v-if="property?.amenities">
         <template #title> {{ $t('fields.amenities') }} </template>
         <template #content>
           <BaseTag
@@ -36,10 +36,20 @@ onBeforeMount(async () => {
         </template>
       </BaseCard>
 
-      <SellerCard v-if="property.seller" :seller="property.seller" />
+      <SellerCard v-if="property?.seller" :seller="property.seller" />
     </div>
 
-    <PropertyContactForm :property-price="property.price" />
+    <PropertyContactForm :property-price="property?.price" />
+  </div>
+  <div v-if="isLoading">
+    <div class="container">
+      <div class="container__property-details">
+        <BaseSkeleton width="55rem" height="29rem" borderRadius="8px" />
+        <BaseSkeleton width="55rem" height="7rem" borderRadius="8px" />
+        <BaseSkeleton width="55rem" height="9rem" borderRadius="8px" />
+      </div>
+      <BaseSkeleton width="28rem" height="37rem" borderRadius="8px" />
+    </div>
   </div>
 </template>
 

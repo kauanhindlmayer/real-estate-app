@@ -44,10 +44,15 @@ export default class PropertyGateway implements IPropertyGateway {
   }
 }
 
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 export class PropertyGatewayInMemory implements IPropertyGateway {
   private properties: Property[] = mockProperties
 
   async getAll(filters: IPropertyFilters): Promise<Property[]> {
+    await delay(1500)
     const { title, location } = filters
     return this.properties.filter(
       (property) =>
@@ -57,12 +62,14 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   }
 
   async getById(id: string): Promise<Property> {
+    await delay(1500)
     const property = this.properties.find((property) => property.id === id)
     if (!property) throw new Error('Property not found')
     return property
   }
 
   async save(property: Property): Promise<void> {
+    await delay(1500)
     const index = this.properties.findIndex((p) => p.id === property.id)
     if (index === -1) {
       property.id = String(this.properties.length + 1)
