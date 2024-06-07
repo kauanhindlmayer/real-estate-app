@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia'
 import BaseAvatar from '@/components/wrappers/misc/BaseAvatar.vue'
 import BaseMenu from '@/components/wrappers/menu/BaseMenu.vue'
 import BaseMenubar from '@/components/wrappers/menu/BaseMenubar.vue'
-import SettingsDialog from '@/layouts/partials/SettingsDialog.vue'
+import SettingsDialog from '@/components/SettingsDialog.vue'
 
 const { t } = useI18n()
 const router = useRouter()
