@@ -36,7 +36,7 @@ function saveChanges() {
   setLanguage()
   setTheme()
   closeDialog()
-  toast.success({ message: i18n.t('common.settingsSaved') })
+  toast.success({ message: i18n.t('common.messages.settingsSaved') })
 }
 
 const isVisible = ref(false)

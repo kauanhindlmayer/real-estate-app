@@ -22,12 +22,14 @@
     "selectTheme": "Selecione o Tema",
     "light": "Claro",
     "dark": "Escuro",
-    "settingsSaved": "Configurações salvas com sucesso!",
-    "sessionExpirationMessage": "Sua sessão expirou. Por favor, faça login novamente.",
+
     "page": "página",
     "property": "propriedade",
     "messages": {
-      "errorFetchingData": "Erro ao buscar dados. Tente novamente mais tarde."
+      "errorFetchingData": "Erro ao buscar dados. Tente novamente mais tarde.",
+      "settingsSaved": "Configurações salvas com sucesso!",
+      "sessionExpirationMessage": "Sua sessão expirou. Por favor, faça login novamente.",
+      "internalServerError": "An internal server error occurred. Please try again later."
     }
   },
   "properties": {
@@ -125,6 +127,12 @@
   },
   "notFound": {
     "description": "A {resource} que você procura não existe."
+  },
+  "networkError": {
+    "title": "Uh-oh!",
+    "description-start": "Parece que você está enfrentando alguns problemas de rede, por favor, respire fundo e",
+    "description-link": "clique aqui",
+    "description-end": "para tentar novamente."
   },
   "register": {
     "alreadyHaveAccount": "Já possui uma conta?",

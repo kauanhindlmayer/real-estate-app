@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import addAuthorizationHeader from '@/gateways/interceptors/addAuthorizationHeader'
-import logoutOnUnauthorized from '@/gateways/interceptors/logoutOnUnauthorized'
+import handleApiError from '@/gateways/interceptors/handleApiError'
 
 type RequestConfig = AxiosRequestConfig
 
@@ -17,7 +17,7 @@ export default class AxiosAdapter implements IHttpClient {
   constructor() {
     this.instance = axios.create({ baseURL: import.meta.env.VITE_API_URL })
     this.instance.interceptors.request.use(addAuthorizationHeader)
-    this.instance.interceptors.response.use(undefined, logoutOnUnauthorized)
+    this.instance.interceptors.response.use(undefined, handleApiError)
   }
 
   async get(url: string, config?: RequestConfig): Promise<any> {

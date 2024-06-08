@@ -22,12 +22,13 @@
     "selectTheme": "Select Theme",
     "light": "Light",
     "dark": "Dark",
-    "settingsSaved": "Settings saved successfully!",
-    "sessionExpirationMessage": "Your session has expired. Please log in again.",
     "page": "page",
     "property": "property",
     "messages": {
-      "errorFetchingData": "There was an error fetching data. Please try again later."
+      "errorFetchingData": "There was an error fetching data. Please try again later.",
+      "sessionExpirationMessage": "Your session has expired. Please log in again.",
+      "settingsSaved": "Settings saved successfully!",
+      "internalServerError": "An internal server error occurred. Please try again later."
     }
   },
   "properties": {
@@ -124,6 +125,12 @@
   },
   "notFound": {
     "description": "The {resource} you are looking for does not exist."
+  },
+  "networkError": {
+    "title": "Uh-oh!",
+    "description-start": "It looks like you're experiencing some network issues, please take a breath and",
+    "description-link": "click here",
+    "description-end": "to try again."
   },
   "register": {
     "alreadyHaveAccount": "Already have an account?",

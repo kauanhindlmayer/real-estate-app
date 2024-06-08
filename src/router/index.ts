@@ -53,19 +53,18 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import('@/layouts/NotFound.vue'),
-      meta: {
-        title: 'Not Found'
-      }
+      component: () => import('@/layouts/NotFound.vue')
     },
     {
       path: '/not-found/:resource',
       name: 'resource-not-found',
       component: () => import('@/layouts/NotFound.vue'),
-      props: true,
-      meta: {
-        title: 'Not Found'
-      }
+      props: true
+    },
+    {
+      path: '/network-error',
+      name: 'network-error',
+      component: () => import('@/layouts/NetworkError.vue')
     }
   ]
 })
