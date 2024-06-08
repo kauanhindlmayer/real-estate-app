@@ -52,7 +52,7 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   private properties: Property[] = mockProperties
 
   async getAll(filters: IPropertyFilters): Promise<Property[]> {
-    await delay(1500)
+    // await delay(1500)
     const { title, location } = filters
     return this.properties.filter(
       (property) =>
@@ -62,7 +62,7 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   }
 
   async getById(id: string): Promise<Property> {
-    await delay(1500)
+    // await delay(1500)
     const property = this.properties.find((property) => property.id === id)
     if (!property) throw new Error('Property not found')
     return property

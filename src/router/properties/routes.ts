@@ -23,6 +23,7 @@ const propertiesRoutes: Readonly<RouteRecordRaw[]> = [
     path: '/properties/details/:id',
     name: 'property-details',
     component: () => import('@/views/properties/PropertyDetails.vue'),
+    props: true,
     meta: {
       title: 'Details'
     }

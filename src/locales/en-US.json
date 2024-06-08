@@ -24,6 +24,8 @@
     "dark": "Dark",
     "settingsSaved": "Settings saved successfully!",
     "sessionExpirationMessage": "Your session has expired. Please log in again.",
+    "page": "page",
+    "property": "property",
     "messages": {
       "errorFetchingData": "There was an error fetching data. Please try again later."
     }
@@ -121,7 +123,7 @@
     "dontHaveAccount": "Don't have an account?"
   },
   "notFound": {
-    "description": "The page you are looking for does not exist."
+    "description": "The {resource} you are looking for does not exist."
   },
   "register": {
     "alreadyHaveAccount": "Already have an account?",

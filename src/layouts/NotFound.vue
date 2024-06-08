@@ -1,5 +1,10 @@
 <script lang="ts" setup>
+import { t } from '@/plugins/i18n'
 import { useRouter } from 'vue-router'
+
+withDefaults(defineProps<{ resource: string }>(), {
+  resource: t('common.page')
+})
 
 const router = useRouter()
 
@@ -13,7 +18,7 @@ function redirectToHome() {
     <div class="not-found-container__content">
       <h1>404</h1>
       <h2>{{ $t('common.notFound') }}</h2>
-      <p>{{ $t('notFound.description') }}</p>
+      <p>{{ $t('notFound.description', { resource }) }}</p>
       <BaseButton label="Go to Homepage" @click="redirectToHome" />
     </div>
   </div>
@@ -28,8 +33,6 @@ function redirectToHome() {
   text-align: center;
   padding: 2rem;
   min-height: 100vh;
-  background-color: #f8fafc;
-  color: #333;
 }
 .not-found-container__content {
   max-width: 600px;

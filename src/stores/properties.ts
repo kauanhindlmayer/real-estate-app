@@ -32,12 +32,13 @@ export const usePropertiesStore = defineStore('properties', () => {
   }
 
   async function getPropertyById(id: string) {
+    property.value = null
     isLoading.value = true
     try {
       property.value = await propertyGateway.getById(id)
     } catch {
       toast.error({ message: t('properties.list.messages.propertyNotFound') })
-      router.push({ name: 'properties-list' })
+      router.push({ name: 'resource-not-found', params: { resource: t('common.property') } })
     } finally {
       isLoading.value = false
     }

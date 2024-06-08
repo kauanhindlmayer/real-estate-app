@@ -6,7 +6,9 @@ import { boolean, object, string } from 'yup'
 import BaseInputTextarea from '@/components/wrappers/form/BaseInputTextarea.vue'
 import ReportAdDialog from '@/components/properties/ReportAdDialog.vue'
 
-defineProps<{ propertyPrice?: number }>()
+withDefaults(defineProps<{ price: number }>(), {
+  price: 0
+})
 
 const { t } = useI18n()
 const reportAdDialogRef = ref<InstanceType<typeof ReportAdDialog> | null>(null)
@@ -42,7 +44,7 @@ onBeforeMount(() => {
   <div class="property-contact-form">
     <BaseCard>
       <template #title>
-        <span class="text-4xl">{{ $n(propertyPrice!, 'currency') }}</span>
+        <span class="text-4xl">{{ $n(price, 'currency') }}</span>
       </template>
       <template #subtitle> {{ $t('properties.sendMessageToSeller') }} </template>
       <template #content>

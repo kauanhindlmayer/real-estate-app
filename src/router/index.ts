@@ -57,6 +57,15 @@ const router = createRouter({
       meta: {
         title: 'Not Found'
       }
+    },
+    {
+      path: '/not-found/:resource',
+      name: 'resource-not-found',
+      component: () => import('@/layouts/NotFound.vue'),
+      props: true,
+      meta: {
+        title: 'Not Found'
+      }
     }
   ]
 })

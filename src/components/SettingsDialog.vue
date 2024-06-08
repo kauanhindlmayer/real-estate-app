@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { onBeforeMount, ref } from 'vue'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { usePrimeVue } from 'primevue/config'
 import { useStorage } from '@vueuse/core'
 import BaseDialog from '@/components/wrappers/misc/BaseDialog.vue'
 import BaseSelect from '@/components/wrappers/form/BaseSelect.vue'
 import useBaseToast from '@/composables/useBaseToast'
+import useTheme from '@/composables/useTheme'
 
 const i18n = useI18n()
 const toast = useBaseToast()
@@ -32,41 +32,12 @@ function useLanguage() {
   }
 }
 
-function useTheme() {
-  const primeVue = usePrimeVue()
-
-  const selectedTheme = useStorage<'light' | 'dark'>('theme', 'light')
-
-  const themesOptions = [
-    { label: i18n.t('common.light'), value: 'light' },
-    { label: i18n.t('common.dark'), value: 'dark' }
-  ]
-
-  const themeMap = {
-    dark: { current: 'aura-light-blue', new: 'aura-dark-blue' },
-    light: { current: 'aura-dark-blue', new: 'aura-light-blue' }
-  }
-
-  function setTheme() {
-    const { current, new: newTheme } = themeMap[selectedTheme.value]
-    primeVue.changeTheme(current, newTheme, 'theme-link', () => {})
-  }
-
-  return {
-    selectedTheme,
-    themesOptions,
-    setTheme
-  }
-}
-
 function saveChanges() {
   setLanguage()
   setTheme()
   closeDialog()
   toast.success({ message: i18n.t('common.settingsSaved') })
 }
-
-onBeforeMount(() => setTheme())
 
 const isVisible = ref(false)
 

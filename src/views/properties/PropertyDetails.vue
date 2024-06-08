@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
-import { useRoute } from 'vue-router'
 import { usePropertiesStore } from '@/stores/properties'
 import { storeToRefs } from 'pinia'
 import PropertyCard from '@/components/properties/PropertyCard.vue'
@@ -8,14 +7,12 @@ import PropertyContactForm from '@/components/properties/PropertyContactForm.vue
 import SellerCard from '@/components/properties/SellerCard.vue'
 import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 
-const route = useRoute()
+const props = defineProps<{ id: string }>()
 
 const propertiesStore = usePropertiesStore()
 const { property, isLoading } = storeToRefs(propertiesStore)
 
-onBeforeMount(async () => {
-  await propertiesStore.getPropertyById(route.params.id as string)
-})
+onBeforeMount(async () => await propertiesStore.getPropertyById(props.id))
 </script>
 
 <template>
@@ -31,11 +28,11 @@ onBeforeMount(async () => {
     <div class="container__property-details">
       <PropertyCard :property show-extended-info />
 
-      <BaseCard v-if="property?.amenities">
+      <BaseCard v-if="property.amenities">
         <template #title> {{ $t('fields.amenities') }} </template>
         <template #content>
           <BaseTag
-            v-for="amenity in property?.amenities"
+            v-for="amenity in property.amenities"
             :key="amenity"
             :value="amenity"
             severity="secondary"
@@ -44,10 +41,10 @@ onBeforeMount(async () => {
         </template>
       </BaseCard>
 
-      <SellerCard v-if="property?.seller" :seller="property.seller" />
+      <SellerCard v-if="property.seller" :seller="property.seller" />
     </div>
 
-    <PropertyContactForm :property-price="property?.price" />
+    <PropertyContactForm :price="property.price" />
   </div>
 </template>
 
