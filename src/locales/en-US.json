@@ -23,7 +23,6 @@
     }
   },
   "properties": {
-    "propertyNotFound": "Property not found.",
     "sendMessageToSeller": "Send a message to the seller",
     "receiveContactsFromRealEstate": "I agree to receive contacts from Real Estate",
     "interestedInRealEstateContactMe": "Hello, I'm interested in this property. Please get in touch.",
@@ -96,8 +95,7 @@
         "title": "Title"
       },
       "messages": {
-        "errorFetchingProperties": "There was an error fetching properties. Please try again later.",
-        "propertyNotFound": "Property not found."
+        "errorFetchingProperties": "There was an error fetching properties. Please try again later."
       }
     }
   },
@@ -117,7 +115,8 @@
     "dontHaveAccount": "Don't have an account?"
   },
   "notFound": {
-    "description": "The {resource} you are looking for does not exist."
+    "description": "The {resource} you are looking for does not exist.",
+    "goToHomePage": "Go to the home page"
   },
   "networkError": {
     "title": "Uh-oh!",

@@ -16,7 +16,7 @@ const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const propertiesStore = usePropertiesStore()
-const { properties, propertiesCount, isLoading } = storeToRefs(propertiesStore)
+const { properties, isLoading } = storeToRefs(propertiesStore)
 
 const isSidebarCollapsed = ref(false)
 const filters = ref<IPropertyFilters>({})
@@ -227,7 +227,7 @@ onBeforeMount(async () => {
         <header class="mb-4">
           <BaseBreadcrumb :model="breadcrumbItems" />
           <h2 class="mb-1">{{ $t('common.properties') }}</h2>
-          <p class="m-0">{{ $t('properties.list.description', { count: propertiesCount }) }}</p>
+          <p class="m-0">{{ $t('properties.list.description', { count: properties.length }) }}</p>
         </header>
         <div v-if="isLoading" class="properties-list__cards">
           <BaseSkeleton v-for="n in 8" :key="n" width="23rem" height="36rem" border-radius="8px" />

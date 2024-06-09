@@ -5,7 +5,7 @@ import BaseToast from '@/components/wrappers/misc/BaseToast.vue'
 
 const { setTheme } = useTheme()
 
-onBeforeMount(() => setTheme())
+onBeforeMount(setTheme)
 </script>
 
 <template>

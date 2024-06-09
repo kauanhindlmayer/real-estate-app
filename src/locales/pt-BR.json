@@ -23,7 +23,6 @@
     }
   },
   "properties": {
-    "propertyNotFound": "Propriedade não encontrada.",
     "sendMessageToSeller": "Enviar Mensagem ao Vendedor",
     "receiveContactsFromRealEstate": "Quero receber contatos do Real Estate por e-mail, WhatsApp e outros canais.",
     "interestedInRealEstateContactMe": "Olá, tenho interesse no imóvel. Por favor, entre em contato.",
@@ -97,8 +96,7 @@
         "title": "Título"
       },
       "messages": {
-        "errorFetchingProperties": "Erro ao buscar propriedades. Tente novamente mais tarde.",
-        "propertyNotFound": "Propriedade não encontrada."
+        "errorFetchingProperties": "Erro ao buscar propriedades. Tente novamente mais tarde."
       }
     }
   },
@@ -118,7 +116,8 @@
     "dontHaveAccount": "Não possui uma conta?"
   },
   "notFound": {
-    "description": "A {resource} que você procura não existe."
+    "description": "A {resource} que você procura não existe.",
+    "goToHomePage": "Ir para a página inicial"
   },
   "networkError": {
     "title": "Uh-oh!",

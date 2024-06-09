@@ -64,8 +64,8 @@ const { value: city } = useField('location.city')
 const { value: state } = useField('location.state')
 const { value: country } = useField('location.country')
 
-const saveProperty = handleSubmit(async (property) => {
-  propertiesStore.saveProperty(property as Property)
+const onSubmit = handleSubmit(async (property) => {
+  await propertiesStore.createProperty(property as Property)
 })
 
 const getLocationByZipCode = useDebounceFn(async () => {
@@ -83,7 +83,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
   <div class="form-container">
     <h1 data-testid="title" class="mb-0">{{ $t('properties.form.title') }}</h1>
     <p data-testid="subtitle" class="mb-4">{{ $t('properties.form.subtitle') }}</p>
-    <form @submit.prevent="saveProperty">
+    <form @submit.prevent="onSubmit">
       <div class="grid">
         <div class="col-12 md:col-6">
           <BaseInputText

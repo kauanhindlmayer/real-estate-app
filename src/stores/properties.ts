@@ -1,9 +1,9 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { computed, inject, ref } from 'vue'
+import { inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { t } from '@/plugins/i18n'
 import useBaseToast from '@/composables/useBaseToast'
-import Property from '@/types/models/Property'
+import type Property from '@/types/models/Property'
 import type { IPropertyFilters } from '@/types/propertyFilters'
 import type { IPropertyGateway } from '@/gateways/PropertyGateway'
 
@@ -16,9 +16,7 @@ export const usePropertiesStore = defineStore('properties', () => {
   const property = ref<Property | null>(null)
   const properties = ref<Property[]>([])
 
-  const propertiesCount = computed(() => properties.value.length)
-
-  async function saveProperty(property: Property) {
+  async function createProperty(property: Property) {
     isLoading.value = true
     try {
       await propertyGateway.save(property)
@@ -32,12 +30,11 @@ export const usePropertiesStore = defineStore('properties', () => {
   }
 
   async function getPropertyById(id: string) {
-    property.value = null
     isLoading.value = true
     try {
+      property.value = null
       property.value = await propertyGateway.getById(id)
     } catch {
-      toast.error({ message: t('properties.list.messages.propertyNotFound') })
       router.push({ name: 'resource-not-found', params: { resource: t('common.property') } })
     } finally {
       isLoading.value = false
@@ -60,10 +57,8 @@ export const usePropertiesStore = defineStore('properties', () => {
     isLoading,
     property,
     properties,
-    /* Getters */
-    propertiesCount,
     /* Actions */
-    saveProperty,
+    createProperty,
     getPropertyById,
     getAllProperties
   }
