@@ -8,8 +8,8 @@ export default function useTheme() {
   const selectedTheme = useStorage<'light' | 'dark'>('theme', 'light')
 
   const themesOptions = [
-    { label: t('common.light'), value: 'light' },
-    { label: t('common.dark'), value: 'dark' }
+    { label: t('settings.light'), value: 'light' },
+    { label: t('settings.dark'), value: 'dark' }
   ]
 
   const themeMap = {

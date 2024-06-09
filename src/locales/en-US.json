@@ -6,6 +6,7 @@
     "settings": "Settings",
     "home": "Home",
     "properties": "Properties",
+    "property": "property",
     "advertise": "Advertise",
     "help": "Help",
     "security": "Security",
@@ -15,20 +16,9 @@
     "apartments": "Apartments",
     "save": "Save",
     "profile": "Profile",
-    "english": "English",
-    "portuguese": "Portuguese",
-    "language": "Language",
-    "selectLanguage": "Select Language",
-    "theme": "Theme",
-    "selectTheme": "Select Theme",
-    "light": "Light",
-    "dark": "Dark",
     "page": "page",
-    "property": "property",
     "messages": {
-      "errorFetchingData": "There was an error fetching data. Please try again later.",
       "sessionExpirationMessage": "Your session has expired. Please log in again.",
-      "settingsSaved": "Settings saved successfully!",
       "internalServerError": "An internal server error occurred. Please try again later."
     }
   },
@@ -69,6 +59,7 @@
       "newest": "Newest",
       "from": "from",
       "to": "to",
+      "clearFilters": "Clear Filters",
       "filters": {
         "location": "Location",
         "locationPlaceholder": "Type your city or state",
@@ -94,16 +85,15 @@
         "builder": "Builder",
         "investor": "Investor",
         "amenities": "Amenities",
-        "hasGarage": "Garage",
-        "hasGarden": "Garden",
-        "hasPool": "Pool",
-        "hasElevator": "Elevator",
-        "hasTerrace": "Terrace",
+        "garage": "Garage",
+        "garden": "Garden",
+        "pool": "Pool",
+        "elevator": "Elevator",
+        "terrace": "Terrace",
         "house": "House",
         "apartment": "Apartment",
         "sortBy": "Sort By",
-        "title": "Title",
-        "clearFilters": "Clear Filters"
+        "title": "Title"
       },
       "messages": {
         "errorFetchingProperties": "There was an error fetching properties. Please try again later.",
@@ -140,6 +130,19 @@
     "messages": {
       "userRegistered": "User registered successfully!",
       "errorRegisteringUser": "Error registering user. Please try again later."
+    }
+  },
+  "settings": {
+    "english": "English",
+    "portuguese": "Portuguese",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "theme": "Theme",
+    "selectTheme": "Select Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "messages": {
+      "settingsSaved": "Settings saved successfully!"
     }
   },
   "fields": {

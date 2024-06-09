@@ -17,8 +17,8 @@ function useLanguage() {
   const selectedLanguage = useStorage<'en-US' | 'pt-BR'>('locale', 'en-US')
 
   const languagesOptions = [
-    { label: i18n.t('common.english'), value: 'en-US' },
-    { label: i18n.t('common.portuguese'), value: 'pt-BR' }
+    { label: i18n.t('settings.english'), value: 'en-US' },
+    { label: i18n.t('settings.portuguese'), value: 'pt-BR' }
   ]
 
   function setLanguage() {
@@ -36,7 +36,7 @@ function saveChanges() {
   setLanguage()
   setTheme()
   closeDialog()
-  toast.success({ message: i18n.t('common.messages.settingsSaved') })
+  toast.success({ message: i18n.t('settings.messages.settingsSaved') })
 }
 
 const isVisible = ref(false)
@@ -66,8 +66,8 @@ defineExpose({
       <div class="col-12">
         <BaseSelect
           v-model="selectedLanguage"
-          :label="$t('common.language')"
-          :placeholder="$t('common.selectLanguage')"
+          :label="$t('settings.language')"
+          :placeholder="$t('settings.selectLanguage')"
           :options="languagesOptions"
           option-label="label"
           option-value="value"
@@ -76,8 +76,8 @@ defineExpose({
       <div class="col-12">
         <BaseSelect
           v-model="selectedTheme"
-          :label="$t('common.theme')"
-          :placeholder="$t('common.selectTheme')"
+          :label="$t('settings.theme')"
+          :placeholder="$t('settings.selectTheme')"
           :options="themesOptions"
           option-label="label"
           option-value="value"

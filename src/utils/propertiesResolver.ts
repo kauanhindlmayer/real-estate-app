@@ -30,11 +30,11 @@ export const sellerTypesOptions = [
 ]
 
 export const amenitiesOptions = [
-  { label: t('properties.list.filters.hasGarage'), value: 'hasGarage' },
-  { label: t('properties.list.filters.hasGarden'), value: 'hasGarden' },
-  { label: t('properties.list.filters.hasPool'), value: 'hasPool' },
-  { label: t('properties.list.filters.hasElevator'), value: 'hasElevator' },
-  { label: t('properties.list.filters.hasTerrace'), value: 'hasTerrace' }
+  { label: t('properties.list.filters.garage'), value: 'garage' },
+  { label: t('properties.list.filters.garden'), value: 'garden' },
+  { label: t('properties.list.filters.pool'), value: 'pool' },
+  { label: t('properties.list.filters.elevator'), value: 'elevator' },
+  { label: t('properties.list.filters.terrace'), value: 'terrace' }
 ]
 
 export const sortByOptions = [

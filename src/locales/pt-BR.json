@@ -6,6 +6,7 @@
     "settings": "Configurações",
     "home": "Início",
     "properties": "Propriedades",
+    "property": "propriedade",
     "advertise": "Anunciar",
     "help": "Ajuda",
     "security": "Segurança",
@@ -15,20 +16,8 @@
     "apartments": "Apartamentos",
     "save": "Salvar",
     "profile": "Perfil",
-    "english": "Inglês",
-    "portuguese": "Português",
-    "language": "Idioma",
-    "selectLanguage": "Selecione o Idioma",
-    "theme": "Tema",
-    "selectTheme": "Selecione o Tema",
-    "light": "Claro",
-    "dark": "Escuro",
-
     "page": "página",
-    "property": "propriedade",
     "messages": {
-      "errorFetchingData": "Erro ao buscar dados. Tente novamente mais tarde.",
-      "settingsSaved": "Configurações salvas com sucesso!",
       "sessionExpirationMessage": "Sua sessão expirou. Por favor, faça login novamente.",
       "internalServerError": "An internal server error occurred. Please try again later."
     }
@@ -71,6 +60,7 @@
       "newest": "Mais Novo",
       "from": "de",
       "to": "para",
+      "clearFilters": "Limpar Filtros",
       "filters": {
         "location": "Localização",
         "locationPlaceholder": "Digite sua cidade ou estado",
@@ -96,16 +86,15 @@
         "builder": "Construtora",
         "investor": "Investidor",
         "amenities": "Comodidades",
-        "hasGarage": "Garagem",
-        "hasGarden": "Jardim",
-        "hasPool": "Piscina",
-        "hasElevator": "Elevador",
-        "hasTerrace": "Terraço",
+        "garage": "Garagem",
+        "garden": "Jardim",
+        "pool": "Piscina",
+        "elevator": "Elevador",
+        "terrace": "Terraço",
         "house": "Casa",
         "apartment": "Apartamento",
         "sortBy": "Ordenar por",
-        "title": "Título",
-        "clearFilters": "Limpar Filtros"
+        "title": "Título"
       },
       "messages": {
         "errorFetchingProperties": "Erro ao buscar propriedades. Tente novamente mais tarde.",
@@ -142,6 +131,19 @@
     "messages": {
       "userRegistered": "Usuário registrado com sucesso!",
       "errorRegisteringUser": "Erro ao registrar usuário. Tente novamente mais tarde."
+    }
+  },
+  "settings": {
+    "english": "Inglês",
+    "portuguese": "Português",
+    "language": "Idioma",
+    "selectLanguage": "Selecione o Idioma",
+    "theme": "Tema",
+    "selectTheme": "Selecione o Tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "messages": {
+      "settingsSaved": "Configurações salvas com sucesso!"
     }
   },
   "fields": {

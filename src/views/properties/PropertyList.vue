@@ -182,7 +182,7 @@ onBeforeMount(async () => {
 
       <template #footer>
         <BaseButton
-          :label="$t('properties.list.filters.clearFilters')"
+          :label="$t('properties.list.clearFilters')"
           severity="secondary"
           class="w-full"
           :loading="isLoading"
