@@ -1,7 +1,8 @@
 <template>
-  <div class="network-error-container">
-    <div class="network-error-container__content">
+  <div class="network-error">
+    <div class="network-error__message">
       <h1>{{ $t('networkError.title') }}</h1>
+      <h2>{{ $t('common.networkError') }}</h2>
       <p>
         {{ $t('networkError.description-start') }}
         <a class="emphasis" @click="$router.go(-1)">{{ $t('networkError.description-link') }}</a>
@@ -12,7 +13,7 @@
 </template>
 
 <style scoped>
-.network-error-container {
+.network-error {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,13 +22,17 @@
   padding: 2rem;
   min-height: 100vh;
 }
-.network-error-container__content {
+.network-error__message {
   max-width: 600px;
 }
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 p {
   font-size: 1.25rem;

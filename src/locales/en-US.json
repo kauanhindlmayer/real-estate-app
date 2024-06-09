@@ -10,6 +10,7 @@
     "help": "Help",
     "security": "Security",
     "notFound": "Not Found",
+    "networkError": "Network Error",
     "houses": "Houses",
     "apartments": "Apartments",
     "save": "Save",

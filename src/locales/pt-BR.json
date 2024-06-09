@@ -10,6 +10,7 @@
     "help": "Ajuda",
     "security": "Segurança",
     "notFound": "Não Encontrado",
+    "networkError": "Erro de Rede",
     "houses": "Casas",
     "apartments": "Apartamentos",
     "save": "Salvar",

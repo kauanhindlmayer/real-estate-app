@@ -14,8 +14,8 @@ function redirectToHome() {
 </script>
 
 <template>
-  <div class="not-found-container">
-    <div class="not-found-container__content">
+  <div class="not-found">
+    <div class="not-found__message">
       <h1>404</h1>
       <h2>{{ $t('common.notFound') }}</h2>
       <p>{{ $t('notFound.description', { resource }) }}</p>
@@ -25,7 +25,7 @@ function redirectToHome() {
 </template>
 
 <style scoped>
-.not-found-container {
+.not-found {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@ function redirectToHome() {
   padding: 2rem;
   min-height: 100vh;
 }
-.not-found-container__content {
+.not-found__message {
   max-width: 600px;
 }
 h1 {
