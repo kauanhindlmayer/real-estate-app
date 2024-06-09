@@ -30,15 +30,13 @@ const { value: email } = useField('email')
 const { value: password } = useField('password')
 const { value: passwordConfirmation } = useField('passwordConfirmation')
 
-const register = handleSubmit(async (registrationData) => {
-  await userStore.register(registrationData)
-})
+const onSubmit = handleSubmit(userStore.register)
 </script>
 
 <template>
-  <div class="container">
-    <div class="left-panel">
-      <form @submit.prevent="register" class="flex justify-content-center">
+  <div class="registration">
+    <div class="registration__left-panel">
+      <form @submit.prevent="onSubmit" class="registration__form">
         <div class="grid w-7">
           <div class="col-12">
             <h1>{{ $t('common.register') }}</h1>
@@ -88,40 +86,42 @@ const register = handleSubmit(async (registrationData) => {
             />
           </div>
           <div class="col-12">
-            <p>
-              {{ $t('register.alreadyHaveAccount') }}
-              <RouterLink to="/login" class="emphasis">{{ $t('common.login') }}</RouterLink>
-            </p>
+            {{ $t('register.alreadyHaveAccount') }}
+            <RouterLink to="/login" class="emphasis">{{ $t('common.login') }}</RouterLink>
           </div>
         </div>
       </form>
     </div>
-    <div class="right-panel" />
+    <div class="registration__right-panel" />
   </div>
 </template>
 
 <style scoped>
-.container {
+.registration {
   display: flex;
   height: 100vh;
   width: 100vw;
 }
-.left-panel {
+.registration__left-panel {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50vw;
 }
-.right-panel {
+.registration__form {
+  display: flex;
+  justify-content: center;
+}
+.registration__right-panel {
   background-color: var(--primary-color);
   width: 50vw;
 }
 @media (max-width: 1024px) {
-  .left-panel {
+  .registration__left-panel {
     width: 100vw;
     height: 100vh;
   }
-  .right-panel {
+  .registration__right-panel {
     display: none;
   }
 }

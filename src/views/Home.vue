@@ -26,28 +26,34 @@ function redirectToPropertyList() {
 </script>
 
 <template>
-  <div class="container">
-    <BaseCard class="container__card">
+  <div class="property-search">
+    <BaseCard class="property-search__card">
       <template #content>
-        <div class="property-types">
+        <div class="property-search__types">
           <div
-            :class="['option', { 'option--selected': selectedPropertyType === 'House' }]"
+            :class="[
+              'property-search__option',
+              { 'property-search__option--selected': selectedPropertyType === 'House' }
+            ]"
             @click="selectPropertyType('House')"
           >
             {{ $t('common.houses') }}
           </div>
           <div
-            :class="['option', { 'option--selected': selectedPropertyType === 'Apartment' }]"
+            :class="[
+              'property-search__option',
+              { 'property-search__option--selected': selectedPropertyType === 'Apartment' }
+            ]"
             @click="selectPropertyType('Apartment')"
           >
             {{ $t('common.apartments') }}
           </div>
-          <div class="option" @click="redirectToPropertyAdvertise">
+          <div class="property-search__option" @click="redirectToPropertyAdvertise">
             {{ $t('home.wantToSell') }}
           </div>
         </div>
 
-        <div class="flex flex-column align-items-center gap-2 md:flex-row">
+        <div class="property-search__buttons md:flex-row">
           <BaseInputIcon
             v-model="location"
             icon="pi pi-map-marker"
@@ -68,34 +74,40 @@ function redirectToPropertyList() {
 </template>
 
 <style scoped>
-.container {
+.property-search {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 64px);
 }
-.container__card {
+.property-search__card {
   max-width: 800px;
   margin: 0 auto 12rem auto;
 }
-.property-types {
+.property-search__types {
   display: flex;
   gap: 2rem;
   margin-bottom: 1rem;
 }
-.option {
+.property-search__option {
   cursor: pointer;
   font-weight: 600;
   color: var(--text-color-secondary);
   padding: 0.5rem;
 }
-.option:hover {
+.property-search__option:hover {
   color: var(--text-primary-color);
   font-weight: 600;
 }
-.option--selected {
+.property-search__option--selected {
   color: var(--text-primary-color);
   font-weight: 600;
   border-bottom: 2px solid var(--primary-color);
+}
+.property-search__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 </style>

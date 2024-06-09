@@ -83,7 +83,7 @@ onBeforeMount(async () => {
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.priceRange') }}</div>
-          <div class="flex justify-content-between gap-2">
+          <div class="section__filters">
             <BaseInputNumber
               v-model="filters.minPrice"
               :placeholder="$t('properties.list.from')"
@@ -107,7 +107,7 @@ onBeforeMount(async () => {
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.yearBuilt') }}</div>
-          <div class="flex justify-content-between gap-2">
+          <div class="section__filters">
             <BaseInputNumber
               v-model="filters.minYearBuilt"
               :placeholder="$t('properties.list.from')"
@@ -125,7 +125,7 @@ onBeforeMount(async () => {
 
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.size') }}</div>
-          <div class="flex justify-content-between gap-2">
+          <div class="section__filters">
             <BaseInputNumber
               v-model="filters.minSize"
               :placeholder="$t('properties.list.from')"
@@ -192,9 +192,9 @@ onBeforeMount(async () => {
     </BaseSidebar>
     <div class="flex-1">
       <div class="top-bar">
-        <div class="flex align-items-center">
+        <div class="top-bar__chips">
           <i class="pi pi-sliders-h mr-4" @click="toggleSidebar" style="cursor: pointer" />
-          <div class="active-filters-container">
+          <div class="top-bar__active-filters">
             <BaseTag
               v-for="(activeFilter, index) in activeFilters"
               :key="index"
@@ -203,7 +203,7 @@ onBeforeMount(async () => {
             />
           </div>
         </div>
-        <div class="flex align-items-center gap-2">
+        <div class="top-bar__filters">
           <BaseInputIcon
             v-model="filters.title"
             :placeholder="$t('properties.list.filters.titlePlaceholder')"
@@ -216,23 +216,23 @@ onBeforeMount(async () => {
           <BaseDropdown
             v-model="filters.sortBy"
             :options="propertiesResolver.sortByOptions"
+            :placeholder="$t('properties.list.mostRelevant')"
             option-label="label"
             option-value="value"
-            placeholder="Most Relevant"
             @update:modelValue="getAllProperties"
           />
         </div>
       </div>
-      <div class="property-list">
+      <div class="properties-list">
         <header class="mb-4">
           <BaseBreadcrumb :model="breadcrumbItems" />
           <h2 class="mb-1">{{ $t('common.properties') }}</h2>
           <p class="m-0">{{ $t('properties.list.description', { count: propertiesCount }) }}</p>
         </header>
-        <div v-if="isLoading" class="property-list__cards">
+        <div v-if="isLoading" class="properties-list__cards">
           <BaseSkeleton v-for="n in 8" :key="n" width="23rem" height="36rem" border-radius="8px" />
         </div>
-        <div v-else class="property-list__skeletons">
+        <div v-else class="properties-list__skeletons">
           <PropertyCard v-for="property in properties" :key="property.id" :property />
         </div>
       </div>
@@ -249,6 +249,12 @@ onBeforeMount(async () => {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
+.section__filters,
+.top-bar__filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -256,24 +262,28 @@ onBeforeMount(async () => {
   background-color: var(--surface-0);
   padding: 1rem;
 }
-.property-list {
-  padding: 2rem;
-  height: calc(100vh - 134px);
-  overflow-y: auto;
+.top-bar__chips {
+  display: flex;
+  align-items: center;
 }
-.property-list__cards,
-.property-list__skeletons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-.active-filters-container {
+.top-bar__active-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+.properties-list {
+  padding: 2rem;
+  height: calc(100vh - 134px);
+  overflow-y: auto;
+}
+.properties-list__cards,
+.properties-list__skeletons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
 @media (max-width: 1024px) {
-  .active-filters-container {
+  .top-bar__active-filters {
     display: none;
   }
 }

@@ -16,23 +16,23 @@ onBeforeMount(async () => await propertiesStore.getPropertyById(props.id))
 </script>
 
 <template>
-  <div v-if="isLoading" class="container">
-    <div class="container__property-details">
+  <div v-if="isLoading" class="property-details">
+    <div class="property-details__card">
       <BaseSkeleton width="55rem" height="29rem" border-radius="8px" />
       <BaseSkeleton width="55rem" height="7rem" border-radius="8px" />
       <BaseSkeleton width="55rem" height="9rem" border-radius="8px" />
     </div>
     <BaseSkeleton width="28rem" height="37rem" border-radius="8px" />
   </div>
-  <div v-else class="container">
-    <div class="container__property-details">
+  <div v-else class="property-details">
+    <div class="property-details__card">
       <PropertyCard :property show-extended-info />
 
-      <BaseCard v-if="property.amenities">
+      <BaseCard v-if="property?.amenities">
         <template #title> {{ $t('fields.amenities') }} </template>
         <template #content>
           <BaseTag
-            v-for="amenity in property.amenities"
+            v-for="amenity in property?.amenities"
             :key="amenity"
             :value="amenity"
             severity="secondary"
@@ -41,28 +41,28 @@ onBeforeMount(async () => await propertiesStore.getPropertyById(props.id))
         </template>
       </BaseCard>
 
-      <SellerCard v-if="property.seller" :seller="property.seller" />
+      <SellerCard v-if="property?.seller" :seller="property?.seller" />
     </div>
 
-    <PropertyContactForm :price="property.price" />
+    <PropertyContactForm :price="property?.price" />
   </div>
 </template>
 
 <style scoped>
-.container {
+.property-details {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
   gap: 1rem;
   padding-top: 1.5rem;
 }
-.container__property-details {
+.property-details__card {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 @media (max-width: 1300px) {
-  .container {
+  .property-details {
     max-width: 900px;
     flex-direction: column;
   }

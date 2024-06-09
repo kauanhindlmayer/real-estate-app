@@ -15,16 +15,14 @@ const { handleSubmit, errors } = useForm<LoginRequest>({ validationSchema })
 const { value: email } = useField('email')
 const { value: password } = useField('password')
 
-const login = handleSubmit(async (loginData) => {
-  await userStore.login(loginData)
-})
+const onSubmit = handleSubmit(userStore.login)
 </script>
 
 <template>
-  <div class="container">
-    <div class="left-panel" />
-    <div class="right-panel">
-      <form @submit.prevent="login" class="flex justify-content-center">
+  <div class="login">
+    <div class="login__left-panel" />
+    <div class="login__right-panel">
+      <form @submit.prevent="onSubmit" class="login__form">
         <div class="grid w-7">
           <div class="col-12">
             <h1>{{ $t('common.login') }}</h1>
@@ -57,10 +55,8 @@ const login = handleSubmit(async (loginData) => {
             />
           </div>
           <div class="col-12">
-            <p>
-              {{ $t('login.dontHaveAccount') }}
-              <RouterLink to="/register" class="emphasis">{{ $t('common.register') }}</RouterLink>
-            </p>
+            {{ $t('login.dontHaveAccount') }}
+            <RouterLink to="/register" class="emphasis">{{ $t('common.register') }}</RouterLink>
           </div>
         </div>
       </form>
@@ -69,26 +65,30 @@ const login = handleSubmit(async (loginData) => {
 </template>
 
 <style scoped>
-.container {
+.login {
   display: flex;
   height: 100vh;
   width: 100vw;
 }
-.left-panel {
+.login__left-panel {
   background-color: var(--primary-color);
   width: 50vw;
 }
-.right-panel {
+.login__right-panel {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50vw;
 }
+.login__form {
+  display: flex;
+  justify-content: center;
+}
 @media (max-width: 1024px) {
-  .left-panel {
+  .login__left-panel {
     display: none;
   }
-  .right-panel {
+  .login__right-panel {
     width: 100vw;
     height: 100vh;
   }
