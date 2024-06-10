@@ -48,17 +48,6 @@ export const sortByOptions = [
   { label: t('properties.list.newest'), value: 'newest' }
 ]
 
-function getActiveFilters(filters: IPropertyFilters) {
-  const activeFilters = Object.entries(filters).filter(([, value]) => {
-    if (Array.isArray(value)) {
-      return value.length > 0
-    }
-    return value
-  })
-
-  return activeFilters
-}
-
 interface FormatMap {
   [key: string]: (value: any) => string
 }
@@ -70,6 +59,14 @@ const formatMap: FormatMap = {
   maxPrice: (value: number) => n(value, 'currency'),
   minSize: (value: number) => `${value}m²`,
   maxSize: (value: number) => `${value}m²`
+}
+
+function getActiveFilters(filters: IPropertyFilters) {
+  const activeFilters = Object.entries(filters).filter(([, value]) => {
+    return Array.isArray(value) ? value.length > 0 : !!value
+  })
+
+  return activeFilters
 }
 
 function formatValue(key: string, value: any): string {
@@ -84,7 +81,7 @@ function formatValue(key: string, value: any): string {
   return value
 }
 
-export function formatActiveFilters(filters: IPropertyFilters, maxFilters: number = 6): string[] {
+function formatActiveFilters(filters: IPropertyFilters, maxFilters: number = 6): string[] {
   const activeFilters = getActiveFilters(filters)
   const formattedFilters = activeFilters.map(
     ([key, value]) => `${t(`properties.list.filters.${key}`)}: ${formatValue(key, value)}`
