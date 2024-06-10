@@ -23,7 +23,7 @@ export default class UserGateway implements IUserGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
   async register(registrationData: RegistrationRequest): Promise<void> {
-    return await this.httpClient.post('/user/one', registrationData)
+    return await this.httpClient.post('/register', registrationData)
   }
 
   async login(loginData: LoginRequest): Promise<User> {
@@ -38,15 +38,13 @@ export class UserGatewayInMemory implements IUserGateway {
     if (this.users.find((user) => user.email === email)) {
       throw new Error('User already exists')
     }
-    const id = String(this.users.length + 1)
-    const defaultAvatarUrl = 'https://placehold.co/200x200'
-    const user = new User(id, fullName, email, password, defaultAvatarUrl)
+    const user = new User(String(this.users.length + 1), fullName, email, password, '')
     this.users.push(user)
   }
 
   async login({ email, password }: LoginRequest): Promise<User> {
     const user = this.users.find((user) => user.email === email && user.password === password)
-    if (!user) throw new Error('User not found')
+    if (!user) throw new Error('Invalid credentials')
     return user
   }
 }

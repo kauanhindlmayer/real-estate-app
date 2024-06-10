@@ -26,21 +26,20 @@ export default class PropertyGateway implements IPropertyGateway {
       }
     }
 
-    return await this.httpClient.get(`/property/all?${urlParams}`)
+    return await this.httpClient.get(`/properties?${urlParams}`)
   }
 
   async getById(id: string): Promise<Property> {
-    const urlParams = new URLSearchParams({ id })
-    return await this.httpClient.get(`/property/oneById?${urlParams}`)
+    return await this.httpClient.get(`/properties/${id}`)
   }
 
   async save(property: Property): Promise<void> {
     const method = property.id ? 'put' : 'post'
-    return await this.httpClient[method]('/property/one', property)
+    return await this.httpClient[method]('/properties', property)
   }
 
   async remove(id: string): Promise<void> {
-    return await this.httpClient.delete(`/property/one/${id}`)
+    return await this.httpClient.delete(`/properties/${id}`)
   }
 }
 
@@ -52,7 +51,7 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   private properties: Property[] = mockProperties
 
   async getAll(filters: IPropertyFilters): Promise<Property[]> {
-    // await delay(1500)
+    await delay(1500)
     const { title, location } = filters
     return this.properties.filter(
       (property) =>
@@ -62,7 +61,7 @@ export class PropertyGatewayInMemory implements IPropertyGateway {
   }
 
   async getById(id: string): Promise<Property> {
-    // await delay(1500)
+    await delay(1500)
     const property = this.properties.find((property) => property.id === id)
     if (!property) throw new Error('Property not found')
     return property

@@ -11,7 +11,7 @@ export default class LocationGateway implements ILocationGateway {
 
   async getByZipCode(zipCode: string): Promise<Location> {
     const urlParams = new URLSearchParams({ zipCode })
-    return await this.httpClient.get(`/location/oneByZipCode?${urlParams}`)
+    return await this.httpClient.get(`/locations?${urlParams}`)
   }
 }
 
