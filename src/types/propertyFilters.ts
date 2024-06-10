@@ -1,6 +1,6 @@
 import type { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 
-export interface IPropertyFilters {
+export default interface IPropertyFilters {
   title?: string
   location?: string
   minPrice?: number

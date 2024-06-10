@@ -8,9 +8,9 @@ import BaseSidebar from '@/components/wrappers/menu/BaseSidebar.vue'
 import PropertyCard from '@/components/properties/PropertyCard.vue'
 import BaseBreadcrumb from '@/components/wrappers/misc/BaseBreadcrumb.vue'
 import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
-import toCamelCase from '@/utils/toCamelCase'
+import BaseInputDate from '@/components/wrappers/form/BaseInputDate.vue'
 import propertiesResolver from '@/utils/propertiesResolver'
-import type { IPropertyFilters } from '@/types/propertyFilters'
+import type IPropertyFilters from '@/types/propertyFilters'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -18,18 +18,22 @@ const route = useRoute()
 const propertiesStore = usePropertiesStore()
 const { properties, isLoading } = storeToRefs(propertiesStore)
 
-const isSidebarCollapsed = ref(false)
-const filters = ref<IPropertyFilters>({})
+const isCollapsed = ref(false)
 
 function toggleSidebar() {
-  isSidebarCollapsed.value = !isSidebarCollapsed.value
+  isCollapsed.value = !isCollapsed.value
 }
 
+const breadcrumbItems = [
+  { label: t('common.home'), to: { name: 'home' } },
+  { label: t('common.properties') }
+]
+
+const filters = ref<IPropertyFilters>({})
+
 async function getAllProperties() {
-  const activeFilters = Object.fromEntries(
-    Object.entries(filters.value).filter(([, value]) => value)
-  )
-  router.push({ query: activeFilters })
+  const activeFilters = propertiesResolver.getActiveFilters(filters.value)
+  router.push({ query: Object.fromEntries(activeFilters) })
   await propertiesStore.getAllProperties(filters.value)
 }
 
@@ -38,25 +42,8 @@ async function clearFilters() {
   await getAllProperties()
 }
 
-const breadcrumbItems = [
-  { label: t('common.home'), to: { name: 'home' } },
-  { label: t('common.properties') }
-]
-
-const activeFilters = computed<string[]>(() => {
-  const MAX_FILTERS = 7
-  const formattedFilters = Object.entries(filters.value)
-    .filter(([, value]) => value)
-    .map(([key, value]) => {
-      if (Array.isArray(value)) {
-        value = value.map((v: string) => t(`properties.list.filters.${toCamelCase(v)}`)).join(', ')
-      }
-      return `${t(`properties.list.filters.${key}`)}: ${value}`
-    })
-  if (formattedFilters.length > MAX_FILTERS) {
-    formattedFilters.splice(MAX_FILTERS, formattedFilters.length - MAX_FILTERS, '...')
-  }
-  return formattedFilters
+const activeFilters = computed(() => {
+  return propertiesResolver.formatActiveFilters(filters.value)
 })
 
 onBeforeMount(async () => {
@@ -67,7 +54,7 @@ onBeforeMount(async () => {
 
 <template>
   <div class="flex -m-4">
-    <BaseSidebar v-model="isSidebarCollapsed">
+    <BaseSidebar v-model="isCollapsed">
       <template #default>
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.location') }}</div>
@@ -108,15 +95,23 @@ onBeforeMount(async () => {
         <div class="section">
           <div class="section__title">{{ $t('properties.list.filters.yearBuilt') }}</div>
           <div class="section__filters">
-            <BaseInputNumber
+            <BaseInputDate
               v-model="filters.minYearBuilt"
               :placeholder="$t('properties.list.from')"
+              :min-date="new Date(1900, 0, 1)"
+              :max-date="new Date()"
+              view="year"
+              dateFormat="yy"
               input-class="w-3"
               @update:modelValue="getAllProperties"
             />
-            <BaseInputNumber
+            <BaseInputDate
               v-model="filters.maxYearBuilt"
               :placeholder="$t('properties.list.to')"
+              :min-date="new Date(1900, 0, 1)"
+              :max-date="new Date()"
+              view="year"
+              dateFormat="yy"
               input-class="w-3"
               @update:modelValue="getAllProperties"
             />

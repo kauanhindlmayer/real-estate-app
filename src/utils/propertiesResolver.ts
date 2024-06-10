@@ -1,5 +1,9 @@
-import { t } from '@/plugins/i18n'
+import i18n from '@/plugins/i18n'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
+import type IPropertyFilters from '@/types/propertyFilters'
+import toCamelCase from './toCamelCase'
+
+const { t, n } = i18n.global
 
 export const propertyTypesOptions = [
   { label: t('properties.list.filters.apartment'), value: 'apartment' },
@@ -44,9 +48,60 @@ export const sortByOptions = [
   { label: t('properties.list.newest'), value: 'newest' }
 ]
 
+function getActiveFilters(filters: IPropertyFilters) {
+  const activeFilters = Object.entries(filters).filter(([, value]) => {
+    if (Array.isArray(value)) {
+      return value.length > 0
+    }
+    return value
+  })
+
+  return activeFilters
+}
+
+interface FormatMap {
+  [key: string]: (value: any) => string
+}
+
+const formatMap: FormatMap = {
+  minYearBuilt: (value: Date) => value.getFullYear().toString(),
+  maxYearBuilt: (value: Date) => value.getFullYear().toString(),
+  minPrice: (value: number) => n(value, 'currency'),
+  maxPrice: (value: number) => n(value, 'currency'),
+  minSize: (value: number) => `${value}m²`,
+  maxSize: (value: number) => `${value}m²`
+}
+
+function formatValue(key: string, value: any): string {
+  const formatter = formatMap[key]
+
+  if (formatter) {
+    return formatter(value)
+  } else if (Array.isArray(value)) {
+    return value.map((v) => t(`properties.list.filters.${toCamelCase(v)}`)).join(', ')
+  }
+
+  return value
+}
+
+export function formatActiveFilters(filters: IPropertyFilters, maxFilters: number = 6): string[] {
+  const activeFilters = getActiveFilters(filters)
+  const formattedFilters = activeFilters.map(
+    ([key, value]) => `${t(`properties.list.filters.${key}`)}: ${formatValue(key, value)}`
+  )
+
+  if (formattedFilters.length > maxFilters) {
+    formattedFilters.splice(maxFilters, formattedFilters.length - maxFilters, '...')
+  }
+
+  return formattedFilters
+}
+
 export default {
   propertyTypesOptions,
   sellerTypesOptions,
   amenitiesOptions,
-  sortByOptions
+  sortByOptions,
+  getActiveFilters,
+  formatActiveFilters
 }

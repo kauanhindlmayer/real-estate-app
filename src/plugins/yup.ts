@@ -1,5 +1,7 @@
 import { setLocale } from 'yup'
-import { t } from '@/plugins/i18n'
+import i18n from '@/plugins/i18n'
+
+const { t } = i18n.global
 
 interface ValidationContext {
   path: string

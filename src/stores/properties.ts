@@ -1,10 +1,10 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { t } from '@/plugins/i18n'
+import i18n from '@/plugins/i18n'
 import useBaseToast from '@/composables/useBaseToast'
 import type Property from '@/types/models/Property'
-import type { IPropertyFilters } from '@/types/propertyFilters'
+import type IPropertyFilters from '@/types/propertyFilters'
 import type { IPropertyGateway } from '@/gateways/PropertyGateway'
 
 export const usePropertiesStore = defineStore('properties', () => {
@@ -20,10 +20,10 @@ export const usePropertiesStore = defineStore('properties', () => {
     isLoading.value = true
     try {
       await propertyGateway.save(property)
-      toast.success({ message: t('properties.form.messages.propertyCreated') })
+      toast.success({ message: i18n.global.t('properties.form.messages.propertyCreated') })
       router.push({ name: 'properties-list' })
     } catch {
-      toast.error({ message: t('properties.form.messages.errorSavingProperty') })
+      toast.error({ message: i18n.global.t('properties.form.messages.errorSavingProperty') })
     } finally {
       isLoading.value = false
     }
@@ -35,7 +35,10 @@ export const usePropertiesStore = defineStore('properties', () => {
       property.value = null
       property.value = await propertyGateway.getById(id)
     } catch {
-      router.push({ name: 'resource-not-found', params: { resource: t('common.property') } })
+      router.push({
+        name: 'resource-not-found',
+        params: { resource: i18n.global.t('common.property') }
+      })
     } finally {
       isLoading.value = false
     }
@@ -46,7 +49,7 @@ export const usePropertiesStore = defineStore('properties', () => {
     try {
       properties.value = await propertyGateway.getAll(filters)
     } catch {
-      toast.error({ message: t('properties.list.messages.errorFetchingProperties') })
+      toast.error({ message: i18n.global.t('properties.list.messages.errorFetchingProperties') })
     } finally {
       isLoading.value = false
     }

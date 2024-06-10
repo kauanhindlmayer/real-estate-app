@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, inject, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { t } from '@/plugins/i18n'
+import i18n from '@/plugins/i18n'
 import { useStorage } from '@vueuse/core'
 import useBaseToast from '@/composables/useBaseToast'
 import type User from '@/types/models/User'
@@ -27,9 +27,9 @@ export const useUserStore = defineStore('user', () => {
     try {
       await userGateway.register(registrationData)
       router.push({ name: 'login' })
-      toast.success({ message: t('register.messages.userRegistered') })
+      toast.success({ message: i18n.global.t('register.messages.userRegistered') })
     } catch {
-      toast.error({ message: t('login.messages.invalidCredentials') })
+      toast.error({ message: i18n.global.t('login.messages.invalidCredentials') })
     } finally {
       isLoading.value = false
     }
@@ -42,7 +42,7 @@ export const useUserStore = defineStore('user', () => {
       delete user.value.password
       router.push({ name: 'home' })
     } catch {
-      toast.error({ message: t('login.messages.invalidCredentials') })
+      toast.error({ message: i18n.global.t('login.messages.invalidCredentials') })
     } finally {
       isLoading.value = false
     }

@@ -1,6 +1,6 @@
 import { usePrimeVue } from 'primevue/config'
 import { useStorage } from '@vueuse/core'
-import { t } from '@/plugins/i18n'
+import i18n from '@/plugins/i18n'
 
 export default function useTheme() {
   const primeVue = usePrimeVue()
@@ -8,8 +8,8 @@ export default function useTheme() {
   const selectedTheme = useStorage<'light' | 'dark'>('theme', 'light')
 
   const themesOptions = [
-    { label: t('settings.light'), value: 'light' },
-    { label: t('settings.dark'), value: 'dark' }
+    { label: i18n.global.t('settings.light'), value: 'light' },
+    { label: i18n.global.t('settings.dark'), value: 'dark' }
   ]
 
   const themeMap = {
