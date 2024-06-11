@@ -53,8 +53,8 @@
     "list": {
       "description": "No properties found | 1 property found | {count} properties found",
       "mostRelevant": "Most Relevant",
-      "priceAscending": "Price: Low to High",
-      "priceDescending": "Price: High to Low",
+      "priceLowToHigh": "Price: Low to High",
+      "priceHighToLow": "Price: High to Low",
       "newest": "Newest",
       "from": "from",
       "to": "to",

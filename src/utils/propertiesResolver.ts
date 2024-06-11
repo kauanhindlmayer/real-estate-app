@@ -1,7 +1,6 @@
 import i18n from '@/plugins/i18n'
 import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
 import type IPropertyFilters from '@/types/propertyFilters'
-import toCamelCase from './toCamelCase'
 
 const { t, n } = i18n.global
 
@@ -43,22 +42,26 @@ export const amenitiesOptions = [
 
 export const sortByOptions = [
   { label: t('properties.list.mostRelevant'), value: 'mostRelevant' },
-  { label: t('properties.list.priceAscending'), value: 'priceLowToHigh' },
-  { label: t('properties.list.priceDescending'), value: 'priceHighToLow' },
+  { label: t('properties.list.priceLowToHigh'), value: 'priceLowToHigh' },
+  { label: t('properties.list.priceHighToLow'), value: 'priceHighToLow' },
   { label: t('properties.list.newest'), value: 'newest' }
 ]
 
-interface FormatMap {
-  [key: string]: (value: any) => string
+function localizeFilterArray(value: string[]) {
+  return value.map((v) => t(`properties.list.filters.${v}`)).join(', ')
 }
 
-const formatMap: FormatMap = {
-  minYearBuilt: (value: Date) => value.getFullYear().toString(),
-  maxYearBuilt: (value: Date) => value.getFullYear().toString(),
+type FormatFunction = (value: any) => string
+
+const formatMap: Record<string, FormatFunction> = {
   minPrice: (value: number) => n(value, 'currency'),
   maxPrice: (value: number) => n(value, 'currency'),
+  minYearBuilt: (value: Date) => value.getFullYear().toString(),
+  maxYearBuilt: (value: Date) => value.getFullYear().toString(),
   minSize: (value: number) => `${value}m²`,
-  maxSize: (value: number) => `${value}m²`
+  maxSize: (value: number) => `${value}m²`,
+  sellerTypes: (value: SellerTypeEnum[]) => localizeFilterArray(value),
+  amenities: (value: string[]) => localizeFilterArray(value)
 }
 
 function getActiveFilters(filters: IPropertyFilters) {
@@ -69,23 +72,13 @@ function getActiveFilters(filters: IPropertyFilters) {
   return activeFilters
 }
 
-function formatValue(key: string, value: any): string {
-  const formatter = formatMap[key]
-
-  if (formatter) {
-    return formatter(value)
-  } else if (Array.isArray(value)) {
-    return value.map((v) => t(`properties.list.filters.${toCamelCase(v)}`)).join(', ')
-  }
-
-  return value
-}
-
 function formatActiveFilters(filters: IPropertyFilters, maxFilters: number = 6): string[] {
-  const activeFilters = getActiveFilters(filters)
-  const formattedFilters = activeFilters.map(
-    ([key, value]) => `${t(`properties.list.filters.${key}`)}: ${formatValue(key, value)}`
-  )
+  const keysToBeExcluded = ['title', 'sortBy']
+  const activeFilters = getActiveFilters(filters).filter(([key]) => !keysToBeExcluded.includes(key))
+  const formattedFilters = activeFilters.map(([key, value]) => {
+    const formatValue = formatMap[key] || ((v: any) => v)
+    return `${t(`properties.list.filters.${key}`)}: ${formatValue(value)}`
+  })
 
   if (formattedFilters.length > maxFilters) {
     formattedFilters.splice(maxFilters, formattedFilters.length - maxFilters, '...')

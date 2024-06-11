@@ -38,7 +38,7 @@ export class UserGatewayInMemory implements IUserGateway {
     if (this.users.find((user) => user.email === email)) {
       throw new Error('User already exists')
     }
-    const user = new User(String(this.users.length + 1), fullName, email, password, '')
+    const user = new User(fullName, email, '', '', password, String(this.users.length + 1))
     this.users.push(user)
   }
 

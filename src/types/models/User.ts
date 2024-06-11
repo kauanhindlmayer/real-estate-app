@@ -1,10 +1,10 @@
 export default class User {
   constructor(
-    public id?: string,
-    public fullName: string = '',
-    public email: string = '',
+    public fullName: string,
+    public email: string,
+    public avatarUrl: string,
+    public accessToken: string,
     public password?: string,
-    public avatarUrl: string = '',
-    public accessToken: string = ''
+    public id?: string
   ) {}
 }

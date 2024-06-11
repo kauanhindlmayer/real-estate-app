@@ -54,8 +54,8 @@
     "list": {
       "description": "Nenhuma propriedade encontrada | 1 propriedade encontrada | {count} propriedades encontradas",
       "mostRelevant": "Mais Relevante",
-      "priceAscending": "Preço: Menor para Maior",
-      "priceDescending": "Preço: Maior para Menor",
+      "priceLowToHigh": "Preço: Menor para Maior",
+      "priceHighToLow": "Preço: Maior para Menor",
       "newest": "Mais Novo",
       "from": "de",
       "to": "para",
