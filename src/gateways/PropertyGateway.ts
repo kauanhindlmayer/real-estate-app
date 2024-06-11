@@ -1,6 +1,6 @@
 import type IHttpClient from './httpClient'
 import type Property from '@/types/models/Property'
-import type { IPropertyFilters } from '@/types/propertyFilters'
+import type IPropertyFilters from '@/types/propertyFilters'
 import { properties as mockProperties } from '@/data/properties.json'
 
 export interface IPropertyGateway {

@@ -1,5 +1,5 @@
 let uuid = 0
 
-export function useUid() {
+export default function useUid() {
   return String(uuid++)
 }

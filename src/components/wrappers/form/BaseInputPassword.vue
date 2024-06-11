@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Password from 'primevue/password'
-import { useUid } from '@/composables/useUid'
+import useUid from '@/composables/useUid'
 
 defineProps<{ label?: string; error?: string }>()
 

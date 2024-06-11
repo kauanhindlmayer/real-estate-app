@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import InputMask from 'primevue/inputmask'
-import { useUid } from '@/composables/useUid'
+import useUid from '@/composables/useUid'
 
 defineProps<{ label?: string; error?: string }>()
 
