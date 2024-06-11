@@ -1,5 +1,5 @@
 import i18n from '@/plugins/i18n'
-import { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
+import { SellerType } from '@/types/enums/SellerType'
 import type IPropertyFilters from '@/types/propertyFilters'
 
 const { t, n } = i18n.global
@@ -12,23 +12,23 @@ export const propertyTypesOptions = [
 export const sellerTypesOptions = [
   {
     label: t('properties.list.filters.realEstateAgency'),
-    value: SellerTypeEnum.REAL_ESTATE_AGENCY
+    value: SellerType.REAL_ESTATE_AGENCY
   },
   {
     label: t('properties.list.filters.privateSeller'),
-    value: SellerTypeEnum.PRIVATE_SELLER
+    value: SellerType.PRIVATE_SELLER
   },
   {
     label: t('properties.list.filters.developer'),
-    value: SellerTypeEnum.DEVELOPER
+    value: SellerType.DEVELOPER
   },
   {
     label: t('properties.list.filters.builder'),
-    value: SellerTypeEnum.BUILDER
+    value: SellerType.BUILDER
   },
   {
     label: t('properties.list.filters.investor'),
-    value: SellerTypeEnum.INVESTOR
+    value: SellerType.INVESTOR
   }
 ]
 
@@ -60,7 +60,7 @@ const formatMap: Record<string, FormatFunction> = {
   maxYearBuilt: (value: Date) => value.getFullYear().toString(),
   minSize: (value: number) => `${value}m²`,
   maxSize: (value: number) => `${value}m²`,
-  sellerTypes: (value: SellerTypeEnum[]) => localizeFilterArray(value),
+  sellerTypes: (value: SellerType[]) => localizeFilterArray(value),
   amenities: (value: string[]) => localizeFilterArray(value)
 }
 
@@ -75,9 +75,10 @@ function getActiveFilters(filters: IPropertyFilters) {
 function formatActiveFilters(filters: IPropertyFilters, maxFilters: number = 6): string[] {
   const keysToBeExcluded = ['title', 'sortBy']
   const activeFilters = getActiveFilters(filters).filter(([key]) => !keysToBeExcluded.includes(key))
+
   const formattedFilters = activeFilters.map(([key, value]) => {
-    const formatValue = formatMap[key] || ((v: any) => v)
-    return `${t(`properties.list.filters.${key}`)}: ${formatValue(value)}`
+    const formatter = formatMap[key] || ((v: any) => v)
+    return `${t(`properties.list.filters.${key}`)}: ${formatter(value)}`
   })
 
   if (formattedFilters.length > maxFilters) {

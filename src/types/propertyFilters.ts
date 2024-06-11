@@ -1,4 +1,4 @@
-import type { SellerTypeEnum } from '@/types/enums/SellerTypeEnum'
+import type { SellerType } from '@/types/enums/SellerType'
 
 export default interface IPropertyFilters {
   title?: string
@@ -11,7 +11,7 @@ export default interface IPropertyFilters {
   maxSize?: number
   minBedrooms?: number
   minBathrooms?: number
-  sellerTypes?: SellerTypeEnum[]
+  sellerTypes?: SellerType[]
   sortBy?: string
   amenities?: string[]
 }

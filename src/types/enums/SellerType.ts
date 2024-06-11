@@ -1,4 +1,4 @@
-export enum SellerTypeEnum {
+export enum SellerType {
   REAL_ESTATE_AGENCY = 'realEstateAgency',
   PRIVATE_SELLER = 'privateSeller',
   DEVELOPER = 'developer',
