@@ -3,7 +3,7 @@ import { VueWrapper, mount } from '@vue/test-utils'
 
 import PrimeVue from 'primevue/config'
 import router from '@/router'
-import PropertyCard from '@/views/properties/partials/PropertyCard.vue'
+import PropertyCard from '@/components/properties/PropertyCard.vue'
 import { property as mockProperty } from '@/data/properties.json'
 
 describe('PropertyCard', () => {
