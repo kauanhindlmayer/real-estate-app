@@ -25,7 +25,9 @@ const validationSchema = object({
   price: number().required().positive().max(10000000),
   size: number().required().positive().max(100000),
   imageSources: array().required().min(1).of(string().url()),
-  type: string().required().oneOf(['house', 'apartment']),
+  type: string()
+    .required()
+    .oneOf(propertyTypesOptions.map((option) => option.value)),
   bedrooms: number().required().integer().min(0).max(50),
   bathrooms: number().required().integer().min(0).max(50),
   amenities: array().required().min(1).of(string()),

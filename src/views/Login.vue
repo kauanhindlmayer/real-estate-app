@@ -7,12 +7,12 @@ import type { LoginRequest } from '@/gateways/UserGateway'
 const userStore = useUserStore()
 
 const validationSchema = object({
-  email: string().required().email(),
+  username: string().required().email(),
   password: string().required()
 })
 
 const { handleSubmit, errors } = useForm<LoginRequest>({ validationSchema })
-const { value: email } = useField('email')
+const { value: username } = useField('username')
 const { value: password } = useField('password')
 
 const onSubmit = handleSubmit(userStore.login)
@@ -29,10 +29,10 @@ const onSubmit = handleSubmit(userStore.login)
           </div>
           <div class="col-12">
             <BaseInputText
-              v-model="email"
+              v-model="username"
               :label="$t('fields.email')"
               :placeholder="$t('fields.email')"
-              :error="errors.email"
+              :error="errors.username"
             />
           </div>
           <div class="col-12">

@@ -35,6 +35,8 @@ export default class PropertyGateway implements IPropertyGateway {
 
   async save(property: Property): Promise<void> {
     const method = property.id ? 'put' : 'post'
+    // TODO: Remove this line when the API is fixed
+    property.location.zipCode = Number(property.location.zipCode)
     return await this.httpClient[method]('/properties', property)
   }
 

@@ -5,7 +5,7 @@ function addAuthorizationHeader(config: InternalAxiosRequestConfig) {
   const userStore = useUserStore()
   const urlsExcludedForBearerHeader = ['/login', '/register']
   if (urlsExcludedForBearerHeader.indexOf(config.url!) === -1) {
-    config.headers.Authorization = `Bearer ${userStore.user?.accessToken}`
+    config.headers.Authorization = `Bearer ${userStore.user?.access_token}`
   }
   return config
 }

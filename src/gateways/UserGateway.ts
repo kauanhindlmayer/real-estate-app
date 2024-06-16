@@ -1,10 +1,10 @@
 import type IHttpClient from './httpClient'
 import User from '@/types/models/User'
-import { users as mockUsers } from '@/data/users.json'
 
 export interface IUserGateway {
   register(registrationData: RegistrationRequest): Promise<void>
   login(loginData: LoginRequest): Promise<User>
+  getUserInfo(): Promise<User>
 }
 
 export type RegistrationRequest = {
@@ -15,24 +15,34 @@ export type RegistrationRequest = {
 }
 
 export type LoginRequest = {
-  email: string
+  username: string
   password: string
+}
+
+const config = {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
 }
 
 export default class UserGateway implements IUserGateway {
   constructor(readonly httpClient: IHttpClient) {}
 
   async register(registrationData: RegistrationRequest): Promise<void> {
-    return await this.httpClient.post('/register', registrationData)
+    return await this.httpClient.post('/users/register', registrationData, config)
   }
 
   async login(loginData: LoginRequest): Promise<User> {
-    return await this.httpClient.post('/login', loginData)
+    return await this.httpClient.post('/login', new URLSearchParams(loginData), config)
+  }
+
+  async getUserInfo(): Promise<User> {
+    return await this.httpClient.get('/users/me')
   }
 }
 
 export class UserGatewayInMemory implements IUserGateway {
-  private users: User[] = mockUsers
+  private users: User[] = []
 
   async register({ fullName, email, password }: RegistrationRequest): Promise<void> {
     if (this.users.find((user) => user.email === email)) {
@@ -42,9 +52,13 @@ export class UserGatewayInMemory implements IUserGateway {
     this.users.push(user)
   }
 
-  async login({ email, password }: LoginRequest): Promise<User> {
-    const user = this.users.find((user) => user.email === email && user.password === password)
+  async login({ username, password }: LoginRequest): Promise<User> {
+    const user = this.users.find((user) => user.email === username && user.password === password)
     if (!user) throw new Error('Invalid credentials')
     return user
+  }
+
+  getUserInfo(): Promise<User> {
+    throw new Error('Method not implemented.')
   }
 }

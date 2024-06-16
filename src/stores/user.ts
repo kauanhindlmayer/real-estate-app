@@ -39,6 +39,8 @@ export const useUserStore = defineStore('user', () => {
     isLoading.value = true
     try {
       user.value = await userGateway.login(loginData)
+      const userInfo = await userGateway.getUserInfo()
+      user.value = { ...user.value, ...userInfo }
       delete user.value.password
       router.push({ name: 'home' })
     } catch {

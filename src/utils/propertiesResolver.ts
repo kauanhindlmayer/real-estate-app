@@ -5,8 +5,8 @@ import type IPropertyFilters from '@/types/propertyFilters'
 const { t, n } = i18n.global
 
 export const propertyTypesOptions = [
-  { label: t('properties.list.filters.apartment'), value: 'apartment' },
-  { label: t('properties.list.filters.house'), value: 'house' }
+  { label: t('properties.list.filters.apartment'), value: 'Apartment' },
+  { label: t('properties.list.filters.house'), value: 'House' }
 ]
 
 export const sellerTypesOptions = [
