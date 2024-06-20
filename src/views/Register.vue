@@ -38,9 +38,14 @@ const onSubmit = handleSubmit(userStore.register)
     <div class="registration__left-panel">
       <form @submit.prevent="onSubmit" class="registration__form">
         <div class="grid w-7">
-          <div class="col-12">
-            <h1>{{ $t('common.register') }}</h1>
+          <div class="col-12 mb-2">
+            <h1 class="mb-2">{{ $t('common.register') }}</h1>
+            <div>
+              {{ $t('register.alreadyHaveAccount') }}
+              <RouterLink to="/login" class="emphasis">{{ $t('common.login') }}</RouterLink>
+            </div>
           </div>
+
           <div class="col-12">
             <BaseInputText
               v-model="fullName"
@@ -86,8 +91,14 @@ const onSubmit = handleSubmit(userStore.register)
             />
           </div>
           <div class="col-12">
-            {{ $t('register.alreadyHaveAccount') }}
-            <RouterLink to="/login" class="emphasis">{{ $t('common.login') }}</RouterLink>
+            {{ $t('register.agreement') }}
+            <a
+              href="https://docs.google.com/document/d/1hMUhRYXNNtbEY7Wkjs9qeKi9otZjRRGDLYebxX_0P8c/edit?usp=sharing"
+              target="_blank"
+              class="emphasis"
+            >
+              {{ $t('register.termsAndConditions') }}
+            </a>
           </div>
         </div>
       </form>

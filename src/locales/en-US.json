@@ -126,6 +126,8 @@
   },
   "register": {
     "alreadyHaveAccount": "Already have an account?",
+    "agreement": "By clicking Register, you agree to our",
+    "termsAndConditions": "Terms and Conditions",
     "messages": {
       "userRegistered": "User registered successfully!",
       "errorRegisteringUser": "Error registering user. Please try again later."

@@ -127,6 +127,8 @@
   },
   "register": {
     "alreadyHaveAccount": "Já possui uma conta?",
+    "agreement": "Ao clicar em Registrar, você concorda com nossos",
+    "termsAndConditions": "Termos e Condições",
     "messages": {
       "userRegistered": "Usuário registrado com sucesso!",
       "errorRegisteringUser": "Erro ao registrar usuário. Tente novamente mais tarde."
