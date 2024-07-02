@@ -21,8 +21,9 @@ const value = computed(() => {
 
 <template>
   <Galleria v-bind="$attrs" :value>
-    <template #item="slotProps">
-      <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" class="image" />
+    <template #item="{ item }">
+      <!-- TODO: Remove this when unsplash start working again -->
+      <img src="@/assets/images/house.jpg" :alt="item.alt" class="image" />
     </template>
   </Galleria>
 </template>
