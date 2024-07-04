@@ -8,22 +8,22 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
-const value = computed(() => {
-  return props.images.map((image: string, index: number) => {
+const value = computed(() =>
+  props.images.map((image) => {
     return {
-      itemImageSrc: image,
-      thumbnailImageSrc: image,
-      alt: `Image ${index + 1}`
+      source: image,
+      alt: 'Property Image'
     }
   })
-})
+)
 </script>
 
 <template>
   <Galleria v-bind="$attrs" :value>
-    <template #item="{ item }">
-      <!-- TODO: Remove this when unsplash start working again -->
-      <img src="@/assets/images/house.jpg" :alt="item.alt" class="image" />
+    <template #item="{ item: image }">
+      <!-- TODO: Uncomment this line when unsplash API is working again -->
+      <!-- <img :src="image.source" :alt="image.alt" class="image" /> -->
+      <img src="@/assets/images/house.jpg" :alt="image.alt" class="image" />
     </template>
   </Galleria>
 </template>
@@ -31,15 +31,17 @@ const value = computed(() => {
 <style scoped>
 .image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 4px 4px 0 0;
 }
 </style>
 
 <style>
-.p-galleria .p-galleria-indicators .p-galleria-indicator button {
-  height: 0.5rem !important;
-  width: 0.5rem !important;
+.p-galleria-indicator-list {
+  padding: 0.35rem !important;
+}
+.p-galleria-indicator-button {
+  height: 0.65rem !important;
+  width: 0.65rem !important;
 }
 </style>

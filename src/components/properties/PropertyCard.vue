@@ -18,7 +18,7 @@ function redirectToPropertyDetails() {
       <BaseGallery
         :images="property.imageSources"
         :show-thumbnails="false"
-        show-item-navigators
+        show-indicators-on-item
         show-item-navigators-on-hover
         show-indicators
         circular
