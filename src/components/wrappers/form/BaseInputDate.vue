@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Calendar from 'primevue/calendar'
+import DatePicker from 'primevue/datepicker'
 import useUid from '@/composables/useUid'
 
 defineProps<{ label?: string; error?: string }>()
@@ -13,7 +13,7 @@ const uid = useUid()
     <label v-if="label" :for="uid">
       {{ label }}
     </label>
-    <Calendar
+    <DatePicker
       v-bind="$attrs"
       v-model="modelValue"
       :id="uid"

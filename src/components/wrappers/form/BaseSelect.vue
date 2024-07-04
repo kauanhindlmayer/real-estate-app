@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Dropdown from 'primevue/dropdown'
+import Select from 'primevue/select'
 import useUid from '@/composables/useUid'
 
 defineProps<{ label?: string; error?: string }>()
@@ -13,7 +13,7 @@ const uid = useUid()
     <label v-if="label" :for="uid">
       {{ label }}
     </label>
-    <Dropdown
+    <Select
       v-bind="$attrs"
       v-model="modelValue"
       :id="uid"
