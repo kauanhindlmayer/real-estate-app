@@ -5,12 +5,10 @@ import { useStorage } from '@vueuse/core'
 import BaseDialog from '@/components/wrappers/misc/BaseDialog.vue'
 import BaseSelect from '@/components/wrappers/form/BaseSelect.vue'
 import useBaseToast from '@/composables/useBaseToast'
-import useTheme from '@/composables/useTheme'
 
 const i18n = useI18n()
 const toast = useBaseToast()
 
-const { selectedTheme, themesOptions, setTheme } = useTheme()
 const { selectedLanguage, languagesOptions, setLanguage } = useLanguage()
 
 function useLanguage() {
@@ -34,7 +32,6 @@ function useLanguage() {
 
 function saveChanges() {
   setLanguage()
-  setTheme()
   closeDialog()
   toast.success({ message: i18n.t('settings.messages.settingsSaved') })
 }
@@ -73,7 +70,7 @@ defineExpose({
           option-value="value"
         />
       </div>
-      <div class="col-12">
+      <!-- <div class="col-12">
         <BaseSelect
           v-model="selectedTheme"
           :label="$t('settings.theme')"
@@ -82,7 +79,7 @@ defineExpose({
           option-label="label"
           option-value="value"
         />
-      </div>
+      </div> -->
       <div class="col-12 text-right">
         <BaseButton
           type="submit"

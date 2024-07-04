@@ -9,7 +9,6 @@ import router from '@/router'
 import i18n from '@/plugins/i18n'
 import primeVue from '@/plugins/prime-vue'
 import yup from '@/plugins/yup'
-import nProgress from '@/plugins/nprogress'
 import globalComponents from '@/plugins/global-components'
 import gatewayProvider from '@/plugins/gateway-provider'
 
@@ -20,7 +19,6 @@ app.use(router)
 app.use(i18n)
 app.use(primeVue)
 app.use(yup)
-app.use(nProgress)
 app.use(globalComponents)
 app.use(gatewayProvider)
 

@@ -12,8 +12,8 @@ import Breadcrumb from 'primevue/breadcrumb'
 
 <style>
 .p-breadcrumb {
-  background-color: var(--surface-50);
-  padding: 0;
+  background-color: var(--surface-50) !important;
+  padding: 0 !important;
 }
 .p-breadcrumb > .p-menuitem-text {
   font-size: 0.5rem !important;

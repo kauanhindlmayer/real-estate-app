@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const propertiesRoutes: Readonly<RouteRecordRaw[]> = [
   {
-    path: '/properties/list',
+    path: '/properties',
     name: 'properties-list',
     component: () => import('@/views/properties/PropertyList.vue'),
     meta: {
