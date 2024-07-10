@@ -8,11 +8,13 @@ import BaseAvatar from '@/components/wrappers/misc/BaseAvatar.vue'
 import BaseMenu from '@/components/wrappers/menu/BaseMenu.vue'
 import BaseMenubar from '@/components/wrappers/menu/BaseMenubar.vue'
 import SettingsDialog from '@/components/SettingsDialog.vue'
+import useTheme from '@/composables/useTheme'
 
 const { t } = useI18n()
 const router = useRouter()
 const userStore = useUserStore()
 const { user, isLoggedIn } = storeToRefs(userStore)
+const { isLight } = useTheme()
 
 function redirectTo(name: string) {
   router.push({ name })
@@ -91,7 +93,7 @@ const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
     </template>
   </BaseMenubar>
 
-  <div class="content-container">
+  <div :class="['content-container', { 'content-container--light': isLight }]">
     <RouterView />
   </div>
 
@@ -115,9 +117,11 @@ const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
 }
 .content-container {
   height: calc(100vh - 64px);
-  background-color: var(--content-background);
   padding: 1.5rem;
   overflow-y: auto;
+}
+.content-container--light {
+  background-color: var(--surface-50);
 }
 </style>
 

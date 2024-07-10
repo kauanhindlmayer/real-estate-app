@@ -12,6 +12,7 @@ label {
 .p-error {
   display: block;
   margin-top: 4px;
+  color: var(--red-500);
 }
 
 .emphasis {
