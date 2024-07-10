@@ -252,7 +252,7 @@ const getLocationByZipCode = useDebounceFn(async () => {
 .form-container {
   max-width: 900px;
   margin: 0 auto;
-  background-color: var(--surface-0);
+  background-color: var(--content-background);
   border-radius: 0.5rem;
   padding: 2rem;
 }

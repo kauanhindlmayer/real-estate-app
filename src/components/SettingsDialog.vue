@@ -5,33 +5,57 @@ import { useStorage } from '@vueuse/core'
 import BaseDialog from '@/components/wrappers/misc/BaseDialog.vue'
 import BaseSelect from '@/components/wrappers/form/BaseSelect.vue'
 import useBaseToast from '@/composables/useBaseToast'
+import useTheme from '@/composables/useTheme'
 
 const i18n = useI18n()
 const toast = useBaseToast()
 
-const { selectedLanguage, languagesOptions, setLanguage } = useLanguage()
+const { selectedTheme, themesOptions, toggleTheme } = useTheme()
+const { selectedLocale, localesOptions, toggleLocale, getLocaleOption } = useLocale()
 
-function useLanguage() {
-  const selectedLanguage = useStorage<'en-US' | 'pt-BR'>('locale', 'en-US')
+function useLocale() {
+  type Locale = 'en-US' | 'pt-BR'
 
-  const languagesOptions = [
-    { label: i18n.t('settings.english'), value: 'en-US' },
-    { label: i18n.t('settings.portuguese'), value: 'pt-BR' }
-  ]
+  type LanguageOption = {
+    label: string
+    value: Locale
+    icon: string
+  }
 
-  function setLanguage() {
-    i18n.locale.value = selectedLanguage.value
+  const selectedLocale = useStorage<Locale>('locale', 'en-US')
+
+  const localesOptions = ref<LanguageOption[]>([
+    {
+      label: i18n.t('settings.english'),
+      value: 'en-US',
+      icon: 'https://flagsapi.com/GB/flat/24.png'
+    },
+    {
+      label: i18n.t('settings.portuguese'),
+      value: 'pt-BR',
+      icon: 'https://flagsapi.com/BR/flat/24.png'
+    }
+  ])
+
+  function toggleLocale(): void {
+    i18n.locale.value = selectedLocale.value
+  }
+
+  function getLocaleOption(locale: Locale): LanguageOption {
+    return localesOptions.value.find((option) => option.value === locale)!
   }
 
   return {
-    selectedLanguage,
-    languagesOptions,
-    setLanguage
+    selectedLocale,
+    localesOptions,
+    getLocaleOption,
+    toggleLocale
   }
 }
 
 function saveChanges() {
-  setLanguage()
+  toggleLocale()
+  toggleTheme()
   closeDialog()
   toast.success({ message: i18n.t('settings.messages.settingsSaved') })
 }
@@ -62,15 +86,34 @@ defineExpose({
     <form class="grid" @submit.prevent="saveChanges">
       <div class="col-12">
         <BaseSelect
-          v-model="selectedLanguage"
+          v-model="selectedLocale"
           :label="$t('settings.language')"
           :placeholder="$t('settings.selectLanguage')"
-          :options="languagesOptions"
+          :options="localesOptions"
           option-label="label"
           option-value="value"
-        />
+        >
+          <template #option="{ option }">
+            <span class="flex align-items-center gap-2">
+              <img :alt="option.label" :src="option.icon" />
+              <span>{{ option.label }}</span>
+            </span>
+          </template>
+
+          <template #value="{ value, placeholder }">
+            <div v-if="value">
+              <span class="flex align-items-center gap-2">
+                <img :alt="getLocaleOption(value).label" :src="getLocaleOption(value).icon" />
+                <span>{{ getLocaleOption(value).label }}</span>
+              </span>
+            </div>
+            <div v-else>
+              <span>{{ placeholder }}</span>
+            </div>
+          </template>
+        </BaseSelect>
       </div>
-      <!-- <div class="col-12">
+      <div class="col-12">
         <BaseSelect
           v-model="selectedTheme"
           :label="$t('settings.theme')"
@@ -79,7 +122,7 @@ defineExpose({
           option-label="label"
           option-value="value"
         />
-      </div> -->
+      </div>
       <div class="col-12 text-right">
         <BaseButton
           type="submit"

@@ -34,7 +34,8 @@ const primeVue = {
         preset,
         options: {
           prefix: '',
-          darkModeSelector: 'system'
+          darkModeSelector: '.dark',
+          cssLayer: false
         }
       }
     })

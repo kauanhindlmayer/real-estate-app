@@ -115,7 +115,7 @@ const settingsDialogRef = ref<InstanceType<typeof SettingsDialog> | null>(null)
 }
 .content-container {
   height: calc(100vh - 64px);
-  background-color: var(--surface-50);
+  background-color: var(--content-background);
   padding: 1.5rem;
   overflow-y: auto;
 }

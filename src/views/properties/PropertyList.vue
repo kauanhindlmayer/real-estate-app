@@ -238,7 +238,7 @@ onBeforeMount(async () => {
 <style scoped>
 .section {
   padding: 1rem;
-  border-bottom: 1px solid var(--surface-200);
+  border-bottom: 1px solid var(--content-border-color);
 }
 .section__title {
   font-weight: 600;
@@ -254,7 +254,7 @@ onBeforeMount(async () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--surface-0);
+  background-color: var(--content-background);
   padding: 1rem;
 }
 .top-bar__chips {

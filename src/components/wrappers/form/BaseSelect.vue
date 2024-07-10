@@ -21,7 +21,14 @@ const uid = useUid()
       :aria-invalid="!!error"
       :invalid="!!error"
       class="w-full"
-    />
+    >
+      <template #option="{ option }">
+        <slot name="option" :option="option" />
+      </template>
+      <template #value="{ value, placeholder }">
+        <slot name="value" :value="value" :placeholder="placeholder" />
+      </template>
+    </Select>
     <small class="p-error" v-if="error" :id="`${uid}-error`" aria-live="assertive">
       {{ error }}
     </small>
