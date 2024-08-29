@@ -77,7 +77,7 @@ onBeforeMount(() => {
           </div>
           <div class="col-12">
             <BaseInputTextarea
-              v-model="message"
+              v-model="message as string"
               :label="t('fields.message')"
               :placeholder="t('fields.message')"
               :error="errors.message"

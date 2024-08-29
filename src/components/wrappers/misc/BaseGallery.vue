@@ -6,10 +6,10 @@ interface IProps {
   images: string[]
 }
 
-const props = defineProps<IProps>()
+const { images } = defineProps<IProps>()
 
 const value = computed(() =>
-  props.images.map((image) => {
+  images.map((image) => {
     return {
       source: image,
       alt: 'Property Image'

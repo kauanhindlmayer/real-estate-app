@@ -3,12 +3,12 @@ import { useRouter } from 'vue-router'
 import BaseGallery from '@/components/wrappers/misc/BaseGallery.vue'
 import type Property from '@/types/models/Property'
 
-const props = defineProps<{ property: Property | null; showExtendedInfo?: boolean }>()
+const { property } = defineProps<{ property: Property | null; showExtendedInfo?: boolean }>()
 
 const router = useRouter()
 
 function redirectToPropertyDetails() {
-  router.push({ name: 'property-details', params: { id: props.property?.id } })
+  router.push({ name: 'property-details', params: { id: property?.id } })
 }
 </script>
 

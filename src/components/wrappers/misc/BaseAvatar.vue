@@ -6,17 +6,9 @@ interface IProps {
   shape?: 'circle' | 'square'
 }
 
-const props = withDefaults(defineProps<IProps>(), {
-  image: undefined,
-  shape: 'circle'
-})
+const { image = undefined, shape = 'circle' } = defineProps<IProps>()
 </script>
 
 <template>
-  <Avatar
-    v-bind="$attrs"
-    :image="props.image"
-    :icon="props.image ? undefined : 'pi pi-user'"
-    :shape="props.shape"
-  />
+  <Avatar v-bind="$attrs" :image :shape :icon="image ? undefined : 'pi pi-user'" />
 </template>

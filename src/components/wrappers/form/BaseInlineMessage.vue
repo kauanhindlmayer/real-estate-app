@@ -5,9 +5,9 @@ interface IProps {
   text: string
 }
 
-const props = defineProps<IProps>()
+const { text } = defineProps<IProps>()
 </script>
 
 <template>
-  <InlineMessage v-bind="$attrs">{{ props.text }}</InlineMessage>
+  <InlineMessage v-bind="$attrs">{{ text }}</InlineMessage>
 </template>

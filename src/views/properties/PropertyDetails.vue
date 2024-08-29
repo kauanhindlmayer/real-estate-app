@@ -7,12 +7,12 @@ import PropertyContactForm from '@/components/properties/PropertyContactForm.vue
 import SellerCard from '@/components/properties/SellerCard.vue'
 import BaseTag from '@/components/wrappers/misc/BaseTag.vue'
 
-const props = defineProps<{ id: string }>()
+const { id } = defineProps<{ id: string }>()
 
 const propertiesStore = usePropertiesStore()
 const { property, isLoading } = storeToRefs(propertiesStore)
 
-onBeforeMount(async () => await propertiesStore.getPropertyById(props.id))
+onBeforeMount(async () => await propertiesStore.getPropertyById(id))
 </script>
 
 <template>

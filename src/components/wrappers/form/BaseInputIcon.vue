@@ -8,15 +8,12 @@ interface IProps {
   iconPosition?: 'left' | 'right'
 }
 
-const props = withDefaults(defineProps<IProps>(), {
-  icon: '',
-  iconPosition: 'left'
-})
+const { icon = '', iconPosition = 'left' } = defineProps<IProps>()
 </script>
 
 <template>
-  <IconField :iconPosition="props.iconPosition">
-    <InputIcon :class="props.icon" />
+  <IconField :iconPosition="iconPosition">
+    <InputIcon :class="icon" />
     <InputText v-bind="$attrs" />
   </IconField>
 </template>

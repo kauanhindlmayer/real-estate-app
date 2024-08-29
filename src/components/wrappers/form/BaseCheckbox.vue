@@ -1,12 +1,12 @@
 <script lang="ts" setup>
+import { useId } from 'vue'
 import Checkbox from 'primevue/checkbox'
-import useUid from '@/composables/useUid'
 
 defineProps<{ label?: string; error?: string }>()
 
 const modelValue = defineModel<boolean | string[]>()
 
-const uid = useUid()
+const inputId = useId()
 </script>
 
 <template>
@@ -15,14 +15,14 @@ const uid = useUid()
       <Checkbox
         v-bind="$attrs"
         v-model="modelValue"
-        :inputId="uid"
-        :aria-labelledby="error ? `${uid}-error` : undefined"
+        :inputId="inputId"
+        :aria-labelledby="error ? `${inputId}-error` : undefined"
         :aria-invalid="!!error"
         :invalid="!!error"
       />
-      <label v-if="label" :for="uid">{{ label }}</label>
+      <label v-if="label" :for="inputId">{{ label }}</label>
     </div>
-    <small class="p-error" v-if="error" :id="`${uid}-error`" aria-live="assertive">
+    <small class="p-error" v-if="error" :id="`${inputId}-error`" aria-live="assertive">
       {{ error }}
     </small>
   </div>
